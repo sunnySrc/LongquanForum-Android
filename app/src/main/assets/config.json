@@ -1,0 +1,212 @@
+﻿{
+    "rs": 1,
+    "errcode": "",
+    "head": {
+        "errCode": "00000000",
+        "errInfo": "",
+        "version": "2.2.2.4",
+        "alert": 0
+    },
+    "body": {
+        "navigation": {
+            "type": "bottom",
+            "navItemList": [
+                {
+                    "moduleId": 1,
+                    "title": "首页",
+                    "icon": "mc_forum_main_bar_button1"
+                },
+                {
+                    "moduleId": 2,
+                    "title": "社区",
+                    "icon": "mc_forum_main_bar_button2"
+                },
+                {
+                    "moduleId": 3,
+                    "title": "快发",
+                    "icon": "mc_forum_main_bar_button1"
+                },
+                {
+                    "moduleId": 4,
+                    "title": "消息",
+                    "icon": "mc_forum_main_bar_button4"
+                },
+                {
+                    "moduleId": 5,
+                    "title": "发现",
+                    "icon": "mc_forum_main_bar_button5"
+                }
+            ]
+        },
+        "moduleList": [
+            {
+                "id": 1,
+                "type": "subnav",
+                "style": "flat",
+                "title": "首页",
+                "rightTopbars": [
+                    {
+                        "type": "userinfo",
+                        "style": "card",
+						"icon": "mc_forum_top_bar_button6"
+                    }
+                ],
+                "componentList": [      
+                    {
+                        "title": "最新",
+                        "type": "topiclistSimple",
+                        "style": "tieba",
+                        "extParams": {
+                            "forumId": 0,
+                            "filter": "typeid",
+                            "orderby": "new",
+                            "order":0,
+                            "listTitleLength": 40,
+							"listSummaryLength": 40,
+							"listImagePosition": 2,
+							"subDetailViewStyle": "card"
+                        }
+                    },
+                    {
+                        "title": "精华",
+                        "type": "topiclistSimple",
+                        "style": "neteaseNews",
+                        "extParams": {
+                            "forumId": 0,
+                            "filter": "typeid",
+                            "orderby": "marrow",
+                            "listTitleLength": 40,
+							"listSummaryLength": 0,
+							"listImagePosition": 2,
+							"subDetailViewStyle": "flat"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "type": "full",
+                "title": "社区",
+                "rightTopbars": [
+                    {
+                        "type": "search",
+                        "style": "card",
+						"icon": "mc_forum_top_bar_button10"
+                    }
+                ],
+                "componentList": [
+                    {
+                        "title": "版块",
+                        "type": "forumlist",
+                        "style": "flat",
+                        "extParams": {
+                            "forumId": 0
+                        }
+                    }
+                ],
+                "style": "card"
+            },
+            {
+                "id": 3,
+                "type": "fastpost",
+                "title": "快速发表",
+                "style": "card",
+                "componentList": [
+					{
+						"type": "fasttext",
+						"style": "flat",
+						"icon": "mc_forum_ico27",
+						"iconStyle": "image",
+						"title": "文字"
+					},
+					{
+						"type": "fastimage",
+						"style": "flat",
+						"icon": "mc_forum_ico28",
+						"iconStyle": "image",
+						"title": "图片"
+					},
+					{
+						"type": "fastcamera",
+						"style": "flat",
+						"icon": "mc_forum_ico29",
+						"iconStyle": "image",
+						"title": "拍照"
+					},
+					{
+						"type": "fastaudio",
+						"style": "flat",
+						"icon": "mc_forum_ico45",
+						"iconStyle": "image",
+						"title": "语音"	
+					}
+				]
+            },
+            {
+                "id": 4,
+                "type": "full",
+                "style": "card",
+                "title": "消息",
+                "componentList": [
+                    {
+                        "type": "messagelist",
+                        "style": "card"
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "type": "full",
+                "title": "发现",
+                "componentList": [
+                    {
+                        "type": "discover",
+                        "style": "card",
+                        "componentList": [
+                            {
+                                "type": "layout",
+                                "style": "discoverDefault",
+                                "componentList": [
+                                    {
+                                        "type": "userinfo",
+                                        "title": "个人中心",
+                                        "style": "card"
+                                    },
+                                    {
+                                        "type": "userlist",
+                                        "title": "周边用户",
+                                        "style": "card",
+                                        "extParams": {
+                                            "filter": "all",
+                                            "orderby": "distance"
+                                        }
+                                    },
+                                    {
+                                        "type": "surroudingPostlist",
+                                        "title": "周边帖子",
+                                        "style": "card"
+                                    },
+                                    {
+                                        "type": "userlist",
+                                        "title": "推荐用户",
+                                        "style": "card",
+                                        "extParams": {
+                                            "filter": "recommend",
+                                            "orderby": "dateline"
+                                        }
+                                    },
+                                    {
+                                        "type": "setting",
+                                        "title": "设置",
+                                        "style": "card"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "style": "card"
+            }
+        ]
+    }
+}

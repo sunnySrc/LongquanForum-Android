@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_gravity="center_horizontal" android:orientation="horizontal" android:id="@id/option_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="14.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_marginLeft="0.0dip" style="@style/vp_detail_center_opt_layout_style">
+        <Button android:id="@id/share_weixin_btn" android:background="@drawable/video_detail_weixin" android:onClick="shareBtnClick" style="@style/vp_detail_center_opt_btn_style" />
+        <TextView android:text="@string/mc_share_wechat" style="@style/vp_detail_center_opt_text_style" />
+    </LinearLayout>
+    <LinearLayout style="@style/vp_detail_center_opt_layout_style">
+        <Button android:id="@id/share_moments_btn" android:background="@drawable/video_detail_pengyouquan" android:onClick="shareBtnClick" style="@style/vp_detail_center_opt_btn_style" />
+        <TextView android:text="@string/mc_share_moments" style="@style/vp_detail_center_opt_text_style" />
+    </LinearLayout>
+    <LinearLayout style="@style/vp_detail_center_opt_layout_style">
+        <Button android:id="@id/share_weibo_btn" android:background="@drawable/video_detail_weibo" android:onClick="shareBtnClick" style="@style/vp_detail_center_opt_btn_style" />
+        <TextView android:text="@string/mc_share_sina" style="@style/vp_detail_center_opt_text_style" />
+    </LinearLayout>
+    <LinearLayout style="@style/vp_detail_center_opt_layout_style">
+        <Button android:id="@id/share_qq_btn" android:background="@drawable/video_detail_qq" android:onClick="shareBtnClick" style="@style/vp_detail_center_opt_btn_style" />
+        <TextView android:text="@string/mc_share_qq" style="@style/vp_detail_center_opt_text_style" />
+    </LinearLayout>
+    <LinearLayout style="@style/vp_detail_center_opt_layout_style">
+        <Button android:id="@id/share_qqzone_btn" android:background="@drawable/video_detail_qqzone" android:onClick="shareBtnClick" style="@style/vp_detail_center_opt_btn_style" />
+        <TextView android:text="@string/mc_share_qzone" style="@style/vp_detail_center_opt_text_style" />
+    </LinearLayout>
+</LinearLayout>

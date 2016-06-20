@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/share_back_layout" android:background="#8f000000" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <LinearLayout android:orientation="vertical" android:id="@id/mc_share_item_layout" android:background="@color/mc_forum_more_bg_color" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <LinearLayout android:orientation="vertical" android:id="@id/mc_share_layout" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <com.mobcent.share.android.widget.MCShareHorizontalScrollView android:layout_gravity="bottom" android:id="@id/id_horizontalScrollView" android:scrollbars="none" android:fadingEdge="none" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="36.0dip" android:layout_marginBottom="21.0dip" android:overScrollMode="never">
+                <LinearLayout android:layout_gravity="center_vertical" android:orientation="horizontal" android:id="@id/id_gallery" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            </com.mobcent.share.android.widget.MCShareHorizontalScrollView>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:id="@id/mc_tools_layout" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <View android:background="#ffcfcfcf" android:layout_width="fill_parent" android:layout_height="1.0px" />
+            <com.mobcent.share.android.widget.MCShareHorizontalScrollView android:layout_gravity="bottom" android:id="@id/topic_detial_other_share" android:scrollbars="none" android:fadingEdge="none" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="15.0dip" android:layout_marginBottom="21.0dip" android:overScrollMode="never">
+                <LinearLayout android:layout_gravity="center_vertical" android:orientation="horizontal" android:id="@id/topic_detial_other_share_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            </com.mobcent.share.android.widget.MCShareHorizontalScrollView>
+        </LinearLayout>
+        <TextView android:textSize="16.0sp" android:textColor="@color/mc_forum_more_text_color" android:gravity="center" android:id="@id/cancel_btn" android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="45.0dip" android:text="@string/mc_share_cancel" />
+    </LinearLayout>
+</RelativeLayout>

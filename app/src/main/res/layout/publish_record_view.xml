@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/mc_forum_voice_view" android:background="@drawable/mc_forum_bg7" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/mc_forum_recording_img" android:background="@drawable/mc_forum_recording2_img1_1" android:layout_width="53.0dip" android:layout_height="93.0dip" android:layout_marginBottom="35.0dip" android:layout_above="@id/mc_forum_recording_btn" android:layout_centerHorizontal="true" />
+    <TextView android:textSize="@dimen/mc_forum_text_size_12" android:textColor="@android:color/white" android:id="@id/mc_forum_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="122.0dip" android:layout_toRightOf="@id/mc_forum_recording_img" android:layout_above="@id/mc_forum_recording_btn" />
+    <Button android:textColor="@color/mc_forum_text1_normal_color" android:id="@id/mc_forum_recording_btn" android:background="@drawable/mc_forum_recording2_img2_h" android:layout_width="60.0dip" android:layout_height="60.0dip" android:layout_marginBottom="24.0dip" android:text="@string/mc_forum_rapid_publish_recording" android:layout_above="@id/mc_forum_voice_hit_text" android:layout_centerHorizontal="true" />
+    <TextView android:id="@id/mc_forum_voice_hit_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="16.0dip" android:text="@string/mc_forum_rapid_publish_voice_hint" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" />
+</RelativeLayout>

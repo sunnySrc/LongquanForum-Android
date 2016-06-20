@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="largeIcon_Top_Margin">10.0dip</dimen>
+    <dimen name="title_content_leftMargin">12.0dip</dimen>
+    <dimen name="largeIcon_leftMargin">10.0dip</dimen>
+    <dimen name="largeIcon_height_width">48.0dip</dimen>
+    <dimen name="bigpicture_height">128.0dip</dimen>
+    <dimen name="content_img_topMargin">4.0dip</dimen>
+    <dimen name="title_when_topMargin">4.0dip</dimen>
+    <dimen name="title_fontSize">22.0dip</dimen>
+    <dimen name="img_height_width">20.0dip</dimen>
+    <dimen name="img_when_rightMargin">10.0dip</dimen>
+    <dimen name="notification_height">64.0dip</dimen>
+    <dimen name="download_detail_height">56.0dip</dimen>
+    <dimen name="common_text_size_title">18.0sp</dimen>
+    <dimen name="common_text_size_content">16.0sp</dimen>
+    <dimen name="common_text_size_when">16.0sp</dimen>
+    <dimen name="common_text_lineSpacingExtra">1.0dip</dimen>
+    <dimen name="download_detail_fontSize">16.0sp</dimen>
+</resources>

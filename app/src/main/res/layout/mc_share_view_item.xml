@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@android:color/transparent" android:layout_width="66.0dip" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/mc_share_view_item_image" android:layout_width="46.0dip" android:layout_height="46.0dip" android:scaleType="centerCrop" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" />
+    <TextView android:textSize="11.0sp" android:textColor="@color/mc_forum_more_text_color" android:id="@id/mc_share_view_item_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:layout_below="@id/mc_share_view_item_image" android:layout_centerHorizontal="true" />
+</RelativeLayout>

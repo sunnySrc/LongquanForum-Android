@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/net_error_layout" android:background="@color/video_detail_chat_bg_color" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <View android:background="@drawable/video_detail_icon12" android:layout_width="70.0dip" android:layout_height="61.0dip" />
+        <TextView android:textSize="18.0sp" android:textColor="@color/video_detail_chat_content_color" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:text="@string/v_plus_error_bad_net" />
+        <Button android:textColor="@color/video_detail_chat_btn_color" android:gravity="center" android:id="@id/net_continue_btn" android:background="@drawable/video_detail_icon15" android:layout_width="wrap_content" android:layout_height="32.0dip" android:layout_marginTop="30.0dip" android:text="@string/vp_warn_video_record_continue" />
+        <Button android:textColor="@color/video_detail_chat_btn_color" android:gravity="center" android:id="@id/net_close_btn" android:background="@drawable/video_detail_icon15" android:layout_width="wrap_content" android:layout_height="32.0dip" android:layout_marginTop="16.0dip" android:text="@string/vp_warn_video_record_exit" />
+    </LinearLayout>
+</FrameLayout>

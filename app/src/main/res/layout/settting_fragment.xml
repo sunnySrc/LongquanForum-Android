@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:id="@id/mc_forum_scrollview" android:background="@drawable/mc_forum_bg3" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:id="@id/logout_text" android:background="@drawable/mc_forum_bg3" android:paddingTop="15.0dip" android:paddingBottom="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip" android:text="@string/mc_forum_logout" style="@style/mc_forum_more_info_content" />
+        <include android:id="@id/logout_line" style="@style/mc_forum_line_horizontal_with_margin" layout="@layout/line_horizontal" />
+        <Button android:id="@id/password_btn" android:background="@drawable/mc_forum_bg3" android:paddingTop="15.0dip" android:paddingBottom="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip" android:text="@string/mc_forum_password_setting" style="@style/mc_forum_more_info_content" />
+        <include style="@style/mc_forum_line_horizontal_with_margin" layout="@layout/line_horizontal" />
+        <RelativeLayout android:id="@id/reply_box" android:paddingTop="15.0dip" android:paddingRight="10.0dip" android:paddingBottom="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip">
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/mc_forum_user_reply_notification_flag" style="@style/mc_forum_more_info_content" />
+            <Button android:id="@id/reply_flag_btn" android:background="@drawable/mc_forum_select3" android:layout_alignParentRight="true" style="@style/mc_forum_setting_btn_style" />
+        </RelativeLayout>
+        <include android:id="@id/reply_line" style="@style/mc_forum_line_horizontal_with_margin" layout="@layout/line_horizontal" />
+        <RelativeLayout android:id="@id/at_box" android:paddingTop="15.0dip" android:paddingRight="10.0dip" android:paddingBottom="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mc_forum_mention_friend_reply_notification_flag" style="@style/mc_forum_more_info_content" />
+            <Button android:id="@id/at_flag_btn" android:background="@drawable/mc_forum_select3" android:layout_alignParentRight="true" style="@style/mc_forum_setting_btn_style" />
+        </RelativeLayout>
+        <include android:id="@id/at_line" style="@style/mc_forum_line_horizontal_with_margin" layout="@layout/line_horizontal" />
+        <RelativeLayout android:id="@id/notify_box" android:paddingTop="15.0dip" android:paddingRight="10.0dip" android:paddingBottom="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mc_forum_message_voice_flag" style="@style/mc_forum_more_info_content" />
+            <Button android:id="@id/notify_flag_btn" android:background="@drawable/mc_forum_select3" android:layout_alignParentRight="true" style="@style/mc_forum_setting_btn_style" />
+        </RelativeLayout>
+        <include android:id="@id/notify_line" style="@style/mc_forum_line_horizontal_with_margin" layout="@layout/line_horizontal" />
+        <RelativeLayout android:id="@id/location_service_box" android:paddingTop="15.0dip" android:paddingRight="10.0dip" android:paddingBottom="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mc_forum_colse_location_flag" style="@style/mc_forum_more_info_content" />
+            <Button android:id="@id/location_service_flag_btn" android:background="@drawable/mc_forum_select3" android:visibility="visible" android:layout_alignParentRight="true" style="@style/mc_forum_setting_btn_style" />
+        </RelativeLayout>
+        <include android:id="@id/location_service_line" style="@style/mc_forum_line_horizontal_with_margin" layout="@layout/line_horizontal" />
+        <LinearLayout android:orientation="vertical" android:id="@id/location_info_box" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="60.0dip">
+            <RelativeLayout android:paddingTop="13.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mc_forum_hide_location_flag" style="@style/mc_forum_more_info_content" />
+                <Button android:id="@id/location_info_btn" android:background="@drawable/mc_forum_select3" android:layout_alignParentRight="true" style="@style/mc_forum_setting_btn_style" />
+            </RelativeLayout>
+            <TextView android:textSize="@dimen/mc_forum_text_size_14" android:textColor="@color/mc_forum_text4_desc_normal_color" android:id="@id/location_info_desc_text" android:paddingRight="10.0dip" android:paddingBottom="4.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/mc_forum_pic_hide_location_desc" style="@style/mc_forum_more_info_content" />
+        </LinearLayout>
+        <include android:id="@id/location_info_line" style="@style/mc_forum_line_horizontal_with_margin" layout="@layout/line_horizontal" />
+        <LinearLayout android:orientation="vertical" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="60.0dip">
+            <RelativeLayout android:paddingTop="13.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mc_forum_pic_mode_flag" style="@style/mc_forum_more_info_content" />
+                <Button android:id="@id/pic_flag_btn" android:background="@drawable/mc_forum_select3" android:layout_alignParentRight="true" style="@style/mc_forum_setting_btn_style" />
+            </RelativeLayout>
+            <TextView android:textSize="@dimen/mc_forum_text_size_14" android:textColor="@color/mc_forum_text4_desc_normal_color" android:paddingRight="10.0dip" android:paddingBottom="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/mc_forum_pic_mode_desc" style="@style/mc_forum_more_info_content" />
+        </LinearLayout>
+        <include android:visibility="gone" style="@style/mc_forum_line_horizontal_with_margin" layout="@layout/line_horizontal" />
+        <Button android:id="@id/share_app_btn" android:background="@drawable/mc_forum_bg3" android:paddingTop="15.0dip" android:paddingBottom="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip" android:text="@string/mc_forum_recom_app" style="@style/mc_forum_more_info_content" />
+        <include style="@style/mc_forum_line_horizontal_with_margin" layout="@layout/line_horizontal" />
+        <Button android:id="@id/clear_cache_btn" android:background="@drawable/mc_forum_bg3" android:paddingTop="15.0dip" android:paddingBottom="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip" android:text="@string/mc_forum_clear_cache" style="@style/mc_forum_more_info_content" />
+        <include style="@style/mc_forum_line_horizontal_with_margin" layout="@layout/line_horizontal" />
+        <Button android:id="@id/update_btn" android:background="@drawable/mc_forum_bg3" android:paddingTop="15.0dip" android:paddingBottom="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip" android:text="@string/mc_forum_update" style="@style/mc_forum_more_info_content" />
+        <include style="@style/mc_forum_line_horizontal_with_margin" layout="@layout/line_horizontal" />
+        <Button android:id="@id/about_btn" android:background="@drawable/mc_forum_bg3" android:paddingTop="15.0dip" android:paddingBottom="15.0dip" android:layout_width="fill_parent" android:layout_height="60.0dip" android:text="@string/mc_forum_about" style="@style/mc_forum_more_info_content" />
+        <include style="@style/mc_forum_line_horizontal_with_margin" layout="@layout/line_horizontal" />
+    </LinearLayout>
+</ScrollView>
