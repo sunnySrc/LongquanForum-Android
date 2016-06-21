@@ -2,52 +2,32 @@
 <RelativeLayout android:id="@android:id/tabhost" android:background="@drawable/mc_forum_bg1" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
     <RelativeLayout android:id="@id/top_bar_widget"
-        android:background="#000"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="fill_parent" style="@style/mc_forum_top_bar_bg">
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_height="match_parent"
+            android:textSize="30sp"
             android:text="推荐"
-            android:gravity="center"/>
+            android:gravity="center" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/search"
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"
+            android:src="@drawable/mc_forum_top_bar_button10"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/userinfo"
+            android:layout_toLeftOf="@+id/search"
+            android:visibility="invisible"
+            android:src="@drawable/mc_forum_top_bar_button6"/>
     </RelativeLayout>
-    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/bottomBox" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_alignParentBottom="true" >
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusableInTouchMode="true"
-            android:src="@drawable/mc_forum_main_bar_button46"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="0dp"
-            android:clickable="true"
-            android:focusableInTouchMode="true"
-            android:layout_height="match_parent"
-            android:src="@drawable/mc_forum_main_bar_button1"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="0dp"
-            android:clickable="true"
-            android:focusableInTouchMode="true"
-            android:layout_height="wrap_content"
-            android:src="@drawable/mc_forum_main_bar_button17"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="0dp"
-            android:clickable="true"
-            android:focusableInTouchMode="true"
-            android:layout_height="match_parent"
-            android:src="@drawable/mc_forum_main_bar_button6"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="0dp"
-            android:clickable="true"
-            android:focusableInTouchMode="true"
-            android:layout_height="match_parent"
-            android:src="@drawable/mc_forum_main_bar_button19"
-            android:layout_weight="1"/>
-    </LinearLayout>
-    <FrameLayout android:id="@id/container" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_above="@id/bottomBox" android:layout_below="@id/top_bar_widget" />
+    <com.mobcent.discuz.ui.TabView
+        android:id="@+id/view_tab"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <FrameLayout android:id="@+id/container" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_above="@id/view_tab" android:layout_below="@id/top_bar_widget" />
 </RelativeLayout>

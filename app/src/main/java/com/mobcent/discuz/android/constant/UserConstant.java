@@ -99,4 +99,6 @@ public interface UserConstant extends BaseApiConstant {
     public static final String USER_TYPE_LOGIN = "login";
     public static final String USER_TYPE_LOGOUT = "logout";
     public static final String WEB_ICON = "wbIcon";
+
+    public static final String SERVER_URL = "http://forum.longquanzs.org//mobcent/app/web/index.php?r=";
 }

@@ -181,6 +181,7 @@ public class SplashActivity extends Activity {
             public void run() {
                 Intent it = new Intent(SplashActivity.this, HomeActivity.class);
                 startActivity(it);
+                finish();
             }
         }, 5000);
     }

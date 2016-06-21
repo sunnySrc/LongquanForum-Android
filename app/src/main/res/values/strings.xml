@@ -1222,4 +1222,5 @@
     <string name="mc_forum_imsdk_url">http://sdk.mobcent.com/</string>
     <string name="mc_share_skip_url">http://sdk.mobcent.com/share/shareWeb.do</string>
     <string name="mc_update_domain_url">http://dp.mobcent.com/dp/</string>
+
 </resources>

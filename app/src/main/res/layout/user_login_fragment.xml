@@ -28,5 +28,5 @@
     </LinearLayout>
     <GridView android:id="@id/platform_grid" android:visibility="visible" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="21.0dip" android:layout_marginRight="21.0dip" android:layout_marginBottom="34.0dip" android:stretchMode="columnWidth" android:numColumns="4" android:layout_below="@id/user_warn_box" />
     <ListView android:id="@id/user_login_name_list" android:background="@drawable/mc_forum_pop_upmenu_bg1" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="21.0dip" android:layout_marginRight="21.0dip" android:layout_below="@id/user_login_name_edit" style="@style/list_view" />
-    <com.mobcent.discuz.activity.view.MCPopupListView android:id="@id/more_popup_listview" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <!--com.mobcent.discuz.activity.view.MCPopupListView android:id="@id/more_popup_listview" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" /-->
 </RelativeLayout>

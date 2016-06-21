@@ -1,0 +1,64 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <TextView
+        android:id="@+id/first"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0"
+        android:background="@null"
+        android:button="@null"
+        android:drawableTop="@drawable/mc_forum_main_bar_button46"
+        android:gravity="center"
+        android:singleLine="true"
+        android:tag="home"
+        android:text="首页"
+        android:textColor="@color/text_service_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/second"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0"
+        android:background="@null"
+        android:button="@null"
+        android:drawableTop="@drawable/mc_forum_main_bar_button1"
+        android:gravity="center"
+        android:singleLine="true"
+        android:tag="message"
+        android:text="消息"
+        android:textColor="@color/text_service_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/third"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0"
+        android:background="@null"
+        android:button="@null"
+        android:drawableTop="@drawable/mc_forum_main_bar_button6"
+        android:gravity="center"
+        android:singleLine="true"
+        android:tag="contacts"
+        android:text="通讯录"
+        android:textColor="@color/text_service_color"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/fourth"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.0"
+        android:background="@null"
+        android:button="@null"
+        android:drawableTop="@drawable/mc_forum_main_bar_button19"
+        android:gravity="center"
+        android:singleLine="true"
+        android:tag="mine"
+        android:text="我的"
+        android:textColor="@color/text_service_color"
+        android:textSize="12sp" />
+
+</merge>
