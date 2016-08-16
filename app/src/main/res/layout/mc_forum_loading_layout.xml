@@ -2,7 +2,7 @@
 <FrameLayout android:id="@id/status_layout" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content">
-        <View android:layout_gravity="center_horizontal" android:id="@id/failed_icon" android:background="@drawable/mc_forum_web_fail" android:visibility="gone" android:layout_width="65.0dip" android:layout_height="45.0dip" />
+        <View android:layout_gravity="center_horizontal" android:id="@id/failed_icon" android:background="@drawable/dz_web_load_fail" android:visibility="gone" android:layout_width="65.0dip" android:layout_height="45.0dip" />
         <ProgressBar android:layout_gravity="center_horizontal" android:id="@id/mc_forum_web_progressbar" android:visibility="invisible" android:layout_width="38.0dip" android:layout_height="38.0dip" android:indeterminate="true" android:indeterminateDrawable="@drawable/mc_web_progress_cycle_drawable" android:indeterminateDuration="1200" />
         <TextView android:textSize="14.0sp" android:textColor="@color/mc_forum_text4_desc_normal_color" android:layout_gravity="center_horizontal" android:id="@id/status_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" />
     </LinearLayout>

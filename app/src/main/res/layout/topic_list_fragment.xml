@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.mobcent.lowest.android.ui.widget.PullToRefreshListView android:id="@id/mc_forum_lv" android:background="@drawable/mc_forum_bg1" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="@android:color/transparent" android:headerDividersEnabled="false" android:footerDividersEnabled="false" style="@style/list_view" />
-    <com.mobcent.discuz.activity.view.MCPopupListView android:id="@id/publish_popup_listview" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <com.mobcent.widget.listview.PullToRefreshListView android:id="@id/mc_forum_lv" android:background="@drawable/dz_bg_white_smoke" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="@android:color/transparent" android:headerDividersEnabled="false" android:footerDividersEnabled="false" style="@style/list_view" />
+    <com.mobcent.discuz.activity.view.DZPopupListView android:id="@id/publish_popup_listview" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
 </RelativeLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@android:color/black" android:layout_width="fill_parent" android:layout_height="71.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="70.0dip">
+        <com.mobcent.discuz.activity.view.DZHeadIcon android:id="@id/talk_icon" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginLeft="10.0dip" android:layout_marginTop="10.0dip" android:layout_marginBottom="10.0dip" />
+        <TextView android:textSize="@dimen/mc_forum_text_size_16" android:textColor="#ff666666" android:ellipsize="end" android:id="@id/talk_tittle" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="15.0dip" android:layout_marginRight="80.0dip" android:singleLine="true" android:layout_toRightOf="@id/talk_icon" />
+        <TextView android:textSize="@dimen/mc_forum_text_size_13" android:textColor="#ff999999" android:id="@id/talk_join_num_and_picture_num" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="5.0dip" android:layout_toRightOf="@id/talk_icon" android:layout_below="@id/talk_tittle" />
+        <Button android:textSize="@dimen/mc_forum_text_size_15" android:textColor="@android:color/white" android:id="@id/follow_btn" android:background="@drawable/login_bg_corner" android:layout_width="67.0dip" android:layout_height="26.0dip" android:layout_marginRight="10.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_marginEnd="10.0dip" android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+    <View android:background="@drawable/dz_icon_line" android:layout_width="fill_parent" android:layout_height="1.0px" />
+</LinearLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:drawable="@drawable/dz_slide_rotate_h" />
+    <item android:drawable="@drawable/dz_slide_rotate_n" />
+</selector>

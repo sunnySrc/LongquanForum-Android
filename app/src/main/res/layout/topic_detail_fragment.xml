@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="@drawable/mc_forum_bg1" android:layout_width="fill_parent" android:layout_height="fill_parent"
+<RelativeLayout android:background="@drawable/dz_bg_white_smoke" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.mobcent.lowest.android.ui.widget.PullToRefreshExpandableListView android:id="@id/topic_detail_list" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="45.0dip" android:divider="@color/mc_forum_transparent" android:dividerHeight="0.0dip" android:headerDividersEnabled="false" android:footerDividersEnabled="false" style="@style/list_view" />
-    <com.mobcent.discuz.activity.view.MCMultiBottomView android:id="@id/bottom_bar_box" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" />
+    <com.mobcent.widget.listview.PullToRefreshExpandableListView android:id="@id/topic_detail_list" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="45.0dip" android:divider="@color/mc_forum_transparent" android:dividerHeight="0.0dip" android:headerDividersEnabled="false" android:footerDividersEnabled="false" style="@style/list_view" />
+    <com.mobcent.discuz.activity.view.DZMultiBottomView android:id="@id/bottom_bar_box" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" />
     <LinearLayout android:orientation="vertical" android:id="@id/bottom_over_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
-        <View android:background="@drawable/mc_forum_wire" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="1.0px" />
-        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/mc_forum_new_chat_input_bar_bg" android:layout_width="fill_parent" android:layout_height="45.0dip">
-            <LinearLayout android:gravity="center_vertical" android:id="@id/bottom_comment_layout" android:background="@drawable/mc_forum_new_chat_input_bar_button1_n" android:layout_width="0.0dip" android:layout_height="32.0dip" android:layout_marginLeft="10.0dip" android:layout_weight="1.0">
-                <View android:layout_gravity="center_vertical" android:background="@drawable/mc_forum_chat_pencil" android:layout_width="13.0dip" android:layout_height="13.0dip" android:layout_marginLeft="3.0dip" />
-                <TextView android:textSize="14.0sp" android:textColor="@color/mc_forum_text4_other_normal_color" android:layout_gravity="left|center" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="3.0dip" android:text="@string/mc_forum_topic_detail_bottom_commnet_hint" android:layout_weight="1.0" />
+        <View android:background="@drawable/dz_icon_line" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="1.0px" />
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/dz_toolbar_reply_outer_bg" android:layout_width="fill_parent" android:layout_height="45.0dip">
+            <LinearLayout android:gravity="center_vertical" android:id="@id/bottom_comment_layout" android:background="@drawable/dz_toolbar_reply_longpress_n" android:layout_width="0.0dip" android:layout_height="32.0dip" android:layout_marginLeft="10.0dip" android:layout_weight="1.0">
+                <View android:layout_gravity="center_vertical" android:background="@drawable/dz_toolbar_reply_icon_pen" android:layout_width="13.0dip" android:layout_height="13.0dip" android:layout_marginLeft="3.0dip" />
+                <TextView android:textSize="14.0sp" android:textColor="@color/mc_forum_text4_other_normal_color" android:layout_gravity="center|left" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="3.0dip" android:text="@string/mc_forum_topic_detail_bottom_commnet_hint" android:layout_weight="1.0" />
                 <TextView android:textSize="14.0sp" android:textColor="@color/mc_forum_text4_other_normal_color" android:id="@id/bottom_comment_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" />
             </LinearLayout>
-            <View android:id="@id/bottom_praise_btn" android:background="@drawable/mc_forum_chat_ico10" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginLeft="10.0dip" />
-            <View android:id="@id/bottom_share_btn" android:background="@drawable/mc_forum_chat_ico8" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" />
+            <View android:id="@id/bottom_praise_btn" android:background="@drawable/dz_toolbar_reply_outer_praise" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginLeft="10.0dip" />
+            <View android:id="@id/bottom_share_btn" android:background="@drawable/dz_toolbar_reply_outer_share" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

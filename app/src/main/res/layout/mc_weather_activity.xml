@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@id/weather_main_box" android:background="@drawable/mc_forum_open_platform_login_bg" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+<RelativeLayout android:id="@id/weather_main_box" android:background="@drawable/dz_weather_page_bg" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
     <RelativeLayout android:id="@id/weather_detail_top_box" style="@style/mc_autogen_top_bar_style">
         <TextView android:gravity="center" android:id="@id/title_text" android:layout_width="wrap_content" android:minWidth="30.0dip" android:text="@string/mc_weather_title_text" android:layout_centerInParent="true" style="@style/mc_autogen_top_bar_title_style" />
-        <View android:id="@id/arrow_view" android:background="@drawable/mc_forum_top_bar_arrow" android:layout_width="13.0dip" android:layout_height="13.0dip" android:layout_toRightOf="@id/title_text" android:layout_centerVertical="true" />
-        <Button android:id="@id/weather_detail_back_btn" android:background="@drawable/mc_forum_top_bar_button1" style="@style/mc_autogen_top_bar_btn_style" />
-        <Button android:id="@id/weather_refresh_btn" android:background="@drawable/mc_forum_top_bar_button7" android:layout_alignParentRight="true" style="@style/mc_autogen_top_bar_btn_style" />
+        <ImageView android:id="@id/arrow_view" android:background="@color/dz_skin_custom_main_color" android:layout_width="13.0dip" android:layout_height="13.0dip" android:src="@drawable/dz_icon_top_arrow" android:layout_toRightOf="@id/title_text" android:layout_centerVertical="true" />
+        <ImageView android:id="@id/weather_detail_back_btn" android:background="@drawable/mc_forum_top_bar_button1" style="@style/mc_autogen_top_bar_btn_style" />
+        <ImageView android:id="@id/weather_refresh_btn" android:background="@drawable/mc_forum_top_bar_button7" android:layout_alignParentRight="true" style="@style/mc_autogen_top_bar_btn_style" />
     </RelativeLayout>
     <ScrollView android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/weather_detail_top_box">
         <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">

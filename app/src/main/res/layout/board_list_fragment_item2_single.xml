@@ -9,5 +9,5 @@
         </LinearLayout>
         <TextView android:gravity="center" android:layout_gravity="center" android:id="@id/mc_forum_today_total_text" android:layout_width="68.0dip" android:layout_height="wrap_content" style="@style/mc_forum_today_total_style" />
     </LinearLayout>
-    <View android:id="@id/line_view" android:background="@drawable/mc_forum_wire" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_below="@id/item_top_layout" />
+    <View android:id="@id/line_view" android:background="@drawable/dz_icon_line" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_below="@id/item_top_layout" />
 </RelativeLayout>

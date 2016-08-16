@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge android:layout_width="fill_parent" android:layout_height="fill_parent"
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
     <ImageView android:id="@id/mc_forum_splash_background_img" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/mc_forum_loading_page2" android:scaleType="centerCrop" />
-</merge>
+    <Button android:textSize="16.0sp" android:textColor="@android:color/white" android:id="@id/mc_forum_splash_skip_btn" android:background="@drawable/ad_btn_screen_time" android:visibility="gone" android:layout_width="90.0dip" android:layout_height="40.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="10.0dip" android:layout_alignParentTop="true" android:layout_alignParentRight="true" />
+    <android.support.v4.view.ViewPager android:id="@id/mc_forum_splash_helper" android:background="@android:color/white" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+</RelativeLayout>

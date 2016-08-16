@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <RelativeLayout android:layout_gravity="center" android:id="@id/root_layout" android:background="@drawable/user_info_alert_bg" android:layout_width="270.0dip" android:layout_height="wrap_content">
-        <View android:background="@drawable/user_info_alert_top_bg" android:layout_width="fill_parent" android:layout_height="90.0dip" />
+    <RelativeLayout android:layout_gravity="center" android:id="@id/root_layout" android:background="@drawable/vp_user_info_alert_bg" android:layout_width="270.0dip" android:layout_height="wrap_content">
+        <View android:background="@drawable/vp_user_info_alert_top_bg" android:layout_width="fill_parent" android:layout_height="90.0dip" />
         <RelativeLayout android:id="@id/top_layout" android:layout_width="fill_parent" android:layout_height="wrap_content">
             <Button android:id="@id/report_btn" android:background="@drawable/video_detail_box_icon5" android:visibility="gone" android:layout_width="30.0dip" android:layout_height="14.0dip" android:layout_marginLeft="10.0dip" android:layout_marginTop="10.0dip" />
-            <Button android:id="@id/close_btn" android:background="@drawable/video_detail_box_icon2" android:layout_width="35.0dip" android:layout_height="35.0dip" android:layout_alignParentRight="true" />
+            <Button android:id="@id/close_btn" android:background="@drawable/vp_video_detail_box_icon2" android:layout_width="35.0dip" android:layout_height="35.0dip" android:layout_alignParentRight="true" />
             <TextView android:textSize="16.0sp" android:textColor="@color/user_info_name_color" android:ellipsize="end" android:gravity="center" android:id="@id/user_name_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="45.0dip" android:layout_marginRight="45.0dip" android:singleLine="true" android:layout_centerInParent="true" />
         </RelativeLayout>
         <FrameLayout android:id="@id/head_layout" android:layout_width="63.0dip" android:layout_height="63.0dip" android:layout_marginTop="58.0dip" android:layout_centerHorizontal="true">
             <ImageView android:id="@id/head_img" android:background="@drawable/user_info_head_bg2" android:layout_width="63.0dip" android:layout_height="63.0dip" android:scaleType="centerCrop" />
-            <View android:layout_gravity="bottom|right|center" android:id="@id/state_view" android:background="@drawable/video_detail_box_icon6_n" android:layout_width="15.0dip" android:layout_height="15.0dip" />
+            <View android:layout_gravity="bottom|center|right" android:id="@id/state_view" android:background="@drawable/video_detail_box_icon6_n" android:layout_width="15.0dip" android:layout_height="15.0dip" />
         </FrameLayout>
         <TextView android:textSize="12.0sp" android:textColor="@color/video_detail_box_name_color" android:ellipsize="end" android:gravity="center" android:id="@id/user_desc_text" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="20.0dip" android:layout_marginRight="10.0dip" android:maxLines="3" android:layout_below="@id/head_layout" />
         <LinearLayout android:orientation="horizontal" android:id="@id/follow_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/user_desc_text">

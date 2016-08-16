@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/dz_btn_bg_gray_color" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:id="@id/user_list_frame_layout" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <RelativeLayout android:id="@id/gender_layout" android:background="@color/mc_forum_share_activity_bg_color" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <RelativeLayout android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="50.0dip">
+            <LinearLayout android:orientation="horizontal" android:id="@id/man_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="100.0dip" android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+                <ImageView android:background="@drawable/dz_personal_icon_man" android:layout_width="18.0dip" android:layout_height="18.0dip" android:scaleType="centerCrop" />
+                <TextView android:textColor="@color/mc_forum_text4_normal_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mc_forum_gender_male" />
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:id="@id/woman_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="100.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true">
+                <ImageView android:background="@drawable/dz_personal_icon_woman" android:layout_width="18.0dip" android:layout_height="18.0dip" android:scaleType="centerCrop" />
+                <TextView android:textColor="@color/mc_forum_text4_normal_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mc_forum_gender_female" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

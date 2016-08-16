@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.mobcent.widget.listview.PullToRefreshExpandableListView android:id="@id/elay_talk_list" android:background="@drawable/dz_bg_white_smoke" android:layout_width="fill_parent" android:layout_height="fill_parent" android:childDivider="@null" android:divider="@null" android:headerDividersEnabled="false" android:footerDividersEnabled="false" />
+    <RelativeLayout android:id="@id/view_upper" android:background="@android:color/white" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="45.0dip">
+        <View android:id="@id/title_view" android:background="@color/dz_skin_custom_main_color" android:layout_width="5.0dip" android:layout_height="15.0dip" android:layout_marginLeft="12.0dip" android:layout_centerVertical="true" />
+        <TextView android:textSize="@dimen/mc_forum_text_size_16" android:textColor="@color/mc_forum_text3_name_normal_color" android:gravity="center_vertical" android:id="@id/title_text" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_toRightOf="@id/title_view" android:layout_centerVertical="true" />
+    </RelativeLayout>
+</RelativeLayout>

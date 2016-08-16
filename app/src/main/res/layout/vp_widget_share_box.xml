@@ -6,6 +6,6 @@
         <include layout="@layout/vp_widget_share_opt_btn_layout" />
     </LinearLayout>
     <FrameLayout android:layout_gravity="bottom" android:layout_width="fill_parent" android:layout_height="50.0dip">
-        <Button android:layout_gravity="right|center" android:id="@id/share_box_share_btn" android:background="@drawable/video_detail_icon1" android:layout_marginRight="77.0dip" style="@style/vp_detail_bottom_btn_style" />
+        <Button android:layout_gravity="center|right" android:id="@id/share_box_share_btn" android:background="@drawable/vp_video_detail_icon1" android:layout_marginRight="77.0dip" style="@style/vp_detail_bottom_btn_style" />
     </FrameLayout>
 </FrameLayout>

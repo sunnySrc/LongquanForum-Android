@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/mc_forum_share_activity_bg_color" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="50.0dip">
+        <LinearLayout android:orientation="horizontal" android:id="@id/male_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="100.0dip" android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+            <ImageView android:background="@drawable/ic_launcher" android:layout_width="26.0dip" android:layout_height="26.0dip" android:scaleType="centerCrop" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="男" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/female_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="100.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true">
+            <ImageView android:background="@drawable/ic_launcher" android:layout_width="26.0dip" android:layout_height="26.0dip" android:scaleType="centerCrop" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="女" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@android:color/white" android:paddingLeft="10.0dip" android:paddingTop="5.0dip" android:layout_width="43.0dip" android:layout_height="43.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.mobcent.discuz.activity.view.DZHeadIcon android:id="@id/talk_icon" android:layout_width="33.0dip" android:layout_height="33.0dip" android:scaleType="centerCrop" />
+    <TextView android:textSize="8.0sp" android:textColor="@android:color/white" android:gravity="center" android:id="@id/tv_launch_user" android:background="@android:color/holo_red_light" android:padding="0.0dip" android:layout_width="33.0dip" android:layout_height="10.0dip" android:layout_marginTop="23.0dip" android:text="发起人" android:includeFontPadding="false" />
+</RelativeLayout>

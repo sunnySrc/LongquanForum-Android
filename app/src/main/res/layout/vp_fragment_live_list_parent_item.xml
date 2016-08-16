@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="30.0dip">
+        <View android:layout_gravity="center_vertical" android:id="@id/mark_view" android:background="@color/user_info_head_background_color" android:layout_width="5.0dip" android:layout_height="16.0dip" android:layout_marginLeft="5.0dip" />
+        <TextView android:textSize="14.0sp" android:textStyle="bold" android:textColor="@color/top_bar_title_normal_color" android:gravity="center|left" android:layout_gravity="center_vertical" android:id="@id/parent_title_text" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="5.0dip" />
+    </LinearLayout>
+</FrameLayout>

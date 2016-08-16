@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView android:textSize="@dimen/mc_forum_text_size_14" android:textColor="@color/mc_forum_text1_normal_color" android:gravity="center" android:background="@drawable/mc_forum_select_friend_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/mc_forum_poll_intro" />
+    <TextView android:textSize="@dimen/mc_forum_text_size_14" android:textColor="@color/mc_forum_text1_normal_color" android:gravity="center" android:background="@drawable/dz_bg_white_smoke" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/mc_forum_poll_intro" />
     <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:id="@id/mc_forum_poll_item" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="23.0dip" />
     <LinearLayout android:orientation="horizontal" android:id="@id/mc_froum_add_box" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="23.0dip" android:layout_marginTop="15.0dip">
-        <Button android:id="@id/mc_froum_add_btn" android:background="@drawable/mc_forum_add" android:layout_width="22.0dip" android:layout_height="19.0dip" android:layout_marginLeft="10.0dip" android:layout_marginTop="0.0dip" />
+        <Button android:id="@id/mc_froum_add_btn" android:background="@drawable/dz_posts_vote_add" android:layout_width="22.0dip" android:layout_height="19.0dip" android:layout_marginLeft="10.0dip" android:layout_marginTop="0.0dip" />
         <TextView android:textSize="@dimen/mc_forum_text_size_14" android:textColor="@color/mc_forum_text4_desc_normal_color" android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:text="@string/mc_forum_poll_add" />
     </LinearLayout>
     <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="23.0dip" android:layout_marginTop="18.0dip">
         <TextView android:textSize="@dimen/mc_forum_text_size_14" android:textColor="@color/mc_forum_text6_normal_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mc_forum_poll_count" />
-        <EditText android:textSize="@dimen/mc_forum_text_size_14" android:textColor="@color/mc_forum_text3_content_normal_color" android:id="@id/mc_forum_poll_count_edt" android:background="@drawable/mc_forum_input_box" android:layout_width="87.0dip" android:layout_height="21.0dip" android:layout_marginLeft="13.0dip" android:textCursorDrawable="@null" />
+        <EditText android:textSize="@dimen/mc_forum_text_size_14" android:textColor="@color/mc_forum_text3_content_normal_color" android:id="@id/mc_forum_poll_count_edt" android:background="@drawable/dz_bg_input" android:layout_width="87.0dip" android:layout_height="21.0dip" android:layout_marginLeft="13.0dip" android:textCursorDrawable="@null" />
     </LinearLayout>
     <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="23.0dip" android:layout_marginTop="18.0dip">
         <TextView android:textSize="@dimen/mc_forum_text_size_14" android:textColor="@color/mc_forum_text6_normal_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mc_forum_poll_deatime" />
-        <EditText android:textSize="@dimen/mc_forum_text_size_14" android:textColor="@color/mc_forum_text3_content_normal_color" android:id="@id/mc_forum_poll_deatime_edt" android:background="@drawable/mc_forum_input_box" android:layout_width="87.0dip" android:layout_height="21.0dip" android:layout_marginLeft="13.0dip" android:textCursorDrawable="@null" />
+        <EditText android:textSize="@dimen/mc_forum_text_size_14" android:textColor="@color/mc_forum_text3_content_normal_color" android:id="@id/mc_forum_poll_deatime_edt" android:background="@drawable/dz_bg_input" android:layout_width="87.0dip" android:layout_height="21.0dip" android:layout_marginLeft="13.0dip" android:textCursorDrawable="@null" />
     </LinearLayout>
 </LinearLayout>

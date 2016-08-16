@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="@drawable/mc_forum_bg3" android:layout_width="fill_parent" android:layout_height="fill_parent"
+<RelativeLayout android:background="@drawable/dz_bg_white" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.mobcent.lowest.android.ui.module.ad.widget.AdView android:id="@id/mc_ad_box" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" />
-    <FrameLayout android:id="@id/main_content" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/mc_ad_box">
-        <com.mobcent.lowest.android.ui.widget.MCWebView android:id="@id/mc_forum_webview_browser" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <FrameLayout android:id="@id/main_content" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <com.mobcent.widget.web.DZWebView android:id="@id/mc_forum_webview_browser" android:layout_width="fill_parent" android:layout_height="fill_parent" />
     </FrameLayout>
-    <com.mobcent.discuz.activity.view.MCPopupListView android:id="@id/popup_listview" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <com.mobcent.discuz.activity.view.DZPopupListView android:id="@id/popup_listview" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
     <include layout="@layout/mc_forum_loading_layout" />
     <Button android:id="@id/back_btn" android:background="@drawable/mc_forum_top_bar_button1" android:visibility="gone" android:layout_margin="10.0dip" android:layout_alignParentTop="true" style="@style/mc_forum_top_bar_button" />
 </RelativeLayout>

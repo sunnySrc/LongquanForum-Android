@@ -27,49 +27,6 @@
     <item type="id" name="mc_forum_sweep_pic">false</item>
     <item type="id" name="mc_forum_sweep_text">false</item>
     <item type="id" name="mc_forum_version">false</item>
-    <item type="id" name="root_layout">false</item>
-    <item type="id" name="surface_layout">false</item>
-    <item type="id" name="surface">false</item>
-    <item type="id" name="low_preview_img">false</item>
-    <item type="id" name="praise_layout">false</item>
-    <item type="id" name="user_head_layout">false</item>
-    <item type="id" name="chat_list">false</item>
-    <item type="id" name="top_layout">false</item>
-    <item type="id" name="head_img">false</item>
-    <item type="id" name="top_status_layout">false</item>
-    <item type="id" name="user_name_text">false</item>
-    <item type="id" name="address_text">false</item>
-    <item type="id" name="top_follow_btn">false</item>
-    <item type="id" name="title_text">false</item>
-    <item type="id" name="net_speed_text">false</item>
-    <item type="id" name="opt_layout">false</item>
-    <item type="id" name="comment_btn">false</item>
-    <item type="id" name="bottom_report_btn">false</item>
-    <item type="id" name="bottom_share_btn">false</item>
-    <item type="id" name="home_btn">false</item>
-    <item type="id" name="comment_layout">false</item>
-    <item type="id" name="close_edit_btn">false</item>
-    <item type="id" name="content_edit">false</item>
-    <item type="id" name="icon_vs">false</item>
-    <item type="id" name="share_layout_vs">false</item>
-    <item type="id" name="icon_root_layout">false</item>
-    <item type="id" name="icon_list_layout">false</item>
-    <item type="id" name="icon_date_text">false</item>
-    <item type="id" name="icon_page_text">false</item>
-    <item type="id" name="item_img">false</item>
-    <item type="id" name="adView">false</item>
-    <item type="id" name="content_head_bar">false</item>
-    <item type="id" name="notification_big_icon">false</item>
-    <item type="id" name="download_img">false</item>
-    <item type="id" name="notification_download_btn">false</item>
-    <item type="id" name="detail_img">false</item>
-    <item type="id" name="notification_detail_btn">false</item>
-    <item type="id" name="notification_background">false</item>
-    <item type="id" name="notification_icon">false</item>
-    <item type="id" name="notification_title">false</item>
-    <item type="id" name="notification_content">false</item>
-    <item type="id" name="notification_when">false</item>
-    <item type="id" name="notification_img">false</item>
     <item type="id" name="mc_forum_topic_box">false</item>
     <item type="id" name="mc_forum_topic_title_text">false</item>
     <item type="id" name="mc_forum_last_update_time_text">false</item>
@@ -115,7 +72,9 @@
     <item type="id" name="mc_forum_topic_info_img">false</item>
     <item type="id" name="mc_forum_topic_info_text">false</item>
     <item type="id" name="at_list">false</item>
+    <item type="id" name="comment_at_item_layout">false</item>
     <item type="id" name="user_icon_img">false</item>
+    <item type="id" name="user_name_text">false</item>
     <item type="id" name="time_text">false</item>
     <item type="id" name="reply_layout">false</item>
     <item type="id" name="reply_content_text">false</item>
@@ -123,31 +82,19 @@
     <item type="id" name="topic_layout">false</item>
     <item type="id" name="topic_content_text">false</item>
     <item type="id" name="topic_url_img">false</item>
-    <item type="id" name="check_btn">false</item>
     <item type="id" name="reply_btn">false</item>
-    <item type="id" name="mc_forum_user_input_username_btn">false</item>
-    <item type="id" name="mc_forum_user_email_box">false</item>
-    <item type="id" name="mc_forum_user_input_user_email_edit">false</item>
-    <item type="id" name="mc_forum_gender_label_text">false</item>
-    <item type="id" name="mc_forum_gender_secrecy_box">false</item>
-    <item type="id" name="mc_forum_gender_secrecy_btn">false</item>
-    <item type="id" name="mc_forum_gender_male_box">false</item>
-    <item type="id" name="mc_forum_gender_male_btn">false</item>
-    <item type="id" name="mc_forum_gender_female_box">false</item>
-    <item type="id" name="mc_forum_gender_female_btn">false</item>
-    <item type="id" name="mc_forum_user_save_info_submit_btn">false</item>
-    <item type="id" name="mc_forum_user_register_email_box">false</item>
-    <item type="id" name="mc_forum_user_register_email_list">false</item>
+    <item type="id" name="post_admin">false</item>
     <item type="id" name="pull_refresh_list">false</item>
     <item type="id" name="scroll_view">false</item>
     <item type="id" name="out_side_layout">false</item>
     <item type="id" name="error_text">false</item>
     <item type="id" name="container_layout">false</item>
     <item type="id" name="pre_img">false</item>
+    <item type="id" name="title_text">false</item>
     <item type="id" name="desc_text">false</item>
     <item type="id" name="list_layout">false</item>
+    <item type="id" name="base_pop_activity_layout">false</item>
     <item type="id" name="top_bar_widget">false</item>
-    <item type="id" name="sliding_menu">false</item>
     <item type="id" name="pager_layout">false</item>
     <item type="id" name="subnav_widget">false</item>
     <item type="id" name="mc_forum_board_item_box">false</item>
@@ -161,6 +108,7 @@
     <item type="id" name="mc_forum_board_right_name_text">false</item>
     <item type="id" name="mc_forum_board_right_today_total_text">false</item>
     <item type="id" name="mc_forum_board_right_time_text">false</item>
+    <item type="id" name="root_layout">false</item>
     <item type="id" name="mc_forum_board_img">false</item>
     <item type="id" name="mc_forum_board_name_text">false</item>
     <item type="id" name="mc_forum_board_time_text">false</item>
@@ -179,6 +127,8 @@
     <item type="id" name="board_name_text">false</item>
     <item type="id" name="board_favorite_text">false</item>
     <item type="id" name="board_nearest_reply_text">false</item>
+    <item type="id" name="follow_btn_bg">false</item>
+    <item type="id" name="cancel_follow_btn_bg">false</item>
     <item type="id" name="board_follow_btn">false</item>
     <item type="id" name="parent_board_tittle">false</item>
     <item type="id" name="recommond_board_list">false</item>
@@ -188,18 +138,6 @@
     <item type="id" name="expand_list_parent_item_change_text">false</item>
     <item type="id" name="line_view">false</item>
     <item type="id" name="mc_forum_board_double_line">false</item>
-    <item type="id" name="bpush_download_icon">false</item>
-    <item type="id" name="bpush_progress_percent">false</item>
-    <item type="id" name="bpush_progress_title">false</item>
-    <item type="id" name="bpush_progress_text">false</item>
-    <item type="id" name="bpush_download_progress">false</item>
-    <item type="id" name="bpush_media_list_return_btn">false</item>
-    <item type="id" name="bpush_media_none_layout">false</item>
-    <item type="id" name="bpush_type_listview">false</item>
-    <item type="id" name="bpush_media_list_img">false</item>
-    <item type="id" name="bpush_media_list_title">false</item>
-    <item type="id" name="bpush_media_list_from_text">false</item>
-    <item type="id" name="bpush_media_list_time_text">false</item>
     <item type="id" name="chat_room_list">false</item>
     <item type="id" name="chat_room_list_new">false</item>
     <item type="id" name="bottom_bar_box_new">false</item>
@@ -240,12 +178,19 @@
     <item type="id" name="comment_list">false</item>
     <item type="id" name="config_root_layout">false</item>
     <item type="id" name="config_img">false</item>
+    <item type="id" name="check_btn">false</item>
     <item type="id" name="mc_forum_crop_view">false</item>
     <item type="id" name="mc_forum_save_layout">false</item>
     <item type="id" name="mc_forum_save_btn">false</item>
     <item type="id" name="mc_forum_cancel_btn">false</item>
+    <item type="id" name="custom_have_list_listview">false</item>
+    <item type="id" name="custom_top_selectview">false</item>
     <item type="id" name="content">false</item>
     <item type="id" name="date_text">false</item>
+    <item type="id" name="edit_userinfo_checkbox_listview">false</item>
+    <item type="id" name="edit_userinfo_page_list_text">false</item>
+    <item type="id" name="edit_userinfo_page_list_checkbox">false</item>
+    <item type="id" name="edit_userinfo_page_edittext">false</item>
     <item type="id" name="mc_forum_edittext">false</item>
     <item type="id" name="face_img">false</item>
     <item type="id" name="face_grid">false</item>
@@ -253,43 +198,15 @@
     <item type="id" name="reply_edit">false</item>
     <item type="id" name="send_reply_btn">false</item>
     <item type="id" name="multi_face_stub">false</item>
-    <item type="id" name="pull_list">false</item>
-    <item type="id" name="item_layout">false</item>
-    <item type="id" name="top_cover_btn">false</item>
-    <item type="id" name="video_List_tittle">false</item>
-    <item type="id" name="video_list_status_img">false</item>
-    <item type="id" name="video_list_user_image">false</item>
-    <item type="id" name="video_list_user_name">false</item>
-    <item type="id" name="video_list_location">false</item>
-    <item type="id" name="video_list_upvote_number_text">false</item>
-    <item type="id" name="video_online_number_layout">false</item>
-    <item type="id" name="video_list_online_number">false</item>
-    <item type="id" name="mark_view">false</item>
-    <item type="id" name="parent_title_text">false</item>
-    <item type="id" name="report_img">false</item>
-    <item type="id" name="report_date">false</item>
-    <item type="id" name="report_tittle">false</item>
-    <item type="id" name="report_user">false</item>
-    <item type="id" name="report_share">false</item>
-    <item type="id" name="play_tittle">false</item>
-    <item type="id" name="report_dialog">false</item>
-    <item type="id" name="time_count_down_text">false</item>
-    <item type="id" name="time_down_dialog_close_btn">false</item>
-    <item type="id" name="time_down_dialog_Timer_text">false</item>
-    <item type="id" name="user_ico_img">false</item>
-    <item type="id" name="user_name_male_view">false</item>
-    <item type="id" name="user_desc_text">false</item>
-    <item type="id" name="dialog_bottom_btn">false</item>
-    <item type="id" name="friend_list">false</item>
-    <item type="id" name="friend_icon_img">false</item>
-    <item type="id" name="friend_name_text">false</item>
-    <item type="id" name="friend_apply_btn">false</item>
-    <item type="id" name="friend_note_text">false</item>
+    <item type="id" name="male_layout">false</item>
+    <item type="id" name="female_layout">false</item>
     <item type="id" name="mc_forum_go_to_select_page">false</item>
     <item type="id" name="mc_forum_select_page">false</item>
     <item type="id" name="bottomBox">false</item>
+    <item type="id" name="line">false</item>
     <item type="id" name="container">false</item>
     <item type="id" name="left_menu">false</item>
+    <item type="id" name="nav_btn_bg">false</item>
     <item type="id" name="nav_btn">false</item>
     <item type="id" name="point_view">false</item>
     <item type="id" name="right_menu">false</item>
@@ -299,11 +216,13 @@
     <item type="id" name="mc_forum_img_share">false</item>
     <item type="id" name="mc_forum_image_counts_text">false</item>
     <item type="id" name="mc_forum_img_download">false</item>
-    <item type="id" name="mc_ad_box">false</item>
     <item type="id" name="mc_forum_gif_imageview">false</item>
     <item type="id" name="mc_forum_point_imageview">false</item>
     <item type="id" name="mc_forum_download_progress_bar">false</item>
     <item type="id" name="mc_forum_point_loading_fail">false</item>
+    <item type="id" name="btnCancel">false</item>
+    <item type="id" name="tvTitle">false</item>
+    <item type="id" name="btnSubmit">false</item>
     <item type="id" name="mc_forum_invite_box">false</item>
     <item type="id" name="mc_forum_cipher_edit">false</item>
     <item type="id" name="mc_forum_invite1_box">false</item>
@@ -344,343 +263,40 @@
     <item type="id" name="mc_forum_exchange_desc_text">false</item>
     <item type="id" name="mc_forum_invite_desc_detail_text">false</item>
     <item type="id" name="mc_forum_frist_step_text">false</item>
-    <item type="id" name="down_layout">false</item>
-    <item type="id" name="down_btn">false</item>
-    <item type="id" name="down_text">false</item>
-    <item type="id" name="call_layout">false</item>
-    <item type="id" name="call_btn">false</item>
-    <item type="id" name="call_text">false</item>
-    <item type="id" name="web_view">false</item>
-    <item type="id" name="progress_bar">false</item>
-    <item type="id" name="download_title_text">false</item>
-    <item type="id" name="download_progress_bar">false</item>
-    <item type="id" name="continue_btn">false</item>
+    <item type="id" name="outmost_container">false</item>
+    <item type="id" name="content_container">false</item>
+    <item type="id" name="share_back_layout">false</item>
+    <item type="id" name="mc_share_item_layout">false</item>
+    <item type="id" name="mc_share_layout">false</item>
+    <item type="id" name="id_horizontalScrollView">false</item>
+    <item type="id" name="id_gallery">false</item>
+    <item type="id" name="mc_tools_layout">false</item>
+    <item type="id" name="topic_detial_other_share">false</item>
+    <item type="id" name="topic_detial_other_share_layout">false</item>
+    <item type="id" name="cancel_btn">false</item>
+    <item type="id" name="mc_plaza_expandlist">false</item>
+    <item type="id" name="content_view">false</item>
+    <item type="id" name="icon_img">false</item>
+    <item type="id" name="item_right_icon">false</item>
+    <item type="id" name="phone_text">false</item>
+    <item type="id" name="phone_text1">false</item>
+    <item type="id" name="dz_discover_user_verify_view">false</item>
+    <item type="id" name="mc_discover_line">false</item>
     <item type="id" name="status_layout">false</item>
     <item type="id" name="failed_icon">false</item>
     <item type="id" name="mc_forum_web_progressbar">false</item>
     <item type="id" name="status_text">false</item>
-    <item type="id" name="mc_forum_register_layout">false</item>
-    <item type="id" name="mc_forum_register_icon_layout">false</item>
-    <item type="id" name="mc_forum_icon_bg_img">false</item>
-    <item type="id" name="mc_game_topbar">false</item>
-    <item type="id" name="mc_game_topbar_left_btn">false</item>
-    <item type="id" name="mc_game_topbar_title_text">false</item>
-    <item type="id" name="map_btn">false</item>
-    <item type="id" name="back_btn">false</item>
-    <item type="id" name="mc_game_subnav">false</item>
-    <item type="id" name="mc_game_content">false</item>
-    <item type="id" name="mc_game_detail_buttom_bar">false</item>
-    <item type="id" name="mc_game_detail_buttom_comment">false</item>
-    <item type="id" name="mc_game_detail_buttom_into_game">false</item>
-    <item type="id" name="mc_game_detail_buttom_share">false</item>
-    <item type="id" name="mc_game_center_delete_name">false</item>
-    <item type="id" name="mc_game_center_delete_line">false</item>
-    <item type="id" name="mc_game_center_delete_function">false</item>
-    <item type="id" name="mc_game_center_list_content">false</item>
-    <item type="id" name="game_item_layout">false</item>
-    <item type="id" name="mc_game_center_item_top_content">false</item>
-    <item type="id" name="mc_game_center_list_thumbnail">false</item>
-    <item type="id" name="mc_game_center_list_game_message">false</item>
-    <item type="id" name="mc_game_center_center_list_into_game">false</item>
-    <item type="id" name="mc_game_center_list_game_name">false</item>
-    <item type="id" name="mc_game_center_list_game_rank">false</item>
-    <item type="id" name="mc_game_center_list_game_player">false</item>
-    <item type="id" name="mc_game_center_list_content_segmentation">false</item>
-    <item type="id" name="mc_game_center_content_msg_text">false</item>
-    <item type="id" name="mc_game_center_msg_line">false</item>
-    <item type="id" name="mc_game_center_list_game_description">false</item>
-    <item type="id" name="mc_game_detail_comment_content">false</item>
-    <item type="id" name="mc_game_detail_comment_submit">false</item>
-    <item type="id" name="mc_game_detail_comment_cancel">false</item>
-    <item type="id" name="mc_game_datail_critic">false</item>
-    <item type="id" name="mc_game_detail_comment_date">false</item>
-    <item type="id" name="mc_game_detail_top_content">false</item>
-    <item type="id" name="mc_game_detail_thumbnail">false</item>
-    <item type="id" name="mc_game_detail_game_message">false</item>
-    <item type="id" name="mc_game_detail_into_game">false</item>
-    <item type="id" name="mc_game_detail_game_name">false</item>
-    <item type="id" name="mc_game_detail_game_rank">false</item>
-    <item type="id" name="mc_game_detail_game_player">false</item>
-    <item type="id" name="mc_game_detail_buttom_content">false</item>
-    <item type="id" name="mc_game_detail_pic">false</item>
-    <item type="id" name="mc_geme_detai_pic">false</item>
-    <item type="id" name="mc_game_detail_line1">false</item>
-    <item type="id" name="mc_game_detail_description_text">false</item>
-    <item type="id" name="mc_game_detail_game_description">false</item>
+    <item type="id" name="pager">false</item>
+    <item type="id" name="bottom_select_layout">false</item>
+    <item type="id" name="page_radio">false</item>
     <item type="id" name="mc_forum_pull_to_refresh_layout">false</item>
     <item type="id" name="mc_forum_pull_to_refresh_text">false</item>
     <item type="id" name="mc_forum_pull_to_refresh_note">false</item>
     <item type="id" name="mc_forum_pull_to_refresh_progress">false</item>
     <item type="id" name="mc_forum_pull_to_refresh_image">false</item>
-    <item type="id" name="pager">false</item>
-    <item type="id" name="bottom_select_layout">false</item>
-    <item type="id" name="page_radio">false</item>
-    <item type="id" name="top_bar_layout">false</item>
-    <item type="id" name="around_lift_btn">false</item>
-    <item type="id" name="around_icon">false</item>
-    <item type="id" name="around_text">false</item>
-    <item type="id" name="route_plane_btn">false</item>
-    <item type="id" name="route_icon">false</item>
-    <item type="id" name="route_text">false</item>
-    <item type="id" name="place_home_around_search_edit">false</item>
-    <item type="id" name="place_home_around_search_btn">false</item>
-    <item type="id" name="place_home_icon_container_layout">false</item>
-    <item type="id" name="more_btn">false</item>
-    <item type="id" name="place_home_around_item_img">false</item>
-    <item type="id" name="place_home_around_item_text">false</item>
-    <item type="id" name="search_edit">false</item>
-    <item type="id" name="search_btn">false</item>
-    <item type="id" name="content_layout">false</item>
-    <item type="id" name="filter_layout">false</item>
-    <item type="id" name="distance_btn">false</item>
-    <item type="id" name="distance_small_icon">false</item>
-    <item type="id" name="category_btn">false</item>
-    <item type="id" name="distance_category_icon">false</item>
-    <item type="id" name="sort_btn">false</item>
-    <item type="id" name="distance_sort_icon">false</item>
-    <item type="id" name="range_layout">false</item>
-    <item type="id" name="range_nav_list">false</item>
-    <item type="id" name="range_sub_list">false</item>
-    <item type="id" name="category_layout">false</item>
-    <item type="id" name="category_nav_list">false</item>
-    <item type="id" name="category_sub_list">false</item>
-    <item type="id" name="rule_list">false</item>
-    <item type="id" name="filed_name_text">false</item>
-    <item type="id" name="filed_select_img">false</item>
-    <item type="id" name="around_list_item_distance_text">false</item>
-    <item type="id" name="around_list_item_title_text">false</item>
-    <item type="id" name="around_group_img">false</item>
-    <item type="id" name="around_list_item_address_text">false</item>
-    <item type="id" name="around_service_item_ratingbar">false</item>
-    <item type="id" name="around_list_price_left_text">false</item>
-    <item type="id" name="around_list_price_right_text">false</item>
-    <item type="id" name="arrow_img">false</item>
-    <item type="id" name="around_list_tag_text">false</item>
-    <item type="id" name="around_item_arrive_layout">false</item>
-    <item type="id" name="around_service_item_arrive_btn">false</item>
-    <item type="id" name="around_service_item_arrive_img">false</item>
-    <item type="id" name="around_service_item_bottom_slid_line">false</item>
-    <item type="id" name="around_item_phone_layout">false</item>
-    <item type="id" name="around_service_item_phone_btn">false</item>
-    <item type="id" name="around_service_item_phone_img">false</item>
-    <item type="id" name="place_around_map_view_top_bar">false</item>
-    <item type="id" name="place_around_map_view_finish">false</item>
-    <item type="id" name="place_around_map_view_top_bar_title">false</item>
-    <item type="id" name="place_around_poi_baidu_mapview">false</item>
-    <item type="id" name="place_around_poi_tools_layout">false</item>
-    <item type="id" name="place_around_poi_traffic">false</item>
-    <item type="id" name="place_around_poi_screen_shot">false</item>
-    <item type="id" name="place_around_poi_map_control_tools">false</item>
-    <item type="id" name="place_around_poi_detail_layout">false</item>
-    <item type="id" name="place_around_poi_find_me_btn">false</item>
-    <item type="id" name="place_around_poi_zoom_tool">false</item>
-    <item type="id" name="place_around_poi_zoom_in">false</item>
-    <item type="id" name="place_around_poi_zoom_out">false</item>
-    <item type="id" name="place_poi_detail_msg_one">false</item>
-    <item type="id" name="place_poi_detail_name">false</item>
-    <item type="id" name="place_poi_detail_text">false</item>
-    <item type="id" name="place_poi_detail_icon">false</item>
-    <item type="id" name="place_poi_detail_msg_two">false</item>
-    <item type="id" name="place_poi_detail_rank_layout">false</item>
-    <item type="id" name="place_poi_detail_rating_bar">false</item>
-    <item type="id" name="place_poi_detail_rank_text">false</item>
-    <item type="id" name="place_poi_detail_average_expense">false</item>
-    <item type="id" name="place_poi_detail_average_expense_text">false</item>
-    <item type="id" name="place_poi_detail_layout_line_one">false</item>
-    <item type="id" name="place_poi_detail_buttom_function">false</item>
-    <item type="id" name="place_poi_detail_search_around_layout">false</item>
-    <item type="id" name="place_poi_detail_search_around">false</item>
-    <item type="id" name="place_poi_detail_search_around_text">false</item>
-    <item type="id" name="place_poi_detail_go_dis_layout">false</item>
-    <item type="id" name="place_poi_detail_go_dis_icon">false</item>
-    <item type="id" name="place_poi_detail_go_dis_text">false</item>
-    <item type="id" name="place_poi_detail_layout_line_two">false</item>
-    <item type="id" name="place_poi_detail_call_layout">false</item>
-    <item type="id" name="place_poi_detail_call_icon">false</item>
-    <item type="id" name="place_poi_detail_call_text">false</item>
-    <item type="id" name="around_category_layout">false</item>
-    <item type="id" name="first_category_list">false</item>
-    <item type="id" name="second_category_list">false</item>
-    <item type="id" name="category_text">false</item>
-    <item type="id" name="category_img">false</item>
-    <item type="id" name="place_baidu_mapview">false</item>
-    <item type="id" name="nav_detail_topbar">false</item>
-    <item type="id" name="map_view_bottom_tools_bar_one">false</item>
-    <item type="id" name="map_view_find_me">false</item>
-    <item type="id" name="map_view_step_btn_layout">false</item>
-    <item type="id" name="map_view_pre_step">false</item>
-    <item type="id" name="map_view_next_step">false</item>
-    <item type="id" name="map_view_zoom_layout">false</item>
-    <item type="id" name="map_view_traffic">false</item>
-    <item type="id" name="map_view_zoom_in">false</item>
-    <item type="id" name="map_view_zoom_out">false</item>
-    <item type="id" name="route_top_bar">false</item>
-    <item type="id" name="route_finish_btn">false</item>
-    <item type="id" name="route_content">false</item>
-    <item type="id" name="route_bus_detail_content">false</item>
-    <item type="id" name="traffic_step_detail_item">false</item>
-    <item type="id" name="bus_detail_share_layout">false</item>
-    <item type="id" name="route_suggest_location_view">false</item>
-    <item type="id" name="route_suggest_location_step">false</item>
-    <item type="id" name="route_suggest_location_name">false</item>
-    <item type="id" name="route_suggest_location_city">false</item>
-    <item type="id" name="route_plan_traffic_list">false</item>
-    <item type="id" name="subnav_scrollview">false</item>
-    <item type="id" name="route_comment_detail_item">false</item>
-    <item type="id" name="comment_detail_item_step">false</item>
-    <item type="id" name="comment_detail_item_text">false</item>
-    <item type="id" name="nav_detail_finish_btn">false</item>
-    <item type="id" name="nav_detail_topbar_title">false</item>
-    <item type="id" name="nav_detail_multi_btn">false</item>
-    <item type="id" name="route_plan_go_route_plan">false</item>
-    <item type="id" name="route_plan_traffic_show">false</item>
-    <item type="id" name="route_plan_top_by_bus">false</item>
-    <item type="id" name="route_plan_top_by_car">false</item>
-    <item type="id" name="route_plan_top_by_walk">false</item>
-    <item type="id" name="route_plan_open_map">false</item>
-    <item type="id" name="mc_place_route_loading_view">false</item>
-    <item type="id" name="mc_place_route_loading_img">false</item>
-    <item type="id" name="mc_place_route_loading_text">false</item>
-    <item type="id" name="route_location_dialog_title">false</item>
-    <item type="id" name="route_location_dialog_line">false</item>
-    <item type="id" name="route_location_dialog_sug_list">false</item>
-    <item type="id" name="route_dialog_sug_list_item">false</item>
-    <item type="id" name="route_dialog_sug_list_item_name">false</item>
-    <item type="id" name="route_dialog_sug_list_item_city">false</item>
-    <item type="id" name="route_map_view_pop_text">false</item>
-    <item type="id" name="route_plan_get_message">false</item>
-    <item type="id" name="route_plan_switch_btn">false</item>
-    <item type="id" name="route_plan_start_place">false</item>
-    <item type="id" name="route_plan_start_icon">false</item>
-    <item type="id" name="route_plan_start_name">false</item>
-    <item type="id" name="route_plan_end_place">false</item>
-    <item type="id" name="route_plan_end_icon">false</item>
-    <item type="id" name="route_plan_end_name">false</item>
-    <item type="id" name="route_plan_traffic_tool">false</item>
-    <item type="id" name="route_plan_by_bus">false</item>
-    <item type="id" name="place_route_bus_icon">false</item>
-    <item type="id" name="mc_place_route_bus_text">false</item>
-    <item type="id" name="route_plan_line_onw">false</item>
-    <item type="id" name="route_plan_by_car">false</item>
-    <item type="id" name="place_route_car_icon">false</item>
-    <item type="id" name="mc_place_route_car_text">false</item>
-    <item type="id" name="route_plan_line_two">false</item>
-    <item type="id" name="route_plan_by_walk">false</item>
-    <item type="id" name="place_route_walk_icon">false</item>
-    <item type="id" name="mc_place_route_walk_text">false</item>
-    <item type="id" name="place_route_baidu_mapview">false</item>
-    <item type="id" name="place_route_bus_data_picker_layout">false</item>
-    <item type="id" name="route_time_picker_text">false</item>
-    <item type="id" name="route_time_picker_icon">false</item>
-    <item type="id" name="traffic_policy">false</item>
-    <item type="id" name="place_route_traffic_msg_layout">false</item>
-    <item type="id" name="route_start_and_end_location">false</item>
-    <item type="id" name="route_plan_traffic_list_start_view">false</item>
-    <item type="id" name="route_plan_traffic_list_start_icon">false</item>
-    <item type="id" name="route_plan_traffic_list_start_text">false</item>
-    <item type="id" name="route_plan_traffic_list_end_view">false</item>
-    <item type="id" name="route_plan_traffic_list_end_icon">false</item>
-    <item type="id" name="route_plan_traffic_list_end_text">false</item>
-    <item type="id" name="route_plan_traffic_other_msg">false</item>
-    <item type="id" name="route_plan_traffic_result_list">false</item>
-    <item type="id" name="route_plan_traffic_share_and_nav_layout">false</item>
-    <item type="id" name="route_traffic_nav_layout">false</item>
-    <item type="id" name="place_traffic_list_nav_icon">false</item>
-    <item type="id" name="route_traffic_share_layout">false</item>
-    <item type="id" name="place_traffic_list_share_icon">false</item>
-    <item type="id" name="place_route_traffic_share_text">false</item>
-    <item type="id" name="mc_plaza_top_bar_layout">false</item>
-    <item type="id" name="top_back_btn">false</item>
-    <item type="id" name="mc_plaza_top_layout">false</item>
-    <item type="id" name="personal_layout">false</item>
-    <item type="id" name="personal_btn">false</item>
-    <item type="id" name="set_layout">false</item>
-    <item type="id" name="set_btn">false</item>
-    <item type="id" name="about_layout">false</item>
-    <item type="id" name="about_btn">false</item>
-    <item type="id" name="base_search_layout">false</item>
-    <item type="id" name="key_word_edit">false</item>
-    <item type="id" name="mc_plaza_before_view">false</item>
-    <item type="id" name="mc_plaza_content_list">false</item>
-    <item type="id" name="top_line_view">false</item>
-    <item type="id" name="content_layout1">false</item>
-    <item type="id" name="plaza_gird_item_img1">false</item>
-    <item type="id" name="plaza_grid_item_text1">false</item>
-    <item type="id" name="content_layout2">false</item>
-    <item type="id" name="plaza_gird_item_img2">false</item>
-    <item type="id" name="plaza_grid_item_text2">false</item>
-    <item type="id" name="content_layout3">false</item>
-    <item type="id" name="plaza_gird_item_img3">false</item>
-    <item type="id" name="plaza_grid_item_text3">false</item>
-    <item type="id" name="plaza_gird">false</item>
-    <item type="id" name="plaza_gird_item_img">false</item>
-    <item type="id" name="plaza_grid_item_text">false</item>
-    <item type="id" name="mc_plaza_expandlist">false</item>
-    <item type="id" name="content_view">false</item>
-    <item type="id" name="icon_img">false</item>
-    <item type="id" name="view_pager">false</item>
-    <item type="id" name="plaza_search_layout">false</item>
-    <item type="id" name="search_title">false</item>
-    <item type="id" name="search_list">false</item>
-    <item type="id" name="chanel_dialog_text">false</item>
-    <item type="id" name="fallwall_layout">false</item>
-    <item type="id" name="lv_backtotop">false</item>
-    <item type="id" name="thumb_img">false</item>
-    <item type="id" name="describe_text">false</item>
-    <item type="id" name="thumb_img_right">false</item>
-    <item type="id" name="top_close_btn">false</item>
-    <item type="id" name="bottom_layout">false</item>
-    <item type="id" name="bottom_back_btn">false</item>
-    <item type="id" name="bottom_refresh_btn">false</item>
-    <item type="id" name="bottom_close_btn">false</item>
-    <item type="id" name="loading_layout">false</item>
-    <item type="id" name="search_layout">false</item>
-    <item type="id" name="mc_plaza_channel_layout">false</item>
-    <item type="id" name="channel_text">false</item>
-    <item type="id" name="web_search_btn">false</item>
-    <item type="id" name="mc_share_cancel">false</item>
-    <item type="id" name="mc_share_sure">false</item>
-    <item type="id" name="mc_share_title">false</item>
-    <item type="id" name="mc_share_content">false</item>
-    <item type="id" name="mc_share_edit_text">false</item>
-    <item type="id" name="mc_share_image">false</item>
-    <item type="id" name="mc_share_at_btn">false</item>
-    <item type="id" name="mc_share_topic_btn">false</item>
-    <item type="id" name="mc_share_word_num">false</item>
-    <item type="id" name="mc_share_item_list">false</item>
-    <item type="id" name="share_back_layout">false</item>
-    <item type="id" name="mc_share_item_layout">false</item>
-    <item type="id" name="id_horizontalScrollView">false</item>
-    <item type="id" name="id_gallery">false</item>
-    <item type="id" name="cancel_btn">false</item>
-    <item type="id" name="mc_share_dialog_listview">false</item>
-    <item type="id" name="mc_share_dialog_cancel">false</item>
-    <item type="id" name="share_gird_item_img1">false</item>
-    <item type="id" name="share_grid_item_text1">false</item>
-    <item type="id" name="share_gird_item_img2">false</item>
-    <item type="id" name="share_grid_item_text2">false</item>
-    <item type="id" name="share_gird_item_img3">false</item>
-    <item type="id" name="share_grid_item_text3">false</item>
-    <item type="id" name="content_layout4">false</item>
-    <item type="id" name="share_gird_item_img4">false</item>
-    <item type="id" name="share_grid_item_text4">false</item>
-    <item type="id" name="mc_share_item_img">false</item>
-    <item type="id" name="mc_share_item_name">false</item>
-    <item type="id" name="mc_share_user_name">false</item>
-    <item type="id" name="mc_share_set_btn">false</item>
-    <item type="id" name="mc_share_layout">false</item>
-    <item type="id" name="mc_tools_layout">false</item>
-    <item type="id" name="topic_detial_other_share">false</item>
-    <item type="id" name="topic_detial_other_share_layout">false</item>
     <item type="id" name="mc_share_view_item_image">false</item>
     <item type="id" name="mc_share_view_item_text">false</item>
-    <item type="id" name="mc_share_platform_box">false</item>
-    <item type="id" name="mc_share_back_btn">false</item>
-    <item type="id" name="mc_share_refresh_btn">false</item>
-    <item type="id" name="mc_share_platform_title">false</item>
-    <item type="id" name="mc_share_web_view">false</item>
-    <item type="id" name="mc_share_loading_box">false</item>
-    <item type="id" name="mc_share_progress_bar">false</item>
+    <item type="id" name="dz_open_app_viewpager">false</item>
     <item type="id" name="weather_main_box">false</item>
     <item type="id" name="weather_detail_top_box">false</item>
     <item type="id" name="arrow_view">false</item>
@@ -722,7 +338,9 @@
     <item type="id" name="weather_future_third_day_manner">false</item>
     <item type="id" name="top_search_layout">false</item>
     <item type="id" name="hot_city_grid">false</item>
+    <item type="id" name="search_layout">false</item>
     <item type="id" name="city_name_edit">false</item>
+    <item type="id" name="search_btn">false</item>
     <item type="id" name="location_city_text">false</item>
     <item type="id" name="city_text">false</item>
     <item type="id" name="city_list">false</item>
@@ -736,6 +354,23 @@
     <item type="id" name="mc_forum_mention_friend_name_text">false</item>
     <item type="id" name="mc_forum_posts_mention_friends_title_text">false</item>
     <item type="id" name="messenger_send_button">false</item>
+    <item type="id" name="plant_username">false</item>
+    <item type="id" name="save_btn">false</item>
+    <item type="id" name="find_password">false</item>
+    <item type="id" name="mc_modify_userinfo_activity">false</item>
+    <item type="id" name="modify_userinfo_base_navigation_bar">false</item>
+    <item type="id" name="modify_userinfo_base_topbar">false</item>
+    <item type="id" name="back_btn_modify_userinfo">false</item>
+    <item type="id" name="title_text_center_modify_userinfo">false</item>
+    <item type="id" name="more_my_btn_modify_userinfo">false</item>
+    <item type="id" name="have_virtual_key_modify_userinfo">false</item>
+    <item type="id" name="modify_userinfo_base_container">false</item>
+    <item type="id" name="mc_fmodify_userinfo_key">false</item>
+    <item type="id" name="mc_modify_more">false</item>
+    <item type="id" name="mc_modify_userinfo_value">false</item>
+    <item type="id" name="mc_modify_userinfo_user_icon">false</item>
+    <item type="id" name="mc_modify_userinfo_line">false</item>
+    <item type="id" name="edit_userinfo_container">false</item>
     <item type="id" name="msg_list">false</item>
     <item type="id" name="item1_box">false</item>
     <item type="id" name="img_box">false</item>
@@ -764,6 +399,7 @@
     <item type="id" name="indicate_select1">false</item>
     <item type="id" name="indicate_select2">false</item>
     <item type="id" name="indicate_select3">false</item>
+    <item type="id" name="item_img">false</item>
     <item type="id" name="item_text">false</item>
     <item type="id" name="multi_more_box">false</item>
     <item type="id" name="more_grid">false</item>
@@ -795,6 +431,7 @@
     <item type="id" name="selected_layout1">false</item>
     <item type="id" name="photo_viewpager">false</item>
     <item type="id" name="top_bar_box">false</item>
+    <item type="id" name="back_btn">false</item>
     <item type="id" name="photo_curr_num_text">false</item>
     <item type="id" name="photo_select_box">false</item>
     <item type="id" name="photo_select_btn">false</item>
@@ -807,6 +444,16 @@
     <item type="id" name="photo_grid_view">false</item>
     <item type="id" name="photo_album_listview_box">false</item>
     <item type="id" name="photo_list_text">false</item>
+    <item type="id" name="optionspicker">false</item>
+    <item type="id" name="options1">false</item>
+    <item type="id" name="options2">false</item>
+    <item type="id" name="options3">false</item>
+    <item type="id" name="timepicker">false</item>
+    <item type="id" name="year">false</item>
+    <item type="id" name="month">false</item>
+    <item type="id" name="day">false</item>
+    <item type="id" name="hour">false</item>
+    <item type="id" name="min">false</item>
     <item type="id" name="main_content">false</item>
     <item type="id" name="mc_forum_webview_browser">false</item>
     <item type="id" name="poi_title_text">false</item>
@@ -819,11 +466,15 @@
     <item type="id" name="mc_froum_poll_result_box">false</item>
     <item type="id" name="mc_forum_vote_rs_progress">false</item>
     <item type="id" name="mc_forum_vote_rs_text">false</item>
+    <item type="id" name="popup_grid_item_layout">false</item>
+    <item type="id" name="popup_grid_text">false</item>
     <item type="id" name="list">false</item>
     <item type="id" name="popup_layout">false</item>
     <item type="id" name="popup_img">false</item>
     <item type="id" name="popup_text">false</item>
+    <item type="id" name="popup_background">false</item>
     <item type="id" name="popup_list_view">false</item>
+    <item type="id" name="popup_grid_view">false</item>
     <item type="id" name="mc_forum_photo_shader">false</item>
     <item type="id" name="mc_forum_comment_text">false</item>
     <item type="id" name="mc_forum_title">false</item>
@@ -848,9 +499,11 @@
     <item type="id" name="mc_forum_content_box">false</item>
     <item type="id" name="mc_forum_select_board_image">false</item>
     <item type="id" name="mc_forun_publish_classify_box">false</item>
-    <item type="id" name="mc_forum_cancle_btn">false</item>
+    <item type="id" name="mc_forum_publish_dialog">false</item>
     <item type="id" name="mc_forum_middle_box">false</item>
     <item type="id" name="mc_forum_bottom_bar">false</item>
+    <item type="id" name="cancel_btn_bg_color">false</item>
+    <item type="id" name="mc_forum_cancle_btn">false</item>
     <item type="id" name="mc_forum_publish_btn">false</item>
     <item type="id" name="mc_forum_add_img_box">false</item>
     <item type="id" name="mc_forum_add_img">false</item>
@@ -882,6 +535,7 @@
     <item type="id" name="mc_forum_classified_view">false</item>
     <item type="id" name="mc_forum_content_edit">false</item>
     <item type="id" name="mc_forum_picture_view">false</item>
+    <item type="id" name="mc_forum_voice">false</item>
     <item type="id" name="mc_forum_voice_box">false</item>
     <item type="id" name="mc_forum_voice_img">false</item>
     <item type="id" name="mc_forum_addition_text">false</item>
@@ -927,6 +581,7 @@
     <item type="id" name="capture_mask_bottom">false</item>
     <item type="id" name="capture_mask_left">false</item>
     <item type="id" name="capture_mask_right">false</item>
+    <item type="id" name="rlay_search">false</item>
     <item type="id" name="mc_forum_board_list_view">false</item>
     <item type="id" name="mc_forum_board_title">false</item>
     <item type="id" name="mc_forum_board_content_box">false</item>
@@ -955,9 +610,52 @@
     <item type="id" name="share_app_btn">false</item>
     <item type="id" name="clear_cache_btn">false</item>
     <item type="id" name="update_btn">false</item>
+    <item type="id" name="about_btn">false</item>
     <item type="id" name="mc_forum_splash_background_img">false</item>
+    <item type="id" name="mc_forum_splash_skip_btn">false</item>
+    <item type="id" name="mc_forum_splash_helper">false</item>
     <item type="id" name="mc_forum_manage_img">false</item>
     <item type="id" name="mc_forum_manage_line_img">false</item>
+    <item type="id" name="friend_list">false</item>
+    <item type="id" name="system_msg_item_layout">false</item>
+    <item type="id" name="friend_icon_img">false</item>
+    <item type="id" name="friend_name_text">false</item>
+    <item type="id" name="friend_apply_btn">false</item>
+    <item type="id" name="friend_note_text">false</item>
+    <item type="id" name="system_msg_admin">false</item>
+    <item type="id" name="title">false</item>
+    <item type="id" name="pic">false</item>
+    <item type="id" name="raly_timer">false</item>
+    <item type="id" name="set_time_tmp">false</item>
+    <item type="id" name="tv_time">false</item>
+    <item type="id" name="talk_icon">false</item>
+    <item type="id" name="talk_tittle">false</item>
+    <item type="id" name="talk_join_num_and_picture_num">false</item>
+    <item type="id" name="follow_btn">false</item>
+    <item type="id" name="elay_talk_list">false</item>
+    <item type="id" name="view_upper">false</item>
+    <item type="id" name="title_view">false</item>
+    <item type="id" name="line_up_unfollow">false</item>
+    <item type="id" name="line_followed">false</item>
+    <item type="id" name="rlay_no_follow_talk">false</item>
+    <item type="id" name="tv_unfollow_notice_text">false</item>
+    <item type="id" name="line_recommend">false</item>
+    <item type="id" name="talk_topic_listview">false</item>
+    <item type="id" name="tab_view">false</item>
+    <item type="id" name="talk_topic_img">false</item>
+    <item type="id" name="talk_topic_tittle">false</item>
+    <item type="id" name="talk_topic_desc">false</item>
+    <item type="id" name="rlay_top_user">false</item>
+    <item type="id" name="tv_join_num">false</item>
+    <item type="id" name="talk_join_user_list">false</item>
+    <item type="id" name="llay_talk_join_user_list">false</item>
+    <item type="id" name="tv_launch_user">false</item>
+    <item type="id" name="topic_complex_fragment_listview">false</item>
+    <item type="id" name="topic_complex_fragment_select_item">false</item>
+    <item type="id" name="publish_popup_listview">false</item>
+    <item type="id" name="popup_listview">false</item>
+    <item type="id" name="topic_complex_fragment_select_isadd">false</item>
+    <item type="id" name="topic_complex_fragment_select">false</item>
     <item type="id" name="middle_layout">false</item>
     <item type="id" name="video_web">false</item>
     <item type="id" name="video_view">false</item>
@@ -967,7 +665,8 @@
     <item type="id" name="play_audio_img">false</item>
     <item type="id" name="audio_time_text">false</item>
     <item type="id" name="audio_playing_img">false</item>
-    <item type="id" name="ad_view">false</item>
+    <item type="id" name="progress_bar">false</item>
+    <item type="id" name="ad_layout">false</item>
     <item type="id" name="root_menu_layout">false</item>
     <item type="id" name="more_menu_layout">false</item>
     <item type="id" name="menu_manage_layout">false</item>
@@ -985,7 +684,6 @@
     <item type="id" name="posts_user_role_text">false</item>
     <item type="id" name="posts_lab">false</item>
     <item type="id" name="posts_user_date_text">false</item>
-    <item type="id" name="follow_btn">false</item>
     <item type="id" name="posts_activity_topic_layout">false</item>
     <item type="id" name="acitivty_image">false</item>
     <item type="id" name="activity_summary">false</item>
@@ -1032,80 +730,73 @@
     <item type="id" name="reply_more_box">false</item>
     <item type="id" name="reply_more_btn">false</item>
     <item type="id" name="reply_more_text">false</item>
-    <item type="id" name="posts_title_box">false</item>
-    <item type="id" name="posts_wechat_share_box">false</item>
-    <item type="id" name="posts_wechat_share">false</item>
-    <item type="id" name="posts_moments_share">false</item>
-    <item type="id" name="posts_rate_function_box">false</item>
-    <item type="id" name="posts_rate_btn">false</item>
-    <item type="id" name="posts_rate_detail_box">false</item>
-    <item type="id" name="posts_rate_more_box">false</item>
-    <item type="id" name="posts_more_rate_text">false</item>
-    <item type="id" name="posts_more_rate_sign">false</item>
-    <item type="id" name="posts_not_rate_line">false</item>
-    <item type="id" name="reply_layout_box">false</item>
-    <item type="id" name="reply_praise_box">false</item>
-    <item type="id" name="reply_praise_btn">false</item>
-    <item type="id" name="reply_praise_text">false</item>
-    <item type="id" name="reply_reply_box">false</item>
-    <item type="id" name="reply_reply_btn">false</item>
     <item type="id" name="topic_detail_list">false</item>
-    <item type="id" name="posts_time_text">false</item>
-    <item type="id" name="reply_count_text">false</item>
-    <item type="id" name="scan_btn">false</item>
-    <item type="id" name="scan_count_text">false</item>
     <item type="id" name="bottom_over_layout">false</item>
     <item type="id" name="bottom_comment_layout">false</item>
     <item type="id" name="bottom_comment_text">false</item>
     <item type="id" name="bottom_praise_btn">false</item>
-    <item type="id" name="posts_type_box">false</item>
-    <item type="id" name="top_img">false</item>
-    <item type="id" name="essence_img">false</item>
+    <item type="id" name="bottom_share_btn">false</item>
+    <item type="id" name="posts_title_box">false</item>
+    <item type="id" name="mc_forum_topic_state">false</item>
     <item type="id" name="mc_forum_title_box1">false</item>
-    <item type="id" name="title_bottom_box">false</item>
     <item type="id" name="poll_img">false</item>
-    <item type="id" name="big_pic_item_layout">false</item>
+    <item type="id" name="title_bottom_box">false</item>
+    <item type="id" name="posts_time_text">false</item>
+    <item type="id" name="reply_count_text">false</item>
+    <item type="id" name="scan_btn">false</item>
+    <item type="id" name="scan_count_text">false</item>
+    <item type="id" name="topic_list_back_top_button">false</item>
+    <item type="id" name="topic_thumbnail_view">false</item>
+    <item type="id" name="topic_board_name_view">false</item>
+    <item type="id" name="topic_title_text">false</item>
+    <item type="id" name="topic_bottom_box">false</item>
+    <item type="id" name="topic_time_text">false</item>
+    <item type="id" name="topic_pv_icon">false</item>
+    <item type="id" name="topic_pv_text">false</item>
+    <item type="id" name="topic_reply_icon">false</item>
+    <item type="id" name="topic_reply_text">false</item>
+    <item type="id" name="topic_recommend_box">false</item>
+    <item type="id" name="mc_forum_topic_item_layout">false</item>
+    <item type="id" name="mc_forum_topic_item_headview">false</item>
+    <item type="id" name="mc_forum_topic_item_nameview">false</item>
+    <item type="id" name="mc_forum_topic_item_genderview">false</item>
+    <item type="id" name="mc_forum_topic_item_timeview">false</item>
+    <item type="id" name="mc_forum_topic_item_titleview">false</item>
+    <item type="id" name="mc_forum_topic_item_descview">false</item>
+    <item type="id" name="mc_forum_topic_item_imagebox">false</item>
     <item type="id" name="mc_forum_topic_item_board_name">false</item>
     <item type="id" name="mc_forum_from_text">false</item>
-    <item type="id" name="user_gender_text">false</item>
-    <item type="id" name="topic_time_text">false</item>
-    <item type="id" name="topic_title_text">false</item>
-    <item type="id" name="topic_content_img">false</item>
-    <item type="id" name="topic_function_box">false</item>
-    <item type="id" name="topic_reply_box">false</item>
-    <item type="id" name="topic_reply_btn">false</item>
-    <item type="id" name="topic_reply_text">false</item>
+    <item type="id" name="mc_forum_topic_item_card_userverify">false</item>
+    <item type="id" name="mc_forum_topic_item_statebox_line">false</item>
+    <item type="id" name="mc_forum_topic_item_statebox">false</item>
     <item type="id" name="topic_share_box">false</item>
-    <item type="id" name="topic_share_btn">false</item>
-    <item type="id" name="mc_forum_topic_title">false</item>
-    <item type="id" name="mc_forum_top_icon_img">false</item>
-    <item type="id" name="mc_forum_essence_icon_img">false</item>
-    <item type="id" name="mc_forum_topic_content">false</item>
-    <item type="id" name="mc_forum_location_text">false</item>
-    <item type="id" name="mc_forum_topic_time">false</item>
-    <item type="id" name="mc_forum_board_name">false</item>
-    <item type="id" name="mc_forum_read_times_box">false</item>
-    <item type="id" name="mc_forum_conmment_times_box">false</item>
-    <item type="id" name="mc_forum_read_times">false</item>
-    <item type="id" name="mc_forum_conmment_times">false</item>
-    <item type="id" name="mc_forum_ding_img">false</item>
+    <item type="id" name="topic_share_text">false</item>
+    <item type="id" name="topic_reply_box">false</item>
+    <item type="id" name="recommend_text">false</item>
     <item type="id" name="topic_moments_layout">false</item>
     <item type="id" name="topic_content_box">false</item>
+    <item type="id" name="user_gender_text">false</item>
+    <item type="id" name="mc_forum_topic_item_cricle_userverify">false</item>
+    <item type="id" name="topic_desc_text">false</item>
     <item type="id" name="topic_moments_view">false</item>
+    <item type="id" name="recommend_layout">false</item>
+    <item type="id" name="topic_share_btn">false</item>
+    <item type="id" name="topic_reply_btn">false</item>
     <item type="id" name="posts_praise_users_line">false</item>
     <item type="id" name="posts_reply_text">false</item>
     <item type="id" name="posts_all_box">false</item>
     <item type="id" name="posts_all_text">false</item>
+    <item type="id" name="mc_forum_topic_content">false</item>
+    <item type="id" name="mc_forum_topic_image_box">false</item>
+    <item type="id" name="mc_forum_location_text">false</item>
     <item type="id" name="mc_forum_topic_other_box">false</item>
-    <item type="id" name="mc_forum_hits_img">false</item>
     <item type="id" name="mc_forum_reply_hit_text">false</item>
-    <item type="id" name="mc_forum_comments_img">false</item>
-    <item type="id" name="mc_forum_reply_comments_text">false</item>
-    <item type="id" name="mc_forum_jing_img">false</item>
     <item type="id" name="topic_list_foruminfo_box">false</item>
     <item type="id" name="topic_list_foruminfo_boardicon">false</item>
     <item type="id" name="topic_list_foruminfo_boardname">false</item>
+    <item type="id" name="topic_list_foruminfo_topicnum">false</item>
     <item type="id" name="topic_list_foruminfo_boarddesc">false</item>
+    <item type="id" name="topic_list_forum_focus">false</item>
     <item type="id" name="topic_list_foruminfo_topbox1">false</item>
     <item type="id" name="topic_list_foruminfo_icon1">false</item>
     <item type="id" name="topic_list_foruminfo_text1">false</item>
@@ -1115,23 +806,49 @@
     <item type="id" name="topic_list_foruminfo_topbox3">false</item>
     <item type="id" name="topic_list_foruminfo_icon3">false</item>
     <item type="id" name="topic_list_foruminfo_text3">false</item>
+    <item type="id" name="topic_list_foruminfo_havemore">false</item>
     <item type="id" name="topic_list_foruminfo_marginview">false</item>
-    <item type="id" name="publish_popup_listview">false</item>
     <item type="id" name="topic_search_edit">false</item>
-    <item type="id" name="mc_forum_topic_item_layout">false</item>
-    <item type="id" name="mc_forum_topic_item_headview">false</item>
-    <item type="id" name="mc_forum_topic_item_nameview">false</item>
-    <item type="id" name="mc_forum_topic_item_genderview">false</item>
-    <item type="id" name="mc_forum_topic_item_timeview">false</item>
-    <item type="id" name="mc_forum_topic_item_titleview">false</item>
-    <item type="id" name="mc_forum_topic_item_descview">false</item>
-    <item type="id" name="mc_forum_topic_item_imagebox">false</item>
-    <item type="id" name="mc_forum_topic_item_statebox">false</item>
+    <item type="id" name="mc_forum_topic_item_tieba_userverify">false</item>
+    <item type="id" name="mc_forum_topic_item_wechat_userverify">false</item>
     <item type="id" name="topic_location_text">false</item>
-    <item type="id" name="popup_listview">false</item>
+    <item type="id" name="reply_reply_btn">false</item>
     <item type="id" name="mc_forum_select_text">false</item>
     <item type="id" name="mc_forum_picture_box">false</item>
     <item type="id" name="photos_popup_listview">false</item>
+    <item type="id" name="mc_forum_user_center_loading">false</item>
+    <item type="id" name="mc_forum_user_center_progressbar">false</item>
+    <item type="id" name="mc_forum_user_center">false</item>
+    <item type="id" name="bottom_layout_parent">false</item>
+    <item type="id" name="mc_forum_add_toolbar">false</item>
+    <item type="id" name="mc_forum_user_center_topbar">false</item>
+    <item type="id" name="back_btn_center">false</item>
+    <item type="id" name="title_text_center">false</item>
+    <item type="id" name="more_btn_center">false</item>
+    <item type="id" name="more_my_btn_center">false</item>
+    <item type="id" name="mc_forum_user_fragment_isvisible">false</item>
+    <item type="id" name="mc_forum_publish_center_fragement">false</item>
+    <item type="id" name="mc_forum_user_publish_fragment_select">false</item>
+    <item type="id" name="mc_forum_info_center_fragment">false</item>
+    <item type="id" name="mc_forum_user_info_fragment_select">false</item>
+    <item type="id" name="bottom_layout">false</item>
+    <item type="id" name="have_virtual_key">false</item>
+    <item type="id" name="mc_forum_backgroud_center">false</item>
+    <item type="id" name="mc_forum_backgroud_shadow">false</item>
+    <item type="id" name="mc_forum_user_about_center">false</item>
+    <item type="id" name="mc_forum_active">false</item>
+    <item type="id" name="mc_forum_participation_center">false</item>
+    <item type="id" name="mc_forum_foucs_center">false</item>
+    <item type="id" name="mc_forum_fans_center">false</item>
+    <item type="id" name="mc_forum_user_verify_center">false</item>
+    <item type="id" name="mc_forum_user_name_center">false</item>
+    <item type="id" name="mc_forum_user_sex_icon_center">false</item>
+    <item type="id" name="mc_forum_user_icon_center">false</item>
+    <item type="id" name="mc_forum_publish_and_info">false</item>
+    <item type="id" name="mc_forum_publish_center">false</item>
+    <item type="id" name="mc_forum_publish_select">false</item>
+    <item type="id" name="mc_forum_info_center">false</item>
+    <item type="id" name="mc_forum_info_select">false</item>
     <item type="id" name="mc_forum_my_top_box">false</item>
     <item type="id" name="mc_forum_personal_bg">false</item>
     <item type="id" name="mc_forum_user_icon">false</item>
@@ -1139,18 +856,6 @@
     <item type="id" name="mc_forum_user_gender">false</item>
     <item type="id" name="mc_froum_user_credits">false</item>
     <item type="id" name="mc_froum_user_level_text">false</item>
-    <item type="id" name="mc_forum_other_view">false</item>
-    <item type="id" name="mc_forum_box2">false</item>
-    <item type="id" name="mc_forum_infomation_layout">false</item>
-    <item type="id" name="mc_forum_datum_text">false</item>
-    <item type="id" name="mc_forum_photo_other_layout">false</item>
-    <item type="id" name="mc_forum_box3">false</item>
-    <item type="id" name="mc_forum_follow_other_layout">false</item>
-    <item type="id" name="mc_forum_fan_other_layout">false</item>
-    <item type="id" name="mc_forum_box4">false</item>
-    <item type="id" name="mc_forum_publish_other_layout">false</item>
-    <item type="id" name="mc_forum_reply_other_layout">false</item>
-    <item type="id" name="head_box">false</item>
     <item type="id" name="add_friend_layout">false</item>
     <item type="id" name="add_friend_img">false</item>
     <item type="id" name="add_friend_text">false</item>
@@ -1160,25 +865,12 @@
     <item type="id" name="send_msg_layout">false</item>
     <item type="id" name="send_msg_img">false</item>
     <item type="id" name="send_msg_text">false</item>
-    <item type="id" name="mc_forum_my_view">false</item>
-    <item type="id" name="mc_forum_photo_layout">false</item>
-    <item type="id" name="mc_forum_friend_layout">false</item>
-    <item type="id" name="mc_forum_follow_layout">false</item>
-    <item type="id" name="mc_forum_fan_layout">false</item>
-    <item type="id" name="message_line">false</item>
-    <item type="id" name="mc_forum_message_layout">false</item>
-    <item type="id" name="mc_forum_publish_layout">false</item>
-    <item type="id" name="mc_forum_reply_layout">false</item>
-    <item type="id" name="mc_forum_favorites_layout">false</item>
-    <item type="id" name="mc_forum_box5">false</item>
-    <item type="id" name="mc_forum_setting_box">false</item>
-    <item type="id" name="mc_forum_user_setting">false</item>
-    <item type="id" name="mc_forum_draft_layout">false</item>
     <item type="id" name="mc_forum_switch_user">false</item>
     <item type="id" name="content_list">false</item>
     <item type="id" name="logout_layout">false</item>
     <item type="id" name="icon">false</item>
     <item type="id" name="text">false</item>
+    <item type="id" name="more_btn">false</item>
     <item type="id" name="mc_forum_update_box">false</item>
     <item type="id" name="email_layout">false</item>
     <item type="id" name="mc_forum_email_label_text">false</item>
@@ -1189,20 +881,35 @@
     <item type="id" name="mc_forum_user_icon_img">false</item>
     <item type="id" name="mc_forum_take_photo_btn">false</item>
     <item type="id" name="mc_forum_gallery_pic_btn">false</item>
+    <item type="id" name="mc_forum_gender_label_text">false</item>
     <item type="id" name="mc_forum_user_gender_btn">false</item>
+    <item type="id" name="mc_forum_gender_secrecy_box">false</item>
+    <item type="id" name="mc_forum_gender_secrecy_btn">false</item>
     <item type="id" name="mc_forum_gender_secrecy_text">false</item>
+    <item type="id" name="mc_forum_gender_male_box">false</item>
+    <item type="id" name="mc_forum_gender_male_btn">false</item>
     <item type="id" name="mc_forum_gender_male_text">false</item>
+    <item type="id" name="mc_forum_gender_female_box">false</item>
+    <item type="id" name="mc_forum_gender_female_btn">false</item>
     <item type="id" name="mc_forum_gender_female_text">false</item>
+    <item type="id" name="sign_tv">false</item>
+    <item type="id" name="sign_text">false</item>
     <item type="id" name="user_list">false</item>
     <item type="id" name="user_info_title_box">false</item>
+    <item type="id" name="top_layout">false</item>
     <item type="id" name="user_status_text">false</item>
+    <item type="id" name="view_user_level">false</item>
     <item type="id" name="mc_foum_sign">false</item>
+    <item type="id" name="user_list_frame_layout">false</item>
+    <item type="id" name="gender_layout">false</item>
+    <item type="id" name="man_layout">false</item>
+    <item type="id" name="woman_layout">false</item>
+    <item type="id" name="rlv_search_user">false</item>
     <item type="id" name="user_login_box">false</item>
     <item type="id" name="user_login_name_edit">false</item>
     <item type="id" name="user_login_password_edit">false</item>
     <item type="id" name="bound_submit_btn">false</item>
     <item type="id" name="reg_bound_btn">false</item>
-    <item type="id" name="find_password">false</item>
     <item type="id" name="login_submit_btn">false</item>
     <item type="id" name="reg_submit_box">false</item>
     <item type="id" name="reg_submit_btn">false</item>
@@ -1212,16 +919,17 @@
     <item type="id" name="user_qq_login_btn">false</item>
     <item type="id" name="user_wechat_login_btn">false</item>
     <item type="id" name="user_facebook_login_btn">false</item>
-    <item type="id" name="platform_grid">false</item>
     <item type="id" name="user_login_name_list">false</item>
     <item type="id" name="more_popup_listview">false</item>
-    <item type="id" name="login_platform_img">false</item>
     <item type="id" name="mc_forum_list">false</item>
     <item type="id" name="mc_forum_photo_img">false</item>
     <item type="id" name="mc_forum_reply_count">false</item>
     <item type="id" name="mc_forum_photo_hits_count">false</item>
     <item type="id" name="mc_forum_read_count">false</item>
     <item type="id" name="mc_forum_photot_img">false</item>
+    <item type="id" name="mc_forum_center_isadd_adapter">false</item>
+    <item type="id" name="mc_forum_center_title_adapter">false</item>
+    <item type="id" name="mc_forum_center_detail_adapter">false</item>
     <item type="id" name="list_view">false</item>
     <item type="id" name="mc_forum_user_profile_item_box">false</item>
     <item type="id" name="mc_forum_date">false</item>
@@ -1232,6 +940,8 @@
     <item type="id" name="user_show_password_btn">false</item>
     <item type="id" name="user_register_email_edit">false</item>
     <item type="id" name="user_register_submit_btn">false</item>
+    <item type="id" name="tv_regist_wran">false</item>
+    <item type="id" name="regist_privacy_url">false</item>
     <item type="id" name="user_register_email_list">false</item>
     <item type="id" name="info_box">false</item>
     <item type="id" name="username_text">false</item>
@@ -1254,8 +964,93 @@
     <item type="id" name="mc_forum_get_verify_btn">false</item>
     <item type="id" name="mc_forum_verify_num_edit">false</item>
     <item type="id" name="mc_forum_next_btn">false</item>
+    <item type="id" name="mc_forum_user_input_username_btn">false</item>
     <item type="id" name="mc_forum_user_input_pwd_btn">false</item>
+    <item type="id" name="mc_forum_user_email_box">false</item>
+    <item type="id" name="mc_forum_user_input_user_email_edit">false</item>
+    <item type="id" name="mc_forum_user_save_info_submit_btn">false</item>
+    <item type="id" name="mc_forum_user_register_email_box">false</item>
+    <item type="id" name="mc_forum_user_register_email_list">false</item>
     <item type="id" name="user_email_text">false</item>
+    <item type="id" name="mc_forum_user_header">false</item>
+    <item type="id" name="mc_forum_user_info">false</item>
+    <item type="id" name="mc_forum_user_header_icon">false</item>
+    <item type="id" name="mc_forum_user_isloging">false</item>
+    <item type="id" name="mc_forum_user_sex">false</item>
+    <item type="id" name="mc_forum_user_integral">false</item>
+    <item type="id" name="mc_forum_user_level">false</item>
+    <item type="id" name="mc_forum_isvisible">false</item>
+    <item type="id" name="mc_forum_user_collect">false</item>
+    <item type="id" name="mc_forum_user_friend">false</item>
+    <item type="id" name="mc_forum_user_publish">false</item>
+    <item type="id" name="user_verify_show_list">false</item>
+    <item type="id" name="user_verify_icon">false</item>
+    <item type="id" name="user_verify_list_show_item_key">false</item>
+    <item type="id" name="user_verify_hasmore">false</item>
+    <item type="id" name="user_verify_list_show_item_value">false</item>
+    <item type="id" name="surface_layout">false</item>
+    <item type="id" name="surface">false</item>
+    <item type="id" name="low_preview_img">false</item>
+    <item type="id" name="praise_layout">false</item>
+    <item type="id" name="user_head_layout">false</item>
+    <item type="id" name="chat_list">false</item>
+    <item type="id" name="head_img">false</item>
+    <item type="id" name="top_status_layout">false</item>
+    <item type="id" name="address_text">false</item>
+    <item type="id" name="top_follow_btn">false</item>
+    <item type="id" name="net_speed_text">false</item>
+    <item type="id" name="opt_layout">false</item>
+    <item type="id" name="comment_btn">false</item>
+    <item type="id" name="bottom_report_btn">false</item>
+    <item type="id" name="home_btn">false</item>
+    <item type="id" name="comment_layout">false</item>
+    <item type="id" name="close_edit_btn">false</item>
+    <item type="id" name="content_edit">false</item>
+    <item type="id" name="icon_vs">false</item>
+    <item type="id" name="share_layout_vs">false</item>
+    <item type="id" name="icon_root_layout">false</item>
+    <item type="id" name="icon_list_layout">false</item>
+    <item type="id" name="icon_date_text">false</item>
+    <item type="id" name="icon_page_text">false</item>
+    <item type="id" name="bpush_download_icon">false</item>
+    <item type="id" name="bpush_progress_percent">false</item>
+    <item type="id" name="bpush_progress_title">false</item>
+    <item type="id" name="bpush_progress_text">false</item>
+    <item type="id" name="bpush_download_progress">false</item>
+    <item type="id" name="bpush_media_list_return_btn">false</item>
+    <item type="id" name="bpush_media_none_layout">false</item>
+    <item type="id" name="bpush_type_listview">false</item>
+    <item type="id" name="bpush_media_list_img">false</item>
+    <item type="id" name="bpush_media_list_title">false</item>
+    <item type="id" name="bpush_media_list_from_text">false</item>
+    <item type="id" name="bpush_media_list_time_text">false</item>
+    <item type="id" name="pull_list">false</item>
+    <item type="id" name="item_layout">false</item>
+    <item type="id" name="top_cover_btn">false</item>
+    <item type="id" name="video_List_tittle">false</item>
+    <item type="id" name="video_list_status_img">false</item>
+    <item type="id" name="video_list_user_image">false</item>
+    <item type="id" name="video_list_user_name">false</item>
+    <item type="id" name="video_list_location">false</item>
+    <item type="id" name="video_list_upvote_number_text">false</item>
+    <item type="id" name="video_online_number_layout">false</item>
+    <item type="id" name="video_list_online_number">false</item>
+    <item type="id" name="mark_view">false</item>
+    <item type="id" name="parent_title_text">false</item>
+    <item type="id" name="report_img">false</item>
+    <item type="id" name="report_date">false</item>
+    <item type="id" name="report_tittle">false</item>
+    <item type="id" name="report_user">false</item>
+    <item type="id" name="report_share">false</item>
+    <item type="id" name="play_tittle">false</item>
+    <item type="id" name="report_dialog">false</item>
+    <item type="id" name="time_count_down_text">false</item>
+    <item type="id" name="time_down_dialog_close_btn">false</item>
+    <item type="id" name="time_down_dialog_Timer_text">false</item>
+    <item type="id" name="user_ico_img">false</item>
+    <item type="id" name="user_name_male_view">false</item>
+    <item type="id" name="user_desc_text">false</item>
+    <item type="id" name="dialog_bottom_btn">false</item>
     <item type="id" name="message_text">false</item>
     <item type="id" name="loadingImageView">false</item>
     <item type="id" name="id_tv_loadingmsg">false</item>
@@ -1293,14 +1088,6 @@
     <item type="id" name="mc_forum_wheel3">false</item>
     <item type="id" name="positiveButton">false</item>
     <item type="id" name="negativeButton">false</item>
-    <item type="id" name="mc_forum_user_preview_box">false</item>
-    <item type="id" name="mc_forum_user_preview_jpg_img">false</item>
-    <item type="id" name="mc_forum_user_preview_icon_img">false</item>
-    <item type="id" name="mc_forum_user_preview_gif_img">false</item>
-    <item type="id" name="mc_forum_rotate_left_btn">false</item>
-    <item type="id" name="mc_forum_rotate_right_btn">false</item>
-    <item type="id" name="mc_forum_close_btn">false</item>
-    <item type="id" name="mc_forum_sure_btn">false</item>
     <item type="id" name="mc_forum_loading_container">false</item>
     <item type="id" name="mc_forum_progress_bar">false</item>
     <item type="id" name="mc_forum_publish_vote_box">false</item>

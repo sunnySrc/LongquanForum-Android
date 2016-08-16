@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/topic_complex_fragment_select_item" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/topic_complex_fragment_select_isadd" android:background="@drawable/dz_bg_white_smoke" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="7.0dip" />
+    <com.mobcent.widget.DZTabSelectView android:id="@id/topic_complex_fragment_select" android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+</LinearLayout>

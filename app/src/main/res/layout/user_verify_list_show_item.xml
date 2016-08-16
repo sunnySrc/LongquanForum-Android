@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:orientation="vertical" android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="40.0dip">
+        <ImageView android:id="@id/user_verify_icon" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginLeft="10.0dip" android:layout_centerVertical="true" />
+        <TextView android:textSize="@dimen/mc_forum_text_size_15" android:textColor="@color/mc_forum_text3_content_normal_color" android:id="@id/user_verify_list_show_item_key" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:text="key" android:layout_toRightOf="@id/user_verify_icon" android:layout_centerVertical="true" />
+        <View android:id="@id/user_verify_hasmore" android:background="@drawable/dz_list_about" android:layout_width="14.0dip" android:layout_height="14.0dip" android:layout_marginRight="10.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        <TextView android:textSize="@dimen/mc_forum_text_size_12" android:textColor="@color/mc_forum_text4_desc_normal_color" android:id="@id/user_verify_list_show_item_value" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginRight="19.0dip" android:text="value" android:layout_alignRight="@id/user_verify_hasmore" android:layout_centerVertical="true" />
+        <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+</FrameLayout>

@@ -2,7 +2,7 @@
 <merge android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:background="@drawable/video_detail_waiting_bg_icon" android:layout_width="120.0dip" android:layout_height="90.0dip">
-        <ProgressBar android:layout_gravity="center_horizontal" android:id="@id/loadingImageView" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginTop="17.0dip" android:indeterminateDrawable="@drawable/progress_medium" />
+        <ProgressBar android:layout_gravity="center_horizontal" android:id="@id/loadingImageView" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginTop="17.0dip" android:indeterminateDrawable="@drawable/vp_progress_medium" />
         <TextView android:textSize="12.0sp" android:textColor="@color/video_detail_chat_content_color" android:layout_gravity="center_horizontal" android:id="@id/id_tv_loadingmsg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18.0dip" android:text="@string/vp_warn_loading" android:includeFontPadding="false" />
     </LinearLayout>
 </merge>

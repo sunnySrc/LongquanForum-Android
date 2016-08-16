@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/icon_root_layout" android:paddingTop="10.0dip" android:paddingBottom="10.0dip" android:clipChildren="false" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="11.0sp" android:textColor="@color/video_detail_name_color" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip" android:text="@string/vp_video_play_end_icon_title" />
+    <com.mobcent.vplus.ui.widget.VPGallery android:layout_gravity="center" android:id="@id/icon_list_layout" android:scrollbars="none" android:clipChildren="false" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginTop="20.0dip" android:layout_marginBottom="10.0dip" android:layout_weight="1.0" />
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip">
+        <TextView android:textSize="11.0sp" android:textColor="@color/video_detail_name_color" android:id="@id/icon_date_text" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@id/icon_page_text" />
+        <TextView android:textSize="11.0sp" android:textColor="@color/video_detail_name_color" android:id="@id/icon_page_text" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" />
+    </RelativeLayout>
+</LinearLayout>

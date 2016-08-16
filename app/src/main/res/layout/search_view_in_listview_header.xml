@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/rlay_search" android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="30.0dip" android:layout_marginLeft="10.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="10.0dip">
+        <TextView android:textColor="#ffa5a5a9" android:gravity="center" android:id="@id/search_btn" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="搜索" android:layout_centerInParent="true" />
+        <ImageView android:background="@drawable/mc_forum_top_bar_button10_h" android:layout_width="25.0dip" android:layout_height="25.0dip" android:layout_marginRight="10.0dip" android:layout_toLeftOf="@id/search_btn" android:layout_centerVertical="true" />
+    </RelativeLayout>
+</RelativeLayout>

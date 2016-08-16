@@ -2,6 +2,6 @@
 <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
     <RelativeLayout android:id="@id/mc_forum_add_img_box" android:padding="8.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_centerVertical="true" />
-    <ImageView android:id="@id/mc_forum_add_img" android:background="@drawable/mc_forum_publish_addition_picture_bg" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginLeft="3.0dip" android:layout_marginTop="8.0dip" android:layout_marginRight="8.0dip" android:layout_marginBottom="8.0dip" android:layout_toRightOf="@id/mc_forum_add_img_box" />
+    <ImageView android:id="@id/mc_forum_add_img" android:background="@drawable/dz_publish_add_picture" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginLeft="3.0dip" android:layout_marginTop="8.0dip" android:layout_marginRight="8.0dip" android:layout_marginBottom="8.0dip" android:layout_toRightOf="@id/mc_forum_add_img_box" />
     <TextView android:textSize="@dimen/mc_forum_text_size_16" android:textColor="@color/mc_forum_text4_normal_color" android:id="@id/mc_forum_add_img_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="13.0dip" android:text="@string/mc_forum_rapid_publish_add_img" android:layout_toRightOf="@id/mc_forum_add_img" android:layout_centerVertical="true" />
 </RelativeLayout>

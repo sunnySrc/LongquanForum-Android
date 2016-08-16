@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.mobcent.widget.listview.PullToRefreshListView android:id="@id/custom_have_list_listview" android:background="@drawable/dz_bg_white_smoke" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="@android:color/transparent" android:headerDividersEnabled="false" android:footerDividersEnabled="false" style="@style/list_view" />
+    <com.mobcent.widget.DZTabSelectView android:id="@id/custom_top_selectview" android:layout_width="fill_parent" android:layout_height="41.0dip" />
+</FrameLayout>

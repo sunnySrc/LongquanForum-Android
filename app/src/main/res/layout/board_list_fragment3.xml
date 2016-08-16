@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout android:orientation="horizontal" android:id="@id/data_show_layout" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent">
         <RelativeLayout android:id="@id/board_listview_layout" android:background="@color/mc_forum_board_tab_bg_color" android:layout_width="100.0dip" android:layout_height="fill_parent">
-            <View android:id="@id/list_view_right_line" android:background="@drawable/mc_forum_wire" android:layout_width="1.0dip" android:layout_height="fill_parent" android:layout_alignParentRight="true" />
+            <View android:id="@id/list_view_right_line" android:background="@drawable/dz_icon_line" android:layout_width="1.0dip" android:layout_height="fill_parent" android:layout_alignParentRight="true" />
             <ListView android:id="@id/parent_board_refresh_list" android:scrollbars="none" android:fadingEdge="none" android:layout_width="wrap_content" android:layout_height="fill_parent" style="@style/list_view" />
         </RelativeLayout>
         <FrameLayout android:id="@id/child_board_layout" android:layout_width="fill_parent" android:layout_height="fill_parent" />

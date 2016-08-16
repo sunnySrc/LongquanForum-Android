@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:background="@color/mc_forum_transparent" android:layout_width="fill_parent" android:layout_height="fill_parent"
   xmlns:android="http://schemas.android.com/apk/res/android">
-    <ListView android:id="@id/popup_list_view" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="@drawable/mc_forum_wire" android:dividerHeight="1.0px" style="@style/list_view" />
+    <View android:id="@id/popup_background" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <ListView android:id="@id/popup_list_view" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="@drawable/dz_icon_line" android:dividerHeight="1.0px" style="@style/list_view" />
+    <GridView android:id="@id/popup_grid_view" android:layout_width="fill_parent" android:layout_height="fill_parent" android:numColumns="3" android:divider="@drawable/dz_icon_line" android:dividerHeight="1.0px" />
 </RelativeLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/mc_forum_center_isadd_adapter" android:background="@drawable/dz_bg_white_smoke" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="10.0dip" />
+    <TextView android:textSize="@dimen/mc_forum_text_size_16" android:textColor="#ff2f2f2f" android:id="@id/mc_forum_center_title_adapter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="17.0dip" android:layout_marginTop="12.0dip" android:layout_below="@id/mc_forum_center_isadd_adapter" />
+    <TextView android:textSize="@dimen/mc_forum_text_size_16" android:textColor="#ff666666" android:id="@id/mc_forum_center_detail_adapter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:maxEms="10" android:layout_alignTop="@id/mc_forum_center_title_adapter" android:layout_alignParentRight="true" />
+    <View android:background="#ffcbcbcb" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_marginTop="15.0dip" android:layout_below="@id/mc_forum_center_detail_adapter" />
+</RelativeLayout>
