@@ -44,14 +44,20 @@
                 "type": "subnav",
                 "style": "flat",
                 "title": "首页",
+                "leftTopbars": [
+                    {
+                        "type": "sign",
+                        "style": "flat"
+                    }
+                ],
                 "rightTopbars": [
                     {
                         "type": "userinfo",
                         "style": "card",
-						"icon": "mc_forum_top_bar_button6"
+                        "icon": "mc_forum_top_bar_button6"
                     }
                 ],
-                "componentList": [      
+                "componentList": [
                     {
                         "title": "最新",
                         "type": "topiclistSimple",
@@ -60,11 +66,11 @@
                             "forumId": 0,
                             "filter": "typeid",
                             "orderby": "new",
-                            "order":0,
+                            "order": 0,
                             "listTitleLength": 40,
-							"listSummaryLength": 40,
-							"listImagePosition": 2,
-							"subDetailViewStyle": "card"
+                            "listSummaryLength": 40,
+                            "listImagePosition": 2,
+                            "subDetailViewStyle": "card"
                         }
                     },
                     {
@@ -76,9 +82,28 @@
                             "filter": "typeid",
                             "orderby": "marrow",
                             "listTitleLength": 40,
-							"listSummaryLength": 0,
-							"listImagePosition": 2,
-							"subDetailViewStyle": "flat"
+                            "listSummaryLength": 0,
+                            "listImagePosition": 2,
+                            "subDetailViewStyle": "flat"
+                        }
+                    },
+                    {
+                        "title": "图片墙",
+                        "type": "topiclistSimple",
+                        "style": "image2",
+                        "extParams": {
+                            "forumId": -3,
+                            "filter": "typeid",
+                            "orderby": "new",
+                            "subDetailViewStyle": "flat"
+                        }
+                    },
+                    {
+                        "title": "周边服务",
+                        "type": "webapp",
+                        "style": "flat",
+                        "extParams": {
+                            "redirect": "http://wsh.appbyme.com/?useIP=1"
                         }
                     }
                 ]
@@ -91,7 +116,7 @@
                     {
                         "type": "search",
                         "style": "card",
-						"icon": "mc_forum_top_bar_button10"
+                        "icon": "mc_forum_top_bar_button10"
                     }
                 ],
                 "componentList": [
@@ -112,35 +137,35 @@
                 "title": "快速发表",
                 "style": "card",
                 "componentList": [
-					{
-						"type": "fasttext",
-						"style": "flat",
-						"icon": "mc_forum_ico27",
-						"iconStyle": "image",
-						"title": "文字"
-					},
-					{
-						"type": "fastimage",
-						"style": "flat",
-						"icon": "mc_forum_ico28",
-						"iconStyle": "image",
-						"title": "图片"
-					},
-					{
-						"type": "fastcamera",
-						"style": "flat",
-						"icon": "mc_forum_ico29",
-						"iconStyle": "image",
-						"title": "拍照"
-					},
-					{
-						"type": "fastaudio",
-						"style": "flat",
-						"icon": "mc_forum_ico45",
-						"iconStyle": "image",
-						"title": "语音"	
-					}
-				]
+                    {
+                        "type": "fasttext",
+                        "style": "flat",
+                        "icon": "mc_forum_ico27",
+                        "iconStyle": "image",
+                        "title": "文字"
+                    },
+                    {
+                        "type": "fastimage",
+                        "style": "flat",
+                        "icon": "mc_forum_ico28",
+                        "iconStyle": "image",
+                        "title": "图片"
+                    },
+                    {
+                        "type": "fastcamera",
+                        "style": "flat",
+                        "icon": "mc_forum_ico29",
+                        "iconStyle": "image",
+                        "title": "拍照"
+                    },
+                    {
+                        "type": "fastaudio",
+                        "style": "flat",
+                        "icon": "mc_forum_ico45",
+                        "iconStyle": "image",
+                        "title": "语音"
+                    }
+                ]
             },
             {
                 "id": 4,

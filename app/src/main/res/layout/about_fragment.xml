@@ -45,5 +45,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <include layout="@layout/widget_loading" />
+
 </RelativeLayout>

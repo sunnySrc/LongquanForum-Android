@@ -27,5 +27,5 @@
         <TextView android:textSize="18.0sp" android:textColor="@color/mc_forum_text6_normal_color" android:layout_gravity="center" android:paddingLeft="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mc_forum_other_platform_facebook_login_btn" />
     </LinearLayout>
     <ListView android:id="@id/user_login_name_list" android:background="@drawable/mc_forum_pop_upmenu_bg1" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="21.0dip" android:layout_marginRight="21.0dip" android:layout_below="@id/user_login_name_edit" style="@style/list_view" />
-    <com.mobcent.discuz.activity.view.DZPopupListView android:id="@id/more_popup_listview" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+
 </RelativeLayout>

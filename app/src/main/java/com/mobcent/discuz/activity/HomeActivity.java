@@ -10,46 +10,151 @@ import com.mobcent.discuz.base.constant.BaseIntentConstant;
 import com.mobcent.discuz.fragments.DiscoveryFragment;
 import com.mobcent.discuz.fragments.DiscuzFragment;
 import com.mobcent.discuz.fragments.HomeFragment;
+import com.mobcent.discuz.fragments.IWantKnowFragment;
+import com.mobcent.discuz.fragments.Me1Fragment;
 import com.mobcent.discuz.fragments.MeFragment;
+import com.mobcent.discuz.fragments.ZhidaoFragment;
 import com.mobcent.discuz.ui.TabView;
 import com.mobcent.lowest.android.ui.module.plaza.constant.PlazaConstant;
 import com.mobcent.discuz.android.constant.ConfigConstant;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
-public class HomeActivity extends FragmentActivity implements BaseIntentConstant, PlazaConstant, ConfigConstant, TabView.OnTabChangeListener {
+public class HomeActivity extends FragmentActivity implements BaseIntentConstant, PlazaConstant, ConfigConstant, View.OnClickListener {
     private String TAG;
     private Fragment[] fragment = new Fragment[4];
+    private Fragment currentFragment;
+    private Button mStateButton1;
+    private Button mStateButton2;
+    private Button mStateButton3;
+    private Button mStateButton4;
+    private int mState = 0;
 
     public HomeActivity() {
 
     }
 
-    public void onCreate(Bundle paramBundle)
-    {
-        super.onCreate(paramBundle);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page_activity);
-        TabView tv = (TabView)findViewById(R.id.view_tab);
-        tv.setOnTabChangeListener(this);
+        LinearLayout tv = (LinearLayout) findViewById(R.id.bottomBox);
+        mStateButton1 = (Button)tv.findViewById(R.id.first);
+        mStateButton1.setOnClickListener(this);
+        mStateButton2 = (Button)tv.findViewById(R.id.second);
+        mStateButton2.setOnClickListener(this);
+        mStateButton3 = (Button)tv.findViewById(R.id.third);
+        mStateButton3.setOnClickListener(this);
+        mStateButton4 = (Button)tv.findViewById(R.id.fourth);
+        mStateButton4.setOnClickListener(this);
+        tv.findViewById(R.id.nav_btn).setOnClickListener(this);
         LoginUtils.getInstance().init(this);
         fragment[0] = new HomeFragment();
         fragment[1] = new DiscuzFragment();
         fragment[2] = new DiscoveryFragment();
         fragment[3] = new MeFragment();
-        onTabChange(0);
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.container, fragment[0]).commit();
+        currentFragment = fragment[0];
+        switchState(0);
+    }
+
+    private void switchState(int state) {
+        if (mState == state) {
+            return;
+        }
+
+        mState = state;
+        mStateButton1.setSelected(false);
+        mStateButton2.setSelected(false);
+        mStateButton3.setSelected(false);
+        mStateButton4.setSelected(false);
+
+        switch (mState) {
+            case 0:
+                mStateButton1.setSelected(true);
+                break;
+
+            case 1:
+                mStateButton2.setSelected(true);
+                break;
+
+            case 2:
+                mStateButton3.setSelected(true);
+                break;
+
+            case 3:
+                mStateButton4.setSelected(true);
+                break;
+
+            default:
+                break;
+        }
+        onTabChange(mState);
     }
 
     @Override
-    public void onTabChange(int position) {
-        if (position == 2 && !LoginUtils.getInstance().isLogin()) {
-            Intent intent = new Intent(this,LoginActivity.class);
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.first:
+                switchState(0);
+                break;
+
+            case R.id.second:
+                switchState(1);
+                break;
+
+            case R.id.third:
+                switchState(2);
+                break;
+
+            case R.id.fourth:
+                switchState(3);
+                break;
+
+            case R.id.nav_btn:
+                onPublic();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private void onTabChange(int position) {
+        if (currentFragment == fragment[position]) {
+            return;
+        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        if (!fragment[position].isAdded()) { // 如果当前fragment未被添加，则添加到Fragment管理器中
+            transaction.hide(currentFragment)
+                    .add(R.id.container, fragment[position]).commit();
+        } else {
+            transaction.hide(currentFragment).show(fragment[position]).commit();
+        }
+        currentFragment = fragment[position];
+    }
+
+    private void onPublic() {
+        if (!LoginUtils.getInstance().isLogin()) {
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             return;
         }
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment[position]).commit();
+        Dialog dialog = new Dialog(this, R.style.mc_forum_home_publish_dialog);
+        dialog.setContentView(R.layout.publish_dialog);
+        dialog.show();
     }
 }

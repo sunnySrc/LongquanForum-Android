@@ -291,7 +291,7 @@
         <item name="android:fastScrollEnabled">false</item>
     </style>
     <style name="mc_forum_home_publish_dialog">
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/video_detail_top_bg1_color</item>
         <item name="android:windowNoTitle">false</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Activity</item>

@@ -1,7 +1,5 @@
 package com.mobcent.discuz.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,7 +13,7 @@ import com.appbyme.app178470.R;
 /**
  * Created by ubuntu on 16-6-21.
  */
-public class MeFragment extends Fragment {
+public class MeFragment extends BaseFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

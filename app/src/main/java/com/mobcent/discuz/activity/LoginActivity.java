@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.appbyme.app178470.R;
+import com.mobcent.discuz.base.constant.DiscuzRequest;
+import com.mobcent.discuz.fragments.HttpResponseHandler;
 
 import org.json.JSONObject;
 
@@ -38,62 +41,34 @@ public class LoginActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String u = mUsername.getText().toString();
-                String p = mPassword.getText().toString();
+                String u = mUsername.getText().toString().trim();
+                String p = mPassword.getText().toString().trim();
                 if (!TextUtils.isEmpty(u) && !TextUtils.isEmpty(p)) {
-                    new LoginRequest(u, p).execute();
+                    try {
+                        JSONObject obj = new JSONObject();
+                        obj.put("type", "login");
+                        obj.put("isValidation", "1");
+                        obj.put("username", u);
+                        obj.put("password", p);
+                        new DiscuzRequest("user/login", obj.toString(), new Handler()).execute();
+                    } catch (Exception e) {
+
+                    }
                 }
             }
         });
     }
 
-    class LoginRequest extends AsyncTask<Void, Integer, String> {
-        private String mUsername;
-        private String mPassword;
-
-        public LoginRequest(String username, String password) {
-            mUsername = username;
-            mPassword = password;
+    private class Handler implements HttpResponseHandler {
+        @Override
+        public void onSuccess(String result) {
+            finish();
+            LoginUtils.getInstance().setLogin(result);
         }
 
         @Override
-        protected String doInBackground(Void... params) {
-            // TODO Auto-generated method stub
-            // String request = "type=login&forumKey=BW0L5ISVRsOTVLCTJx&accessSecret=&accessToken=&isValidation=1&password=Mrzl2009&sdkVersion=2.4.0&apphash=85eb3e4b&username=17710275730";
-            try {
-                OkHttpClient client = new OkHttpClient();
-
-                MediaType mediaType = MediaType.parse("multipart/form-data; boundary=---011000010111000001101001");
-                RequestBody body = RequestBody.create(mediaType, "-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"type\"\r\n\r\nlogin\r\n-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"forumKey\"\r\n\r\nBW0L5ISVRsOTVLCTJx\r\n-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"isValidation\"\r\n\r\n1\r\n-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"password\"\r\n\r\nMrzl2009\r\n-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"sdkVersion\"\r\n\r\n2.4.0\r\n-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"apphash\"\r\n\r\n85eb3e4b\r\n-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"username\"\r\n\r\n17710275730\r\n-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"\"\r\n\r\n\r\n-----011000010111000001101001--");
-                Request request = new Request.Builder()
-                        .url("http://forum.longquanzs.org//mobcent/app/web/index.php?r=user%2Flogin")
-                        .post(body)
-                        .addHeader("content-type", "multipart/form-data; boundary=---011000010111000001101001")
-                        .addHeader("cache-control", "no-cache")
-                        .addHeader("postman-token", "fe43cc1d-e869-cb45-7596-c260e599b337")
-                        .build();
-
-                Response response = client.newCall(request).execute();
-                return response.body().string();
-            } catch (Exception e) {
-                return "";
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                JSONObject obj = new JSONObject(result);
-                doLogin(obj.getString("token"), obj.getString("secret"));
-            } catch (Exception e) {
-                Log.e("leizhou", e.toString());
-            }
+        public void onFail(String result) {
+            Toast.makeText(LoginActivity.this, result, Toast.LENGTH_SHORT).show();
         }
     }
-
-    public void doLogin(String token, String secret) {
-        finish();
-        LoginUtils.getInstance().setLogin(token, secret);
-    }
-
 }

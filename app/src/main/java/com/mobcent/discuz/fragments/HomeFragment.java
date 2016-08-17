@@ -1,7 +1,5 @@
 package com.mobcent.discuz.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,13 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.appbyme.app178470.R;
 
 /**
  * Created by ubuntu on 16-6-21.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
+
+    public HomeFragment() {
+
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,4 +32,13 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onSuccess(String result) {
+
+    }
+
+    @Override
+    public void onFail(String result) {
+
+    }
 }

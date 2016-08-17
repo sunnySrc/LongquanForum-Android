@@ -22,8 +22,8 @@ public class SplashActivity extends Activity {
     private int MESSAGE_LOAD_PAYSTATE_PAGE;
     private int MESSAGE_START_HOME;
     public String TAG;
-    private final int TIMEOUT;
-    private final int TIME_LOADING_PAGE;
+//    private final int TIMEOUT;
+//    private final int TIME_LOADING_PAGE;
     private long configId;
     private boolean dataTaskExecuted;
     // private SharedPreferencesDB db;
@@ -37,53 +37,53 @@ public class SplashActivity extends Activity {
     private ImageView splashBackgroundImg;
     private boolean timeOutExecuted;
 
-    public SplashActivity() {
-        TAG = "SplashActivity";
-        TIMEOUT = 0x1388;
-        TIME_LOADING_PAGE = 0x7d0;
-        dataTaskExecuted = false;
-        getAllDataByNet = true;
-        MESSAGE_START_HOME = 0x1;
-        MESSAGE_LOAD_PAYSTATE_PAGE = 0x2;
-        configId = 0x0;
-        mHandler = new Handler() {
-
-            public void dispatchMessage(Message msg) {
-                /*if(msg.what == MESSAGE_START_HOME) {
-                    if(dataTaskExecuted) {
-                        initHelper.dispatchActivity(this$0, skipToWhere, skipModel);
-                    }
-                    timeOutExecuted = true;
-                    return;
-                }
-                if(msg.what == MESSAGE_LOAD_PAYSTATE_PAGE) {
-                    if(db.getPayState() != null) {
-                        PayStateModel payStateModel = db.getPayState();
-                        try {
-                            String[] imageUrlArray = payStateModel.getLoadingPageImage().split(",");
-                            img = imageUrlArray[0x0];
-                        } catch(Exception localException1) {
-                        }
-                        String imageUrl = payStateModel.getImgUrl() + img;
-                        imgLoadPageUrl = MCAsyncTaskLoaderImage.formatUrl(imageUrl, "720x1280");
-                        if(TextUtils.isEmpty(img)) {
-                            imgLoadPageUrl = "";
-                        } else {
-                            ImageLoader.getInstance().displayImage(imgLoadPageUrl, splashBackgroundImg);
-                        }
-                    }
-                    MCLogUtil.e(TAG, "imgLoadPageUrl ==== " + imgLoadPageUrl);
-                    if(TextUtils.isEmpty(imgLoadPageUrl)) {
-                        timeOutExecuted = true;
-                        mHandler.removeMessages(MESSAGE_START_HOME);
-                        if(dataTaskExecuted) {
-                            initHelper.dispatchActivity(this$0, skipToWhere, skipModel);
-                        }
-                    }
-                }*/
-            }
-        };
-    }
+//    public SplashActivity() {
+//        TAG = "SplashActivity";
+//        TIMEOUT = 0x1388;
+//        TIME_LOADING_PAGE = 0x7d0;
+//        dataTaskExecuted = false;
+//        getAllDataByNet = true;
+//        MESSAGE_START_HOME = 0x1;
+//        MESSAGE_LOAD_PAYSTATE_PAGE = 0x2;
+//        configId = 0x0;
+//        mHandler = new Handler() {
+//
+//            public void dispatchMessage(Message msg) {
+//                /*if(msg.what == MESSAGE_START_HOME) {
+//                    if(dataTaskExecuted) {
+//                        initHelper.dispatchActivity(this$0, skipToWhere, skipModel);
+//                    }
+//                    timeOutExecuted = true;
+//                    return;
+//                }
+//                if(msg.what == MESSAGE_LOAD_PAYSTATE_PAGE) {
+//                    if(db.getPayState() != null) {
+//                        PayStateModel payStateModel = db.getPayState();
+//                        try {
+//                            String[] imageUrlArray = payStateModel.getLoadingPageImage().split(",");
+//                            img = imageUrlArray[0x0];
+//                        } catch(Exception localException1) {
+//                        }
+//                        String imageUrl = payStateModel.getImgUrl() + img;
+//                        imgLoadPageUrl = MCAsyncTaskLoaderImage.formatUrl(imageUrl, "720x1280");
+//                        if(TextUtils.isEmpty(img)) {
+//                            imgLoadPageUrl = "";
+//                        } else {
+//                            ImageLoader.getInstance().displayImage(imgLoadPageUrl, splashBackgroundImg);
+//                        }
+//                    }
+//                    MCLogUtil.e(TAG, "imgLoadPageUrl ==== " + imgLoadPageUrl);
+//                    if(TextUtils.isEmpty(imgLoadPageUrl)) {
+//                        timeOutExecuted = true;
+//                        mHandler.removeMessages(MESSAGE_START_HOME);
+//                        if(dataTaskExecuted) {
+//                            initHelper.dispatchActivity(this$0, skipToWhere, skipModel);
+//                        }
+//                    }
+//                }*/
+//            }
+//        };
+//    }
 
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -192,8 +192,6 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.splash_activity);
         splashBackgroundImg = (ImageView)findViewById(R.id.mc_forum_splash_background_img);
         splashBackgroundImg.setImageDrawable(getResources().getDrawable(R.drawable.mc_forum_loading_page2));
-        mHandler.sendEmptyMessageDelayed(MESSAGE_START_HOME, 0x1388);
-        mHandler.sendEmptyMessageDelayed(MESSAGE_LOAD_PAYSTATE_PAGE, 0x7d0);
     }
 
     public void onBackPressed() {

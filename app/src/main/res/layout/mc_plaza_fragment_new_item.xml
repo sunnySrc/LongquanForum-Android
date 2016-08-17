@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout android:orientation="horizontal" android:background="@drawable/mc_forum_squre_item" android:layout_width="fill_parent" android:layout_height="50.0dip">
-        <ImageView android:layout_gravity="center_vertical" android:id="@id/icon_img" android:background="@android:color/white" android:layout_width="37.0dip" android:layout_height="37.0dip" android:layout_marginLeft="18.0dip" android:scaleType="centerCrop" />
-        <TextView android:textSize="16.0sp" android:textColor="@color/mc_forum_bg3_text_n" android:gravity="center_vertical" android:id="@id/title_text" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_marginLeft="18.0dip" android:layout_marginRight="18.0dip" android:singleLine="true" android:layout_weight="1.0" />
-        <View android:layout_gravity="center" android:background="@drawable/mc_forum_squre_arrow" android:layout_width="8.0dip" android:layout_height="13.0dip" android:layout_marginRight="15.0dip" />
-    </LinearLayout>
-</FrameLayout>
