@@ -1,2 +1,4 @@
-readme
-sdgadgadg
+#### 图片模块
+使用Glide库
+#### 工具类
+统一使用 com.litesuites.* 包下的工具，[类库说明](https://github.com/litesuits/android-common)

@@ -7,14 +7,10 @@ package com.mobcent.discuz.activity;
 
 import android.app.Activity;
 
-import com.appbyme.app178470.R;
+import com.appbyme.dev.R;
 import android.os.Handler;
 
-import android.os.Message;
 import android.widget.ImageView;
-import android.view.Window;
-import android.view.View;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.content.Intent;
 

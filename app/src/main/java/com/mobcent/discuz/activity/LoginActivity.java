@@ -1,26 +1,18 @@
 package com.mobcent.discuz.activity;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appbyme.app178470.R;
+import com.appbyme.dev.R;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 
 import org.json.JSONObject;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * Created by ubuntu on 16-6-29.
