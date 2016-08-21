@@ -5,16 +5,12 @@
 
 package com.mobcent.discuz.activity;
 
-import com.appbyme.app178470.R;
+import com.appbyme.dev.R;
 import com.mobcent.discuz.base.constant.BaseIntentConstant;
 import com.mobcent.discuz.fragments.DiscoveryFragment;
 import com.mobcent.discuz.fragments.DiscuzFragment;
 import com.mobcent.discuz.fragments.HomeFragment;
-import com.mobcent.discuz.fragments.IWantKnowFragment;
-import com.mobcent.discuz.fragments.Me1Fragment;
 import com.mobcent.discuz.fragments.MeFragment;
-import com.mobcent.discuz.fragments.ZhidaoFragment;
-import com.mobcent.discuz.ui.TabView;
 import com.mobcent.lowest.android.ui.module.plaza.constant.PlazaConstant;
 import com.mobcent.discuz.android.constant.ConfigConstant;
 

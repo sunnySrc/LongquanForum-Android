@@ -7,7 +7,7 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.appbyme.app178470.R;
+import com.appbyme.dev.R;
 
 
 public class TabView extends LinearLayout implements OnClickListener {

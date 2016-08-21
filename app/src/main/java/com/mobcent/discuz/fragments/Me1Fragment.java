@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.appbyme.app178470.R;
+import com.appbyme.dev.R;
 
 /**
  * “我的”碎片页面
