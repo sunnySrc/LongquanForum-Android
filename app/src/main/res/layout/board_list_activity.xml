@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:background="@drawable/dz_bg_white_smoke" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="@android:color/transparent" android:dividerHeight="0.0dip" style="@style/list_view"
+    android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android" >
+    <RelativeLayout android:id="@id/mc_forum_top_bar_box" android:background="@color/dz_skin_custom_topbar_color" android:layout_width="fill_parent" style="@style/mc_forum_top_bar_bg">
+        <Button android:gravity="center" android:id="@id/mc_forum_back_btn" android:background="@drawable/mc_forum_top_bar_button2" android:layout_width="@dimen/mc_forum_top_bar_height" android:layout_height="@dimen/mc_forum_top_bar_height" android:text="@string/mc_forum_cancel" android:layout_alignParentLeft="true" style="@style/mc_forum_top_bar_right_button" />
+        <LinearLayout android:orientation="horizontal" android:id="@id/title_layout" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/mc_forum_top_bar_height" android:layout_marginRight="@dimen/mc_forum_top_bar_height" android:layout_centerInParent="true">
+            <TextView android:ellipsize="end" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/mc_forum_public_label_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mc_forum_select_borad" android:singleLine="true" style="@style/mc_forum_info_topbar_title" />
+        </LinearLayout>
+    </RelativeLayout>
+    <ListView android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/list" />
+</LinearLayout>

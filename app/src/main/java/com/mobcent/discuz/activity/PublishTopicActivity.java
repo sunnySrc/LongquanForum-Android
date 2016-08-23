@@ -19,6 +19,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.appbyme.dev.R;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
@@ -40,6 +41,7 @@ public class PublishTopicActivity extends Activity {
     private ImageView mLocation;
     private TextView mLocationText;
     private LocationClickListener mLocationClickListener;
+    private int mCate;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -55,7 +57,7 @@ public class PublishTopicActivity extends Activity {
         }
         mGridView = (GridView) findViewById(R.id.imagegride);
         mImageAdapter = new ImageAdapter(this);
-        mImageAdapter.addItem(BitmapFactory.decodeResource(getResources(), R.drawable.dz_publish_add_picture_h));
+        mImageAdapter.addItem(new Item("", BitmapFactory.decodeResource(getResources(), R.drawable.dz_publish_add_picture_h)));
         mGridView.setAdapter(mImageAdapter);
 
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -94,7 +96,70 @@ public class PublishTopicActivity extends Activity {
         mLocationText = (TextView) findViewById(R.id.mc_forum_loction_text);
         mLocationText.setOnClickListener(mLocationClickListener);
         mLocation.setOnClickListener(mLocationClickListener);
+
+        findViewById(R.id.mc_forum_back_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        findViewById(R.id.mc_forum_public_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCate == 0) {
+                    Toast.makeText(PublishTopicActivity.this, "请先选择板块", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mImageAdapter.getCount() > 1) {
+                    String url = "forum/sendattachmentex&type=image&forumKey=BW0L5ISVRsOTVLCTJx&accessSecret=" + LoginUtils.getInstance().getAccessSecret() + "&accessToken=" + LoginUtils.getInstance().getAccessToken() +
+                            "&module=forum&egnVersion=v2035.2&sdkVersion=2.4.3.0&fid=" + mCate + "&apphash=4c37ae6f";
+                    Vector<String> files = new Vector<String>();
+                    for (int i = 1; i < mImageAdapter.getCount(); i++) {
+                        files.add(((Item)mImageAdapter.getItem(i)).mPath);
+                    }
+                    new DiscuzRequest(url, files, new UploadFileHandler()).execute();
+                } else {
+                    doPublish();
+                }
+            }
+        });
+
+        findViewById(R.id.mc_forum_public_label_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PublishTopicActivity.this, BoardListActivity.class);
+                startActivityForResult(intent, 3);
+            }
+        });
     };
+
+    class UploadFileHandler implements HttpResponseHandler {
+        private DiscuzRequest mLocationRequest;
+
+        @Override
+        public void onSuccess(String result) {
+            try {
+                JSONObject object = new JSONObject(result);
+                if (!"1".equals(object.getString("rs"))) {
+                    onFail(object.getString("errorCode"));
+                } else {
+                    doPublish();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+
+        @Override
+        public void onFail(String result) {
+            Toast.makeText(PublishTopicActivity.this, result, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void doPublish() {
+
+    }
 
     class LocationClickListener implements View.OnClickListener {
         private DiscuzRequest mLocationRequest;
@@ -120,7 +185,7 @@ public class PublishTopicActivity extends Activity {
             if (mLocationRequest != null) {
                 mLocationRequest.cancel(true);
             }
-            mLocationRequest = new DiscuzRequest("http://api.map.baidu.com/geocoder/v2/?ak=GT5EmhOircF8diYLKDrIezIp&location=" + location.getLatitude() + "," + location.getLongitude() + "&output=json&pois=1", null, new LocationHandler(location.getLongitude(), location.getLatitude()), "get");
+            mLocationRequest = new DiscuzRequest("http://api.map.baidu.com/geocoder/v2/?ak=GT5EmhOircF8diYLKDrIezIp&location=" + location.getLatitude() + "," + location.getLongitude() + "&output=json&pois=1", "", new LocationHandler(location.getLongitude(), location.getLatitude()), "get");
             mLocationRequest.execute();
         }
     }
@@ -189,7 +254,7 @@ public class PublishTopicActivity extends Activity {
         {
             if (resultCode==Activity.RESULT_OK && data != null) {
                 Bitmap cameraBitmap = (Bitmap) data.getExtras().get("data");
-                mImageAdapter.addItem(cameraBitmap);
+                mImageAdapter.addItem(new Item("", cameraBitmap));
                 mImageAdapter.notifyDataSetChanged();
             }
         } else if (requestCode == 1) {
@@ -201,18 +266,37 @@ public class PublishTopicActivity extends Activity {
                 while(cursor.moveToNext()){
                     pirPath = cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
                     Bitmap bitmap = BitmapFactory.decodeFile(pirPath);
-                    mImageAdapter.addItem(bitmap);
+                    mImageAdapter.addItem(new Item(pirPath, bitmap));
                 }
                 mImageAdapter.notifyDataSetChanged();
                 cursor.close();
             }
+        } else if (requestCode == 3) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                int cate = data.getIntExtra("cate", 0);
+                String cateName = data.getStringExtra("cateName");
+                if (cate != 0) {
+                    mCate = cate;
+                    ((TextView)findViewById(R.id.mc_forum_public_label_text)).setText(cateName);
+                }
+            }
+        }
+    }
+
+    class Item {
+        public final String mPath;
+        public final Bitmap mBitmap;
+
+        public Item(String path, Bitmap bitmap) {
+            mPath = path;
+            mBitmap = bitmap;
         }
     }
 
     public class ImageAdapter extends BaseAdapter {
         private Context context = null;
 
-        private Vector<Bitmap> mThumbIds = new Vector<Bitmap>();
+        private Vector<Item> mThumbIds = new Vector<Item>();
 
         public ImageAdapter(Context context){
             this.context = context;
@@ -222,12 +306,12 @@ public class PublishTopicActivity extends Activity {
             return mThumbIds.size();
         }
 
-        public void addItem(Bitmap bitmap) {
+        public void addItem(Item bitmap) {
             mThumbIds.add(bitmap);
         }
 
         public Object getItem(int position) {
-            return null;
+            return mThumbIds.get(position);
         }
 
         public long getItemId(int position) {
@@ -249,9 +333,9 @@ public class PublishTopicActivity extends Activity {
                 imageView = (ImageView)convertView;
             }
             if (position == getCount() - 1) {
-                imageView.setImageBitmap(mThumbIds.get(0));
+                imageView.setImageBitmap(mThumbIds.get(0).mBitmap);
             } else {
-                imageView.setImageBitmap(mThumbIds.get(position + 1));
+                imageView.setImageBitmap(mThumbIds.get(position + 1).mBitmap);
             }
             return imageView;
         }
