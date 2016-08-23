@@ -7,6 +7,7 @@ package com.mobcent.discuz.activity;
 
 import com.appbyme.dev.R;
 import com.mobcent.discuz.base.constant.BaseIntentConstant;
+import com.mobcent.discuz.base.constant.LocationProvider;
 import com.mobcent.discuz.fragments.DiscoveryFragment;
 import com.mobcent.discuz.fragments.DiscuzFragment;
 import com.mobcent.discuz.fragments.HomeFragment;
@@ -21,6 +22,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -54,6 +56,7 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
         mStateButton4.setOnClickListener(this);
         tv.findViewById(R.id.nav_btn).setOnClickListener(this);
         LoginUtils.getInstance().init(this);
+        LocationProvider.getInstance().init(this);
         fragment[0] = new HomeFragment();
         fragment[1] = new DiscuzFragment();
         fragment[2] = new DiscoveryFragment();
@@ -149,8 +152,45 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
             startActivity(intent);
             return;
         }
-        Dialog dialog = new Dialog(this, R.style.mc_forum_home_publish_dialog);
-        dialog.setContentView(R.layout.publish_dialog);
+        final Dialog dialog = new Dialog(this, R.style.mc_forum_home_publish_dialog);
+        final LayoutInflater in = LayoutInflater.from(this);
+        View view = in.inflate(R.layout.publish_dialog, null);
+        view.findViewById(R.id.mc_forum_cancle_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.mc_forum_publish_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent(HomeActivity.this, PublishTopicActivity.class);
+                intent.putExtra("Type", "0");
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.mc_forum_pic_topic_list).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent(HomeActivity.this, PublishTopicActivity.class);
+                intent.putExtra("Type", "1");
+                startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.mc_forum_take_photo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent(HomeActivity.this, PublishTopicActivity.class);
+                intent.putExtra("Type", "2");
+                startActivity(intent);
+            }
+        });
+        dialog.setContentView(view);
         dialog.show();
     }
 }

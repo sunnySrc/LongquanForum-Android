@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@+id/mc_forun_publish_from_pictures" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="从手机相册选择"/>
+    <TextView android:id="@+id/mc_forun_publish_from_camera" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="拍照" />
+</LinearLayout>
