@@ -9,8 +9,17 @@ import com.mobcent.discuz.base.Tasker;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Iterator;
+import java.util.Vector;
+import java.util.logging.Handler;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -22,6 +31,7 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
     private String mUrl;
     private String mBody;
     private HttpResponseHandler mHandler;
+    private Vector<String> mFiles;
     private String mMethod = "post";
     public final String baseUrl = "http://forum.longquanzs.org//mobcent/app/web/index.php?r=";
     // Global instance
@@ -34,6 +44,17 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
 
     public DiscuzRequest(String url, String body, HttpResponseHandler handler, String method) {
         this(url, body, handler);
+        mMethod = method;
+    }
+
+    public DiscuzRequest(String url, Vector<String> files, HttpResponseHandler handler) {
+        mUrl = url;
+        mFiles = files;
+        mHandler = handler;
+    }
+
+    public DiscuzRequest(String url, Vector<String> files, HttpResponseHandler handler, String method) {
+        this(url, files, handler);
         mMethod = method;
     }
 
@@ -52,22 +73,32 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
                 MediaType mediaType = MediaType.parse("multipart/form-data; boundary=---011000010111000001101001");
                 String bodyString = "";
                 if (mMethod == "post") {
-                    try {
-                        JSONObject obj = new JSONObject(mBody);
-                        obj.put("forumKey", "BW0L5ISVRsOTVLCTJx");
-                        obj.put("sdkVersion", "2.4.0");
-                        obj.put("apphash", "85eb3e4b");
-                        obj.put("accessSecret", LoginUtils.getInstance().getAccessSecret());
-                        obj.put("accessToken", LoginUtils.getInstance().getAccessToken());
-                        Iterator it = obj.keys();
+                    if (!TextUtils.isEmpty(mBody)) {
+                        try {
+                            JSONObject obj = new JSONObject(mBody);
+                            obj.put("forumKey", "BW0L5ISVRsOTVLCTJx");
+                            obj.put("sdkVersion", "2.4.0");
+                            obj.put("apphash", "85eb3e4b");
+                            obj.put("accessSecret", LoginUtils.getInstance().getAccessSecret());
+                            obj.put("accessToken", LoginUtils.getInstance().getAccessToken());
+                            Iterator it = obj.keys();
+                            while (it.hasNext()) {
+                                String key = (String) it.next();
+                                String value = obj.getString(key);
+                                bodyString += "-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"" + key + "\"\r\n\r\n" + value + "\r\n";
+                            }
+                            bodyString += "-----011000010111000001101001--";
+                        } catch (Exception e) {
+
+                        }
+                    } else if (mFiles != null && mFiles.size() > 0) {
+                        Iterator it = mFiles.iterator();
                         while (it.hasNext()) {
-                            String key = (String) it.next();
-                            String value = obj.getString(key);
-                            bodyString += "-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"" + key + "\"\r\n\r\n" + value + "\r\n";
+                            File file = new File((String)it.next());
+                            bodyString += "-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"uploadFile[]\"; filename=\"" + file.getName() + "\"\r\n";
+                            bodyString += new String(toByteArray(file));
                         }
                         bodyString += "-----011000010111000001101001--";
-                    } catch (Exception e) {
-
                     }
                 }
                 RequestBody body = RequestBody.create(mediaType, bodyString);
@@ -93,6 +124,34 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
         }
     }
 
+    public static byte[] toByteArray(File f) throws IOException {
+        if (!f.exists()) {
+            throw new FileNotFoundException(f.getName());
+        }
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream((int) f.length());
+        BufferedInputStream in = null;
+        try {
+            in = new BufferedInputStream(new FileInputStream(f));
+            int buf_size = 1024;
+            byte[] buffer = new byte[buf_size];
+            int len = 0;
+            while (-1 != (len = in.read(buffer, 0, buf_size))) {
+                bos.write(buffer, 0, len);
+            }
+            return bos.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            bos.close();
+        }
+    }
     @Override
     public void begin() {
         execute();
