@@ -121,7 +121,7 @@ public class PublishTopicActivity extends Activity {
                 mLocationRequest.cancel(true);
             }
             mLocationRequest = new DiscuzRequest("http://api.map.baidu.com/geocoder/v2/?ak=GT5EmhOircF8diYLKDrIezIp&location=" + location.getLatitude() + "," + location.getLongitude() + "&output=json&pois=1", null, new LocationHandler(location.getLongitude(), location.getLatitude()), "get");
-            mLocationRequest.execute();
+            mLocationRequest.begin();
         }
     }
 
@@ -141,7 +141,7 @@ public class PublishTopicActivity extends Activity {
                 object1.put("location", location);
                 object1.put("longitude", mLongitude);
                 object1.put("latitude", mLatitude);
-                new DiscuzRequest("user/location", object1.toString(), new LocationCheckHandler(location)).execute();
+                new DiscuzRequest("user/location", object1.toString(), new LocationCheckHandler(location)).begin();
             } catch (Exception e) {
                 onFail("");
             }

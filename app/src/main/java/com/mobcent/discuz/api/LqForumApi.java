@@ -18,7 +18,7 @@ public class LqForumApi {
         RequestParams params = new RequestParams();
         params.add("moduleId", 6);
         DiscuzRequest request = new DiscuzRequest(UrlFactory.MOUDLE_HOME, params.getJsonStr(), handler);
-        request.execute();
+        request.begin();
         return request;
     }
 
@@ -30,7 +30,7 @@ public class LqForumApi {
         RequestParams params = new RequestParams();
         params.add("moduleId", 5);
         DiscuzRequest request = new DiscuzRequest(UrlFactory.MOUDLE_HOME, params.getJsonStr(), handler);
-        request.execute();
+        request.begin();
         return request;
     }
     /**
@@ -44,7 +44,7 @@ public class LqForumApi {
         params.add("page",page);
         params.add("pageSize",pageSize);
         DiscuzRequest request = new DiscuzRequest(UrlFactory.DETAIL_FORUM, params.getJsonStr(), handler);
-        request.execute();
+        request.begin();
         return request;
     }
 

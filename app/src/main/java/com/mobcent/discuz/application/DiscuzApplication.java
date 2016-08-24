@@ -10,6 +10,8 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Handler;
 
+import com.litesuits.android.log.Log;
+
 public class DiscuzApplication extends Application {
     public static final String TAG = "DiscuzApplication";
     public static DiscuzApplication _instance;
@@ -23,6 +25,7 @@ public class DiscuzApplication extends Application {
 
     public void onCreate() {
         super.onCreate();
+        Log.isPrint = true;
         _instance = this;
         /*MCLogUtil.e(TAG, "======DiscuzApplication======");
         MCLogUtil.isLog = 0x0;

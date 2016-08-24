@@ -1,5 +1,7 @@
 package com.mobcent.discuz.bean;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 /**
@@ -28,7 +30,7 @@ public class Component {
     public static final String STYLE_NEWS_AUTO = "layoutNewsAuto";
 
     /**
-     * 这个需要取 ExtParam url
+     *  weburl, 这个需要取 ExtParam url
      */
     public static final String TYPE_APP = "webapp"; // url 网站
     public static final String TYPE_REF = "moduleRef"; // 模块引用
@@ -53,6 +55,8 @@ public class Component {
     public static final String TYPE_LAYOUT = "layout"; // 普通布局
 
     private String title; // 标题 （
+    private String desc; // 子标题 （Banner)
+
     private String icon; // 图标
     private String style;
     private String type;
@@ -115,9 +119,25 @@ public class Component {
     public Object getExtParams() {
         return extParams;
     }
+    public ExtParams getExtParams1() {
+        Gson gson = new Gson();
+        return gson.fromJson(extParams.toString(),ExtParams.class);
+    }
 
     public void setExtParams(Object extParams) {
         this.extParams = extParams;
+    }
+
+    public boolean hasChildComponent() {
+        return componentList != null && componentList.size() > 0;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     /**

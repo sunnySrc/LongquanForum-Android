@@ -6,11 +6,11 @@ package com.mobcent.discuz.api;
 
 public class UrlFactory {
     /**
-     * 首页
+     * 首页,  /网络直播
      */
     public static final String MOUDLE_HOME = "app/moduleconfig";
     /**
-     * 版块，帖子详情
+     * 帖子详情
      */
     public static final String DETAIL_FORUM = "forum/postlist";
 
@@ -18,4 +18,9 @@ public class UrlFactory {
      * 更多
      */
     public static final String TOPIC_MORE = "portal/newslist";
+
+    /**
+     * 论坛模块
+     */
+    public static final String TOPIC_LIST = "forum/topiclist";
 }
