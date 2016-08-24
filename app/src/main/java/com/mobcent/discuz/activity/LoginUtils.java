@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -40,16 +41,12 @@ public class LoginUtils {
         return sp.getString("token", "");
     }
 
-    public void setLogin(String info) {
+    public void setLogin(String info) throws JSONException {
         SharedPreferences.Editor editor = sp.edit();
-        try {
-            editor.putString("userinfo", info);
-            JSONObject obj = new JSONObject(info);
-            editor.putString("secret", obj.getString("secret"));
-            editor.putString("token", obj.getString("token"));
-            editor.commit();
-        } catch (Exception e) {
-            Toast.makeText(mContext, "登录接口有问题，请联系管理员", Toast.LENGTH_SHORT).show();
-        }
+        editor.putString("userinfo", info);
+        JSONObject obj = new JSONObject(info);
+        editor.putString("secret", obj.getString("secret"));
+        editor.putString("token", obj.getString("token"));
+        editor.commit();
     }
 }

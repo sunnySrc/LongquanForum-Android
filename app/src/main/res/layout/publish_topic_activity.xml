@@ -37,13 +37,10 @@
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
-    <LinearLayout android:orientation="vertical" android:id="@id/mc_forum_bottom_bar_box" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:layout_alignParentBottom="true">
-        <ImageView android:background="@drawable/dz_icon_line" android:layout_width="fill_parent" android:layout_height="1.0px" />
-        <RelativeLayout android:id="@id/mc_froum_bottom_bar_box" android:background="@drawable/dz_bg_white" android:layout_width="fill_parent" android:layout_height="42.0dip">
-            <ImageView android:id="@id/mc_forum_face_img" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginLeft="15.0dip" android:src="@drawable/dz_toolbar_publish_outer_face" android:layout_centerVertical="true" />
-            <ImageView android:id="@id/mc_forum_mention_friend_img" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginLeft="15.0dip" android:src="@drawable/dz_toolbar_publish_outer_at" android:layout_toRightOf="@id/mc_forum_face_img" android:layout_centerVertical="true" />
-        </RelativeLayout>
-        <include layout="@layout/multi_face_view" />
-    </LinearLayout>
-    <ListView android:id="@id/mc_forum_board_lv" android:background="@drawable/dz_personal_more_bg" android:focusable="true" android:visibility="gone" android:layout_width="140.0dip" android:layout_height="180.0dip" android:layout_marginTop="88.0dip" android:layout_marginRight="22.0dip" android:cacheColorHint="@color/mc_forum_transparent" android:divider="@drawable/dz_icon_line" android:dividerHeight="1.0px" android:layout_alignParentRight="true" />
+
+    <FrameLayout
+        android:id="@+id/fl_emotionview_main"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

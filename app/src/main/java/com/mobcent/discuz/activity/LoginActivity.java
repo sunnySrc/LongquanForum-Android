@@ -54,8 +54,17 @@ public class LoginActivity extends Activity {
     private class Handler implements HttpResponseHandler {
         @Override
         public void onSuccess(String result) {
-            finish();
-            LoginUtils.getInstance().setLogin(result);
+            try {
+                JSONObject object = new JSONObject(result);
+                if ("1".equals(object.getString("rs"))) {
+                    LoginUtils.getInstance().setLogin(result);
+                    finish();
+                } else {
+                    onFail(object.getString("errcode"));
+                }
+            } catch (Exception e) {
+                onFail("登录接口有问题，请联系管理员");
+            }
         }
 
         @Override

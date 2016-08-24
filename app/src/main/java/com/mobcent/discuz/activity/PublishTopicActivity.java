@@ -11,11 +11,15 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,16 +29,19 @@ import com.appbyme.dev.R;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.base.constant.LocationProvider;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
+import com.zejian.emotionkeyboard.fragment.EmotionMainFragment;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
 import java.util.Vector;
 
 
 /**
  * Created by ubuntu on 16-8-18.
  */
-public class PublishTopicActivity extends Activity {
+public class PublishTopicActivity extends FragmentActivity {
 
     private GridView mGridView;
     private ImageAdapter mImageAdapter;
@@ -42,6 +49,12 @@ public class PublishTopicActivity extends Activity {
     private TextView mLocationText;
     private LocationClickListener mLocationClickListener;
     private int mCate;
+
+    private String mLongitude;
+    private String mLatitude;
+    private UploadFileHandler mUploadFileHandler = new UploadFileHandler();
+    private LocationHandler mLocationHandler = new LocationHandler();
+    private LocationCheckHandler mLocationCheckHandler = new LocationCheckHandler();
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -116,9 +129,9 @@ public class PublishTopicActivity extends Activity {
                             "&module=forum&egnVersion=v2035.2&sdkVersion=2.4.3.0&fid=" + mCate + "&apphash=4c37ae6f";
                     Vector<String> files = new Vector<String>();
                     for (int i = 1; i < mImageAdapter.getCount(); i++) {
-                        files.add(((Item)mImageAdapter.getItem(i)).mPath);
+                        files.add(((Item) mImageAdapter.getItem(i)).mPath);
                     }
-                    new DiscuzRequest(url, files, new UploadFileHandler()).execute();
+                    new DiscuzRequest(url, files, mUploadFileHandler).execute();
                 } else {
                     doPublish();
                 }
@@ -132,7 +145,32 @@ public class PublishTopicActivity extends Activity {
                 startActivityForResult(intent, 3);
             }
         });
-    };
+
+        final EditText content = (EditText)findViewById(R.id.mc_forum_content_edit);
+        content.setFocusable(true);
+        content.setFocusableInTouchMode(true);
+        content.requestFocus();
+        InputMethodManager im = ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE));
+        im.showSoftInput(content, 0);
+
+        //构建传递参数
+        Bundle fragmentBundle = new Bundle();
+        //绑定主内容编辑框
+        fragmentBundle.putBoolean(EmotionMainFragment.BIND_TO_EDITTEXT, false);
+        //隐藏控件
+        fragmentBundle.putBoolean(EmotionMainFragment.HIDE_BAR_EDITTEXT_AND_BTN,true);
+        //替换fragment
+        //创建修改实例
+        EmotionMainFragment emotionMainFragment = EmotionMainFragment.newInstance(EmotionMainFragment.class, fragmentBundle);
+        emotionMainFragment.bindToContentView(content);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        // Replace whatever is in thefragment_container view with this fragment,
+        // and add the transaction to the backstack
+        transaction.replace(R.id.fl_emotionview_main, emotionMainFragment);
+        transaction.addToBackStack(null);
+        //提交修改
+        transaction.commit();
+    }
 
     class UploadFileHandler implements HttpResponseHandler {
         private DiscuzRequest mLocationRequest;
@@ -142,7 +180,7 @@ public class PublishTopicActivity extends Activity {
             try {
                 JSONObject object = new JSONObject(result);
                 if (!"1".equals(object.getString("rs"))) {
-                    onFail(object.getString("errorCode"));
+                    onFail(object.getString("errcode"));
                 } else {
                     doPublish();
                 }
@@ -158,7 +196,61 @@ public class PublishTopicActivity extends Activity {
     }
 
     private void doPublish() {
+        EditText title = (EditText)findViewById(R.id.mc_forum_title_edit);
+        String titleString = title.getText().toString().trim();
+        EditText content = (EditText)findViewById(R.id.mc_forum_content_edit);
+        String contentString = content.getText().toString().trim();
+        try {
+            JSONObject contentJson = new JSONObject();
+            contentJson.put("infor", contentString);
+            contentJson.put("type", "0");
+            JSONArray contentArray = new JSONArray();
+            contentArray.put(contentJson);
+            String contentArrayString = URLEncoder.encode(contentArray.toString());
+            JSONObject total = new JSONObject();
+            JSONObject body = new JSONObject();
+            JSONObject json = new JSONObject();
+            json.put("typeId", "80");
+            json.put("isShowPostion", "1");
+            json.put("content", contentArrayString);
+            json.put("aid", "");
+            json.put("isQuote", "0");
+            json.put("fid", mCate);
+            json.put("longitude", mLongitude);
+            json.put("latitude", mLatitude);
+            json.put("title", URLEncoder.encode(titleString));
+            total.put("body", body);
+            body.put("json", json);
+            JSONObject param = new JSONObject();
+            param.put("platType", 5);
+            param.put("act", "new");
+            param.put("json", URLEncoder.encode(total.toString()));
+            new DiscuzRequest("forum/topicadmin", param.toString(), new PublishHandler()).execute();
+        } catch (Exception e) {
 
+        }
+
+    }
+
+    private class PublishHandler implements HttpResponseHandler {
+        @Override
+        public void onSuccess(String result) {
+            try {
+                JSONObject object = new JSONObject(result);
+                if (!"1".equals(object.getString("rs"))) {
+                    onFail(object.getString("errcode"));
+                } else {
+                    onFail(object.getString("errcode"));
+                    finish();
+                }
+            } catch (Exception e) {
+
+            }
+        }
+        @Override
+        public void onFail(String result) {
+            Toast.makeText(PublishTopicActivity.this, result, Toast.LENGTH_SHORT).show();
+        }
     }
 
     class LocationClickListener implements View.OnClickListener {
@@ -185,15 +277,18 @@ public class PublishTopicActivity extends Activity {
             if (mLocationRequest != null) {
                 mLocationRequest.cancel(true);
             }
-            mLocationRequest = new DiscuzRequest("http://api.map.baidu.com/geocoder/v2/?ak=GT5EmhOircF8diYLKDrIezIp&location=" + location.getLatitude() + "," + location.getLongitude() + "&output=json&pois=1", "", new LocationHandler(location.getLongitude(), location.getLatitude()), "get");
+            mLocationHandler.setPosition(location.getLongitude(), location.getLatitude());
+            mLocationRequest = new DiscuzRequest("http://api.map.baidu.com/geocoder/v2/?ak=GT5EmhOircF8diYLKDrIezIp&location=" + location.getLatitude() + "," + location.getLongitude() + "&output=json&pois=1", "", mLocationHandler, "get");
             mLocationRequest.execute();
         }
     }
 
     private class LocationHandler implements HttpResponseHandler {
-        private final String mLongitude;
-        private final String mLatitude;
-        public LocationHandler(double longitude, double latitude) {
+        private DiscuzRequest mLocationCheckRequest;
+        public LocationHandler() {
+
+        }
+        public void setPosition(double longitude, double latitude) {
             mLongitude = String.valueOf(longitude);
             mLatitude = String.valueOf(latitude);
         }
@@ -206,7 +301,12 @@ public class PublishTopicActivity extends Activity {
                 object1.put("location", location);
                 object1.put("longitude", mLongitude);
                 object1.put("latitude", mLatitude);
-                new DiscuzRequest("user/location", object1.toString(), new LocationCheckHandler(location)).execute();
+                mLocationCheckHandler.setLocation(location);
+                if (mLocationCheckRequest != null) {
+                    mLocationCheckRequest.cancel(true);
+                }
+                mLocationCheckRequest = new DiscuzRequest("user/location", object1.toString(), mLocationCheckHandler);
+                mLocationCheckRequest.execute();
             } catch (Exception e) {
                 onFail("");
             }
@@ -219,8 +319,11 @@ public class PublishTopicActivity extends Activity {
     }
 
     private class LocationCheckHandler implements HttpResponseHandler {
-        private final String mLocationString;
-        public LocationCheckHandler(String location) {
+        private String mLocationString;
+        public LocationCheckHandler() {
+
+        }
+        public void setLocation(String location) {
             mLocationString = location;
         }
         @Override
