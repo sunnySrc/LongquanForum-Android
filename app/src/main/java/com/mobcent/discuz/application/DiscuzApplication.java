@@ -10,25 +10,23 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Handler;
 
+import com.litesuits.android.log.Log;
+
 public class DiscuzApplication extends Application {
-    public String TAG;
+    public static final String TAG = "DiscuzApplication";
     public static DiscuzApplication _instance;
     private List<Activity> activityList;
     // private BaseResultModel<ConfigModel> configModel;
-    private Handler handler;
     private boolean isActivityTopic;
     private boolean isRateSucc;
     // private PayStateModel payStateModel;
     // private PermissionModel permissionModel;
     // private SettingModel settingModel;
 
-    public DiscuzApplication() {
-        TAG = "DiscuzApplication";
-        handler = new Handler();
-    }
-
     public void onCreate() {
         super.onCreate();
+        Log.isPrint = true;
+        _instance = this;
         /*MCLogUtil.e(TAG, "======DiscuzApplication======");
         MCLogUtil.isLog = 0x0;
         activityList = new ArrayList();

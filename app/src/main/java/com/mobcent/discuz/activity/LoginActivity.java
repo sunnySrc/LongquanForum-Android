@@ -42,7 +42,7 @@ public class LoginActivity extends Activity {
                         obj.put("isValidation", "1");
                         obj.put("username", u);
                         obj.put("password", p);
-                        new DiscuzRequest("user/login", obj.toString(), new Handler()).execute();
+                        new DiscuzRequest("user/login", obj.toString(), new Handler()).begin();
                     } catch (Exception e) {
 
                     }

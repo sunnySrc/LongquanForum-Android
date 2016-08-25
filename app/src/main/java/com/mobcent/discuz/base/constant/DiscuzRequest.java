@@ -2,9 +2,10 @@ package com.mobcent.discuz.base.constant;
 
 import android.os.AsyncTask;
 import android.text.TextUtils;
-import android.util.Log;
 
+import com.litesuits.android.log.Log;
 import com.mobcent.discuz.activity.LoginUtils;
+import com.mobcent.discuz.base.Tasker;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 
 import org.json.JSONObject;
@@ -26,14 +27,15 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class DiscuzRequest extends AsyncTask<Void, Integer, String> {
+public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements Tasker{
     private String mUrl;
     private String mBody;
     private HttpResponseHandler mHandler;
     private Vector<String> mFiles;
     private String mMethod = "post";
     public final String baseUrl = "http://forum.longquanzs.org//mobcent/app/web/index.php?r=";
-
+    // Global instance
+    private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient();
     public DiscuzRequest(String url, String body, HttpResponseHandler handler) {
         mUrl = url;
         mBody = body;
@@ -61,8 +63,6 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> {
         // TODO Auto-generated method stub
         // String request = "type=login&forumKey=BW0L5ISVRsOTVLCTJx&accessSecret=&accessToken=&isValidation=1&password=Mrzl2009&sdkVersion=2.4.0&apphash=85eb3e4b&username=17710275730";
         try {
-            OkHttpClient client = new OkHttpClient();
-
             Request.Builder builder= new Request.Builder()
                     .url(mUrl.startsWith("http") ? mUrl : baseUrl + mUrl)
                     .addHeader("cache-control", "no-cache");
@@ -106,8 +106,8 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> {
                         .addHeader("content-type", "multipart/form-data; boundary=---011000010111000001101001");
             }
             Request request = builder.build();
-
-            Response response = client.newCall(request).execute();
+            Log.d("http request", request.url());
+            Response response = OK_HTTP_CLIENT.newCall(request).execute();
             return response.body().string();
         } catch (Exception e) {
             return "";
@@ -116,6 +116,7 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        Log.d("http result", result);
         if (!TextUtils.isEmpty(result)) {
             mHandler.onSuccess(result);
         } else {
@@ -150,6 +151,20 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> {
             }
             bos.close();
         }
+    }
+    @Override
+    public void begin() {
+        execute();
+    }
+
+    @Override
+    public void cancel() {
+        cancel(true);
+    }
+
+    @Override
+    public boolean isRunning() {
+        return !isCancelled();
     }
 }
 

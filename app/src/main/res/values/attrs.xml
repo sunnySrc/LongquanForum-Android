@@ -45,4 +45,17 @@
     <attr name="textColorOut" format="color" />
     <attr name="textColorCenter" format="color" />
     <attr name="dividerColor" format="color" />
+
+    <declare-styleable name="CirclePagerIndicator">
+        <attr name="circle_indicator_centerHorizontal" format="boolean" />
+        <attr name="circle_indicator_follow" format="boolean" />
+        <attr name="circle_indicator_orientation" format="reference" />
+        <attr name="circle_indicator_color" format="color" />
+        <attr name="circle_indicator_stroke_color" format="color" />
+        <attr name="circle_indicator_stroke_width" format="dimension" />
+        <attr name="circle_indicator_fill_color" format="color" />
+        <attr name="circle_indicator_radius" format="dimension" />
+        <attr name="circle_indicator_space" format="dimension" />
+        <attr name="circle_indicator_indicator_radius" format="dimension" />
+    </declare-styleable>
 </resources>
