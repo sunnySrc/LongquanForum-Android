@@ -143,7 +143,7 @@ public class BannerView extends RelativeLayout implements ViewPager.OnPageChange
     public void onPageSelected(int position) {
         isMoving = false;
         mCurrentItem = position;
-//        refreshLayout.setEnabled(true);
+        refreshLayout.setEnabled(true);
         isScroll = false;
         if (showTitle) {
             tv_news_title.setText(banners.get(position).getTitle());
@@ -154,7 +154,7 @@ public class BannerView extends RelativeLayout implements ViewPager.OnPageChange
     public void onPageScrollStateChanged(int state) {
         isMoving = state != ViewPager.SCROLL_STATE_IDLE;
         isScroll = state != ViewPager.SCROLL_STATE_IDLE;
-//        refreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
+        refreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
     }
 
 

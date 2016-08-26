@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.mobcent.common.ImageLoader;
 import com.mobcent.common.ScreenUtil;
 
 /**
@@ -13,6 +14,8 @@ import com.mobcent.common.ScreenUtil;
  */
 
 public class FitHeightImageView extends ImageView{
+    private String url;
+
     public FitHeightImageView(Context context) {
         super(context);
         init();
@@ -35,4 +38,13 @@ public class FitHeightImageView extends ImageView{
         setMaxWidth(ScreenUtil.getScreenWidth());
     }
 
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        ImageLoader.load(url, this);
+    }
 }

@@ -6,11 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.appbyme.dev.R;
 import com.bumptech.glide.Glide;
 import com.mobcent.common.ScreenUtil;
+import com.mobcent.discuz.base.UIJumper;
 import com.mobcent.discuz.bean.*;
 import com.mobcent.discuz.bean.StyleHeader;
 import com.mobcent.discuz.widget.FitHeightImageView;
@@ -26,10 +29,12 @@ import java.util.List;
 
 public class ComponentBuilder {
     private final Context context;
+    private final LayoutInflater inflater;
     private SwipeRefreshLayout mRefreshLayout;
 
     public ComponentBuilder(Context context) {
         this.context = context;
+        inflater = LayoutInflater.from(context);
     }
     /**
      * 构建ViewGroup
@@ -41,7 +46,11 @@ public class ComponentBuilder {
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         LinearLayout group = new LinearLayout(context);
         group.setOrientation(LinearLayout.VERTICAL);
-
+        if (!divider) {
+            // 没有分割栏, 则添加组边距
+            int padding = ScreenUtil.dip2px(context ,8);
+            group.setPadding(0, padding, 0, padding);
+        }
         final int count = components.size();
         for (int i = 0;i < count; i++) {
             Component component = components.get(i);
@@ -51,14 +60,14 @@ public class ComponentBuilder {
             View cView = buildView(component);
             group.addView(cView);
             if (divider && i < count -1  ) {
-                group.addView(initDivider(context, group),params);
+                group.addView(initDivider(group),params);
             }
         }
         return group;
     }
 
-    private View initDivider(Context context, ViewGroup container) {
-        return LayoutInflater.from(context).inflate(R.layout.item_divider, container, false);
+    private View initDivider(ViewGroup container) {
+        return inflater.inflate(R.layout.item_divider, container, false);
     }
 
     private void checkStyleHeader(Component component, ViewGroup container) {
@@ -95,6 +104,7 @@ public class ComponentBuilder {
             buildNewsList();
         } else if (component.STYLE_Col_FOUR.equals(style)) {
             // 一行四 链接
+           return buildColFour(component.getComponentList());
         } else if (Component.STYLE_Col_TWO.equals(style)){
             // 一行二 链接
         } else if (Component.STYLE_Col_ONE.equals(style)) {
@@ -112,6 +122,40 @@ public class ComponentBuilder {
     }
 
     /**
+     * 行四
+     * @param componentList
+     */
+    private View buildColFour(List<Component> componentList) {
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        final int padding = ScreenUtil.dip2px(context, 8);
+        linearLayout.setPadding(padding, padding ,padding, padding);
+        for (final Component c : componentList) {
+            View child = inflater.inflate(R.layout.item_web_app, linearLayout, false);
+            child.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UIJumper.jump(context, c);
+                }
+            });
+            final ImageView imageView = (ImageView) child.findViewById(R.id.home_app_icon);
+            int r = ScreenUtil.getScreenWidth() / 8;
+            imageView.getLayoutParams().height = r;
+            imageView.getLayoutParams().width = r;
+            imageView.post(new Runnable() {
+                @Override
+                public void run() {
+                    Glide.with(context).load(c.getIcon()).into(imageView);
+                }
+            });
+            final TextView textView = (TextView) child.findViewById(R.id.home_app_title);
+            textView.setText(c.getContent());
+            linearLayout.addView(child);
+        }
+        return linearLayout;
+    }
+
+    /**
      * 新贴列表
      */
     private void buildNewsList() {
@@ -123,9 +167,15 @@ public class ComponentBuilder {
      * @param component
      * @return
      */
-    private View buildColOne(Component component) {
+    private View buildColOne(final Component component) {
         FitHeightImageView imageView = new FitHeightImageView(context);
-        Glide.with(context).load(component.getIcon());
+        imageView.setUrl(component.getIcon());
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIJumper.jump(v.getContext(), component);
+            }
+        });
         return imageView;
     }
 

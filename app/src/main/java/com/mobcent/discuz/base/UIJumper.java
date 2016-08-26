@@ -13,6 +13,25 @@ import com.mobcent.discuz.bean.Component;
 public class UIJumper {
     private static final String TAG = UIJumper.class.getSimpleName();
 
+    public static void jump(Context context, Component component) {
+        final String type = component.getType();
+        long id = component.getTargetId();
+        Log.d(TAG, "jump:" + type + "-" + id);
+        switch (type) {
+            case Component.TYPE_POST_LIST:
+                id = component.getTargetId();
+                jumpTopic(context, id);
+                break;
+            case Component.TYPE_APP:
+                jumpWebView(context, component.getExtParams1().getRedirect());
+            case Component.TYPE_TOPIC_LIST:
+                jumpForumSection(context, id);
+                break;
+            case Component.TYPE_NEWS_LIST:
+                jumpNewsList(context, id);
+        }
+    }
+
     public static void jump(Context context, String type, long id, String urlRef) {
         Log.d(TAG, "jump:" + type + "-" + id);
         switch (type) {

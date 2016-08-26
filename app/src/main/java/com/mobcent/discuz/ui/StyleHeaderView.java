@@ -51,9 +51,7 @@ public class StyleHeaderView extends FrameLayout{
             @Override
             public void onClick(View v) {
                 // 查看更多
-                UIJumper.jump(getContext(), moreComponent.getType(),
-                        moreComponent.getExtParams1().getNewsModuleId(),
-                        moreComponent.getExtParams1().getRedirect());
+                UIJumper.jump(getContext(), moreComponent );
             }
         });
     }

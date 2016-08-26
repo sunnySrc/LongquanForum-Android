@@ -1,5 +1,7 @@
 package com.mobcent.discuz.bean;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -61,6 +63,7 @@ public class Component {
 
     /**
      * 更多列表
+     * moduleId  取 Ext.newModuleId
      */
     public static final String TYPE_NEWS_LIST = "newslist";
 
@@ -164,9 +167,26 @@ public class Component {
     public String getDesc() {
         return desc;
     }
+    public String getContent() {
+        return TextUtils.isEmpty(title) ? desc : title;
+    }
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public long getTargetId() {
+        switch (type) {
+            case TYPE_POST_LIST:
+                return getExtParams1().getTopicId();
+            case TYPE_APP:
+                break;
+            case TYPE_TOPIC_LIST:
+                return getExtParams1().getForumId();
+            case TYPE_NEWS_LIST:
+                return getExtParams1().getNewsModuleId();
+        }
+        return 0;
     }
 
     public static class CompDeserializer implements JsonDeserializer<Component> {
