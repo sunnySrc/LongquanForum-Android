@@ -69,13 +69,13 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
             if (mMethod.equals("get")) {
                 builder = builder.get();
             } else {
-
                 MediaType mediaType = MediaType.parse("multipart/form-data; boundary=---011000010111000001101001");
                 String bodyString = "";
                 if (mMethod == "post") {
                     if (!TextUtils.isEmpty(mBody)) {
                         try {
                             JSONObject obj = new JSONObject(mBody);
+                            obj.put("egnVersion","v2035.2");
                             obj.put("forumKey", "BW0L5ISVRsOTVLCTJx");
                             obj.put("sdkVersion", "2.4.0");
                             obj.put("apphash", "85eb3e4b");

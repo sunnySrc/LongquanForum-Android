@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -17,7 +18,6 @@ import com.appbyme.dev.R;
 import com.bumptech.glide.RequestManager;
 import com.mobcent.discuz.bean.Banner;
 import com.mobcent.discuz.widget.CirclePagerIndicator;
-import com.mobcent.discuz.widget.SuperRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +29,11 @@ import java.util.concurrent.TimeUnit;
  *  ocChina
  *  Banner 轮播
  */
-public class ViewNewsHeader extends RelativeLayout implements ViewPager.OnPageChangeListener {
+public class BannerView extends RelativeLayout implements ViewPager.OnPageChangeListener {
     private ViewPager vp_news;
-    private List<ViewNewsBanner> banners = new ArrayList<>();
+    private List<BannerItemView> banners = new ArrayList<>();
     private NewsPagerAdapter adapter;
-    private SuperRefreshLayout refreshLayout;
+    private SwipeRefreshLayout refreshLayout;
     private CirclePagerIndicator indicator;
     private TextView tv_news_title;
     private ScheduledExecutorService mSchedule;
@@ -41,20 +41,28 @@ public class ViewNewsHeader extends RelativeLayout implements ViewPager.OnPageCh
     private Handler handler;
     private boolean isMoving = false;
     private boolean isScroll = false;
+    private View layoutTitle; //  标题 区域
+    private boolean showTitle;
+    private boolean isCovered; // 是否遮盖
 
-
-    public ViewNewsHeader(Context context) {
+    public BannerView(Context context) {
         super(context);
         init(context);
     }
 
-    public ViewNewsHeader(Context context, AttributeSet attrs) {
+    public BannerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public void setRefreshLayout(SuperRefreshLayout refreshLayout) {
+    public void setRefreshLayout(SwipeRefreshLayout refreshLayout) {
         this.refreshLayout = refreshLayout;
+    }
+    public void showTitle(boolean show) {
+        showTitle = show;
+        if (!show) {
+            layoutTitle.setBackgroundResource(R.color.transparent);
+        }
     }
 
     private void init(Context context) {
@@ -67,6 +75,7 @@ public class ViewNewsHeader extends RelativeLayout implements ViewPager.OnPageCh
         indicator.bindViewPager(vp_news);
         new SmoothScroller(getContext()).bingViewPager(vp_news);
         vp_news.addOnPageChangeListener(this);
+        layoutTitle  = findViewById(R.id.banner_title);
 
         handler = new Handler() {
             @Override
@@ -79,7 +88,7 @@ public class ViewNewsHeader extends RelativeLayout implements ViewPager.OnPageCh
         mSchedule.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
-                if (!isMoving && !isScroll) {
+                if (!isMoving && !isScroll && !isCovered){
                     mCurrentItem = (mCurrentItem + 1) % banners.size();
                     handler.obtainMessage().sendToTarget();
                 }
@@ -108,10 +117,16 @@ public class ViewNewsHeader extends RelativeLayout implements ViewPager.OnPageCh
         });
     }
 
+    @Override
+    protected void onWindowVisibilityChanged(int visibility) {
+        isCovered = (visibility == INVISIBLE || visibility == GONE);
+        super.onWindowVisibilityChanged(visibility);
+    }
+
     public void initData(RequestManager manager, List<Banner> banners) {
         this.banners.clear();
         for (Banner banner : banners) {
-            ViewNewsBanner newsBanner = new ViewNewsBanner(getContext());
+            BannerItemView newsBanner = new BannerItemView(getContext());
             newsBanner.initData(manager, banner);
             this.banners.add(newsBanner);
         }
@@ -128,16 +143,18 @@ public class ViewNewsHeader extends RelativeLayout implements ViewPager.OnPageCh
     public void onPageSelected(int position) {
         isMoving = false;
         mCurrentItem = position;
-        refreshLayout.setEnabled(true);
+//        refreshLayout.setEnabled(true);
         isScroll = false;
-        tv_news_title.setText(banners.get(position).getTitle());
+        if (showTitle) {
+            tv_news_title.setText(banners.get(position).getTitle());
+        }
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
         isMoving = state != ViewPager.SCROLL_STATE_IDLE;
         isScroll = state != ViewPager.SCROLL_STATE_IDLE;
-        refreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
+//        refreshLayout.setEnabled(state == ViewPager.SCROLL_STATE_IDLE);
     }
 
 
