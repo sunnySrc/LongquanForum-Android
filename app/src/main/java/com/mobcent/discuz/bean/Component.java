@@ -2,18 +2,9 @@ package com.mobcent.discuz.bean;
 
 import android.text.TextUtils;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.annotations.Expose;
 import com.mobcent.common.JsonConverter;
 
-import org.json.JSONObject;
-
-import java.lang.reflect.Type;
 import java.util.List;
 
 /**
@@ -45,9 +36,14 @@ public class Component {
      * weburl, 这个需要取 ExtParam url
      */
     public static final String TYPE_APP = "webapp"; // url 网站
+    /**
+     * 其它定义模块
+     * moduleId
+     * {@link com.mobcent.discuz.api.UrlFactory#MODULE_CONFIG}
+     */
     public static final String TYPE_REF = "moduleRef"; // 模块引用
     /**
-     * 版块话题列表
+     * 版块话题列表TYPE_REF
      * url:forum/topiclist
      * forumType = 7, boardId 取Ext .forumId
      */
@@ -147,6 +143,18 @@ public class Component {
         return (ExtParams) formatParams;
     }
 
+    /**
+     * 目前只是主页帖子列表
+     * @return
+     */
+    public ExtParamsTopic getExtParamsTopic() {
+        if (formatParams instanceof ExtParamsTopic) {
+            return (ExtParamsTopic) formatParams;
+        }
+        formatParams = JsonConverter.format(extParams.toString(), ExtParamsTopic.class);
+        return (ExtParamsTopic) formatParams;
+    }
+
     public StyleHeader getStyleHeader() {
         if (formatParams instanceof ExtParamsModule) {
             return  ((ExtParamsModule) formatParams).getStyleHeader();
@@ -187,15 +195,6 @@ public class Component {
                 return getExtParams1().getNewsModuleId();
         }
         return 0;
-    }
-
-    public static class CompDeserializer implements JsonDeserializer<Component> {
-
-        @Override
-        public Component deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-            final JsonObject root = json.getAsJsonObject();
-            return null;
-        }
     }
 
     //----------------------ExeParams -----------------------

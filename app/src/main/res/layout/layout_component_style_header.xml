@@ -20,7 +20,7 @@
         style="@style/mc_forum_posts_title_style"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="12dp"
         android:gravity="center"
         tools:text="师傅法语" />
 

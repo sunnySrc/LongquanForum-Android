@@ -29,7 +29,17 @@ public class UIJumper {
                 break;
             case Component.TYPE_NEWS_LIST:
                 jumpNewsList(context, id);
+                break;
+            case Component.TYPE_REF:
+                jumpModuleRef(context, id);
+                break;
+            default:
+                break;
         }
+    }
+
+    private static void jumpModuleRef(Context context, long id) {
+        String url = UrlFactory.MODULE_CONFIG;
     }
 
     public static void jump(Context context, String type, long id, String urlRef) {
@@ -45,6 +55,9 @@ public class UIJumper {
                 break;
             case Component.TYPE_NEWS_LIST:
                 jumpNewsList(context, id);
+                break;
+            case Component.TYPE_REF:
+                jumpModuleRef(context, id);
         }
     }
 
@@ -64,6 +77,7 @@ public class UIJumper {
      */
     public static void jumpForumSection(Context context, long id) {
         //TODO
+        String url = UrlFactory.TOPIC_LIST;
     }
 
     /**
@@ -84,5 +98,6 @@ public class UIJumper {
      */
     public static void jumpTopic(Context context, long id) {
 //TODO
+        String url = UrlFactory.DETAIL_FORUM;
     }
 }

@@ -1,8 +1,11 @@
 package com.mobcent.discuz.ui;
 
 import android.content.Context;
+import android.support.v4.text.TextUtilsCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 import com.appbyme.dev.R;
 import com.bumptech.glide.Glide;
 import com.mobcent.common.ScreenUtil;
+import com.mobcent.common.TimeUtil;
 import com.mobcent.discuz.base.UIJumper;
 import com.mobcent.discuz.bean.*;
 import com.mobcent.discuz.bean.StyleHeader;
@@ -87,38 +91,75 @@ public class ComponentBuilder {
 
     public View buildView(Component component){
         final String style = component.getStyle();
-        if (Component.STYLE_LAYOUT_NORMAL.equals(style)) {
+        if (Component.STYLE_LAYOUT_NORMAL.equals(style) || Component.STYLE_LAYOUT_LINE.equals(style)) {
             // 容器
             List<Component> children = component.getComponentList();
             if (children == null || children.size() == 0) return defaultContainer();
 
             if (children.size() == 1) {
-               return buildView(children.get(0));
-            }else {
+                return buildView(children.get(0));
+            } else {
                 return buildComponentGroup(children, false);
             }
-        } else if (Component.STYLE_LAYOUT_LINE.equals(style)){
-            // 容器 ，细线分割
         } else if (Component.STYLE_NEWS_AUTO.equals(style)) {
             // 法语开示
-            buildNewsList();
+            return buildNewsList(component.getComponentList());
         } else if (component.STYLE_Col_FOUR.equals(style)) {
             // 一行四 链接
-           return buildColFour(component.getComponentList());
-        } else if (Component.STYLE_Col_TWO.equals(style)){
+            return buildColFour(component.getComponentList());
+        } else if (Component.STYLE_Col_TWO.equals(style)) {
             // 一行二 链接
+            return buildColTwo(component.getComponentList(), Divider.LINE);
         } else if (Component.STYLE_Col_ONE.equals(style)) {
             return buildColOne(component.getComponentList().get(0));
-        }else if (Component.STYLE_Slider.equals(style)) {
+        } else if (Component.STYLE_Slider.equals(style)) {
             // 宽高比 2
             double ratio = 2;
             return buildBanner(component.getComponentList(), ratio, true);
-        }else if (Component.STYLE_Slide_LOW.equals(style)) {
+        } else if (Component.STYLE_Slide_LOW.equals(style)) {
             // 窄版Banner
             double ratio = 4;
             return buildBanner(component.getComponentList(), ratio, false);
         }
         return defaultContainer();
+    }
+
+    /**
+     * 行二
+     * @param componentList
+     * @param divider
+     * @return
+     */
+    private View buildColTwo( List<Component> componentList, Divider divider) {
+        final int  count = componentList.size();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        final int padding = ScreenUtil.dip2px(context, 8);
+        linearLayout.setPadding(padding, padding ,padding, padding);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+        for (int i = 0; i < count; i++) {
+            final ImageView imageView = new FitHeightImageView(context);
+            final Component c = componentList.get(i);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UIJumper.jump(context, c);
+                }
+            });
+            imageView.post(new Runnable() {
+                @Override
+                public void run() {
+                    Glide.with(context).load(c.getIcon()).into(imageView);
+                }
+            });
+            if (i > 0 && divider == Divider.LINE) {
+                View line = new View(context);
+                line.setBackgroundResource(R.color.line_color);
+                linearLayout.addView(line, 1, ViewGroup.LayoutParams.MATCH_PARENT);
+            }
+            linearLayout.addView(imageView, params);
+        }
+        return linearLayout;
     }
 
     /**
@@ -157,9 +198,59 @@ public class ComponentBuilder {
 
     /**
      * 新贴列表
+     * @param componentList
      */
-    private void buildNewsList() {
+    private View buildNewsList(List<Component> componentList) {
+        final int  count = componentList.size();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        for (int i = 0; i < count; i++) {
+            /*
+             分割线
+              */
+            View line = new View(context);
+            line.setBackgroundResource(R.color.line_color);
+            linearLayout.addView(line, ViewGroup.LayoutParams.MATCH_PARENT, 1);
 
+            /*
+             Item
+             */
+            final Component c = componentList.get(i);
+
+            View child = inflater.inflate(R.layout.item_sample_post, linearLayout, false);
+            final ImageView imageView = (ImageView) child.findViewById(R.id.mc_forum_thumbnail_img);
+            // 配图
+            if (!TextUtils.isEmpty(c.getIcon())) {
+                imageView.setVisibility(View.VISIBLE);
+                imageView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Glide.with(context).load(c.getIcon()).into(imageView);
+                    }
+                });
+            } else {
+                imageView.setVisibility(View.GONE);
+            }
+            // 标题
+            TextView tvTitle = (TextView) child.findViewById(R.id.post_title);
+            tvTitle.setText(c.getContent());
+            // 日期
+            TextView tvTime = (TextView) child.findViewById(R.id.post_time);
+            tvTime.setText(TimeUtil.friendTime(Long.valueOf(c.getExtParamsTopic().getLast_reply_date())));
+            // 阅读次数
+            TextView tvReadCount = (TextView) child.findViewById(R.id.post_read_count);
+            tvReadCount.setText(String.valueOf(c.getExtParamsTopic().getHits()));
+
+            child.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UIJumper.jump(context, c.getType(), c.getExtParamsTopic().getSource_id(), null);
+                }
+            });
+            linearLayout.addView(child);
+
+        }
+        return linearLayout;
     }
 
     /**
@@ -190,6 +281,10 @@ public class ComponentBuilder {
         return  null;
     }
 
+    /**
+     * 默认容器
+     * @return
+     */
     private ViewGroup defaultContainer() {
         ViewGroup group = new FrameLayout(context);
         group.setLayoutParams(new ViewGroup.LayoutParams(
@@ -217,5 +312,12 @@ public class ComponentBuilder {
 
     public void setRefreshLayout(SwipeRefreshLayout refreshLayout) {
         this.mRefreshLayout = refreshLayout;
+    }
+
+    /**
+     * 分割
+     */
+    enum Divider {
+        None, LINE, BANDER
     }
 }
