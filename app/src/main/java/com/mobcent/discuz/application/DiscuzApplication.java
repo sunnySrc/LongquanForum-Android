@@ -15,6 +15,7 @@ import com.litesuits.android.log.Log;
 public class DiscuzApplication extends Application {
     public static final String TAG = "DiscuzApplication";
     public static DiscuzApplication _instance;
+    public static boolean isDebug = true;
     private List<Activity> activityList;
     // private BaseResultModel<ConfigModel> configModel;
     private boolean isActivityTopic;

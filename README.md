@@ -9,6 +9,11 @@ com.mobcent.common.ImageLoader 图片加载（wrapper 方便以后更换库）
 com.mobcent.discuz.base.UIJumper  不同页面调整管理
 com.mobcent.discuz.api.LqForumApi  Api 请求
 com.mobcent.discuz.api.UrlFactory  Api url 定义
+
+**顶部导航栏**
+
+ 使用<include> 标签 引入top_bar_widget.xml布局文件
+ 
 #####原有App下载
 ![二维码](http://thumbnail0.baidupcs.com/thumbnail/76e4353eed18016f0ebe36f950c020c5?fid=100896981-250528-848820782533230&time=1471654800&rt=sh&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-1LP2h6d1wg5ReQhRARgHyebrqC8%3D&expires=8h&chkv=0&chkbd=0&chkpc=&dp-logid=5389518753680743546&dp-callid=0&size=c710_u400&quality=100)
 

@@ -3,6 +3,7 @@ package com.mobcent.discuz.base;
 import android.content.Context;
 import android.util.Log;
 
+import com.mobcent.discuz.activity.TopicDetailActivity;
 import com.mobcent.discuz.api.UrlFactory;
 import com.mobcent.discuz.bean.Component;
 
@@ -97,7 +98,6 @@ public class UIJumper {
      * @param id
      */
     public static void jumpTopic(Context context, long id) {
-//TODO
-        String url = UrlFactory.DETAIL_FORUM;
+        TopicDetailActivity.start(context, id);
     }
 }

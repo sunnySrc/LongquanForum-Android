@@ -52,7 +52,7 @@ public abstract class BaseRefreshFragment extends BaseFragment implements  Swipe
 
     @Override
     public void onRefresh() {
-        onExcuteRequest(this);
+        onExecuteRequest(this);
     }
 
     @Override
@@ -73,7 +73,7 @@ public abstract class BaseRefreshFragment extends BaseFragment implements  Swipe
      * 请求接口
      * @param handler
      */
-    protected abstract void onExcuteRequest(HttpResponseHandler handler);
+    protected abstract void onExecuteRequest(HttpResponseHandler handler);
 
     /**
      * 显示结果

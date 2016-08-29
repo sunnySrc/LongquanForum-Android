@@ -1,7 +1,6 @@
 package com.mobcent.discuz.fragments;
 
 import android.support.v4.app.Fragment;
-
 /**
  * Created by ubuntu on 16-8-18.
  */
