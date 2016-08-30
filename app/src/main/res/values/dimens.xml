@@ -79,4 +79,6 @@
     <dimen name="mc_autogen_list_item_content_margin_left">5.0dip</dimen>
     <dimen name="mc_autogen_sliding_above_offset">95.0dip</dimen>
     <dimen name="vp_video_play_head_item_width">34.0dip</dimen>
+    <dimen name="topic_user_padding_h">8dp</dimen>
+    <dimen name="topic_user_padding_w">12dp</dimen>
 </resources>

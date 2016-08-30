@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import static android.R.attr.format;
+
 /**
  * Created by sun on 2016/8/27.
  */
@@ -30,6 +32,15 @@ public class TimeUtil {
             return new SimpleDateFormat("yyyy-MM-dd HH:mm");
         }
     };
+
+    /**
+     * 精确到天
+     * @param timeMills
+     * @return
+     */
+    public static String formatDateToDay(long timeMills) {
+        return dateFormater2.get().format(new Date(timeMills));
+    }
 
     /**
      * 以友好的方式显示时间
