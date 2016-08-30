@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+
+    android:background="@drawable/selector_item_click_gray"
+    android:layout_height="76dp">
+
+    <ImageView
+        android:id="@id/mc_forum_thumbnail_img"
+        android:layout_width="90dip"
+        android:layout_height="60dip"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="12dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/post_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_toRightOf="@id/mc_forum_thumbnail_img"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/mc_forum_text2_title_normal_color"
+        android:textSize="14dp"
+        tools:text="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题" />
+
+    <TextView
+        android:id="@+id/post_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@id/mc_forum_thumbnail_img"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/mc_forum_text_size_12"
+        tools:text="2013-4-5" />
+
+    <TextView
+        android:id="@+id/post_read_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="12dp"
+        android:drawableLeft="@drawable/dz_list_circle_pv"
+        android:drawablePadding="4dp"
+        android:textColor="@color/lightgray"
+        android:textSize="12sp"
+        tools:text="33" />
+</RelativeLayout>

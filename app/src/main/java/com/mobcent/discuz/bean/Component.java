@@ -1,6 +1,9 @@
 package com.mobcent.discuz.bean;
 
-import com.google.gson.Gson;
+import android.text.TextUtils;
+
+import com.google.gson.JsonObject;
+import com.mobcent.common.JsonConverter;
 
 import java.util.List;
 
@@ -13,9 +16,10 @@ public class Component {
     public static final String STYLE_Slider = "layoutSlider"; // Banner 轮播
     public static final String STYLE_Slide_LOW = "layoutSlider_Low"; // Banner 轮播 矮
 
-    public static final String STYLE_Normal = "layoutDefault";
+    public static final String STYLE_LAYOUT_NORMAL = "layoutDefault";
+    public static final String STYLE_LAYOUT_LINE = "layoutLine"; // 内部分割线
     public static final String STYLE_Col_FOUR = "layoutFourCol"; // 一行4个
-    public static final String STYLE_Col_ONE = "layoutOneCol_Low"; // 一行1个
+    public static final String STYLE_Col_ONE = "layoutOneCol_Low_Fixed"; // 一行1个 "layoutOneCol_Low_Fixed"
     public static final String STYLE_Col_TWO = "layoutTwoCol_Low";
 
     /**
@@ -25,17 +29,21 @@ public class Component {
 
     /**
      * 【师傅法语开示】
-     *
      */
     public static final String STYLE_NEWS_AUTO = "layoutNewsAuto";
 
     /**
-     *  weburl, 这个需要取 ExtParam url
+     * weburl, 这个需要取 ExtParam url
      */
     public static final String TYPE_APP = "webapp"; // url 网站
+    /**
+     * 其它定义模块
+     * moduleId
+     * {@link com.mobcent.discuz.api.UrlFactory#MODULE_CONFIG}
+     */
     public static final String TYPE_REF = "moduleRef"; // 模块引用
     /**
-     * 版块话题列表
+     * 版块话题列表TYPE_REF
      * url:forum/topiclist
      * forumType = 7, boardId 取Ext .forumId
      */
@@ -50,6 +58,12 @@ public class Component {
     public static final String TYPE_POST_LIST = "postlist";
 
     /**
+     * 更多列表
+     * moduleId  取 Ext.newModuleId
+     */
+    public static final String TYPE_NEWS_LIST = "newslist";
+
+    /**
      * 布局容器，取 style 决定ViewGroup样式，取componentList 填充child views
      */
     public static final String TYPE_LAYOUT = "layout"; // 普通布局
@@ -58,9 +72,10 @@ public class Component {
     private String desc; // 子标题 （Banner)
 
     private String icon; // 图标
-    private String style;
-    private String type;
-    private Object extParams;
+    private String style; // 样式
+    private String type; // 类型
+    private JsonObject extParams;
+    private Object formatParams; // 已经解析过的
 
     /**
      * @see com.mobcent.discuz.android.constant.StyleConstant
@@ -119,12 +134,37 @@ public class Component {
     public Object getExtParams() {
         return extParams;
     }
+
     public ExtParams getExtParams1() {
-        Gson gson = new Gson();
-        return gson.fromJson(extParams.toString(),ExtParams.class);
+        if (formatParams instanceof ExtParams) {
+            return (ExtParams) formatParams;
+        }
+        formatParams = JsonConverter.format(extParams.toString(), ExtParams.class);
+        return (ExtParams) formatParams;
     }
 
-    public void setExtParams(Object extParams) {
+    /**
+     * 目前只是主页帖子列表
+     * @return
+     */
+    public ExtParamsTopic getExtParamsTopic() {
+        if (formatParams instanceof ExtParamsTopic) {
+            return (ExtParamsTopic) formatParams;
+        }
+        formatParams = JsonConverter.format(extParams.toString(), ExtParamsTopic.class);
+        return (ExtParamsTopic) formatParams;
+    }
+
+    public StyleHeader getStyleHeader() {
+        if (formatParams instanceof ExtParamsModule) {
+            return  ((ExtParamsModule) formatParams).getStyleHeader();
+        }
+        String result = extParams.toString();
+        formatParams = JsonConverter.format(result, ExtParamsModule.class);
+        return ((ExtParamsModule) formatParams).getStyleHeader();
+    }
+
+    public void setExtParams(JsonObject extParams) {
         this.extParams = extParams;
     }
 
@@ -135,11 +175,29 @@ public class Component {
     public String getDesc() {
         return desc;
     }
+    public String getContent() {
+        return TextUtils.isEmpty(title) ? desc : title;
+    }
 
     public void setDesc(String desc) {
         this.desc = desc;
     }
 
+    public long getTargetId() {
+        switch (type) {
+            case TYPE_POST_LIST:
+                return getExtParams1().getTopicId();
+            case TYPE_APP:
+                break;
+            case TYPE_TOPIC_LIST:
+                return getExtParams1().getForumId();
+            case TYPE_NEWS_LIST:
+                return getExtParams1().getNewsModuleId();
+        }
+        return 0;
+    }
+
+    //----------------------ExeParams -----------------------
     /**
      * 额外参数
      */
@@ -373,7 +431,7 @@ public class Component {
     /**
      * 话题Item
      */
-    public static class ExtParams2 {
+    public static class ExtParamsTopic {
 
         /**
          * topicId : 63875
@@ -581,6 +639,22 @@ public class Component {
 
         public void setSourceWebUrl(String sourceWebUrl) {
             this.sourceWebUrl = sourceWebUrl;
+        }
+    }
+
+    /**
+     * layoutDefault
+     */
+    public static class ExtParamsModule {
+
+        private StyleHeader styleHeader;
+
+        public StyleHeader getStyleHeader() {
+            return styleHeader;
+        }
+
+        public void setStyleHeader(StyleHeader styleHeader) {
+            this.styleHeader = styleHeader;
         }
     }
 }

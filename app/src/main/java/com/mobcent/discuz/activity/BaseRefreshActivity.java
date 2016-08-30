@@ -1,32 +1,35 @@
-package com.mobcent.discuz.fragments;
+package com.mobcent.discuz.activity;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.appbyme.dev.R;
+import com.mobcent.discuz.fragments.HttpResponseHandler;
 import com.mobcent.discuz.ui.EmptyLayout;
 
 /**
- * Created by sun on 2016/8/23.
- * 基础刷新Fragment
+ * Created by sun on 2016/8/29.
  */
 
-public abstract class BaseRefreshFragment extends BaseFragment implements  SwipeRefreshLayout.OnRefreshListener{
-
+public abstract class BaseRefreshActivity extends BaseActivity implements  SwipeRefreshLayout.OnRefreshListener,
+        HttpResponseHandler {
     protected SwipeRefreshLayout mRefreshLayout;
     /**
      *  空白 错误 占位布局
      */
     protected EmptyLayout mErrorLayout;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_pull_refresh, container, false);
+    public int bindLayout() {
+        return R.layout.activity_pull_refresh;
+    }
+
+    @Override
+    public void initView(ViewGroup root, Bundle savedInstanceState) {
         mRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.swiperefreshlayout);
         mErrorLayout = (EmptyLayout) root.findViewById(R.id.error_layout);
         mErrorLayout.setOnLayoutClickListener(new View.OnClickListener() {
@@ -38,17 +41,19 @@ public abstract class BaseRefreshFragment extends BaseFragment implements  Swipe
                 onRefresh();
             }
         });
-        mRefreshLayout.addView(onCreateContentLayout(inflater, container, savedInstanceState));
+        mRefreshLayout.addView(onCreateContentLayout(mRefreshLayout, savedInstanceState));
         mRefreshLayout.setOnRefreshListener(this);
-        return root;
+        mRefreshLayout.setRefreshing(true);
+
+        findViewById(R.id.nav_btn_back).setVisibility(View.VISIBLE);
+
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void initData(Context mContext) {
         onRefresh();
-        mRefreshLayout.setRefreshing(true);
     }
+
 
     @Override
     public void onRefresh() {
@@ -68,6 +73,14 @@ public abstract class BaseRefreshFragment extends BaseFragment implements  Swipe
         mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
     }
 
+    /**
+     * 设置Navi Bar 标题
+     * @param title
+     */
+    public void setTitle(String title) {
+        TextView textView = (TextView) findViewById(R.id.nav_title);
+        textView.setText(title);
+    }
 
     /**
      * 请求接口
@@ -84,13 +97,10 @@ public abstract class BaseRefreshFragment extends BaseFragment implements  Swipe
     /**
      * 刷新内容布局
      * @return
-     * @param inflater
      * @param container
      * @param savedInstanceState
      */
-    protected abstract View onCreateContentLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
-
-
+    protected abstract View onCreateContentLayout( ViewGroup container, Bundle savedInstanceState);
 
 
 }

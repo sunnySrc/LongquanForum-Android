@@ -10,6 +10,7 @@ public class Banner {
     private String name;
     private String img;
     private boolean showTitle;
+    private String ref;
 
     public static Banner valueOf(Component component) {
         if (component.hasChildComponent())
@@ -19,6 +20,7 @@ public class Banner {
         banner.img = component.getIcon();
         banner.name = component.getDesc();
         banner.type = component.getType();
+        banner.ref = component.getExtParams1().getRedirect();
         banner.id = component.getExtParams1().getTopicId();
         banner.showTitle = component.getExtParams1().getIsShowTopicTitle() == 1;
         return banner;
@@ -44,5 +46,13 @@ public class Banner {
 
     public boolean isShowTitle() {
         return showTitle;
+    }
+
+    public String getRef() {
+        return ref;
+    }
+
+    public void setRef(String ref) {
+        this.ref = ref;
     }
 }

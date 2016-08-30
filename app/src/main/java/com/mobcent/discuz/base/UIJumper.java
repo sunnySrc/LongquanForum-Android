@@ -1,7 +1,10 @@
 package com.mobcent.discuz.base;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.mobcent.discuz.activity.TopicDetailActivity;
+import com.mobcent.discuz.api.UrlFactory;
 import com.mobcent.discuz.bean.Component;
 
 /**
@@ -9,18 +12,63 @@ import com.mobcent.discuz.bean.Component;
  * 页面跳转工具类
  */
 public class UIJumper {
-    public static void jump(Context context, String type, long id) {
+    private static final String TAG = UIJumper.class.getSimpleName();
+
+    public static void jump(Context context, Component component) {
+        final String type = component.getType();
+        long id = component.getTargetId();
+        Log.d(TAG, "jump:" + type + "-" + id);
         switch (type) {
             case Component.TYPE_POST_LIST:
-              jumpTopic(context, id);
+                id = component.getTargetId();
+                jumpTopic(context, id);
                 break;
             case Component.TYPE_APP:
-                throw new IllegalArgumentException("need url, not id");
+                jumpWebView(context, component.getExtParams1().getRedirect());
             case Component.TYPE_TOPIC_LIST:
                 jumpForumSection(context, id);
                 break;
+            case Component.TYPE_NEWS_LIST:
+                jumpNewsList(context, id);
+                break;
+            case Component.TYPE_REF:
+                jumpModuleRef(context, id);
+                break;
+            default:
+                break;
         }
+    }
 
+    private static void jumpModuleRef(Context context, long id) {
+        String url = UrlFactory.MODULE_CONFIG;
+    }
+
+    public static void jump(Context context, String type, long id, String urlRef) {
+        Log.d(TAG, "jump:" + type + "-" + id);
+        switch (type) {
+            case Component.TYPE_POST_LIST:
+                jumpTopic(context, id);
+                break;
+            case Component.TYPE_APP:
+                jumpWebView(context, urlRef);
+            case Component.TYPE_TOPIC_LIST:
+                jumpForumSection(context, id);
+                break;
+            case Component.TYPE_NEWS_LIST:
+                jumpNewsList(context, id);
+                break;
+            case Component.TYPE_REF:
+                jumpModuleRef(context, id);
+        }
+    }
+
+    /**
+     *  帖子列表
+     * @param context
+     * @param id
+     */
+    private static void jumpNewsList(Context context, long id) {
+        String url = UrlFactory.NEWS_LIST;
     }
 
     /**
@@ -30,6 +78,7 @@ public class UIJumper {
      */
     public static void jumpForumSection(Context context, long id) {
         //TODO
+        String url = UrlFactory.TOPIC_LIST;
     }
 
     /**
@@ -49,6 +98,6 @@ public class UIJumper {
      * @param id
      */
     public static void jumpTopic(Context context, long id) {
-//TODO
+        TopicDetailActivity.start(context, id);
     }
 }

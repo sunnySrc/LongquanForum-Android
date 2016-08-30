@@ -133,6 +133,8 @@
         <item name="android:textColor">@color/mc_forum_text3_name_normal_color</item>
     </style>
     <style name="no_title_activity" parent="@android:style/Theme.Black.NoTitleBar" />
+
+    <!--头部导航栏-->
     <style name="mc_forum_top_bar_bg">
         <item name="android:background">@color/dz_skin_custom_topbar_color</item>
         <item name="android:layout_height">@dimen/mc_forum_top_bar_height</item>
@@ -142,6 +144,16 @@
         <item name="android:textColor">@color/mc_forum_topbar_title_color</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="NavigationButton">
+        <item name="android:layout_width">@dimen/mc_forum_top_bar_height</item>
+        <item name="android:layout_height">@dimen/mc_forum_top_bar_height</item>
+        <item name="android:background">@drawable/clickable_item_bg</item>
+        <item name="android:scaleType">center</item>
+    </style>
+    <style name="NavigationButton.Back">
+        <item name="android:src">@drawable/mc_forum_top_bar_button1_n</item>
+    </style>
+
     <style name="mc_forum_posts_time_style">
         <item name="android:textSize">@dimen/mc_forum_text_size_12</item>
         <item name="android:textColor">@color/mc_forum_text4_other_normal_color</item>
@@ -227,7 +239,7 @@
         <item name="android:drawSelectorOnTop">false</item>
     </style>
     <style name="mc_forum_more_info_content">
-        <item name="android:textSize">16.0sp</item>
+        <item name="android:textSize">14.0sp</item>
         <item name="android:textColor">@color/user_info_edit_name_color</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">15.0dip</item>

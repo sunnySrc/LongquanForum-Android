@@ -8,7 +8,7 @@ public class UrlFactory {
     /**
      * 首页,  /网络直播
      */
-    public static final String MOUDLE_HOME = "app/moduleconfig";
+    public static final String MODULE_CONFIG = "app/moduleconfig";
     /**
      * 帖子详情
      */
@@ -17,10 +17,10 @@ public class UrlFactory {
     /**
      * 更多
      */
-    public static final String TOPIC_MORE = "portal/newslist";
-
+    public static final String NEWS_LIST = "portal/newslist";
     /**
      * 论坛模块
      */
     public static final String TOPIC_LIST = "forum/topiclist";
+
 }

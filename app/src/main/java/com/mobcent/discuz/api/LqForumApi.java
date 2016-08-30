@@ -17,7 +17,7 @@ public class LqForumApi {
     public static DiscuzRequest home(HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
         params.add("moduleId", 6);
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.MOUDLE_HOME, params.getJsonStr(), handler);
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.MODULE_CONFIG, params.getJsonStr(), handler);
         request.begin();
         return request;
     }
@@ -29,7 +29,7 @@ public class LqForumApi {
     public static DiscuzRequest moreTopics(long newsModelId, HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
         params.add("moduleId", 5);
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.MOUDLE_HOME, params.getJsonStr(), handler);
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.MODULE_CONFIG, params.getJsonStr(), handler);
         request.begin();
         return request;
     }
