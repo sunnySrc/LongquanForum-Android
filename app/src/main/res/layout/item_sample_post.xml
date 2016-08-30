@@ -48,9 +48,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="12dp"
-        android:drawableLeft="@drawable/dz_list_circle_pv"
-        android:drawablePadding="4dp"
-        android:textColor="@color/lightgray"
-        android:textSize="12sp"
-        tools:text="33" />
+        tools:text="33"
+        style="@style/topic_hit_count" />
 </RelativeLayout>

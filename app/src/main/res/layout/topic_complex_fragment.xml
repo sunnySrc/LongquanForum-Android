@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.mobcent.widget.listview.PullToRefreshListView android:id="@id/topic_complex_fragment_listview" android:background="@drawable/dz_bg_white_smoke" android:layout_width="fill_parent" android:layout_height="fill_parent" android:divider="@android:color/transparent" android:headerDividersEnabled="false" android:footerDividersEnabled="false" style="@style/list_view" />
-    <include android:id="@id/topic_complex_fragment_select_item" layout="@layout/topic_complex_fragment_select_header" />
-    <com.mobcent.discuz.activity.view.DZPopupListView android:id="@id/publish_popup_listview" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
-    <com.mobcent.discuz.activity.view.DZPopupListView android:id="@id/popup_listview" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <com.mobcent.widget.listview.PullToRefreshListView
+        android:id="@id/topic_complex_fragment_listview"
+        style="@style/list_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/dz_bg_white_smoke"
+        android:divider="@android:color/transparent"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false" />
+
+    <include
+        android:id="@id/topic_complex_fragment_select_item"
+        layout="@layout/topic_complex_fragment_select_header" />
+
+    <com.mobcent.discuz.activity.view.DZPopupListView
+        android:id="@id/publish_popup_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
+
+    <com.mobcent.discuz.activity.view.DZPopupListView
+        android:id="@id/popup_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" />
 </RelativeLayout>
