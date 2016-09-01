@@ -3,6 +3,8 @@ package com.mobcent.discuz.api;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 
+import static com.appbyme.dev.R.id.page;
+
 /**
  * 龙泉论坛Api
  * Created by sun on 2016/8/21.
@@ -48,4 +50,17 @@ public class LqForumApi {
         return request;
     }
 
+    /**
+     * 关注TA
+     * @param userId
+     * @param handler
+     */
+    public static DiscuzRequest followUser(boolean follow, long userId, HttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.add("uid",userId);
+        params.add("type", follow ? "follow" : "unfollow");
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.USER_ADMIN, params.getJsonStr(), handler);
+        request.begin();
+        return request;
+    }
 }

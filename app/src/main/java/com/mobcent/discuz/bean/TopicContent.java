@@ -10,7 +10,8 @@ public class TopicContent {
     public static final int TYPE_IMAGE = 1; // png, jpg,gif 图片
     public static final int TYPE_VIDEO = 2; //视频
     public static final int TYPE_AUDIO = 3; //音频
-    public static final int TYPE_AT = 4; // @用户
+    public static final int TYPE_LINK = 4; // 链接 @用户
+    public static final int TYPE_ATTACHMENT = 5; // 附件
 
     private static final String VIDEO_UNKOWN = "unkown"; // 这个直接使用第三方 或 浏览器打开
 
@@ -33,6 +34,7 @@ public class TopicContent {
     private String url;
     private String originalInfo;
     private int aid;
+    private String desc;
     /**
      * videoType : youku
      * videoId :
@@ -98,6 +100,14 @@ public class TopicContent {
 
     public void setExtParams(ExtParamsBean extParams) {
         this.extParams = extParams;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public static class ExtParamsBean {

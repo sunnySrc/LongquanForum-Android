@@ -50,13 +50,13 @@
         <!--发帖人-->
         <include layout="@layout/layout_topic_user" />
         <!--帖子主题内容-->
-        <com.mobcent.discuz.widget.SuperListView
+        <LinearLayout
+            android:orientation="vertical"
             android:id="@+id/topic_content_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@null">
-
-        </com.mobcent.discuz.widget.SuperListView>
+            >
+        </LinearLayout>
 
         <!--赞赏-->
         <include layout="@layout/topic_detail1_posts_last_item" />

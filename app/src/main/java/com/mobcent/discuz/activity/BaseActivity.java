@@ -11,6 +11,7 @@ import android.view.WindowManager;
 
 import com.litesuits.android.log.Log;
 import com.mobcent.discuz.application.DiscuzApplication;
+import com.mobcent.discuz.base.TaskCleaner;
 import com.mobcent.discuz.base.Tasker;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.List;
  * Created by sun on 2016/8/29.
  */
 
-public abstract  class BaseActivity extends FragmentActivity  {
+public abstract  class BaseActivity extends FragmentActivity implements TaskCleaner {
     public static final int STATE_NONE = 0;
     public static final int STATE_REFRESH = 1;
     public static final int STATE_LOADMORE = 2;
@@ -124,6 +125,18 @@ public abstract  class BaseActivity extends FragmentActivity  {
     }
 
     @Override
+    public void add(Tasker tasker) {
+        mNeedCancleTasks.add(tasker);
+    }
+
+    @Override
+    public void clean(Tasker tasker) {
+        if (tasker != null && tasker.isRunning()) {
+            tasker.cancel();
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         $Log(TAG + "--->onResume()");
@@ -132,9 +145,7 @@ public abstract  class BaseActivity extends FragmentActivity  {
     @Override
     protected void onDestroy() {
         for (Tasker tasker : mNeedCancleTasks) {
-            if (tasker != null && tasker.isRunning()) {
-                tasker.cancel();
-            }
+           clean(tasker);
         }
         super.onDestroy();
         $Log(TAG + "--->onDestroy()");
