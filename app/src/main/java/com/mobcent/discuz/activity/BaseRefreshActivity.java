@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.appbyme.dev.R;
+import com.mobcent.discuz.base.Tasker;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 import com.mobcent.discuz.ui.EmptyLayout;
 
@@ -57,7 +58,7 @@ public abstract class BaseRefreshActivity extends BaseActivity implements  Swipe
 
     @Override
     public void onRefresh() {
-        onExecuteRequest(this);
+        add(onExecuteRequest(this));
     }
 
     @Override
@@ -73,6 +74,7 @@ public abstract class BaseRefreshActivity extends BaseActivity implements  Swipe
         mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
     }
 
+
     /**
      * 设置Navi Bar 标题
      * @param title
@@ -86,7 +88,7 @@ public abstract class BaseRefreshActivity extends BaseActivity implements  Swipe
      * 请求接口
      * @param handler
      */
-    protected abstract void onExecuteRequest(HttpResponseHandler handler);
+    protected abstract Tasker onExecuteRequest(HttpResponseHandler handler);
 
     /**
      * 显示结果

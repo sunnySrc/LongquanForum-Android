@@ -23,4 +23,9 @@ public class UrlFactory {
      */
     public static final String TOPIC_LIST = "forum/topiclist";
 
+    /**
+     * 用户  /关注
+     */
+    public static final String USER_ADMIN = "user/useradmin";
+
 }
