@@ -1,6 +1,7 @@
 package com.mobcent.discuz.adapter;
 
 import android.content.Context;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import com.appbyme.dev.R;
 import com.mobcent.common.ImageLoader;
 import com.mobcent.common.TimeUtil;
+import com.mobcent.discuz.base.EmoticonHelper;
 import com.mobcent.discuz.bean.TopicReply;
 import com.mobcent.discuz.widget.ComAdapter;
 import com.mobcent.discuz.widget.ViewHolder;
@@ -35,8 +37,17 @@ public class TopicReplyAdapter extends ComAdapter<TopicReply>{
         // 楼层
         holder.setText(R.id.reply_lab_text, getContext().getString(R.string.reply_lab, item.getPosition()));
 
-        // 这个内容列表
-        holder.setText(R.id.reply_content_text, item.getReply_content().get(0).getInfor());
+        // 这个内容列表 TODO 图片
+        String content = item.getReply_content().get(0).getInfor();
+        final TextView tv = holder.getView(R.id.reply_content_text);
+        final int height = (int) tv.getTextSize();
+        EmoticonHelper.addEmoticonSpans(getContext(), content, height, new EmoticonHelper.EmoticonCallback() {
+            @Override
+            public void onEmoticonReady(SpannableStringBuilder builder) {
+                tv.setText(builder);
+            }
+        });
+
         TextView quoteTv = holder.getView(R.id.reply_quote_content_text);
         quoteTv.setVisibility(item.getIs_quote() > 0 ? View.VISIBLE : View.GONE);
         quoteTv.setText(item.getQuote_content());

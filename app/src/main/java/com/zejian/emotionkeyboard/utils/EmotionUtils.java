@@ -171,4 +171,14 @@ public class EmotionUtils {
         }
         return EmojiMap;
     }
+
+    public static String[] getEmojiNames(int EmotionType){
+        Vector<Item> emojiMap = getEmojiMap(EmotionType);
+        final int  len = emojiMap.size();
+        final String[] result = new String[len];
+        for (int i = 0;i < len; i++) {
+            result[i] = emojiMap.get(i).mString;
+        }
+        return result;
+    }
 }

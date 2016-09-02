@@ -67,7 +67,6 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
 
         // 评论
-        listViewReplies = mRootViewHolder.getView(R.id.topic_reply_list);
         listViewReplies.setAdapter(new TopicReplyAdapter(this, home.getList()));
     }
 
@@ -149,6 +148,8 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     protected View onCreateContentLayout(ViewGroup container, Bundle savedInstanceState) {
         View view =  getLayoutInflater().inflate(R.layout.activity_topic_detail, container, false);
         mRootViewHolder = new ViewHolder(view);
+        listViewReplies = mRootViewHolder.getView(R.id.topic_reply_list);
+        listViewReplies.setFocusable(false);
         return view;
     }
 
