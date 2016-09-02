@@ -16,6 +16,7 @@ import com.mobcent.common.ImageLoader;
 import com.mobcent.common.JsonConverter;
 import com.mobcent.common.TimeUtil;
 import com.mobcent.discuz.activity.helper.TopicHelper;
+import com.mobcent.discuz.adapter.TopicReplyAdapter;
 import com.mobcent.discuz.api.LqForumApi;
 import com.mobcent.discuz.base.Tasker;
 import com.mobcent.discuz.base.constant.BaseIntentConstant;
@@ -40,6 +41,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     private TextView tvFollow; //关注
     private boolean isFollow;
     private LinearLayout lvContent;
+    private ListView listViewReplies;
 
     public static void start(Context context, long id) {
         Intent starter = new Intent(context, TopicDetailActivity.class);
@@ -62,6 +64,11 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         TopicResult home = JsonConverter.format(result, TopicResult.class);
         setTitle(home.getForumName());
         updateTopicView(home.getTopic());
+
+
+        // 评论
+        listViewReplies = mRootViewHolder.getView(R.id.topic_reply_list);
+        listViewReplies.setAdapter(new TopicReplyAdapter(this, home.getList()));
     }
 
     // 更新帖子主题
@@ -94,6 +101,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         // 帖子内容
         lvContent = mRootViewHolder.getView(R.id.topic_content_list);
         TopicHelper.updateContent(this, lvContent, topic.getContent());
+
     }
 
     private void updateFollowState(boolean isFollow) {
