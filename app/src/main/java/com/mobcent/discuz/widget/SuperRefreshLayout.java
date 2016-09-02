@@ -89,14 +89,6 @@ public class SuperRefreshLayout extends SwipeRefreshLayout implements AbsListVie
     }
 
 
-    public void setCanLoadMore() {
-        this.mCanLoadMore = true;
-    }
-
-    public void setNoMoreData() {
-        this.mCanLoadMore = false;
-    }
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         final int action = event.getAction();
@@ -148,19 +140,6 @@ public class SuperRefreshLayout extends SwipeRefreshLayout implements AbsListVie
         return (mYDown - mLastY) >= mTouchSlop;
     }
 
-    /**
-     * 设置正在加载
-     *
-     * @param loading loading
-     */
-    public void setIsOnLoading(boolean loading) {
-        mIsOnLoading = loading;
-        if (!mIsOnLoading) {
-            mYDown = 0;
-            mLastY = 0;
-        }
-    }
-
 
     /**
      * 判断是否到了最底部
@@ -168,6 +147,30 @@ public class SuperRefreshLayout extends SwipeRefreshLayout implements AbsListVie
     private boolean isInBottom() {
         return (mListView != null && mListView.getAdapter() != null)
                 && mListView.getLastVisiblePosition() == (mListView.getAdapter().getCount() - 1);
+    }
+
+    //-----------------------外部 API------------------------
+
+    public void setCanLoadMore() {
+        this.mCanLoadMore = true;
+    }
+
+    public void setNoMoreData() {
+        this.mCanLoadMore = false;
+    }
+
+
+    /**
+     * 设置正在加载
+     *
+     * @param loading loading
+     */
+    private void setIsOnLoading(boolean loading) {
+        mIsOnLoading = loading;
+        if (!mIsOnLoading) {
+            mYDown = 0;
+            mLastY = 0;
+        }
     }
 
 

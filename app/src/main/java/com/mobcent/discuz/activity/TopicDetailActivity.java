@@ -11,7 +11,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.appbyme.dev.R;
-import com.bumptech.glide.Glide;
 import com.mobcent.common.ImageLoader;
 import com.mobcent.common.JsonConverter;
 import com.mobcent.common.TimeUtil;
@@ -22,11 +21,18 @@ import com.mobcent.discuz.base.Tasker;
 import com.mobcent.discuz.base.constant.BaseIntentConstant;
 import com.mobcent.discuz.bean.Base;
 import com.mobcent.discuz.bean.Topic;
+import com.mobcent.discuz.bean.TopicReply;
 import com.mobcent.discuz.bean.TopicResult;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
+import com.mobcent.discuz.widget.LoadMoreViewManager;
 import com.mobcent.discuz.widget.ViewHolder;
 
-import static com.appbyme.dev.R.id.tv;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_ERROR;
+import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NORMAL;
+import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
 
 /**
  * Created by sun on 2016/8/29.
@@ -34,14 +40,17 @@ import static com.appbyme.dev.R.id.tv;
  */
 
 public class TopicDetailActivity extends BaseRefreshActivity {
-    private int pageNum = 1;
+    private int pageNum ;
     private long topicId;
-    private ViewHolder mRootViewHolder;
+    private ViewHolder mTopicViewHolder;
 
     private TextView tvFollow; //关注
     private boolean isFollow;
     private LinearLayout lvContent;
     private ListView listViewReplies;
+    private TopicReplyAdapter mReplyAdapter;
+    private List<TopicReply> mReplyList = new ArrayList<>();
+    private LoadMoreViewManager mMoreViewManager;
 
     public static void start(Context context, long id) {
         Intent starter = new Intent(context, TopicDetailActivity.class);
@@ -51,11 +60,29 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
     @Override
     protected Tasker onExecuteRequest(HttpResponseHandler handler) {
-        topicId = 64551;
-        return LqForumApi.topicDetail(topicId, getPageNum(), handler);
+        pageNum = 1;
+        mReplyList.clear();
+        return LqForumApi.topicDetail(topicId, pageNum, handler);
     }
 
     public void onLoadMore() {
+        add(LqForumApi.topicDetail(topicId, ++pageNum, new HttpResponseHandler() {
+            @Override
+            public void onSuccess(String result) {
+
+                TopicResult home = JsonConverter.format(result, TopicResult.class);
+                int currentCount = home.getTotalNum();
+                mReplyList.addAll(home.getList());
+                mReplyAdapter.notifyDataSetChanged();
+
+                checkLoadState(home.getList());
+            }
+
+            @Override
+            public void onFail(String result) {
+                mMoreViewManager.setFooterType(TYPE_ERROR);
+            }
+        }));
     }
 
     @Override
@@ -65,28 +92,43 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         setTitle(home.getForumName());
         updateTopicView(home.getTopic());
 
-
         // 评论
-        listViewReplies.setAdapter(new TopicReplyAdapter(this, home.getList()));
+
+        mReplyList.addAll(home.getList());
+        mReplyAdapter = new TopicReplyAdapter(this, mReplyList);
+        listViewReplies.setAdapter(mReplyAdapter);
+
+        checkLoadState(home.getList());
+    }
+
+    private void checkLoadState(List<TopicReply> list) {
+        mRefreshLayout.onLoadComplete();
+        if (list.size() < LqForumApi.PAGE_SIZE_TOPIC_REPLY) {
+            mRefreshLayout.setNoMoreData();
+            mMoreViewManager.setFooterType(TYPE_NO_MORE);
+        } else {
+            mRefreshLayout.setCanLoadMore();
+            mMoreViewManager.setFooterType(TYPE_NORMAL);
+        }
     }
 
     // 更新帖子主题
     private void updateTopicView(Topic topic) {
         //标题区域
-        mRootViewHolder.setText(R.id.post_title, topic.getTitle());
-        mRootViewHolder.getView(R.id.post_is_essence).setVisibility(topic.getEssence() > 0 ? View.VISIBLE : View.GONE);
-        mRootViewHolder.setText(R.id.post_read_count, String.valueOf(topic.getHits()));
+        mTopicViewHolder.setText(R.id.post_title, topic.getTitle());
+        mTopicViewHolder.getView(R.id.post_is_essence).setVisibility(topic.getEssence() > 0 ? View.VISIBLE : View.GONE);
+        mTopicViewHolder.setText(R.id.post_read_count, String.valueOf(topic.getHits()));
 
         //发帖用户区
-        mRootViewHolder.setText(R.id.posts_user_name_text, topic.getUser_nick_name());
-        mRootViewHolder.setText(R.id.posts_user_title_text, topic.getUserTitle());
-        mRootViewHolder.setText(R.id.posts_user_date_text, TimeUtil.formatDateToDay(Long.valueOf(topic.getCreate_date())));
+        mTopicViewHolder.setText(R.id.posts_user_name_text, topic.getUser_nick_name());
+        mTopicViewHolder.setText(R.id.posts_user_title_text, topic.getUserTitle());
+        mTopicViewHolder.setText(R.id.posts_user_date_text, TimeUtil.formatDateToDay(Long.valueOf(topic.getCreate_date())));
 
-        ImageView userHead = mRootViewHolder.getView(R.id.posts_user_img);
+        ImageView userHead = mTopicViewHolder.getView(R.id.posts_user_img);
         ImageLoader.load(topic.getIcon(), userHead, 4);
 
         // 关注TA
-        tvFollow = mRootViewHolder.getView(R.id.follow_btn);
+        tvFollow = mTopicViewHolder.getView(R.id.follow_btn);
         final long userId = topic.getUser_id();
         isFollow = topic.getIsFollow() == 1;
         tvFollow.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +140,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         updateFollowState(isFollow);
 
         // 帖子内容
-        lvContent = mRootViewHolder.getView(R.id.topic_content_list);
+        lvContent = mTopicViewHolder.getView(R.id.topic_content_list);
         TopicHelper.updateContent(this, lvContent, topic.getContent());
 
     }
@@ -146,21 +188,18 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
     @Override
     protected View onCreateContentLayout(ViewGroup container, Bundle savedInstanceState) {
-        View view =  getLayoutInflater().inflate(R.layout.activity_topic_detail, container, false);
-        mRootViewHolder = new ViewHolder(view);
-        listViewReplies = mRootViewHolder.getView(R.id.topic_reply_list);
-        listViewReplies.setFocusable(false);
-        return view;
+        listViewReplies = (ListView) getLayoutInflater().inflate(R.layout.activity_topic_replies, container, false);
+        View contentView =  getLayoutInflater().inflate(R.layout.topic_detail_header, listViewReplies, false);
+        mTopicViewHolder = new ViewHolder(contentView);
+        listViewReplies.addHeaderView(contentView);
+        mMoreViewManager = new LoadMoreViewManager(listViewReplies);
+        mMoreViewManager.setNoMoreDateHintRes(R.string.mc_forum_detail_load_finish);
+        return listViewReplies;
     }
 
     @Override
     public void initParams(Bundle bundle) {
+        pageNum = 1;
         topicId = bundle.getLong(BaseIntentConstant.BUNDLE_TOPIC_ID);
     }
-
-
-    public int getPageNum() {
-        return pageNum;
-    }
-
 }

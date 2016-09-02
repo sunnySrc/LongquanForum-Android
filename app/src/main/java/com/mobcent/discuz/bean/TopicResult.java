@@ -24,6 +24,8 @@ public class TopicResult extends Base{
     private String forumTopicUrl;
 
     private Topic topic;
+
+    private int total_num;
     /**
      * 回帖列表
      */
@@ -79,5 +81,13 @@ public class TopicResult extends Base{
 
     public void setForumTopicUrl(String forumTopicUrl) {
         this.forumTopicUrl = forumTopicUrl;
+    }
+
+    public int getTotalNum() {
+        return total_num;
+    }
+
+    public void setTotalNum(int total_num) {
+        this.total_num = total_num;
     }
 }
