@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/topic_detail1_reply_group_item" />
+
+    <LinearLayout
+        android:id="@id/reply_item_box"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15.0dip"
+        android:layout_marginRight="15.0dip"
+        android:orientation="vertical">
+        <TextView
+            android:id="@id/reply_content_text"
+            style="@style/mc_forum_posts_content_detail_style"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36.0dip"
+            android:layout_marginTop="5.0dip"
+            android:paddingLeft="10.0dip"
+            android:paddingTop="5.0dip"
+            android:visibility="visible" />
+        <TextView
+            android:id="@id/reply_quote_content_text"
+            style="@style/mc_forum_posts_quote_content_style"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36.0dip"
+            android:layout_marginTop="5.0dip"
+            android:background="@drawable/dz_posts_quote_bg"
+            android:paddingLeft="10.0dip"
+            android:paddingRight="10.0dip"
+            android:paddingTop="5.0dip"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@id/reply_sign_text"
+            style="@style/mc_forum_posts_content_detail_style"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/reply_quote_content_text"
+            android:layout_marginLeft="36.0dip"
+            android:layout_marginRight="15.0dip"
+            android:layout_marginTop="3.0dip"
+            android:includeFontPadding="false"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@id/reply_location_box"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/reply_sign_text"
+            android:layout_marginLeft="36.0dip"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="10.0dip"
+                android:layout_height="12.0dip"
+                android:layout_gravity="center|left"
+                android:background="@drawable/dz_toolbar_reply_icon_location" />
+
+            <TextView
+                android:id="@id/reply_location_text"
+                style="@style/mc_forum_posts_location_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="center_vertical"
+                android:padding="5.0dip" />
+        </LinearLayout>
+
+        <!--回复管理-->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/reply_location_box"
+            android:gravity="center|right"
+            android:orientation="horizontal"
+            android:paddingBottom="10.0dip"
+            android:paddingTop="5.0dip">
+
+            <LinearLayout
+                android:id="@id/reply_more_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5.0dip"
+                android:gravity="center_vertical">
+
+                <ImageButton
+                    android:id="@id/reply_more_btn"
+                    android:layout_width="19.0dip"
+                    android:layout_height="13.0dip"
+                    android:background="@drawable/dz_posts_manage_btn" />
+
+                <TextView
+                    android:id="@id/reply_more_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.0dip"
+                    android:text="@string/mc_forum_posts_more"
+                    android:textColor="@color/mc_forum_text_normal_color"
+                    android:textSize="12.0sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
