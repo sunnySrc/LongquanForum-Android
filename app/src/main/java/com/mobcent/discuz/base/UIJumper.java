@@ -112,6 +112,9 @@ public class UIJumper {
      * 2 http://forum.longquanzs.org/mailto:lqwsx2016@qq.com 邮箱调用
      * 3 http://forum.longquanzs.org/forum.php?mod=viewthread&tid=59858 帖子详情（内部）
      * 4 http://forum.longquanzs.org/forum.php?mod=attachment&aid=MTM5MTYwfGI5ZmM4NWIwfDE0NzI0Mzk2NDh8MjE0MzYyfDY0NTUx&nothumb=yes (附件）
+     * 5 http://forum.longquanzs.org/forum.php?mod=post&action=edit&fid=525&tid=64551&pid=332705 编辑帖子
+     * 6 http://forum.longquanzs.org/mobcent/app/web/index.php?r=forum/topicadminex&sdkVersion=2.5.0.0&accessToken=274d079f604beba7d6edaa76be052&accessSecret=db799660500f1cafae3d030c09caa&apphash=276399a6&topicId=64551&postId=332705
+     * 删帖子
      * @param context
      * @param url
      */
@@ -139,6 +142,10 @@ public class UIJumper {
         intent.setDataAndType (Uri.parse(url), "video/*");
         context.startActivity(intent);
     }
+    //{"body":{"json":{"fid":525,"tid":64551,"location":"","aid":"","content":"[{\"type\":0,\"infor\":\"刚刚\"}]","longitude":"116.27367401123047","latitude":"40.03788375854492","isHidden":0,"isAnonymous":0,"isOnlyAuthor":0,"isShowPostion":0,"replyId":332705,"isQuote":1}}}
 
-
+    // "replyId":postId
+    public static void reply(Context mContext, long topicId, long postId, boolean isQute) {
+        //
+    }
 }

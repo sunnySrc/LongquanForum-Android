@@ -28,4 +28,8 @@ public class UrlFactory {
      */
     public static final String USER_ADMIN = "user/useradmin";
 
+    /**
+     * 帖子操作
+     */
+    public static final String TOPIC_ADMIN = "forum/topicadmin";
 }
