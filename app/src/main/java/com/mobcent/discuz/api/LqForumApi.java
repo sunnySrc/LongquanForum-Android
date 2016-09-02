@@ -12,6 +12,7 @@ import static com.appbyme.dev.R.id.page;
 
 public class LqForumApi {
 
+    public static final int PAGE_SIZE_TOPIC_REPLY = 10; // 帖子详情的回帖页
     /**
      * 首页
      * @param handler
@@ -40,11 +41,10 @@ public class LqForumApi {
      * page > 1 只有评论列表，不包含topic 内容
      */
     public static DiscuzRequest topicDetail( long topicId, int page, HttpResponseHandler handler) {
-        int pageSize = 10;
         RequestParams params = new RequestParams();
         params.add("topicId",topicId);
         params.add("page",page);
-        params.add("pageSize",pageSize);
+        params.add("pageSize", PAGE_SIZE_TOPIC_REPLY);
         DiscuzRequest request = new DiscuzRequest(UrlFactory.DETAIL_FORUM, params.getJsonStr(), handler);
         request.begin();
         return request;
