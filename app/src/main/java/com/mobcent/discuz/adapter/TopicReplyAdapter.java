@@ -2,12 +2,8 @@ package com.mobcent.discuz.adapter;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -22,14 +18,12 @@ import com.mobcent.discuz.widget.ViewHolder;
 
 import java.util.List;
 
-import static android.os.Build.VERSION_CODES.M;
-
 /**
  * Created by sun on 2016/9/1.
  *  帖子回复列表
  */
 
-public class TopicReplyAdapter extends ComAdapter<TopicReply>{
+public class TopicReplyAdapter extends ComAdapter<TopicReply> {
 
     private  PopupWindow popupWindow;
     View mPopOperationMenu ;

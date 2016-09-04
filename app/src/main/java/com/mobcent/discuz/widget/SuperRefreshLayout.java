@@ -33,6 +33,11 @@ public class SuperRefreshLayout extends SwipeRefreshLayout implements AbsListVie
     private int mTextColor;
     private int mFooterBackground;
     private boolean mIsMoving = false;
+    private AbsListView.OnScrollListener onScrollListener;
+
+    public void setOnScrollListener(AbsListView.OnScrollListener onScrollListener) {
+        this.onScrollListener = onScrollListener;
+    }
 
     public SuperRefreshLayout(Context context) {
         this(context, null);
@@ -46,11 +51,16 @@ public class SuperRefreshLayout extends SwipeRefreshLayout implements AbsListVie
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-
+        if(onScrollListener != null) {
+            onScrollListener.onScrollStateChanged(view, scrollState);
+        }
     }
 
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        if(onScrollListener != null) {
+            onScrollListener.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
+        }
         // 滚动时到了最底部也可以加载更多
         if (canLoad()) {
             loadData();
@@ -74,7 +84,6 @@ public class SuperRefreshLayout extends SwipeRefreshLayout implements AbsListVie
     }
 
     /**
-     * 获取ListView并添加Footer
      */
     private void getListView() {
         int child = getChildCount();

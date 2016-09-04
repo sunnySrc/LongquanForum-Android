@@ -13,6 +13,6 @@
         android:width="1dp"
         android:color="#fbfbfb"/>
 
-    <solid android:color="@color/colorPrimary"/>
+    <solid android:color="@color/mc_forum_text_normal_color"/>
 
 </shape>
