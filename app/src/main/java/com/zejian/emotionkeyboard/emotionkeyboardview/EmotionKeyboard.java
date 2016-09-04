@@ -14,26 +14,32 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import static android.R.attr.type;
+
 /**
  * author : zejian
  * time : 2016年1月5日 上午11:14:27
  * email : shinezejian@163.com
  * description :源码来自开源项目https://github.com/dss886/Android-EmotionInputDetector
  * 				本人仅做细微修改以及代码解析
+ * 	FIX : contentView
  */
 public class EmotionKeyboard {
 	
     	private static final String SHARE_PREFERENCE_NAME = "EmotionKeyboard";
         private static final String SHARE_PREFERENCE_SOFT_INPUT_HEIGHT = "soft_input_height";
+	private static final int POS_EMOTION = 0;
+	private static final int POS_EXTRA = 1;
 
-	 	private Activity mActivity;
+	private Activity mActivity;
 	    private InputMethodManager mInputManager;//软键盘管理类
 	    private SharedPreferences sp;
 	    private View mEmotionLayout;//表情布局
 	    private EditText mEditText;//
 	    private View mContentView;//内容布局view,即除了表情布局或者软键盘布局以外的布局，用于固定bar的高度，防止跳闪
+	private NoHorizontalScrollerViewPager mViewPager;
 
-	    private EmotionKeyboard(){
+	private EmotionKeyboard(){
 
 	    }
 	    
@@ -52,7 +58,7 @@ public class EmotionKeyboard {
 	    
 	    /**
 	     * 绑定内容view，此view用于固定bar的高度，防止跳闪
-	     * @param contentView
+	     * @param contentView rootView
 	     * @return
 	     */
 	    public EmotionKeyboard bindToContent(View contentView) {
@@ -98,25 +104,66 @@ public class EmotionKeyboard {
 	        emotionButton.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					if (mEmotionLayout.isShown()) {
-						lockContentHeight();//显示软件盘时，锁定内容高度，防止跳闪。
-						hideEmotionLayout(true);//隐藏表情布局，显示软件盘
-						unlockContentHeightDelayed();//软件盘显示后，释放内容高度
-					} else {
-						if (isSoftInputShown()) {//同上
-							lockContentHeight();
-							showEmotionLayout();
-							unlockContentHeightDelayed();
-						} else {
-							showEmotionLayout();//两者都没显示，直接显示表情布局
-						}
-					}
+					updatePanel(POS_EMOTION);
 				}
 			});
 	        return this;
 	    }
 
-	    /**
+	/**
+	 * 绑定额外布局
+	 *
+	 * @param extraBtn
+	 * @param viewPager
+	 * @return
+	 */
+	public EmotionKeyboard bindExtraButton(View extraBtn, NoHorizontalScrollerViewPager viewPager) {
+		mViewPager = viewPager;
+		extraBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				updatePanel(POS_EXTRA);
+			}
+		});
+		return this;
+	}
+
+	/**
+	 * 更新面板
+	 */
+	private void updatePanel(int pos) {
+		if (mEmotionLayout.isShown()) {
+			if (!checkPosChange(pos)) {
+				lockContentHeight();//显示软件盘时，锁定内容高度，防止跳闪。
+				hideEmotionLayout(true);//隐藏表情布局，显示软件盘
+				unlockContentHeightDelayed();//软件盘显示后，释放内容高度
+			}
+        } else {
+            if (isSoftInputShown()) {//同上
+                lockContentHeight();
+                showEmotionLayout(pos);
+                unlockContentHeightDelayed();
+            } else {
+                showEmotionLayout(type);//两者都没显示，直接显示表情布局
+            }
+        }
+	}
+
+	/**
+	 * 检查
+	 * @param pos
+	 * @return
+     */
+	private boolean checkPosChange(int pos) {
+		if (mViewPager == null) return false;
+		boolean isChange = pos != mViewPager.getCurrentItem();
+		if (isChange) {
+			switchToPanelContent(pos);
+		}
+		return isChange;
+	}
+
+	/**
 	     * 设置表情内容布局
 	     * @param emotionView
 	     * @return
@@ -148,7 +195,7 @@ public class EmotionKeyboard {
 	        return false;
 	    }
 
-	    private void showEmotionLayout() {
+	    private void showEmotionLayout(int type) {
 	        int softInputHeight = getSupportSoftInputHeight();
 	        if (softInputHeight == 0) {
 	            softInputHeight = sp.getInt(SHARE_PREFERENCE_SOFT_INPUT_HEIGHT, 400);
@@ -156,9 +203,21 @@ public class EmotionKeyboard {
 	        hideSoftInput();
 	        mEmotionLayout.getLayoutParams().height = softInputHeight;
 	        mEmotionLayout.setVisibility(View.VISIBLE);
+
+		    switchToPanelContent(type);
 	    }
 
-	    /**
+	private void switchToPanelContent(int type) {
+		if (mViewPager != null) {
+			if (type == POS_EMOTION) {
+				mViewPager.setCurrentItem(0, false);
+			} else {
+				mViewPager.setCurrentItem(1, false);
+			}
+		}
+	}
+
+	/**
 	     * 隐藏表情布局
 	     * @param showSoftInput 是否显示软件盘
 	     */
@@ -188,6 +247,7 @@ public class EmotionKeyboard {
 	            @Override
 	            public void run() {
 	                ((LinearLayout.LayoutParams) mContentView.getLayoutParams()).weight = 1.0F;
+					mContentView.requestLayout();
 	            }
 	        }, 200L);
 	    }
@@ -282,5 +342,6 @@ public class EmotionKeyboard {
 		return sp.getInt(SHARE_PREFERENCE_SOFT_INPUT_HEIGHT, 400);
 
 	}
+
 
 }

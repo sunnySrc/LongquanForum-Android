@@ -3,8 +3,12 @@ package com.mobcent.discuz.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -23,9 +27,11 @@ import com.mobcent.discuz.bean.Base;
 import com.mobcent.discuz.bean.Topic;
 import com.mobcent.discuz.bean.TopicReply;
 import com.mobcent.discuz.bean.TopicResult;
+import com.mobcent.discuz.fragments.EmotionExtraFragment;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 import com.mobcent.discuz.widget.LoadMoreViewManager;
 import com.mobcent.discuz.widget.ViewHolder;
+import com.zejian.emotionkeyboard.fragment.EmotionMainFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +57,20 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     private TopicReplyAdapter mReplyAdapter;
     private List<TopicReply> mReplyList = new ArrayList<>();
     private LoadMoreViewManager mMoreViewManager;
+    private View mBottomLayout;
+    private TextView mBottomCommentTv;
+    private EmotionExtraFragment emotionMainFragment; //表情键盘
+    private TopicResult resultBean;
 
     public static void start(Context context, long id) {
         Intent starter = new Intent(context, TopicDetailActivity.class);
         starter.putExtra(BaseIntentConstant.BUNDLE_TOPIC_ID, id);
         context.startActivity(starter);
+    }
+
+    @Override
+    public int bindLayout() {
+        return R.layout.activity_topic_refresh;
     }
 
     @Override
@@ -88,17 +103,18 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     @Override
     protected void showContent(String result) {
         // 注意loadmore
-        TopicResult home = JsonConverter.format(result, TopicResult.class);
-        setTitle(home.getForumName());
-        updateTopicView(home.getTopic());
-
+        resultBean = JsonConverter.format(result, TopicResult.class);
+        setTitle(resultBean.getForumName());
+        updateTopicView(resultBean.getTopic());
+        mBottomCommentTv.setText(String.valueOf(resultBean.getTotalNum())
+                + getString(R.string.mc_forum_topic_detail_bottom_commnet_num_text));
         // 评论
 
-        mReplyList.addAll(home.getList());
+        mReplyList.addAll(resultBean.getList());
         mReplyAdapter = new TopicReplyAdapter(this, mReplyList);
         listViewReplies.setAdapter(mReplyAdapter);
 
-        checkLoadState(home.getList());
+        checkLoadState(resultBean.getList());
     }
 
     private void checkLoadState(List<TopicReply> list) {
@@ -186,20 +202,100 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
     }
 
+    private void sendContent() {
+
+    }
+
+
     @Override
     protected View onCreateContentLayout(ViewGroup container, Bundle savedInstanceState) {
         listViewReplies = (ListView) getLayoutInflater().inflate(R.layout.activity_topic_replies, container, false);
         View contentView =  getLayoutInflater().inflate(R.layout.topic_detail_header, listViewReplies, false);
-        mTopicViewHolder = new ViewHolder(contentView);
+        mTopicViewHolder = new ViewHolder(getContentView());
         listViewReplies.addHeaderView(contentView);
         mMoreViewManager = new LoadMoreViewManager(listViewReplies);
         mMoreViewManager.setNoMoreDateHintRes(R.string.mc_forum_detail_load_finish);
+
+        // 底部评论bar
+        mBottomLayout = getContentView().findViewById(R.id.bottom_over_layout);
+        mBottomCommentTv = (TextView)getContentView().findViewById(R.id.bottom_comment_text);
+        mRefreshLayout.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                enableBottomPlaceHolderLayout(noInputContent());
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
+
+        // 输入键盘bar
+        initEmotionLayout();
+
+        // 显示评论输入提示bar
+        enableBottomPlaceHolderLayout(true);
         return listViewReplies;
+    }
+
+    private boolean noInputContent() {
+        return TextUtils.isEmpty(emotionMainFragment.getEditText().getText());
+    }
+
+    /**
+     * 底部评论
+     */
+    private void enableBottomPlaceHolderLayout(boolean enable) {
+        mBottomLayout.setVisibility(enable ? View.VISIBLE : View.GONE);
+        View v = mBottomLayout.findViewById(R.id.bottom_comment_layout);
+        if (enable) {
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    enableBottomPlaceHolderLayout(false);
+                    showKeyBoard();
+                }
+
+            });
+        }
+    }
+
+
+    private void showKeyBoard() {
+        InputMethodManager im = ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE));
+        im.showSoftInput(emotionMainFragment.getEditText(), 0);
     }
 
     @Override
     public void initParams(Bundle bundle) {
         pageNum = 1;
         topicId = bundle.getLong(BaseIntentConstant.BUNDLE_TOPIC_ID);
+    }
+
+    /**
+     * 初始化表情键盘输入
+     */
+    private void initEmotionLayout() {
+        //构建传递参数
+        Bundle fragmentBundle = new Bundle();
+        //绑定主内容编辑框
+        fragmentBundle.putBoolean(EmotionMainFragment.BIND_TO_EDITTEXT, true);
+        //隐藏控件
+        fragmentBundle.putBoolean(EmotionMainFragment.HIDE_BAR_EDITTEXT_AND_BTN,false);
+        //替换fragment
+        //创建修改实例
+        emotionMainFragment = EmotionExtraFragment.newInstance(EmotionExtraFragment.class, fragmentBundle);
+        emotionMainFragment.bindToContentView(mRefreshLayout);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        // Replace whatever is in thefragment_container view with this fragment,
+        // and add the transaction to the backstack
+        transaction.replace(R.id.fl_emotionview_main, emotionMainFragment);
+        /**
+         * 此地方会有bug fragment被移除
+         */
+//        transaction.addToBackStack(null);
+        //提交修改
+        transaction.commit();
     }
 }

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/top_bar_widget" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- google 官方下拉刷新 -->
+
+            <com.mobcent.discuz.widget.SuperRefreshLayout
+                android:id="@+id/swiperefreshlayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="visible">
+                <!--<FrameLayout-->
+                <!--android:id="@+id/contentView"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
+
+                <!--</FrameLayout>-->
+            </com.mobcent.discuz.widget.SuperRefreshLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:id="@+id/fl_emotionview_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true" />
+                <!--回复-->
+                <LinearLayout
+                    android:id="@id/bottom_over_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1.0px"
+                        android:background="@drawable/dz_icon_line"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="45.0dip"
+                        android:background="@drawable/dz_toolbar_reply_outer_bg"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@id/bottom_comment_layout"
+                            android:layout_width="0.0dip"
+                            android:layout_height="32.0dip"
+                            android:layout_marginLeft="10.0dip"
+                            android:layout_weight="1.0"
+                            android:background="@drawable/dz_toolbar_reply_longpress_n"
+                            android:gravity="center_vertical">
+
+                            <View
+                                android:layout_width="13.0dip"
+                                android:layout_height="13.0dip"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="3.0dip"
+                                android:background="@drawable/dz_toolbar_reply_icon_pen" />
+
+                            <TextView
+                                android:layout_width="0.0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|left"
+                                android:layout_marginLeft="3.0dip"
+                                android:layout_weight="1.0"
+                                android:text="@string/mc_forum_topic_detail_bottom_commnet_hint"
+                                android:textColor="@color/mc_forum_text4_other_normal_color"
+                                android:textSize="14.0sp" />
+
+                            <TextView
+                                android:id="@id/bottom_comment_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5.0dip"
+                                android:textColor="@color/mc_forum_text4_other_normal_color"
+                                android:textSize="14.0sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:id="@id/bottom_praise_btn"
+                            android:layout_width="30.0dip"
+                            android:layout_height="30.0dip"
+                            android:layout_marginLeft="10.0dip"
+                            android:background="@drawable/dz_toolbar_reply_outer_praise"
+                            android:visibility="gone" />
+
+                        <View
+                            android:id="@id/bottom_share_btn"
+                            android:layout_width="30.0dip"
+                            android:layout_height="30.0dip"
+                            android:layout_marginLeft="10.0dip"
+                            android:layout_marginRight="10.0dip"
+                            android:background="@drawable/dz_toolbar_reply_outer_share" />
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+
+        </LinearLayout>
+        <!--空态-->
+        <com.mobcent.discuz.ui.EmptyLayout
+            android:id="@+id/error_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,6 +1,7 @@
-package com.zejian.emotionkeyboard.fragment;
+package com.mobcent.discuz.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,7 @@ import com.mobcent.common.FragmentBackHandler;
 import com.zejian.emotionkeyboard.adapter.NoHorizontalScrollerVPAdapter;
 import com.zejian.emotionkeyboard.emotionkeyboardview.EmotionKeyboard;
 import com.zejian.emotionkeyboard.emotionkeyboardview.NoHorizontalScrollerViewPager;
-import com.zejian.emotionkeyboard.model.ImageModel;
+import com.zejian.emotionkeyboard.fragment.*;
 import com.zejian.emotionkeyboard.utils.EmotionUtils;
 import com.zejian.emotionkeyboard.utils.GlobalOnItemClickManagerUtils;
 
@@ -23,12 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by zejian
- * Time  16/1/6 下午5:26
- * Email shinezejian@163.com
- * Description:表情主界面
+ * Created by sun
+
+ @see EmotionMainFragment
  */
-public class EmotionMainFragment extends BaseFragment implements FragmentBackHandler {
+public class EmotionExtraFragment extends com.zejian.emotionkeyboard.fragment.BaseFragment implements FragmentBackHandler {
 
     //是否绑定当前Bar的编辑框的flag
     public static final String BIND_TO_EDITTEXT="bind_to_edittext";
@@ -72,15 +72,16 @@ public class EmotionMainFragment extends BaseFragment implements FragmentBackHan
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_emotion, container, false);
-        isHidenBarEditTextAndBtn= args.getBoolean(EmotionMainFragment.HIDE_BAR_EDITTEXT_AND_BTN);
+        isHidenBarEditTextAndBtn= args.getBoolean(EmotionExtraFragment.HIDE_BAR_EDITTEXT_AND_BTN);
         //获取判断绑定对象的参数
-        isBindToBarEditText=args.getBoolean(EmotionMainFragment.BIND_TO_EDITTEXT);
+        isBindToBarEditText=args.getBoolean(EmotionExtraFragment.BIND_TO_EDITTEXT);
         initView(rootView);
         mEmotionKeyboard = EmotionKeyboard.with(getActivity())
                 .setEmotionView(rootView.findViewById(R.id.ll_emotion_layout))//绑定表情面板
                 .bindToContent(contentView)//绑定内容view
                 .bindToEditText(!isBindToBarEditText ? ((EditText) contentView) : ((EditText) rootView.findViewById(R.id.bar_edit_text)))//判断绑定那种EditView
                 .bindToEmotionButton(rootView.findViewById(R.id.emotion_button))//绑定表情按钮
+                .bindExtraButton(rootView.findViewById(R.id.bar_image_add_btn), viewPager)
                 .build();
         initListener();
         initDatas();
@@ -155,6 +156,7 @@ public class EmotionMainFragment extends BaseFragment implements FragmentBackHan
         //创建修改实例
         EmotiomComplateFragment f1= (EmotiomComplateFragment) factory.getFragment(EmotionUtils.EMOTION_CLASSIC_TYPE);
         fragments.add(f1);
+        fragments.add(new FunctionFragment());
         NoHorizontalScrollerVPAdapter adapter =new NoHorizontalScrollerVPAdapter(getActivity().getSupportFragmentManager(),fragments);
         viewPager.setAdapter(adapter);
     }
@@ -172,6 +174,36 @@ public class EmotionMainFragment extends BaseFragment implements FragmentBackHan
     @Override
     public boolean onBackPressed() {
         return isInterceptBackPress();
+    }
+
+
+    /**
+     * Extra 面板，添加 照片
+     */
+    public static class FunctionFragment extends Fragment {
+
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.fragment_inputpanel_function, container, false);
+        }
+
+        @Override
+        public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            view.findViewById(R.id.pan_camera).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //相机
+                }
+            });
+            view.findViewById(R.id.pan_album).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //点击
+                }
+            });
+        }
     }
 }
 
