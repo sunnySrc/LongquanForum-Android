@@ -62,7 +62,7 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
         fragment[2] = new DiscoveryFragment();
         fragment[3] = new MeFragment();
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, fragment[0]).commit();
+                .replace(R.id.container, fragment[0]).commit();
         currentFragment = fragment[0];
         switchState(0);
     }
