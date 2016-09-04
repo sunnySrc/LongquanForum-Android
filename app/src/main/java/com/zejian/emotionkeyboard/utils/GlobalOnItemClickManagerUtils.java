@@ -1,9 +1,13 @@
 package com.zejian.emotionkeyboard.utils;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.zejian.emotionkeyboard.adapter.EmotionGridViewAdapter;
@@ -66,4 +70,29 @@ public class GlobalOnItemClickManagerUtils {
         };
     }
 
+    public void attachSendBtn(final View bar_btn_send) {
+        if (mEditText != null) {
+            mEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (TextUtils.isEmpty(s)){
+                        bar_btn_send.setEnabled(false);
+                    } else {
+                        bar_btn_send.setEnabled(true);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            mEditText.setText("");
+        }
+    }
 }

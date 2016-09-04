@@ -93,10 +93,10 @@ public class EmotionExtraFragment extends com.zejian.emotionkeyboard.fragment.Ba
             globalOnItemClickManager.attachToEditText(bar_edit_text);
 
         }else{
-            // false,则表示绑定contentView,此时外部提供的contentView必定也是EditText
             globalOnItemClickManager.attachToEditText((EditText) contentView);
             mEmotionKeyboard.bindToEditText((EditText)contentView);
         }
+        globalOnItemClickManager.attachSendBtn(bar_btn_send);
         return rootView;
     }
 
@@ -108,13 +108,20 @@ public class EmotionExtraFragment extends com.zejian.emotionkeyboard.fragment.Ba
        return (EditText) getView().findViewById(R.id.bar_edit_text);
     }
 
+    public void setConfirmClick(View.OnClickListener listener) {
+        bar_btn_send.setOnClickListener(listener);
+    }
+
+    public void hideAllKeyBoard() {
+        mEmotionKeyboard.hideAllPanel();
+    }
     /**
      * 绑定内容view
      * @param contentView
      * @return
      */
-    public void bindToContentView(View contentView){
-        this.contentView=contentView;
+    public void bindToContentView(View contentView) {
+        this.contentView = contentView;
     }
 
     /**

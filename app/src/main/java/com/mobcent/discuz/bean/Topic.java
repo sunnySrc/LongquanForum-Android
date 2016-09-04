@@ -37,7 +37,7 @@ public class Topic {
      * flag : 0
      * gender : 1
      * reply_posts_id : 332663
-     * reward : {"score":[{"info":"微笑","value":1}],"userList":[{"uid":214362,"userName":"sundxing","userIcon":"http://forum.longquanzs.org/uc_server/avatar.php?uid=214362&size=middle"}],"userNumber":1,"showAllUrl":"http://forum.longquanzs.org/mobcent/app/web/index.php?r=forum/ratelistview&sdkVersion=2.5.0.0&accessToken=274d079f604beba7d6edaa76be052&accessSecret=db799660500f1cafae3d030c09caa&apphash=276399a6&tid=&pid=332663"}
+     * reward : {"score":[{"infor":"微笑","value":1}],"userList":[{"uid":214362,"userName":"sundxing","userIcon":"http://forum.longquanzs.org/uc_server/avatar.php?uid=214362&size=middle"}],"userNumber":1,"showAllUrl":"http://forum.longquanzs.org/mobcent/app/web/index.php?r=forum/ratelistview&sdkVersion=2.5.0.0&accessToken=274d079f604beba7d6edaa76be052&accessSecret=db799660500f1cafae3d030c09caa&apphash=276399a6&tid=&pid=332663"}
      */
 
     private int topic_id;
@@ -68,7 +68,7 @@ public class Topic {
     /**
      * 赞赏
      *
-     * score : [{"info":"微笑","value":1}]
+     * score : [{"infor":"微笑","value":1}]
      * userList : [{"uid":214362,"userName":"sundxing","userIcon":"http://forum.longquanzs.org/uc_server/avatar.php?uid=214362&size=middle"}]
      * userNumber : 1
      * showAllUrl : http://forum.longquanzs.org/mobcent/app/web/index.php?r=forum/ratelistview&sdkVersion=2.5.0.0&accessToken=274d079f604beba7d6edaa76be052&accessSecret=db799660500f1cafae3d030c09caa&apphash=276399a6&tid=&pid=332663
@@ -296,7 +296,7 @@ public class Topic {
         private int userNumber;
         private String showAllUrl;
         /**
-         * info : 微笑
+         * infor : 微笑
          * value : 1
          */
 

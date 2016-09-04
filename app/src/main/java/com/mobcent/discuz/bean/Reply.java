@@ -1,5 +1,12 @@
 package com.mobcent.discuz.bean;
 
+import com.mobcent.common.JsonConverter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.mobcent.discuz.api.RequestParams.json;
+
 /**
  * Created by sun on 2016/9/4.
  */
@@ -10,6 +17,7 @@ public class Reply {
      * json : {"fid":525,"tid":64551,"location":"","aid":"","content":"[{\"type\":0,\"infor\":\"[心]赞一\"}]","longitude":"116.10552215576172","latitude":"40.11105728149414","isHidden":0,"isAnonymous":0,"isOnlyAuthor":0,"isShowPostion":0,"replyId":0,"isQuote":0}
      */
 
+
     private BodyBean body;
 
     public BodyBean getBody() {
@@ -18,6 +26,43 @@ public class Reply {
 
     public void setBody(BodyBean body) {
         this.body = body;
+    }
+
+    public static Reply build(JsonBean json) {
+        Reply reply = new Reply();
+        BodyBean bodyBean = new BodyBean();
+        bodyBean.setJson(json);
+        reply.setBody(bodyBean);
+        return reply;
+    }
+
+    public static Reply build(int fid, int topicId, String content) {
+        JsonBean json = new JsonBean();
+        json.setFid(fid);
+        json.setTid(topicId);
+        json.setContentStr(content);
+        return build(json);
+    }
+
+    public static class Content {
+        int type;
+        String infor;
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
+
+        public String getInfo() {
+            return infor;
+        }
+
+        public void setInfo(String info) {
+            this.infor = info;
+        }
     }
 
     public static class BodyBean {
@@ -33,7 +78,7 @@ public class Reply {
          * isAnonymous : 0
          * isOnlyAuthor : 0
          * isShowPostion : 0
-         * replyId : 0
+         * replyI : 0
          * isQuote : 0
          */
 
@@ -47,124 +92,135 @@ public class Reply {
             this.json = json;
         }
 
-        public static class JsonBean {
-            private int fid;
-            private int tid;
-            private String location;
-            private String aid;
-            private String content;
-            private String longitude;
-            private String latitude;
-            private int isHidden;
-            private int isAnonymous;
-            private int isOnlyAuthor;
-            private int isShowPostion;
-            private int replyId;
-            private int isQuote;
 
-            public int getFid() {
-                return fid;
-            }
+    }
 
-            public void setFid(int fid) {
-                this.fid = fid;
-            }
+    public static class JsonBean {
+        private int fid;
+        private int tid;
+        private String location;
+        private String aid;
+        private String content;
+        private String longitude;
+        private String latitude;
+        private int isHidden;
+        private int isAnonymous;
+        private int isOnlyAuthor;
+        private int isShowPostion;
+        private int replyId;
+        private int isQuote;
 
-            public int getTid() {
-                return tid;
-            }
+        public int getFid() {
+            return fid;
+        }
 
-            public void setTid(int tid) {
-                this.tid = tid;
-            }
+        public void setFid(int fid) {
+            this.fid = fid;
+        }
 
-            public String getLocation() {
-                return location;
-            }
+        public int getTid() {
+            return tid;
+        }
 
-            public void setLocation(String location) {
-                this.location = location;
-            }
+        public void setTid(int tid) {
+            this.tid = tid;
+        }
 
-            public String getAid() {
-                return aid;
-            }
+        public String getLocation() {
+            return location;
+        }
 
-            public void setAid(String aid) {
-                this.aid = aid;
-            }
+        public void setLocation(String location) {
+            this.location = location;
+        }
 
-            public String getContent() {
-                return content;
-            }
+        public String getAid() {
+            return aid;
+        }
 
-            public void setContent(String content) {
-                this.content = content;
-            }
+        public void setAid(String aid) {
+            this.aid = aid;
+        }
 
-            public String getLongitude() {
-                return longitude;
-            }
+        public String  getContent() {
+            return content;
+        }
 
-            public void setLongitude(String longitude) {
-                this.longitude = longitude;
-            }
+        public void setContent(String content) {
+            this.content = content;
+        }
 
-            public String getLatitude() {
-                return latitude;
-            }
+        public String getLongitude() {
+            return longitude;
+        }
 
-            public void setLatitude(String latitude) {
-                this.latitude = latitude;
-            }
+        public void setLongitude(String longitude) {
+            this.longitude = longitude;
+        }
 
-            public int getIsHidden() {
-                return isHidden;
-            }
+        public String getLatitude() {
+            return latitude;
+        }
 
-            public void setIsHidden(int isHidden) {
-                this.isHidden = isHidden;
-            }
+        public void setLatitude(String latitude) {
+            this.latitude = latitude;
+        }
 
-            public int getIsAnonymous() {
-                return isAnonymous;
-            }
+        public int getIsHidden() {
+            return isHidden;
+        }
 
-            public void setIsAnonymous(int isAnonymous) {
-                this.isAnonymous = isAnonymous;
-            }
+        public void setIsHidden(int isHidden) {
+            this.isHidden = isHidden;
+        }
 
-            public int getIsOnlyAuthor() {
-                return isOnlyAuthor;
-            }
+        public int getIsAnonymous() {
+            return isAnonymous;
+        }
 
-            public void setIsOnlyAuthor(int isOnlyAuthor) {
-                this.isOnlyAuthor = isOnlyAuthor;
-            }
+        public void setIsAnonymous(int isAnonymous) {
+            this.isAnonymous = isAnonymous;
+        }
 
-            public int getIsShowPostion() {
-                return isShowPostion;
-            }
+        public int getIsOnlyAuthor() {
+            return isOnlyAuthor;
+        }
 
-            public void setIsShowPostion(int isShowPostion) {
-                this.isShowPostion = isShowPostion;
-            }
+        public void setIsOnlyAuthor(int isOnlyAuthor) {
+            this.isOnlyAuthor = isOnlyAuthor;
+        }
 
-            public int getReplyId() {
-                return replyId;
-            }
+        public int getIsShowPostion() {
+            return isShowPostion;
+        }
 
-            public void setReplyId(int replyId) {
-                this.replyId = replyId;
-            }
+        public void setIsShowPostion(int isShowPostion) {
+            this.isShowPostion = isShowPostion;
+        }
 
-            public int getIsQuote() {
-                return isQuote;
-            }
+        public int getReplyId() {
+            return replyId;
+        }
 
-            public void setIsQuote(int isQuote) {
-                this.isQuote = isQuote;
-            }
+        public void setReplyId(int replyId) {
+            this.replyId = replyId;
+        }
+
+        public int getIsQuote() {
+            return isQuote;
+        }
+
+        public void setIsQuote(int isQuote) {
+            this.isQuote = isQuote;
+        }
+
+        public void setContentStr(String content) {
+            Content c = new Content();
+            c.setType(0);
+            c.setInfo(content);
+            ArrayList<Content> cs = new ArrayList<>();
+            cs.add(c);
+            this.content = JsonConverter.toString(cs);
         }
     }
 }

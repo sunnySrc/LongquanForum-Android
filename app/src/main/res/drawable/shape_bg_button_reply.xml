@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape
+<selector
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
+    >
+    <item android:state_enabled="false">
+        <shape
+            android:shape="rectangle">
 
-    <corners
-        android:bottomLeftRadius="4dp"
-        android:bottomRightRadius="4dp"
-        android:topLeftRadius="4dp"
-        android:topRightRadius="4dp"/>
+            <corners
+                android:bottomLeftRadius="4dp"
+                android:bottomRightRadius="4dp"
+                android:topLeftRadius="4dp"
+                android:topRightRadius="4dp"/>
 
-    <stroke
-        android:width="1dp"
-        android:color="#fbfbfb"/>
+            <stroke
+                android:width="1dp"
+                android:color="#fbfbfb"/>
 
-    <solid android:color="@color/mc_forum_text_normal_color"/>
+            <solid android:color="@color/mc_forum_text_normal_color"/>
 
-</shape>
+        </shape>
+    </item>
+    <item>
+        <shape
+            android:shape="rectangle">
+
+            <corners
+                android:bottomLeftRadius="4dp"
+                android:bottomRightRadius="4dp"
+                android:topLeftRadius="4dp"
+                android:topRightRadius="4dp"/>
+
+            <stroke
+                android:width="1dp"
+                android:color="#fbfbfb"/>
+
+            <solid android:color="@color/mc_forum_board_tab_press_color"/>
+
+        </shape>
+    </item>
+</selector>

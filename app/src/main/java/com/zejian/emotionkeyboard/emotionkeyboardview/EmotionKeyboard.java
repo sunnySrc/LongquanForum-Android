@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -229,6 +230,11 @@ public class EmotionKeyboard {
 	            }
 	        }
 	    }
+
+	public void hideAllPanel() {
+		hideEmotionLayout(false);
+		hideSoftInput();
+	}
 
 	    /**
 	     * 锁定内容高度，防止跳闪

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -24,6 +25,7 @@ import com.mobcent.discuz.api.LqForumApi;
 import com.mobcent.discuz.base.Tasker;
 import com.mobcent.discuz.base.constant.BaseIntentConstant;
 import com.mobcent.discuz.bean.Base;
+import com.mobcent.discuz.bean.Reply;
 import com.mobcent.discuz.bean.Topic;
 import com.mobcent.discuz.bean.TopicReply;
 import com.mobcent.discuz.bean.TopicResult;
@@ -31,11 +33,13 @@ import com.mobcent.discuz.fragments.EmotionExtraFragment;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 import com.mobcent.discuz.widget.LoadMoreViewManager;
 import com.mobcent.discuz.widget.ViewHolder;
+import com.mobcent.lowest.base.utils.MCToastUtils;
 import com.zejian.emotionkeyboard.fragment.EmotionMainFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.fragment;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_ERROR;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NORMAL;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
@@ -84,7 +88,6 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         add(LqForumApi.topicDetail(topicId, ++pageNum, new HttpResponseHandler() {
             @Override
             public void onSuccess(String result) {
-
                 TopicResult home = JsonConverter.format(result, TopicResult.class);
                 int currentCount = home.getTotalNum();
                 mReplyList.addAll(home.getList());
@@ -102,21 +105,29 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
     @Override
     protected void showContent(String result) {
-        // 注意loadmore
         resultBean = JsonConverter.format(result, TopicResult.class);
+
         setTitle(resultBean.getForumName());
         updateTopicView(resultBean.getTopic());
         mBottomCommentTv.setText(String.valueOf(resultBean.getTotalNum())
                 + getString(R.string.mc_forum_topic_detail_bottom_commnet_num_text));
         // 评论
-
         mReplyList.addAll(resultBean.getList());
         mReplyAdapter = new TopicReplyAdapter(this, mReplyList);
         listViewReplies.setAdapter(mReplyAdapter);
 
         checkLoadState(resultBean.getList());
+
+        emotionMainFragment.setConfirmClick(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendContent();
+            }
+        });
+        enableBottomPlaceHolderLayout(true);
     }
 
+    // 底部加载样式
     private void checkLoadState(List<TopicReply> list) {
         mRefreshLayout.onLoadComplete();
         if (list.size() < LqForumApi.PAGE_SIZE_TOPIC_REPLY) {
@@ -172,7 +183,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     }
 
     /**
-     *
+     * 关注
      * @param toFollow
      * @param userId
      */
@@ -202,8 +213,25 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
     }
 
+    /**
+     * 回复
+     */
     private void sendContent() {
+        if (noInputContent()) return;
 
+        Reply re = Reply.build(resultBean.getBoardId(), resultBean.getTopic().getTopic_id(), getInputContent());
+        add(LqForumApi.reply(re, new HttpResponseHandler() {
+            @Override
+            public void onSuccess(String result) {
+                // 回复成功
+                JsonConverter.format(result, Base.class).checkAlert(getBaseContext());
+                resetBottomLayout();
+            }
+            @Override
+            public void onFail(String result) {
+                MCToastUtils.toast(getBaseContext(), result);
+            }
+        }));
     }
 
 
@@ -222,7 +250,9 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         mRefreshLayout.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                enableBottomPlaceHolderLayout(noInputContent());
+                if( SCROLL_STATE_TOUCH_SCROLL == scrollState && noInputContent()) {
+                    enableBottomPlaceHolderLayout(true);
+                }
             }
 
             @Override
@@ -233,14 +263,23 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
         // 输入键盘bar
         initEmotionLayout();
-
         // 显示评论输入提示bar
-        enableBottomPlaceHolderLayout(true);
+       mBottomLayout.findViewById(R.id.bottom_comment_layout).setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+           }
+       });
+
         return listViewReplies;
     }
 
     private boolean noInputContent() {
-        return TextUtils.isEmpty(emotionMainFragment.getEditText().getText());
+        return TextUtils.isEmpty(getInputContent());
+    }
+
+    private String getInputContent() {
+        return  emotionMainFragment.getEditText().getText().toString().trim();
     }
 
     /**
@@ -254,17 +293,27 @@ public class TopicDetailActivity extends BaseRefreshActivity {
                 @Override
                 public void onClick(View v) {
                     enableBottomPlaceHolderLayout(false);
-                    showKeyBoard();
+                    showKeyBoard(true);
                 }
 
             });
+            showKeyBoard(false);
         }
     }
 
+    private void resetBottomLayout() {
+        enableBottomPlaceHolderLayout(true);
+        emotionMainFragment.getEditText().setText("");
+    }
 
-    private void showKeyBoard() {
+
+    private void showKeyBoard(boolean show) {
         InputMethodManager im = ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE));
-        im.showSoftInput(emotionMainFragment.getEditText(), 0);
+        if (show) {
+            im.showSoftInput(emotionMainFragment.getEditText(), 0);
+        } else {
+            emotionMainFragment.hideAllKeyBoard();
+        }
     }
 
     @Override

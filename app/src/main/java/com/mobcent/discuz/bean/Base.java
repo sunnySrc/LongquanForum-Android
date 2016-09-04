@@ -63,7 +63,7 @@ public  class Base {
     }
 
     public boolean isSuccess() {
-        return rs == BaseErrorCodeConstant.RS_SUCC;
+        return rs == BaseErrorCodeConstant.RS_SUCC ;
     }
 
     public static class HeadBean {

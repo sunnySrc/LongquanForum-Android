@@ -9,9 +9,18 @@ import org.json.JSONObject;
  */
 
 public class JsonConverter {
+    static Gson gson = new Gson();
     public static <T> T format(String json, Class<T> type) {
-        Gson gson = new Gson();
+
         return  gson.fromJson(json,type);
+    }
+
+    public static String toString(Object obj) {
+        return gson.toJson(obj);
+    }
+
+    public static String toStringBackslash(Object obj) {
+        return gson.toJson(obj).replaceAll("\"","\\\\\"");
     }
 
 }
