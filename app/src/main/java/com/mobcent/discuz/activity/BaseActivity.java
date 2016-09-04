@@ -5,11 +5,13 @@ import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.litesuits.android.log.Log;
+import com.mobcent.common.BackHandlerHelper;
 import com.mobcent.discuz.application.DiscuzApplication;
 import com.mobcent.discuz.base.TaskCleaner;
 import com.mobcent.discuz.base.Tasker;
@@ -116,6 +118,10 @@ public abstract  class BaseActivity extends FragmentActivity implements TaskClea
      */
     public abstract void initData(Context mContext);
 
+    public View getContentView() {
+        return mActivityContentView;
+    }
+
     /**
      * 添加待销毁任务
      * @param tasker
@@ -140,6 +146,13 @@ public abstract  class BaseActivity extends FragmentActivity implements TaskClea
     protected void onResume() {
         super.onResume();
         $Log(TAG + "--->onResume()");
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!BackHandlerHelper.handleBackPress(this)) {
+            super.onBackPressed();
+        }
     }
 
     @Override
