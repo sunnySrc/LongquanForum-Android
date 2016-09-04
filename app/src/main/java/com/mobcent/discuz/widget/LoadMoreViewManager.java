@@ -28,6 +28,7 @@ public class LoadMoreViewManager {
     private View mFooterView;
     private ProgressBar mFooterProgressBar;
     private TextView mFooterText;
+    private int noMoreDateHintRes;
 
     public LoadMoreViewManager(ListView mListView) {
         this.mListView = mListView;
@@ -37,7 +38,7 @@ public class LoadMoreViewManager {
     private void initView() {
         mFooterView = LayoutInflater.from(getContext()).inflate(R.layout.layout_list_view_footer, null);
         mFooterText = (TextView) mFooterView.findViewById(R.id.tv_footer);
-
+        mFooterProgressBar = (ProgressBar) mFooterView.findViewById(R.id.pb_footer);
         mListView.addFooterView(mFooterView);
     }
 
@@ -57,7 +58,7 @@ public class LoadMoreViewManager {
                 mFooterProgressBar.setVisibility(View.GONE);
                 break;
             case TYPE_NO_MORE:
-                mFooterText.setText(getResources().getString(R.string.footer_type_not_more));
+                mFooterText.setText(getResources().getString(noMoreDateHintRes > 0 ? noMoreDateHintRes : R.string.footer_type_not_more));
                 mFooterProgressBar.setVisibility(View.GONE);
                 break;
         }
@@ -69,5 +70,9 @@ public class LoadMoreViewManager {
 
     private Resources getResources() {
         return mListView.getResources();
+    }
+
+    public void setNoMoreDateHintRes(int noMoreDateHintRes) {
+        this.noMoreDateHintRes = noMoreDateHintRes;
     }
 }

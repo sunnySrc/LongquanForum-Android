@@ -2,22 +2,24 @@ package com.mobcent.discuz.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.appbyme.dev.R;
+import com.mobcent.discuz.base.Tasker;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 import com.mobcent.discuz.ui.EmptyLayout;
+import com.mobcent.discuz.widget.SuperRefreshLayout;
+import com.mobcent.discuz.widget.SuperRefreshLayoutListener;
 
 /**
  * Created by sun on 2016/8/29.
  */
 
-public abstract class BaseRefreshActivity extends BaseActivity implements  SwipeRefreshLayout.OnRefreshListener,
+public abstract class BaseRefreshActivity extends BaseActivity implements SuperRefreshLayoutListener,
         HttpResponseHandler {
-    protected SwipeRefreshLayout mRefreshLayout;
+    protected SuperRefreshLayout mRefreshLayout;
     /**
      *  空白 错误 占位布局
      */
@@ -30,7 +32,7 @@ public abstract class BaseRefreshActivity extends BaseActivity implements  Swipe
 
     @Override
     public void initView(ViewGroup root, Bundle savedInstanceState) {
-        mRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.swiperefreshlayout);
+        mRefreshLayout = (SuperRefreshLayout) root.findViewById(R.id.swiperefreshlayout);
         mErrorLayout = (EmptyLayout) root.findViewById(R.id.error_layout);
         mErrorLayout.setOnLayoutClickListener(new View.OnClickListener() {
 
@@ -42,12 +44,12 @@ public abstract class BaseRefreshActivity extends BaseActivity implements  Swipe
             }
         });
         mRefreshLayout.addView(onCreateContentLayout(mRefreshLayout, savedInstanceState));
-        mRefreshLayout.setOnRefreshListener(this);
+        mRefreshLayout.setSuperRefreshLayoutListener(this);
         mRefreshLayout.setRefreshing(true);
-
         findViewById(R.id.nav_btn_back).setVisibility(View.VISIBLE);
 
     }
+
 
     @Override
     public void initData(Context mContext) {
@@ -55,9 +57,21 @@ public abstract class BaseRefreshActivity extends BaseActivity implements  Swipe
     }
 
 
+    /**
+     *  super
+     */
     @Override
+    public void onRefreshing() {
+        onRefresh();
+    }
+
+    @Override
+    public void onLoadMore() {
+
+    }
+
     public void onRefresh() {
-        onExecuteRequest(this);
+        add(onExecuteRequest(this));
     }
 
     @Override
@@ -73,6 +87,7 @@ public abstract class BaseRefreshActivity extends BaseActivity implements  Swipe
         mErrorLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
     }
 
+
     /**
      * 设置Navi Bar 标题
      * @param title
@@ -82,11 +97,13 @@ public abstract class BaseRefreshActivity extends BaseActivity implements  Swipe
         textView.setText(title);
     }
 
+
+
     /**
      * 请求接口
      * @param handler
      */
-    protected abstract void onExecuteRequest(HttpResponseHandler handler);
+    protected abstract Tasker onExecuteRequest(HttpResponseHandler handler);
 
     /**
      * 显示结果

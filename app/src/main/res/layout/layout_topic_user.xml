@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/posts_user_box"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="15.0dip"
+    android:paddingRight="15.0dip">
+
+    <ImageView
+        android:id="@id/posts_user_img"
+        android:layout_width="32.0dip"
+        android:layout_height="32.0dip"
+        android:layout_marginBottom="5.0dip"
+        android:layout_marginRight="5.0dip"
+        android:layout_marginTop="8.0dip"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6.0dip"
+        android:layout_marginLeft="5.0dip"
+        android:layout_marginTop="6.0dip"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@id/mc_forum_posts_top_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3.0dip"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@id/posts_user_name_text"
+                    style="@style/mc_forum_posts_user_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@id/posts_user_title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.0dip"
+                    android:textColor="@color/mc_forum_user_level_color"
+                    android:textSize="@dimen/mc_forum_text_size_12" />
+
+                <TextView
+                    android:id="@id/posts_user_role_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.0dip"
+                    android:textSize="@dimen/mc_forum_text_size_12"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@id/posts_lab"
+                    style="@style/mc_forum_posts_lab_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mc_forum_posts_topic_lab"
+                    android:textColor="@color/mc_forum_text6_normal_color"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@id/posts_user_date_text"
+                style="@style/mc_forum_posts_time_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5.0dip"
+                android:layout_marginLeft="3.0dip"
+                android:layout_marginTop="3.0dip" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@id/follow_btn"
+            android:layout_width="80.0dip"
+            android:layout_height="25.0dip"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5.0dip"
+            android:layout_marginRight="5.0dip"
+            android:background="@drawable/ad_icon_recommend"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:paddingLeft="3.0dip"
+            android:paddingRight="3.0dip"
+            android:singleLine="true"
+            android:text="@string/mc_forum_user_follow"
+            android:textColor="@color/mc_forum_detail_title_color"
+            android:textSize="12.0sp" />
+    </LinearLayout>
+</LinearLayout>

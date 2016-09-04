@@ -1,11 +1,16 @@
 package com.mobcent.discuz.base;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 
 import com.mobcent.discuz.activity.TopicDetailActivity;
 import com.mobcent.discuz.api.UrlFactory;
 import com.mobcent.discuz.bean.Component;
+
+import java.io.File;
 
 /**
  * Created by sun on 2016/8/23.
@@ -99,5 +104,48 @@ public class UIJumper {
      */
     public static void jumpTopic(Context context, long id) {
         TopicDetailActivity.start(context, id);
+    }
+
+    /**
+     * 内部跳转，需要根据url定义 是否打开本地界面，或者webview
+     * 1 http://forum.longquanzs.org/home.php?mod=space&uid=214362  用户详情（外部/内部）
+     * 2 http://forum.longquanzs.org/mailto:lqwsx2016@qq.com 邮箱调用
+     * 3 http://forum.longquanzs.org/forum.php?mod=viewthread&tid=59858 帖子详情（内部）
+     * 4 http://forum.longquanzs.org/forum.php?mod=attachment&aid=MTM5MTYwfGI5ZmM4NWIwfDE0NzI0Mzk2NDh8MjE0MzYyfDY0NTUx&nothumb=yes (附件）
+     * 5 http://forum.longquanzs.org/forum.php?mod=post&action=edit&fid=525&tid=64551&pid=332705 编辑帖子
+     * 6 http://forum.longquanzs.org/mobcent/app/web/index.php?r=forum/topicadminex&sdkVersion=2.5.0.0&accessToken=274d079f604beba7d6edaa76be052&accessSecret=db799660500f1cafae3d030c09caa&apphash=276399a6&topicId=64551&postId=332705
+     * 删帖子
+     * @param context
+     * @param url
+     */
+    public static void to(Context context, String url) {
+        //TODO
+        Log.d("JUMP","to:" + url);
+
+    }
+
+    public static void openAudio(Context context,  String url) {
+        Intent intent = new Intent("android.intent.action.VIEW");
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra ("oneshot",0);
+        intent.putExtra ("configchange",0);
+        intent.setDataAndType (Uri.parse(url), "audio/*");
+        intent.setDataAndType (Uri.parse(url), "audio/*");
+        context.startActivity(intent);
+    }
+
+    public static void openVideo(Context context, String url) {
+        Intent intent = new Intent("android.intent.action.VIEW");
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra ("oneshot",0);
+        intent.putExtra ("configchange",0);
+        intent.setDataAndType (Uri.parse(url), "video/*");
+        context.startActivity(intent);
+    }
+    //{"body":{"json":{"fid":525,"tid":64551,"location":"","aid":"","content":"[{\"type\":0,\"infor\":\"刚刚\"}]","longitude":"116.27367401123047","latitude":"40.03788375854492","isHidden":0,"isAnonymous":0,"isOnlyAuthor":0,"isShowPostion":0,"replyId":332705,"isQuote":1}}}
+
+    // "replyId":postId
+    public static void reply(Context mContext, long topicId, long postId, boolean isQute) {
+        //
     }
 }

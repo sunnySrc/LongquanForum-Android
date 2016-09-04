@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/dz_bg_white">
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <include layout="@layout/topic_detail1_reply_group_item" />
+
+
+    <LinearLayout
         android:id="@id/reply_item_box"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15.0dip"
-        android:layout_marginRight="15.0dip">
-
+        android:layout_marginRight="15.0dip"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@id/reply_content_text"
+                style="@style/mc_forum_posts_content_detail_style"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="36.0dip"
+                android:layout_marginTop="5.0dip"
+                android:paddingLeft="10.0dip"
+                android:paddingTop="5.0dip"
+                android:visibility="visible" />
+        </LinearLayout>
         <TextView
             android:id="@id/reply_quote_content_text"
             style="@style/mc_forum_posts_quote_content_style"
@@ -61,6 +78,7 @@
                 android:padding="5.0dip" />
         </LinearLayout>
 
+        <!--回复管理-->
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -94,12 +112,6 @@
                     android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
-    <ImageView
-        android:id="@id/reply_line"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/mc_forum_line_height"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/dz_icon_line" />
-</RelativeLayout>
+</LinearLayout>
