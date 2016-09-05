@@ -447,11 +447,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-    <style name="mc_forum_weather_future_detail">
-        <item name="android:background">@drawable/dz_weather_future_bg</item>
-        <item name="android:layout_width">130.0dip</item>
-        <item name="android:layout_height">100.0dip</item>
-    </style>
     <style name="mc_forum_weather_future_icon">
         <item name="android:layout_width">32.0dip</item>
         <item name="android:layout_height">32.0dip</item>

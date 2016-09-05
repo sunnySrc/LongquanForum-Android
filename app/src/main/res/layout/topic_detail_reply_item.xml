@@ -24,7 +24,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="36.0dip"
                 android:layout_marginTop="5.0dip"
-                android:paddingLeft="10.0dip"
                 android:paddingTop="5.0dip"
                 android:visibility="visible" />
         </LinearLayout>

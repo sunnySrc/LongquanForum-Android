@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -39,7 +38,6 @@ import com.zejian.emotionkeyboard.fragment.EmotionMainFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.R.attr.fragment;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_ERROR;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NORMAL;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
@@ -89,11 +87,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
             @Override
             public void onSuccess(String result) {
                 TopicResult home = JsonConverter.format(result, TopicResult.class);
-                int currentCount = home.getTotalNum();
-                mReplyList.addAll(home.getList());
-                mReplyAdapter.notifyDataSetChanged();
-
-                checkLoadState(home.getList());
+                updateReplyListView(home);
             }
 
             @Override
@@ -108,15 +102,12 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         resultBean = JsonConverter.format(result, TopicResult.class);
 
         setTitle(resultBean.getForumName());
+        // 帖子主题
         updateTopicView(resultBean.getTopic());
-        mBottomCommentTv.setText(String.valueOf(resultBean.getTotalNum())
-                + getString(R.string.mc_forum_topic_detail_bottom_commnet_num_text));
-        // 评论
-        mReplyList.addAll(resultBean.getList());
-        mReplyAdapter = new TopicReplyAdapter(this, mReplyList);
-        listViewReplies.setAdapter(mReplyAdapter);
+        // 评论列表
+        updateReplyListView(resultBean);
 
-        checkLoadState(resultBean.getList());
+        enableBottomPlaceHolderLayout(true);
 
         emotionMainFragment.setConfirmClick(new View.OnClickListener() {
             @Override
@@ -124,11 +115,10 @@ public class TopicDetailActivity extends BaseRefreshActivity {
                 sendContent();
             }
         });
-        enableBottomPlaceHolderLayout(true);
     }
 
     // 底部加载样式
-    private void checkLoadState(List<TopicReply> list) {
+    private void updateReplyLoadState(List<TopicReply> list) {
         mRefreshLayout.onLoadComplete();
         if (list.size() < LqForumApi.PAGE_SIZE_TOPIC_REPLY) {
             mRefreshLayout.setNoMoreData();
@@ -137,6 +127,23 @@ public class TopicDetailActivity extends BaseRefreshActivity {
             mRefreshLayout.setCanLoadMore();
             mMoreViewManager.setFooterType(TYPE_NORMAL);
         }
+    }
+
+
+    // 更新回帖
+    private void updateReplyListView(TopicResult resultBean) {
+
+        mBottomCommentTv.setText(String.valueOf(resultBean.getTotalNum())
+                + getString(R.string.mc_forum_topic_detail_bottom_commnet_num_text));
+
+        mReplyList.addAll(resultBean.getList());
+        if (mReplyAdapter == null) {
+            mReplyAdapter = new TopicReplyAdapter(this, mReplyList);
+            listViewReplies.setAdapter(mReplyAdapter);
+        } else {
+            mReplyAdapter.notifyDataSetChanged();
+        }
+        updateReplyLoadState(resultBean.getList());
     }
 
     // 更新帖子主题
@@ -172,13 +179,12 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
     }
 
+    // 更新关注状态
     private void updateFollowState(boolean isFollow) {
         if (!isFollow) {
             tvFollow.setText(R.string.mc_forum_follow_ta);
-            tvFollow.setClickable(true);
         } else {
             tvFollow.setText(R.string.mc_forum_follow_ta_sucess);
-            tvFollow.setClickable(false);
         }
     }
 
@@ -337,8 +343,6 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         emotionMainFragment = EmotionExtraFragment.newInstance(EmotionExtraFragment.class, fragmentBundle);
         emotionMainFragment.bindToContentView(mRefreshLayout);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        // Replace whatever is in thefragment_container view with this fragment,
-        // and add the transaction to the backstack
         transaction.replace(R.id.fl_emotionview_main, emotionMainFragment);
         /**
          * 此地方会有bug fragment被移除
