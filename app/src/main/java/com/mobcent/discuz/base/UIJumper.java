@@ -1,16 +1,14 @@
 package com.mobcent.discuz.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
+import com.mobcent.discuz.activity.WebActivity;
 import com.mobcent.discuz.activity.TopicDetailActivity;
 import com.mobcent.discuz.api.UrlFactory;
 import com.mobcent.discuz.bean.Component;
-
-import java.io.File;
 
 /**
  * Created by sun on 2016/8/23.
@@ -29,7 +27,7 @@ public class UIJumper {
                 jumpTopic(context, id);
                 break;
             case Component.TYPE_APP:
-                jumpWebView(context, component.getExtParams1().getRedirect());
+                jumpWebView(context, component.getExtParams1().getRedirect(), component.getContent());
             case Component.TYPE_TOPIC_LIST:
                 jumpForumSection(context, id);
                 break;
@@ -55,7 +53,7 @@ public class UIJumper {
                 jumpTopic(context, id);
                 break;
             case Component.TYPE_APP:
-                jumpWebView(context, urlRef);
+                jumpWebView(context, urlRef, "");
             case Component.TYPE_TOPIC_LIST:
                 jumpForumSection(context, id);
                 break;
@@ -92,8 +90,8 @@ public class UIJumper {
      * @param context
      * @param url
      */
-    public static void jumpWebView(Context context, String url) {
-//TODO
+    public static void jumpWebView(Context context, String url, String title) {
+        WebActivity.start(context, url, title);
     }
 
     /**
@@ -122,6 +120,7 @@ public class UIJumper {
         //TODO
         Log.d("JUMP","to:" + url);
 
+        jumpWebView(context, url, "");
     }
 
     public static void openAudio(Context context,  String url) {

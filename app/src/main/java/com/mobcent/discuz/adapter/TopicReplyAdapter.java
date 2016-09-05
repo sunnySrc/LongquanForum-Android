@@ -25,7 +25,7 @@ import java.util.List;
 
 public class TopicReplyAdapter extends ComAdapter<TopicReply> {
 
-    private  PopupWindow popupWindow;
+    private  ReplyActionPopup popupWindow;
     View mPopOperationMenu ;
     public TopicReplyAdapter(Context context, List<TopicReply> objects) {
         super(context, R.layout.topic_detail_reply_item, objects);
@@ -70,7 +70,7 @@ public class TopicReplyAdapter extends ComAdapter<TopicReply> {
 
     private void showPopupWindow(View anchor, TopicReply item) {
         popupWindow = new ReplyActionPopup(getContext(), item);
-        popupWindow.showAsDropDown(anchor, 0, -anchor.getMeasuredHeight());
+        popupWindow.showAsLeft(anchor);
     }
 
 }

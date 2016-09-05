@@ -21,6 +21,7 @@ import java.util.List;
 public class ReplyActionPopup extends PopupWindow implements View.OnClickListener {
     private final List<TopicReply.ManagePanelBean> managePanel;
     private final TopicReply reply;
+    private final int viewHeight;
     Context mContext;
 
     public ReplyActionPopup(Context context, TopicReply reply) {
@@ -37,13 +38,14 @@ public class ReplyActionPopup extends PopupWindow implements View.OnClickListene
                 (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.topic_detail1_opt_menu, null);
         setContentView(view);
+        viewHeight = view.getMeasuredHeight();
 
         boolean isOtherReply = managePanel == null || managePanel.isEmpty();
 
         View manageView = view.findViewById(R.id.menu_manage_layout);
         manageView.setVisibility(isOtherReply ? View.GONE : View.VISIBLE);
         View reportView = view.findViewById(R.id.menu_report_layout);
-        reportView.setVisibility(isOtherReply ? View.GONE : View.VISIBLE);
+//        reportView.setVisibility(isOtherReply ? View.GONE : View.VISIBLE);
         manageView.setOnClickListener(this);
         reportView.setOnClickListener(this);
         view.findViewById(R.id.menu_comment_layout).setOnClickListener(this);
@@ -83,5 +85,9 @@ public class ReplyActionPopup extends PopupWindow implements View.OnClickListene
                     }
                 });
         builder.create().show();
+    }
+
+    public void showAsLeft(View anchor) {
+        showAsDropDown(anchor, 0, -(viewHeight + anchor.getMeasuredHeight()) / 2);
     }
 }

@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:gravity="center_vertical"
-            android:paddingRight="5.0dip">
+            >
 
             <View
                 android:layout_width="15.0dip"
@@ -33,13 +33,15 @@
                 android:layout_marginLeft="3.0dip"
                 android:text="@string/mc_forum_topic_management"
                 android:textColor="#ffffffff" />
+
+            <View
+                android:id="@id/mid_line1_view"
+                android:layout_width="1.0dip"
+                android:layout_height="18.0dip"
+                android:layout_marginLeft="5.0dip"
+                android:background="@drawable/dz_icon_line" />
         </LinearLayout>
 
-        <View
-            android:id="@id/mid_line1_view"
-            android:layout_width="1.0dip"
-            android:layout_height="18.0dip"
-            android:background="@drawable/dz_icon_line" />
 
         <LinearLayout
             android:id="@id/menu_report_layout"
@@ -59,14 +61,15 @@
                 android:layout_marginLeft="3.0dip"
                 android:text="@string/mc_forum_add_report_user"
                 android:textColor="#ffffffff" />
+            <View
+                android:id="@id/mid_line2_view"
+                android:layout_width="1.0dip"
+                android:layout_height="18.0dip"
+                android:layout_marginLeft="5.0dip"
+                android:background="@drawable/dz_icon_line" />
         </LinearLayout>
 
-        <View
-            android:id="@id/mid_line2_view"
-            android:layout_width="1.0dip"
-            android:layout_height="18.0dip"
-            android:layout_marginLeft="5.0dip"
-            android:background="@drawable/dz_icon_line" />
+
 
         <LinearLayout
             android:id="@id/menu_comment_layout"

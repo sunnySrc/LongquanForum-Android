@@ -35,7 +35,7 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
     private String mMethod = "post";
     public final String baseUrl = "http://forum.longquanzs.org//mobcent/app/web/index.php?r=";
     // Global instance
-    private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient();
+    public static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient();
     public DiscuzRequest(String url, String body, HttpResponseHandler handler) {
         mUrl = url;
         mBody = body;
