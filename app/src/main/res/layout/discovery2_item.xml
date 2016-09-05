@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <ImageView
+        android:id="@+id/image"
+        android:layout_alignParentLeft="true"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="120px"
+        android:layout_height="120px" />
+
+    <LinearLayout
+        android:layout_toRightOf="@+id/image"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/title"
+            android:text="标题"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/detail"
+            android:text="详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:id="@+id/imagegride"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="3">
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:padding="2dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/time"
+                android:text="1小时前"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/vote"
+                android:text=" 0"
+                android:drawableLeft="@drawable/dz_list_bigphoto_praise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/reply"
+                android:text=" 0"
+                android:paddingLeft="10dp"
+                android:drawableLeft="@drawable/dz_list_circle_replies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

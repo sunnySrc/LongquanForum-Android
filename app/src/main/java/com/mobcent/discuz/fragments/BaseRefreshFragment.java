@@ -9,15 +9,17 @@ import android.view.ViewGroup;
 
 import com.appbyme.dev.R;
 import com.mobcent.discuz.ui.EmptyLayout;
+import com.mobcent.discuz.widget.SuperRefreshLayout;
+import com.mobcent.discuz.widget.SuperRefreshLayoutListener;
 
 /**
  * Created by sun on 2016/8/23.
  * 基础刷新Fragment
  */
 
-public abstract class BaseRefreshFragment extends BaseFragment implements  SwipeRefreshLayout.OnRefreshListener{
+public abstract class BaseRefreshFragment extends BaseFragment implements  SwipeRefreshLayout.OnRefreshListener, SuperRefreshLayoutListener {
 
-    protected SwipeRefreshLayout mRefreshLayout;
+    protected SuperRefreshLayout mRefreshLayout;
     /**
      *  空白 错误 占位布局
      */
@@ -27,7 +29,7 @@ public abstract class BaseRefreshFragment extends BaseFragment implements  Swipe
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_pull_refresh, container, false);
-        mRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.swiperefreshlayout);
+        mRefreshLayout = (SuperRefreshLayout) root.findViewById(R.id.swiperefreshlayout);
         mErrorLayout = (EmptyLayout) root.findViewById(R.id.error_layout);
         mErrorLayout.setOnLayoutClickListener(new View.OnClickListener() {
 
@@ -40,6 +42,7 @@ public abstract class BaseRefreshFragment extends BaseFragment implements  Swipe
         });
         mRefreshLayout.addView(onCreateContentLayout(inflater, container, savedInstanceState));
         mRefreshLayout.setOnRefreshListener(this);
+        mRefreshLayout.setSuperRefreshLayoutListener(this);
         return root;
     }
 

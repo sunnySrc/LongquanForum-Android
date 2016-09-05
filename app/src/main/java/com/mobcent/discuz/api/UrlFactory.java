@@ -32,4 +32,8 @@ public class UrlFactory {
      * 帖子操作
      */
     public static final String TOPIC_ADMIN = "forum/topicadmin";
+
+    public static final String FORUM_LIST = "forum/forumlist";
+
+    public static final String USER_FAVOR = "user/userfavorite";
 }

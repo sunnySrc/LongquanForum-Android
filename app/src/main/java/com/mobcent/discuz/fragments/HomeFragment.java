@@ -34,6 +34,14 @@ public class HomeFragment extends BaseRefreshFragment {
         return viewGroup;
     }
 
+
+    @Override
+    public void onRefreshing() {
+    }
+    @Override
+    public void onLoadMore() {
+    }
+
     @Override
     protected void onExecuteRequest(HttpResponseHandler handler) {
         request = LqForumApi.home(this);

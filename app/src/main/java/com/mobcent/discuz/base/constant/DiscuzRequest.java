@@ -69,7 +69,9 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
             if (mMethod.equals("get")) {
                 builder = builder.get();
             } else {
-                MediaType mediaType = MediaType.parse("multipart/form-data; boundary=---011000010111000001101001");
+                MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+                //RequestBody body = RequestBody.create(mediaType, "topOrder=1&sdkVersion=2.4.3.0&apphash=5038dae8&forumKey=BW0L5ISVRsOTVLCTJx&pageSize=20&filterId=0&filterType=typeid&sortby=new&boardId=0&egnVersion=v2035.2&page=1&isRatio=1&accessToken=&accessSecret=&=");
+                //MediaType mediaType = MediaType.parse("multipart/form-data; boundary=---011000010111000001101001");
                 String bodyString = "";
                 if (mMethod == "post") {
                     if (!TextUtils.isEmpty(mBody)) {
@@ -85,9 +87,10 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
                             while (it.hasNext()) {
                                 String key = (String) it.next();
                                 String value = obj.getString(key);
-                                bodyString += "-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"" + key + "\"\r\n\r\n" + value + "\r\n";
+                                bodyString += "&" + key + "=" + value;
+                                //bodyString += "-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"" + key + "\"\r\n\r\n" + value + "\r\n";
                             }
-                            bodyString += "-----011000010111000001101001--";
+                            //bodyString += "-----011000010111000001101001--";
                         } catch (Exception e) {
 
                         }
@@ -101,12 +104,15 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
                         bodyString += "-----011000010111000001101001--";
                     }
                 }
+                if (!TextUtils.isEmpty(bodyString)) {
+                    bodyString = bodyString.substring(1);
+                }
                 RequestBody body = RequestBody.create(mediaType, bodyString);
                 builder = builder.post(body)
-                        .addHeader("content-type", "multipart/form-data; boundary=---011000010111000001101001");
+                        .addHeader("content-type", "application/x-www-form-urlencoded");
+                        //.addHeader("content-type", "multipart/form-data; boundary=---011000010111000001101001");
             }
             Request request = builder.build();
-            Log.d("http request", request.url());
             Response response = OK_HTTP_CLIENT.newCall(request).execute();
             return response.body().string();
         } catch (Exception e) {
@@ -116,7 +122,6 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
 
     @Override
     protected void onPostExecute(String result) {
-        Log.d("http result", result);
         if (!TextUtils.isEmpty(result)) {
             mHandler.onSuccess(result);
         } else {

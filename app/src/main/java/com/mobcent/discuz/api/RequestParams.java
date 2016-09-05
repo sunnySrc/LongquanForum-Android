@@ -8,7 +8,7 @@ import org.json.JSONObject;
  */
 
 public class RequestParams {
-    public static final JSONObject json = new JSONObject();
+    public final JSONObject json = new JSONObject();
 
     public void add(String name, Object value) {
         try {
