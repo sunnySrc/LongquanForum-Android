@@ -39,7 +39,6 @@ public class Discuz3Fragment extends BaseRefreshFragment {
     private DiscuzRequest request;
     private int page = 1;
     private ListView mListView;
-    private List<MoreNewResult.ListBean> mListDataSet = new ArrayList<>();
     private HomeMoreAdapter mAdapter;
     private LoadMoreViewManager mMoreViewManager;
 
@@ -53,6 +52,8 @@ public class Discuz3Fragment extends BaseRefreshFragment {
         mListView = (ListView) inflater.inflate(R.layout.listview_base, container, false);
         mMoreViewManager = new LoadMoreViewManager(mListView);
         mMoreViewManager.setNoMoreDateHintRes(R.string.mc_forum_detail_load_finish);
+        mAdapter = new HomeMoreAdapter(getContext());
+        mListView.setAdapter(mAdapter);
         return mListView;
     }
 
@@ -83,13 +84,8 @@ public class Discuz3Fragment extends BaseRefreshFragment {
     }
 
     private void updateListView(MoreNewResult news) {
-        mListDataSet.addAll(news.getList());
-        if (mAdapter == null) {
-            mAdapter = new HomeMoreAdapter(getContext(), mListDataSet);
-            mListView.setAdapter(mAdapter);
-        } else {
-            mAdapter.notifyDataSetChanged();
-        }
+        mAdapter.mListDataSet.addAll(news.getList());
+        mAdapter.notifyDataSetChanged();
         updateReplyLoadState(news);
     }
 
@@ -106,7 +102,7 @@ public class Discuz3Fragment extends BaseRefreshFragment {
 
     @Override
     protected void showContent(String result) {
-        mListDataSet.clear();
+        mAdapter.mListDataSet.clear();
         MoreNewResult news = JsonConverter.format(result, MoreNewResult.class);
         updateListView(news);
     }

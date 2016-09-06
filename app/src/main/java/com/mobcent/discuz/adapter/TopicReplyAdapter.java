@@ -32,7 +32,8 @@ public class TopicReplyAdapter extends ComAdapter<TopicReply> {
     }
 
     @Override
-    public void customSet(ViewHolder holder, final TopicReply item, int position) {
+    public void customSet(ViewHolder holder, int position) {
+        final TopicReply item = getItem(position);
         ImageView userHead = holder.getView(R.id.reply_user_img);
         ImageLoader.load(item.getIcon(), userHead, 4);
         holder.setText(R.id.reply_user_name_text, item.getReply_name());

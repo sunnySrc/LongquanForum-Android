@@ -113,6 +113,7 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
                         //.addHeader("content-type", "multipart/form-data; boundary=---011000010111000001101001");
             }
             Request request = builder.build();
+            Log.d("http request", request.url());
             Response response = OK_HTTP_CLIENT.newCall(request).execute();
             return response.body().string();
         } catch (Exception e) {
@@ -122,6 +123,7 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
 
     @Override
     protected void onPostExecute(String result) {
+        Log.d("http result", result);
         if (!TextUtils.isEmpty(result)) {
             mHandler.onSuccess(result);
         } else {

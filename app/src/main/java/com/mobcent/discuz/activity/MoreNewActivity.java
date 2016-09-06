@@ -31,7 +31,6 @@ public class MoreNewActivity extends BaseRefreshActivity {
     private int pageNum;
     private ListView mListView;
     private LoadMoreViewManager mMoreViewManager;
-    private List<MoreNewResult.ListBean> mListDataSet = new ArrayList<>();
     private HomeMoreAdapter mAdapter;
     private long mBoardId;
 
@@ -50,6 +49,8 @@ public class MoreNewActivity extends BaseRefreshActivity {
         mListView = (ListView) getLayoutInflater().inflate(R.layout.listview_base, container, false);
         mMoreViewManager = new LoadMoreViewManager(mListView);
         mMoreViewManager.setNoMoreDateHintRes(R.string.mc_forum_detail_load_finish);
+        mAdapter = new HomeMoreAdapter(this);
+        mListView.setAdapter(mAdapter);
         return mListView;
     }
 
@@ -70,13 +71,8 @@ public class MoreNewActivity extends BaseRefreshActivity {
     }
 
     private void updateListView(MoreNewResult news) {
-        mListDataSet.addAll(news.getList());
-        if (mAdapter == null) {
-            mAdapter = new HomeMoreAdapter(this, mListDataSet);
-            mListView.setAdapter(mAdapter);
-        } else {
-            mAdapter.notifyDataSetChanged();
-        }
+        mAdapter.mListDataSet.addAll(news.getList());
+        mAdapter.notifyDataSetChanged();
         updateReplyLoadState(news);
     }
 
@@ -94,7 +90,7 @@ public class MoreNewActivity extends BaseRefreshActivity {
     @Override
     protected Tasker onExecuteRequest(HttpResponseHandler handler) {
         pageNum = 1;
-        mListDataSet.clear();
+        mAdapter.mListDataSet.clear();
         return LqForumApi.moreTopics(mBoardId, pageNum, handler);
     }
 

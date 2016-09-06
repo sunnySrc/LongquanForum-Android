@@ -86,6 +86,7 @@ public class MoreNewResult extends BaseResult {
         private String board_name;
         private String source_type;
         private int source_id;
+        private int topic_id;
         private String title;
         private int user_id;
         private String last_reply_date;
@@ -152,6 +153,14 @@ public class MoreNewResult extends BaseResult {
 
         public void setSource_id(int source_id) {
             this.source_id = source_id;
+        }
+
+        public int getTopic_id() {
+            return topic_id;
+        }
+
+        public void setTopic_id(int topic_id) {
+            this.topic_id = topic_id;
         }
 
         public String getTitle() {
