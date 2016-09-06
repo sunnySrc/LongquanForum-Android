@@ -25,6 +25,7 @@ import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
 
 /**
  * Created by sun on 2016/9/6.
+ * 发语开示 更多
  */
 
 public class MoreNewActivity extends BaseRefreshActivity {
@@ -49,7 +50,6 @@ public class MoreNewActivity extends BaseRefreshActivity {
     protected View onCreateContentLayout(ViewGroup container, Bundle savedInstanceState) {
         mListView = (ListView) getLayoutInflater().inflate(R.layout.listview_base, container, false);
         mMoreViewManager = new LoadMoreViewManager(mListView);
-        mMoreViewManager.setNoMoreDateHintRes(R.string.mc_forum_detail_load_finish);
         return mListView;
     }
 

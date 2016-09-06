@@ -12,6 +12,9 @@ import com.mobcent.discuz.activity.TopicDetailActivity;
 import com.mobcent.discuz.api.UrlFactory;
 import com.mobcent.discuz.bean.Component;
 
+import java.net.URL;
+import java.util.Set;
+
 /**
  * Created by sun on 2016/8/23.
  * 页面跳转工具类
@@ -128,7 +131,26 @@ public class UIJumper {
      * @param url
      */
     public static void to(Context context, String url) {
-        //TODO
+        if(url.contains("mailto:")) {
+            String email = url.substring(url.lastIndexOf(":") + 1);
+            Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+            String[] recipients = new String[]{email};
+            emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, recipients);
+            emailIntent.setType("text/plain");
+            context.startActivity(Intent.createChooser(emailIntent, "发送邮件"));
+            return;
+        }
+        Uri uri = Uri.parse(url);
+        Set<String> parameterNames = uri.getQueryParameterNames();
+        if (parameterNames.size() == 2) {
+            // 其它定位或页码信息的 使用webView呈现
+            if (parameterNames.contains("uid")) {
+                // 用户
+            } else if (parameterNames.contains("tid")) {
+                jumpTopic(context, Long.decode(uri.getQueryParameter("tid")));
+                return;
+            }
+        }
         Log.d("JUMP","to:" + url);
 
         jumpWebView(context, url, "");
