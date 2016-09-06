@@ -45,7 +45,7 @@ public class EmoticonHelper {
                 @Override
                 public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
 
-                    spanCache.setSpan(new ImageSpan(context, BitmapUtil.scaleImageTo(resource, height, height)));
+                    spanCache.setSpan(new ImageSpan(context, BitmapUtil.scaleImageTo(resource, height, height),ImageSpan.ALIGN_BASELINE));
                     spanCache.build();
                     linkedList.remove(spanCache);
                     if (linkedList.isEmpty()) {

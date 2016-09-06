@@ -25,6 +25,7 @@ import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
 
 /**
  * Created by sun on 2016/9/6.
+ * 发语开示 更多
  */
 
 public class MoreNewActivity extends BaseRefreshActivity {

@@ -84,6 +84,7 @@ public class TopicHelper {
             } else if (type == TYPE_TEXT) {
                 //普通文本，表情
                 final TextView tv = holder.getView(R.id.text_view);
+                tv.setTextIsSelectable(true);
                 final int height = (int) tv.getTextSize();
                 EmoticonHelper.addEmoticonSpans(context, content, height, new EmoticonHelper.EmoticonCallback() {
                     @Override
