@@ -42,17 +42,12 @@ public class BannerItemView extends RelativeLayout implements View.OnClickListen
 
     public void initData(RequestManager manager, Banner banner) {
         this.banner = banner;
-        Log.d("Banner","startLoad:"+ banner.getImg());
-        // Glide not load image when target view not layout(height = 0. width = 0)
-        // @see https://github.com/bumptech/glide/issues/677
-//        manager.load(banner.getImg()).listener(requestListener).error(R.drawable.__leak_canary_icon).into(iv_banner);
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         Glide.with(getContext()).load(banner.getImg())
-//                .listener(requestListener)
                 .into(iv_banner);
     }
 
