@@ -4,13 +4,15 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.appbyme.dev.R;
 import com.mobcent.common.ImageLoader;
 import com.mobcent.common.TimeUtil;
+import com.mobcent.discuz.activity.helper.TopicHelper;
 import com.mobcent.discuz.base.EmoticonHelper;
+import com.mobcent.discuz.bean.TopicContent;
 import com.mobcent.discuz.bean.TopicReply;
 import com.mobcent.discuz.ui.ReplyActionPopup;
 import com.mobcent.discuz.widget.ComAdapter;
@@ -26,7 +28,6 @@ import java.util.List;
 public class TopicReplyAdapter extends ComAdapter<TopicReply> {
 
     private  ReplyActionPopup popupWindow;
-    View mPopOperationMenu ;
     public TopicReplyAdapter(Context context, List<TopicReply> objects) {
         super(context, R.layout.topic_detail_reply_item, objects);
     }
@@ -44,15 +45,28 @@ public class TopicReplyAdapter extends ComAdapter<TopicReply> {
         holder.setText(R.id.reply_lab_text, getContext().getString(R.string.reply_lab, item.getPosition()));
 
         // 这个内容列表 TODO 图片
-        String content = item.getReply_content().get(0).getInfor();
+
+        LinearLayout linearLayout = holder.getView(R.id.reply_content_container);
         final TextView tv = holder.getView(R.id.reply_content_text);
-        final int height = (int) tv.getTextSize();
-        EmoticonHelper.addEmoticonSpans(getContext(), content, height, new EmoticonHelper.EmoticonCallback() {
-            @Override
-            public void onEmoticonReady(SpannableStringBuilder builder) {
-                tv.setText(builder);
-            }
-        });
+        List<TopicContent> topicContents = item.getReply_content();
+        if (topicContents.size() == 1) {
+            // 单个文本的使用一个简单布局
+            tv.setVisibility(View.VISIBLE);
+            linearLayout.setVisibility(View.GONE);
+            String content = topicContents.get(0).getInfor();
+            final int height = (int) tv.getTextSize();
+            EmoticonHelper.addEmoticonSpans(getContext(), content, height, new EmoticonHelper.EmoticonCallback() {
+                @Override
+                public void onEmoticonReady(SpannableStringBuilder builder) {
+                    tv.setText(builder);
+                }
+            });
+        } else {
+            tv.setVisibility(View.GONE);
+            linearLayout.setVisibility(View.VISIBLE);
+            TopicHelper.updateContent(getContext(), linearLayout, topicContents);
+        }
+
 
 
         TextView quoteTv = holder.getView(R.id.reply_quote_content_text);

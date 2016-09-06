@@ -326,6 +326,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     public void initParams(Bundle bundle) {
         pageNum = 1;
         topicId = bundle.getLong(BaseIntentConstant.BUNDLE_TOPIC_ID);
+//        topicId = 64551;
     }
 
     /**
