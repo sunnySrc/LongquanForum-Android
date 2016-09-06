@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.mobcent.discuz.activity.ModuleConfigActivity;
+import com.mobcent.discuz.activity.MoreNewActivity;
 import com.mobcent.discuz.activity.WebActivity;
 import com.mobcent.discuz.activity.TopicDetailActivity;
 import com.mobcent.discuz.api.UrlFactory;
@@ -81,7 +82,7 @@ public class UIJumper {
      * @param id
      */
     private static void jumpNewsList(Context context, long id) {
-        String url = UrlFactory.NEWS_LIST;
+        MoreNewActivity.start(context, id);
     }
 
     /**

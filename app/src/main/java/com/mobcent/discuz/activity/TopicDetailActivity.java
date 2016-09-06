@@ -243,7 +243,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
     @Override
     protected View onCreateContentLayout(ViewGroup container, Bundle savedInstanceState) {
-        listViewReplies = (ListView) getLayoutInflater().inflate(R.layout.activity_topic_replies, container, false);
+        listViewReplies = (ListView) getLayoutInflater().inflate(R.layout.listview_base, container, false);
         View contentView =  getLayoutInflater().inflate(R.layout.topic_detail_header, listViewReplies, false);
         mTopicViewHolder = new ViewHolder(getContentView());
         listViewReplies.addHeaderView(contentView);

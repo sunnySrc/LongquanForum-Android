@@ -100,6 +100,14 @@ public abstract class BaseRefreshActivity extends BaseActivity implements SuperR
 
 
     /**
+     * 刷新内容布局
+     * @return
+     * @param container
+     * @param savedInstanceState
+     */
+    protected abstract View onCreateContentLayout( ViewGroup container, Bundle savedInstanceState);
+
+    /**
      * 请求接口
      * @param handler
      */
@@ -110,14 +118,6 @@ public abstract class BaseRefreshActivity extends BaseActivity implements SuperR
      * @param result
      */
     protected abstract void showContent(String result);
-
-    /**
-     * 刷新内容布局
-     * @return
-     * @param container
-     * @param savedInstanceState
-     */
-    protected abstract View onCreateContentLayout( ViewGroup container, Bundle savedInstanceState);
 
 
 }

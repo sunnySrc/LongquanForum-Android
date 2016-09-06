@@ -7,7 +7,7 @@ import java.util.List;
  *  帖子
  */
 
-public class TopicResult extends Base{
+public class TopicResult extends BaseResult{
 
 
     /**

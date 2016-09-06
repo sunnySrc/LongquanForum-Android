@@ -43,10 +43,11 @@ public class LqForumApi {
      * 首页 法语开示
      *
      */
-    public static DiscuzRequest moreTopics(long newsModelId, HttpResponseHandler handler) {
+    public static DiscuzRequest moreTopics(long newsModelId, int page,  HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
-        params.add("moduleId", 5);
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.MODULE_CONFIG, params.getJsonStr(), handler);
+        params.add("moduleId", newsModelId);
+        params.add("page",page);
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.NEWS_LIST, params.getJsonStr(), handler);
         request.begin();
         return request;
     }
