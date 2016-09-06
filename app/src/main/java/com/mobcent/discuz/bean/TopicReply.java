@@ -63,7 +63,7 @@ public class TopicReply {
      * type : 0
      */
 
-    private List<ReplyContentBean> reply_content;
+    private List<TopicContent> reply_content;
     /**
      * action : http://forum.longquanzs.org/forum.php?mod=post&action=edit&fid=525&tid=64551&pid=332703
      * title : 编辑
@@ -231,11 +231,11 @@ public class TopicReply {
         this.delThread = delThread;
     }
 
-    public List<ReplyContentBean> getReply_content() {
+    public List<TopicContent> getReply_content() {
         return reply_content;
     }
 
-    public void setReply_content(List<ReplyContentBean> reply_content) {
+    public void setReply_content(List<TopicContent> reply_content) {
         this.reply_content = reply_content;
     }
 
@@ -245,27 +245,6 @@ public class TopicReply {
 
     public void setManagePanel(List<ManagePanelBean> managePanel) {
         this.managePanel = managePanel;
-    }
-
-    public static class ReplyContentBean {
-        private String infor;
-        private int type;
-
-        public String getInfor() {
-            return infor;
-        }
-
-        public void setInfor(String infor) {
-            this.infor = infor;
-        }
-
-        public int getType() {
-            return type;
-        }
-
-        public void setType(int type) {
-            this.type = type;
-        }
     }
 
     public static class ManagePanelBean {

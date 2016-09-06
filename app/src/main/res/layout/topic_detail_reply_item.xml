@@ -15,18 +15,23 @@
         android:layout_marginRight="15.0dip"
         android:orientation="vertical">
         <LinearLayout
+            android:id="@+id/reply_content_container"
             android:layout_width="match_parent"
+            android:layout_marginLeft="36.0dip"
+            android:orientation="vertical"
+            android:paddingTop="5.0dip"
+            android:paddingBottom="5dp"
             android:layout_height="wrap_content">
-            <TextView
-                android:id="@id/reply_content_text"
-                style="@style/mc_forum_posts_content_detail_style"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="36.0dip"
-                android:layout_marginTop="5.0dip"
-                android:paddingTop="5.0dip"
-                android:visibility="visible" />
         </LinearLayout>
+        <TextView
+            android:id="@id/reply_content_text"
+            style="@style/mc_forum_posts_content_detail_style"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36.0dip"
+            android:layout_marginTop="5.0dip"
+            android:paddingTop="5.0dip"
+            android:visibility="visible" />
         <TextView
             android:id="@id/reply_quote_content_text"
             style="@style/mc_forum_posts_quote_content_style"
