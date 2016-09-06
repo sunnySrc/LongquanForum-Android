@@ -11,6 +11,7 @@ public class Banner {
     private String img;
     private boolean showTitle;
     private String ref;
+    private Object extra;
 
     public static Banner valueOf(Component component) {
         if (component.hasChildComponent())
@@ -22,6 +23,7 @@ public class Banner {
         banner.type = component.getType();
         banner.ref = component.getExtParams1().getRedirect();
         banner.id = component.getExtParams1().getTopicId();
+        banner.extra = component;
         banner.showTitle = component.getExtParams1().getIsShowTopicTitle() == 1;
         return banner;
     }
@@ -54,5 +56,9 @@ public class Banner {
 
     public void setRef(String ref) {
         this.ref = ref;
+    }
+
+    public Object getExtra() {
+        return extra;
     }
 }

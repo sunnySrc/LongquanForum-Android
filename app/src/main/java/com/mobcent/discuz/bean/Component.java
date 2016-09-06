@@ -20,6 +20,8 @@ public class Component {
     public static final String STYLE_LAYOUT_LINE = "layoutLine"; // 内部分割线
     public static final String STYLE_Col_FOUR = "layoutFourCol"; // 一行4个
     public static final String STYLE_Col_ONE = "layoutOneCol_Low_Fixed"; // 一行1个 "layoutOneCol_Low_Fixed"
+    public static final String STYLE_Col_ONE_BASE = "layoutOneCol_Low"; // 一行1个 "layoutOneCol_Low_Fixed"
+
     public static final String STYLE_Col_TWO = "layoutTwoCol_Low";
 
     /**

@@ -118,14 +118,15 @@ public class WebActivity extends Activity implements View.OnClickListener {
          */
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            return false;
 //            if (Uri.parse(url).getHost().equals("www.baidu.com")) {
 //                // 这个是我的网页，所以不要覆盖，让我的WebView来加载页面
 //                return false;
 //            }
-            // 否则，这个链接不是我的网站页面，因此启用浏览器来处理urls
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            startActivity(intent);
-            return true;
+//            // 否则，这个链接不是我的网站页面，因此启用浏览器来处理urls
+//            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+//            startActivity(intent);
+//            return true;
         }
 
         @Override
@@ -140,17 +141,31 @@ public class WebActivity extends Activity implements View.OnClickListener {
         mTitleTv.setText(title);
     }
 
+
+    /**
+     *  顶部的返回箭头 调用 此方法
+     */
+
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // 检查是否为返回事件，如果有网页历史记录
-        if (keyCode == KeyEvent.KEYCODE_BACK && mWebView.canGoBack()) {
+    public void onBackPressed() {
+        if (mWebView.canGoBack()) {
             mWebView.goBack();
-            return true;
+        } else {
+            super.onBackPressed();
         }
-        // 如果不是返回键或没有网页浏览历史，保持默认
-        // 系统行为（可能会退出该活动）
-        return super.onKeyDown(keyCode, event);
     }
+
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        // 检查是否为返回事件，如果有网页历史记录
+//        if (keyCode == KeyEvent.KEYCODE_BACK && mWebView.canGoBack()) {
+//            mWebView.goBack();
+//            return true;
+//        }
+//        // 如果不是返回键或没有网页浏览历史，保持默认
+//        // 系统行为（可能会退出该活动）
+//        return super.onKeyDown(keyCode, event);
+//    }
 
     @Override
     public void onClick(View v) {
@@ -173,7 +188,6 @@ public class WebActivity extends Activity implements View.OnClickListener {
 
         // Enable Javascript
         settings.setJavaScriptEnabled(true);
-
         // Use WideViewport and Zoom out if there is no viewport defined
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);

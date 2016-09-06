@@ -15,6 +15,7 @@ import com.bumptech.glide.request.target.Target;
 import com.litesuits.android.log.Log;
 import com.mobcent.discuz.base.UIJumper;
 import com.mobcent.discuz.bean.Banner;
+import com.mobcent.discuz.bean.Component;
 
 import java.util.Locale;
 
@@ -58,10 +59,14 @@ public class BannerItemView extends RelativeLayout implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if (banner != null) {
-            String type = banner.getType();
-            long id = banner.getId();
-            String ref = banner.getRef();
-            UIJumper.jump(getContext(), type, id, ref);
+            if (banner.getExtra() instanceof Component) {
+                UIJumper.jump(getContext(), (Component) banner.getExtra());
+            } else {
+                String type = banner.getType();
+                long id = banner.getId();
+                String ref = banner.getRef();
+                UIJumper.jump(getContext(), type, id, ref);
+            }
         }
     }
     public String getTitle() {

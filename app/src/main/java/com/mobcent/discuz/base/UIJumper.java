@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
+import com.mobcent.discuz.activity.ModuleConfigActivity;
 import com.mobcent.discuz.activity.WebActivity;
 import com.mobcent.discuz.activity.TopicDetailActivity;
 import com.mobcent.discuz.api.UrlFactory;
@@ -35,17 +36,26 @@ public class UIJumper {
                 jumpNewsList(context, id);
                 break;
             case Component.TYPE_REF:
-                jumpModuleRef(context, id);
+                id = component.getExtParams1().getModuleId();
+                jumpModuleRef(context, id, component.getContent());
                 break;
             default:
                 break;
         }
     }
 
-    private static void jumpModuleRef(Context context, long id) {
-        String url = UrlFactory.MODULE_CONFIG;
+    private static void jumpModuleRef(Context context, long id, String title) {
+        ModuleConfigActivity.start(context, id, title);
     }
 
+    /**
+     * @deprecated  @
+     * @see UIJumper#jump(Context, Component)
+     * @param context
+     * @param type
+     * @param id
+     * @param urlRef
+     */
     public static void jump(Context context, String type, long id, String urlRef) {
         Log.d(TAG, "jump:" + type + "-" + id);
         switch (type) {
@@ -61,7 +71,7 @@ public class UIJumper {
                 jumpNewsList(context, id);
                 break;
             case Component.TYPE_REF:
-                jumpModuleRef(context, id);
+                throw new IllegalStateException("type ref call jump()");
         }
     }
 

@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
+import static android.R.attr.id;
 import static com.appbyme.dev.R.id.page;
 import static com.litesuits.android.async.AsyncExecutor.handler;
 
@@ -27,8 +28,12 @@ public class LqForumApi {
      * @param handler
      */
     public static DiscuzRequest home(HttpResponseHandler handler) {
+        return moduleConfig(handler, 6);
+    }
+
+    public static DiscuzRequest moduleConfig(HttpResponseHandler handler , long id) {
         RequestParams params = new RequestParams();
-        params.add("moduleId", 6);
+        params.add("moduleId", id);
         DiscuzRequest request = new DiscuzRequest(UrlFactory.MODULE_CONFIG, params.getJsonStr(), handler);
         request.begin();
         return request;

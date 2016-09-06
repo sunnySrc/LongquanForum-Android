@@ -50,11 +50,11 @@ public class ComponentBuilder {
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         LinearLayout group = new LinearLayout(context);
         group.setOrientation(LinearLayout.VERTICAL);
-        if (!divider) {
-            // 没有分割栏, 则添加组边距
-            int padding = ScreenUtil.dip2px(context ,8);
-            group.setPadding(0, padding, 0, padding);
-        }
+//        if (!divider) {
+//            // 没有分割栏, 则添加组边距
+//            int padding = ScreenUtil.dip2px(context ,8);
+//            group.setPadding(0, padding, 0, padding);
+//        }
         final int count = components.size();
         for (int i = 0;i < count; i++) {
             Component component = components.get(i);
@@ -110,7 +110,7 @@ public class ComponentBuilder {
         } else if (Component.STYLE_Col_TWO.equals(style)) {
             // 一行二 链接
             return buildColTwo(component.getComponentList(), Divider.LINE);
-        } else if (Component.STYLE_Col_ONE.equals(style)) {
+        } else if (Component.STYLE_Col_ONE.equals(style) || Component.STYLE_Col_ONE_BASE.equals(style)) {
             return buildColOne(component.getComponentList().get(0));
         } else if (Component.STYLE_Slider.equals(style)) {
             // 宽高比 2
