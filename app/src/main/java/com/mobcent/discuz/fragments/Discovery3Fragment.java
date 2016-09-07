@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -95,7 +96,43 @@ public class Discovery3Fragment extends BaseRefreshFragment {
                 TextView time = (TextView)convertView.findViewById(R.id.time);
                 TextView vote = (TextView)convertView.findViewById(R.id.vote);
                 TextView reply = (TextView)convertView.findViewById(R.id.reply);
-                final RelativeLayout gridView = (RelativeLayout)convertView.findViewById(R.id.imagegride);
+                final LinearLayout gridView = (LinearLayout) convertView.findViewById(R.id.imagegride);
+                int rows = (int) Math.ceil(object.getJSONArray("imageList").length() / 3.0);
+                gridView.findViewById(R.id.secondrow).setVisibility(View.GONE);
+                gridView.findViewById(R.id.thirdrow).setVisibility(View.GONE);
+                gridView.findViewById(R.id.firstrow).setVisibility(View.GONE);
+                gridView.setVisibility(View.GONE);
+                switch (rows) {
+                    case 3:
+                        gridView.findViewById(R.id.thirdrow).setVisibility(View.VISIBLE);
+                        try {
+                            Glide.with(getContext()).load(object.getJSONArray("imageList").getString(6)).into((ImageView) gridView.findViewById(R.id.im6));
+                            Glide.with(getContext()).load(object.getJSONArray("imageList").getString(7)).into((ImageView) gridView.findViewById(R.id.im7));
+                            Glide.with(getContext()).load(object.getJSONArray("imageList").getString(8)).into((ImageView) gridView.findViewById(R.id.im8));
+                        } catch (Exception e) {
+
+                        }
+                    case 2:
+                        gridView.findViewById(R.id.secondrow).setVisibility(View.VISIBLE);
+                        try {
+                            Glide.with(getContext()).load(object.getJSONArray("imageList").getString(3)).into((ImageView) gridView.findViewById(R.id.im3));
+                            Glide.with(getContext()).load(object.getJSONArray("imageList").getString(4)).into((ImageView) gridView.findViewById(R.id.im4));
+                            Glide.with(getContext()).load(object.getJSONArray("imageList").getString(5)).into((ImageView) gridView.findViewById(R.id.im5));
+                        } catch (Exception e) {
+
+                        }
+                    case 1:
+                        gridView.findViewById(R.id.firstrow).setVisibility(View.VISIBLE);
+                        try {
+                            Glide.with(getContext()).load(object.getJSONArray("imageList").getString(0)).into((ImageView) gridView.findViewById(R.id.im0));
+                            Glide.with(getContext()).load(object.getJSONArray("imageList").getString(1)).into((ImageView) gridView.findViewById(R.id.im1));
+                            Glide.with(getContext()).load(object.getJSONArray("imageList").getString(2)).into((ImageView) gridView.findViewById(R.id.im2));
+                        } catch (Exception e) {
+
+                        }
+                    case 0:
+                        gridView.setVisibility(View.VISIBLE);
+                }
                 Glide.with(getContext()).load(object.getString("userAvatar")).into(imageView);
                 auth.setText(object.getString("user_nick_name"));
                 title.setText(object.getString("title"));
@@ -114,8 +151,8 @@ public class Discovery3Fragment extends BaseRefreshFragment {
                             // 获得初始宽高
                             try {
                                 int width = gridView.getMeasuredWidth();
-                                int height = (int) (width / 3 * Math.ceil(object.getJSONArray("imageList").length() / 3.0) * Double.parseDouble(object.getString("ratio")));
-                                gridView.setMinimumHeight(height);
+                                int height = (int) (width / 3 * Math.ceil(object.getJSONArray("imageList").length() / 3.0));
+                                gridView.setLayoutParams(new LinearLayout.LayoutParams(width, height));
                                 hasMeasured = true;
                             } catch (Exception e) {
 
