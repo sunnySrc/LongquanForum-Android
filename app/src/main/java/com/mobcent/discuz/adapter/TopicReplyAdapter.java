@@ -63,7 +63,7 @@ public class TopicReplyAdapter extends ComAdapter<TopicReply> {
         } else {
             tv.setVisibility(View.GONE);
             linearLayout.setVisibility(View.VISIBLE);
-            TopicHelper.updateContent(getContext(), linearLayout, topicContents);
+            TopicHelper.updateReplyContent(getContext(), linearLayout, topicContents);
         }
 
 

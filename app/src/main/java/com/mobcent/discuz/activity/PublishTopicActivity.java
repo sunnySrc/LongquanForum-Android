@@ -155,19 +155,18 @@ public class PublishTopicActivity extends FragmentActivity {
 
         //构建传递参数
         Bundle fragmentBundle = new Bundle();
-        //绑定主内容编辑框
-        fragmentBundle.putBoolean(EmotionMainFragment.BIND_TO_EDITTEXT, false);
         //隐藏控件
         fragmentBundle.putBoolean(EmotionMainFragment.HIDE_BAR_EDITTEXT_AND_BTN,true);
         //替换fragment
         //创建修改实例
         EmotionMainFragment emotionMainFragment = EmotionMainFragment.newInstance(EmotionMainFragment.class, fragmentBundle);
-        emotionMainFragment.bindToContentView(content);
+        emotionMainFragment.bindCustomEditText(content);
+        emotionMainFragment.bindToContentView(findViewById(R.id.mc_forum_scrollview));
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         // Replace whatever is in thefragment_container view with this fragment,
         // and add the transaction to the backstack
         transaction.replace(R.id.fl_emotionview_main, emotionMainFragment);
-        transaction.addToBackStack(null);
+//        transaction.addToBackStack(null);
         //提交修改
         transaction.commit();
     }

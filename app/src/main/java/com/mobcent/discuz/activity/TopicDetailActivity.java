@@ -326,7 +326,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     public void initParams(Bundle bundle) {
         pageNum = 1;
         topicId = bundle.getLong(BaseIntentConstant.BUNDLE_TOPIC_ID);
-//        topicId = 64551;
+        topicId = 64551;
     }
 
     /**
@@ -335,8 +335,6 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     private void initEmotionLayout() {
         //构建传递参数
         Bundle fragmentBundle = new Bundle();
-        //绑定主内容编辑框
-        fragmentBundle.putBoolean(EmotionMainFragment.BIND_TO_EDITTEXT, true);
         //隐藏控件
         fragmentBundle.putBoolean(EmotionMainFragment.HIDE_BAR_EDITTEXT_AND_BTN,false);
         //替换fragment
