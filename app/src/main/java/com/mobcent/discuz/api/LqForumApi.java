@@ -1,8 +1,8 @@
 package com.mobcent.discuz.api;
 
 import android.util.Log;
-
 import com.mobcent.common.JsonConverter;
+import android.text.TextUtils;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.bean.Reply;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
@@ -91,6 +91,62 @@ public class LqForumApi {
         }
         Log.d("API", "reply json :" + json);
         DiscuzRequest request = new DiscuzRequest(UrlFactory.TOPIC_ADMIN, params.getJsonStr(), handler);
+        request.begin();
+        return request;
+    }
+
+    public static DiscuzRequest forumList(HttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.FORUM_LIST, params.getJsonStr(), handler);
+        request.begin();
+        return request;
+    }
+
+    public static DiscuzRequest forumList(HttpResponseHandler handler, String Type) {
+        RequestParams params = new RequestParams();
+        if (!TextUtils.isEmpty(Type)) {
+            params.add("type", Type);
+        }
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.FORUM_LIST, params.getJsonStr(), handler);
+        request.begin();
+        return request;
+    }
+
+    public static DiscuzRequest userFavor(int id, boolean follow, HttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.add("id", id);
+        params.add("idType", "fid");
+        params.add("action", follow ? "favorite" : "delfavorite");
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.USER_FAVOR, params.getJsonStr(), handler);
+        request.begin();
+        return request;
+    }
+
+    public static DiscuzRequest topicList(int page, String sortby, String boardId, HttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.add("topOrder", "1");
+        params.add("pageSize", "20");
+        params.add("filterId", "0");
+        params.add("filterType", "typeid");
+        params.add("sortby", sortby);
+        params.add("page", String.valueOf(page));
+        params.add("isRatio", "1");
+        params.add("circle", "0");
+        params.add("isImageList", "1");
+        params.add("boardId", boardId);
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.TOPIC_LIST, params.getJsonStr(), handler);
+        request.begin();
+        return request;
+    }
+
+    public static DiscuzRequest newsList(int page, String moduleId, HttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.add("pageSize", "20");
+        params.add("moduleId", moduleId);
+        params.add("page", String.valueOf(page));
+        params.add("circle", "0");
+        params.add("isImageList", "1");
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.NEWS_LIST, params.getJsonStr(), handler);
         request.begin();
         return request;
     }

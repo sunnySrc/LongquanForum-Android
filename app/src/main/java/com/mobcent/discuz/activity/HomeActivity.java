@@ -8,10 +8,18 @@ package com.mobcent.discuz.activity;
 import com.appbyme.dev.R;
 import com.mobcent.discuz.base.constant.BaseIntentConstant;
 import com.mobcent.discuz.base.constant.LocationProvider;
-import com.mobcent.discuz.fragments.DiscoveryFragment;
+import com.mobcent.discuz.fragments.Discovery1Fragment;
+import com.mobcent.discuz.fragments.Discovery2Fragment;
+import com.mobcent.discuz.fragments.Discovery3Fragment;
+import com.mobcent.discuz.fragments.Discuz1Fragment;
+import com.mobcent.discuz.fragments.Discuz2Fragment;
+import com.mobcent.discuz.fragments.Discuz3Fragment;
 import com.mobcent.discuz.fragments.DiscuzFragment;
 import com.mobcent.discuz.fragments.HomeFragment;
+import com.mobcent.discuz.fragments.IWantKnowFragment;
+import com.mobcent.discuz.fragments.Me1Fragment;
 import com.mobcent.discuz.fragments.MeFragment;
+import com.mobcent.discuz.fragments.ZhidaoFragment;
 import com.mobcent.lowest.android.ui.module.plaza.constant.PlazaConstant;
 import com.mobcent.discuz.android.constant.ConfigConstant;
 
@@ -58,8 +66,19 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
         LoginUtils.getInstance().init(this);
         LocationProvider.getInstance().init(this);
         fragment[0] = new HomeFragment();
+
         fragment[1] = new DiscuzFragment();
-        fragment[2] = new DiscoveryFragment();
+        String[] f1 = {"版块", "最新", "精华"};
+        Fragment[] fg1 = {new Discuz1Fragment(), new Discuz2Fragment(), new Discuz3Fragment()};
+        ((DiscuzFragment)fragment[1]).setTitles(f1);
+        ((DiscuzFragment)fragment[1]).setFragments(fg1);
+
+        String[] f2 = {"视界", "慈善", "动漫"};
+        Fragment[] fg2 = {new Discovery1Fragment(), new Discovery2Fragment(), new Discovery3Fragment()};
+        fragment[2] = new DiscuzFragment();
+        ((DiscuzFragment)fragment[2]).setTitles(f2);
+        ((DiscuzFragment)fragment[2]).setFragments(fg2);
+
         fragment[3] = new MeFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment[0]).commit();

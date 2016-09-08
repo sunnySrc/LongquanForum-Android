@@ -14,6 +14,7 @@ import com.mobcent.discuz.bean.MoreNewResult;
 import com.mobcent.discuz.widget.ComAdapter;
 import com.mobcent.discuz.widget.ViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,13 +24,20 @@ import java.util.List;
 
 public class HomeMoreAdapter extends ComAdapter<MoreNewResult.ListBean> {
     final String replyCountSuffix;
-    public HomeMoreAdapter(Context context, List<MoreNewResult.ListBean> objects) {
-        super(context, R.layout.topic_list_neteasenews_none_desc_item, objects);
+    public List<MoreNewResult.ListBean> mListDataSet = new ArrayList<>();
+    public HomeMoreAdapter(Context context) {
+        super(context, R.layout.topic_list_neteasenews_none_desc_item);
         replyCountSuffix = getContext().getString(R.string.mc_forum_reply);
     }
 
     @Override
-    public void customSet(ViewHolder holder, final MoreNewResult.ListBean item, int position) {
+    public int getCount() {
+        return mListDataSet.size();
+    }
+
+    @Override
+    public void customSet(ViewHolder holder, int position) {
+        final MoreNewResult.ListBean item = mListDataSet.get(position);
         holder.getView(R.id.recommend_layout).setVisibility(View.GONE);
         holder.getView(R.id.mc_forum_topic_state).setVisibility(View.GONE);
 
@@ -59,7 +67,7 @@ public class HomeMoreAdapter extends ComAdapter<MoreNewResult.ListBean> {
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UIJumper.jumpTopic(getContext(), item.getSource_id());
+                UIJumper.jumpTopic(getContext(), item.getSource_id() != 0 ? item.getSource_id() : item.getTopic_id());
             }
         });
 

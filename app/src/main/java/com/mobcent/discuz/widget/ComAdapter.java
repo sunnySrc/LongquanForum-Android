@@ -28,6 +28,13 @@ public abstract class ComAdapter<T> extends ArrayAdapter<T> {
 
     }
 
+    public ComAdapter(Context context, int resource) {
+
+        super(context, android.R.layout.simple_list_item_1);
+        mItemResId = resource;
+
+    }
+
     /**
      *
      * @param objects
@@ -54,7 +61,7 @@ public abstract class ComAdapter<T> extends ArrayAdapter<T> {
     }
 
 
-    public abstract void customSet(ViewHolder holder, T item, int position);
+    public abstract void customSet(ViewHolder holder, int position);
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -66,7 +73,7 @@ public abstract class ComAdapter<T> extends ArrayAdapter<T> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        customSet(holder, getItem(position), position);
+        customSet(holder, position);
         return holder.getConvertView();
     }
 

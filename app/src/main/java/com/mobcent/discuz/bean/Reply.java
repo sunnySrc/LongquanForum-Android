@@ -3,9 +3,6 @@ package com.mobcent.discuz.bean;
 import com.mobcent.common.JsonConverter;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static com.mobcent.discuz.api.RequestParams.json;
 
 /**
  * Created by sun on 2016/9/4.

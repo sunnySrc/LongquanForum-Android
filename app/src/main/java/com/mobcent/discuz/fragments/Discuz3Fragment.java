@@ -1,20 +1,27 @@
-package com.mobcent.discuz.activity;
+package com.mobcent.discuz.fragments;
 
-import android.content.Context;
-import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.appbyme.dev.R;
+import com.litesuits.android.log.Log;
 import com.mobcent.common.JsonConverter;
 import com.mobcent.discuz.adapter.HomeMoreAdapter;
 import com.mobcent.discuz.api.LqForumApi;
-import com.mobcent.discuz.base.Tasker;
+import com.mobcent.discuz.base.constant.DiscuzRequest;
+import com.mobcent.discuz.bean.HomeResult;
 import com.mobcent.discuz.bean.MoreNewResult;
-import com.mobcent.discuz.fragments.HttpResponseHandler;
+import com.mobcent.discuz.ui.ComponentBuilder;
 import com.mobcent.discuz.widget.LoadMoreViewManager;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,40 +31,45 @@ import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NORMAL;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
 
 /**
- * Created by sun on 2016/9/6.
- * 发语开示 更多
+ * Created by ubuntu on 16-6-21.
  */
+public class Discuz3Fragment extends BaseRefreshFragment {
 
-public class MoreNewActivity extends BaseRefreshActivity {
-    private int pageNum;
+    public static final String TAG = Discuz2Fragment.class.getSimpleName();
+    private DiscuzRequest request;
+    private int page = 1;
     private ListView mListView;
-    private LoadMoreViewManager mMoreViewManager;
     private HomeMoreAdapter mAdapter;
-    private long mBoardId;
+    private LoadMoreViewManager mMoreViewManager;
 
-    public static void start(Context context, long id) {
-        Intent starter = new Intent(context, MoreNewActivity.class);
-        starter.putExtra("id", id);
-        context.startActivity(starter);
-    }
     @Override
-    public void initParams(Bundle bundle) {
-       mBoardId = bundle.getLong("id");
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
-    protected View onCreateContentLayout(ViewGroup container, Bundle savedInstanceState) {
-        mListView = (ListView) getLayoutInflater().inflate(R.layout.listview_base, container, false);
+    protected View onCreateContentLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mListView = (ListView) inflater.inflate(R.layout.listview_base, container, false);
         mMoreViewManager = new LoadMoreViewManager(mListView);
         mMoreViewManager.setNoMoreDateHintRes(R.string.mc_forum_detail_load_finish);
-        mAdapter = new HomeMoreAdapter(this);
+        mAdapter = new HomeMoreAdapter(getContext());
         mListView.setAdapter(mAdapter);
         return mListView;
     }
 
     @Override
+    protected void onExecuteRequest(HttpResponseHandler handler) {
+        page = 1;
+        request = LqForumApi.topicList(page, "marrow", "0", this);
+    }
+
+    @Override
+    public void onRefreshing() {
+    }
+
+    @Override
     public void onLoadMore() {
-        add(LqForumApi.moreTopics(mBoardId, ++pageNum, new HttpResponseHandler() {
+        LqForumApi.topicList(++page, "marrow", "0", new HttpResponseHandler() {
             @Override
             public void onSuccess(String result) {
                 MoreNewResult news = JsonConverter.format(result, MoreNewResult.class);
@@ -68,7 +80,7 @@ public class MoreNewActivity extends BaseRefreshActivity {
             public void onFail(String result) {
                 mMoreViewManager.setFooterType(TYPE_ERROR);
             }
-        }));
+        });
     }
 
     private void updateListView(MoreNewResult news) {
@@ -89,17 +101,17 @@ public class MoreNewActivity extends BaseRefreshActivity {
     }
 
     @Override
-    protected Tasker onExecuteRequest(HttpResponseHandler handler) {
-        pageNum = 1;
-        mAdapter.mListDataSet.clear();
-        return LqForumApi.moreTopics(mBoardId, pageNum, handler);
-    }
-
-    @Override
     protected void showContent(String result) {
+        mAdapter.mListDataSet.clear();
         MoreNewResult news = JsonConverter.format(result, MoreNewResult.class);
         updateListView(news);
     }
 
-
+    @Override
+    public void onDestroy() {
+        if (request != null) {
+            request.cancel(true);
+        }
+        super.onDestroy();
+    }
 }
