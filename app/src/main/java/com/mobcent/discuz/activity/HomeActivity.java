@@ -56,6 +56,7 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
         LinearLayout tv = (LinearLayout) findViewById(R.id.bottomBox);
         mStateButton1 = (Button)tv.findViewById(R.id.first);
         mStateButton1.setOnClickListener(this);
+        mStateButton1.setSelected(true);
         mStateButton2 = (Button)tv.findViewById(R.id.second);
         mStateButton2.setOnClickListener(this);
         mStateButton3 = (Button)tv.findViewById(R.id.third);
