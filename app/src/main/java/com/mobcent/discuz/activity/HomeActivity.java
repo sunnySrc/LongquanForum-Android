@@ -49,6 +49,7 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
     private Button mStateButton3;
     private Button mStateButton4;
     private int mState = -1;
+    private View mStatePostButton;
 
     public HomeActivity() {
 
@@ -60,7 +61,6 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
         setContentView(R.layout.home_page_activity);
         LinearLayout tv = (LinearLayout) findViewById(R.id.bottomBox);
         mStateButton1 = (Button)tv.findViewById(R.id.first);
-        addBackgroundFilter(mStateButton1);
         mStateButton1.setOnClickListener(this);
         mStateButton2 = (Button)tv.findViewById(R.id.second);
         mStateButton2.setOnClickListener(this);
@@ -68,7 +68,10 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
         mStateButton3.setOnClickListener(this);
         mStateButton4 = (Button)tv.findViewById(R.id.fourth);
         mStateButton4.setOnClickListener(this);
-        tv.findViewById(R.id.nav_btn).setOnClickListener(this);
+        mStatePostButton = tv.findViewById(R.id.nav_btn);
+        mStatePostButton.setOnClickListener(this);
+        addBackgroundFilter(mStateButton1, mStateButton2, mStateButton3, mStateButton4, mStatePostButton);
+
         LoginUtils.getInstance().init(this);
         LocationProvider.getInstance().init(this);
         fragment[0] = new HomeFragment();
@@ -92,9 +95,18 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
         switchState(0);
     }
 
-    private void addBackgroundFilter(Button button) {
+    private void addBackgroundFilter(View view, View... views) {
+        addBackgroundFilter(view);
+        if (views != null ) {
+            for (View v : views) {
+                addBackgroundFilter(v);
+            }
+        }
+    }
+
+    private void addBackgroundFilter(View v) {
         PorterDuffColorFilter filter = new PorterDuffColorFilter(getResources().getColor(R.color.dz_skin_custom_main_color), PorterDuff.Mode.DST_OVER);
-        Drawable drawable = button.getBackground();
+        Drawable drawable = v.getBackground();
         drawable.setColorFilter(filter);
     }
 
