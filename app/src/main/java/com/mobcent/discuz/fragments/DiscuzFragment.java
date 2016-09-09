@@ -36,7 +36,8 @@ public class DiscuzFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.viewpager, container, false);
-        FragmentPagerAdapter adapter = new GoogleMusicAdapter(getFragmentManager());
+        //
+        FragmentPagerAdapter adapter = new GoogleMusicAdapter(getChildFragmentManager());
         TextView tv0 = (TextView)view.findViewById(R.id.first);
         tv0.setText(CONTENT[0]);
         tv0.setSelected(true);
