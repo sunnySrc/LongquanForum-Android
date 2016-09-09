@@ -7,6 +7,10 @@ package com.mobcent.discuz.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -44,7 +48,7 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
     private Button mStateButton2;
     private Button mStateButton3;
     private Button mStateButton4;
-    private int mState = 0;
+    private int mState = -1;
 
     public HomeActivity() {
 
@@ -56,6 +60,7 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
         setContentView(R.layout.home_page_activity);
         LinearLayout tv = (LinearLayout) findViewById(R.id.bottomBox);
         mStateButton1 = (Button)tv.findViewById(R.id.first);
+        addBackgroundFilter(mStateButton1);
         mStateButton1.setOnClickListener(this);
         mStateButton2 = (Button)tv.findViewById(R.id.second);
         mStateButton2.setOnClickListener(this);
@@ -85,6 +90,12 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
                 .replace(R.id.container, fragment[0]).commit();
         currentFragment = fragment[0];
         switchState(0);
+    }
+
+    private void addBackgroundFilter(Button button) {
+        PorterDuffColorFilter filter = new PorterDuffColorFilter(getResources().getColor(R.color.dz_skin_custom_main_color), PorterDuff.Mode.DST_OVER);
+        Drawable drawable = button.getBackground();
+        drawable.setColorFilter(filter);
     }
 
     private void switchState(int state) {

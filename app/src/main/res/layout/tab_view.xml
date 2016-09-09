@@ -28,8 +28,15 @@
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1">
-        <Button android:textSize="10.0sp" android:textColor="@color/home_nav_item_selector" android:ellipsize="end" android:gravity="bottom|center" android:id="@+id/nav_btn" android:background="@drawable/mc_forum_main_bar_button17"
-            android:layout_width="40.0dip" android:layout_height="40.0dip" android:singleLine="true" android:includeFontPadding="false" android:layout_centerInParent="true" />
+
+        <Button
+            android:id="@+id/nav_btn"
+            android:layout_width="40.0dip"
+            android:background="@drawable/mc_forum_main_bar_button17"
+            android:ellipsize="end"
+            android:gravity="bottom|center"
+            android:textColor="@color/home_nav_item_selector"
+            android:textSize="10.0sp" android:layout_height="40.0dip" android:singleLine="true" android:includeFontPadding="false" android:layout_centerInParent="true" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_height="wrap_content"
