@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -34,6 +35,8 @@ import com.zejian.emotionkeyboard.fragment.EmotionMainFragment;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.net.URLEncoder;
 import java.util.Vector;
 
@@ -49,6 +52,7 @@ public class PublishTopicActivity extends FragmentActivity {
     private TextView mLocationText;
     private LocationClickListener mLocationClickListener;
     private int mCate;
+    private int width;
 
     private String mLongitude;
     private String mLatitude;
@@ -367,7 +371,7 @@ public class PublishTopicActivity extends FragmentActivity {
                 String pirPath = null;
                 while(cursor.moveToNext()){
                     pirPath = cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
-                    Bitmap bitmap = BitmapFactory.decodeFile(pirPath);
+                    Bitmap bitmap = loadBitmap(pirPath, width, width);
                     mImageAdapter.addItem(new Item(pirPath, bitmap));
                 }
                 mImageAdapter.notifyDataSetChanged();
@@ -422,18 +426,17 @@ public class PublishTopicActivity extends FragmentActivity {
 
         public View getView(int position, View convertView, ViewGroup parent) {
             ImageView imageView = null;
+            if (width == 0) {
+                width = mGridView.getMeasuredWidth() / 5;
+            }
             if(convertView == null){
                 imageView = new ImageView(context);
-                // 设置View的height和width：这样保证无论image原来的尺寸，每个图像将重新适合这个指定的尺寸。
-                imageView.setLayoutParams(new GridView.LayoutParams(85,85));
-                /* ImageView.ScaleType.CENTER 但不执行缩放比例
-                 * ImageView.ScaleType.CENTER_CROP 按比例统一缩放图片（保持图片的尺寸比例）便于图片的两维（宽度和高度）等于或大于相应的视图维度
-                 * ImageView.ScaleType.CENTER_INSIDE 按比例统一缩放图片（保持图片的尺寸比例）便于图片的两维（宽度和高度）等于或小于相应的视图维度 */
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                imageView.setPadding(8,8,8,8);
             }else{
                 imageView = (ImageView)convertView;
             }
+            imageView.setLayoutParams(new GridView.LayoutParams(width, width));
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setPadding(8,8,8,8);
             if (position == getCount() - 1) {
                 imageView.setImageBitmap(mThumbIds.get(0).mBitmap);
             } else {
@@ -442,6 +445,48 @@ public class PublishTopicActivity extends FragmentActivity {
             return imageView;
         }
 
+    }
+
+    public static Bitmap loadBitmap(String url, int width, int height)
+    {
+        Bitmap bitmap = null;
+        if (url == null || !new File(url).exists()) return bitmap;
+        try
+        {
+            BitmapFactory.Options opts = new BitmapFactory.Options();
+            opts.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(url, opts);
+            opts.inSampleSize = calculateSampleSize(opts, width, height);
+            opts.inJustDecodeBounds = false;
+            opts.inPreferredConfig = Bitmap.Config.RGB_565;
+            opts.inPurgeable = true;
+            opts.inInputShareable = true;
+            bitmap = BitmapFactory.decodeStream(new FileInputStream(url), null, opts);
+            bitmap = ThumbnailUtils.extractThumbnail(bitmap, width, height);
+            return bitmap;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
+    private static int calculateSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight)
+    {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+        if (height > reqHeight || width > reqWidth)
+        {
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+            while ((halfHeight / inSampleSize) > reqHeight && (halfWidth / inSampleSize) > reqWidth)
+            {
+                inSampleSize *= 2;
+            }
+        }
+        return inSampleSize;
     }
 
 }

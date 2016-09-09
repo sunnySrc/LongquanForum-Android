@@ -60,6 +60,14 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
 
     @Override
     protected String doInBackground(Void... params) {
+        if (mFiles != null && mFiles.size() > 0) {
+            return FileUploader.uploadFile(mUrl, mFiles);
+        } else {
+            return sendRequest();
+        }
+    }
+
+    private String sendRequest() {
         // TODO Auto-generated method stub
         // String request = "type=login&forumKey=BW0L5ISVRsOTVLCTJx&accessSecret=&accessToken=&isValidation=1&password=Mrzl2009&sdkVersion=2.4.0&apphash=85eb3e4b&username=17710275730";
         try {
@@ -94,14 +102,6 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
                         } catch (Exception e) {
 
                         }
-                    } else if (mFiles != null && mFiles.size() > 0) {
-                        Iterator it = mFiles.iterator();
-                        while (it.hasNext()) {
-                            File file = new File((String)it.next());
-                            bodyString += "-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"uploadFile[]\"; filename=\"" + file.getName() + "\"\r\n";
-                            bodyString += new String(toByteArray(file));
-                        }
-                        bodyString += "-----011000010111000001101001--";
                     }
                 }
                 if (!TextUtils.isEmpty(bodyString)) {
