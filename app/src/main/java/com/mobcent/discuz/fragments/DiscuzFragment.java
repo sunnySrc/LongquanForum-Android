@@ -50,6 +50,7 @@ public class DiscuzFragment extends BaseFragment {
         tvs[2] = tv2;
         ViewPager pager = (ViewPager) view.findViewById(R.id.pager);
         pager.setAdapter(adapter);
+        pager.setOffscreenPageLimit(2);
 
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
