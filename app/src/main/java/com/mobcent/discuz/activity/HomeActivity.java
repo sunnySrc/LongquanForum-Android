@@ -5,7 +5,25 @@
 
 package com.mobcent.discuz.activity;
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import com.appbyme.dev.R;
+import com.mobcent.discuz.android.constant.ConfigConstant;
 import com.mobcent.discuz.base.constant.BaseIntentConstant;
 import com.mobcent.discuz.base.constant.LocationProvider;
 import com.mobcent.discuz.fragments.Discovery1Fragment;
@@ -16,34 +34,22 @@ import com.mobcent.discuz.fragments.Discuz2Fragment;
 import com.mobcent.discuz.fragments.Discuz3Fragment;
 import com.mobcent.discuz.fragments.DiscuzFragment;
 import com.mobcent.discuz.fragments.HomeFragment;
-import com.mobcent.discuz.fragments.IWantKnowFragment;
-import com.mobcent.discuz.fragments.Me1Fragment;
 import com.mobcent.discuz.fragments.MeFragment;
-import com.mobcent.discuz.fragments.ZhidaoFragment;
 import com.mobcent.lowest.android.ui.module.plaza.constant.PlazaConstant;
-import com.mobcent.discuz.android.constant.ConfigConstant;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
+import org.w3c.dom.Text;
 
 public class HomeActivity extends FragmentActivity implements BaseIntentConstant, PlazaConstant, ConfigConstant, View.OnClickListener {
     private String TAG;
     private Fragment[] fragment = new Fragment[4];
+    private String[] titles = new String[]{"首页","论坛","发现","我的"};
     private Fragment currentFragment;
     private Button mStateButton1;
     private Button mStateButton2;
     private Button mStateButton3;
     private Button mStateButton4;
-    private int mState = 0;
+    private int mState = -1;
+    private View mStatePostButton;
 
     public HomeActivity() {
 
@@ -63,7 +69,10 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
         mStateButton3.setOnClickListener(this);
         mStateButton4 = (Button)tv.findViewById(R.id.fourth);
         mStateButton4.setOnClickListener(this);
-        tv.findViewById(R.id.nav_btn).setOnClickListener(this);
+        mStatePostButton = tv.findViewById(R.id.nav_btn);
+        mStatePostButton.setOnClickListener(this);
+        addBackgroundFilter(mStateButton1, mStateButton2, mStateButton3, mStateButton4);
+
         LoginUtils.getInstance().init(this);
         LocationProvider.getInstance().init(this);
         fragment[0] = new HomeFragment();
@@ -87,10 +96,27 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
         switchState(0);
     }
 
+    private void addBackgroundFilter(View view, View... views) {
+        addBackgroundFilter(view);
+        if (views != null ) {
+            for (View v : views) {
+                addBackgroundFilter(v);
+            }
+        }
+    }
+
+    private void addBackgroundFilter(View v) {
+        PorterDuffColorFilter filter = new PorterDuffColorFilter(getResources().getColor(R.color.dz_skin_custom_main_color), PorterDuff.Mode.DST_OVER);
+        Drawable drawable = v.getBackground();
+        drawable.setColorFilter(filter);
+    }
+
     private void switchState(int state) {
         if (mState == state) {
             return;
         }
+
+        setHeaderTitle(titles[state]);
 
         mState = state;
         mStateButton1.setSelected(false);
@@ -119,6 +145,11 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
                 break;
         }
         onTabChange(mState);
+    }
+
+    private void setHeaderTitle(String title) {
+        TextView tv = (TextView) findViewById(R.id.nav_title);
+        tv.setText(title);
     }
 
     @Override
