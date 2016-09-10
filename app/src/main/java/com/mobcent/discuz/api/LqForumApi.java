@@ -85,7 +85,8 @@ public class LqForumApi {
         RequestParams params = new RequestParams();
         params.add("act",  "reply");
         try {
-            params.add("json", URLEncoder.encode(json, "utf-8"));
+            String encode = URLEncoder.encode(json, "utf-8");
+            params.add("json", URLEncoder.encode(encode,"utf-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -111,7 +112,15 @@ public class LqForumApi {
         request.begin();
         return request;
     }
-
+    public static DiscuzRequest topicFavor(int id, boolean follow, HttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.add("id", id);
+        params.add("idType", "tid");
+        params.add("action", follow ? "favorite" : "delfavorite");
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.USER_FAVOR, params.getJsonStr(), handler);
+        request.begin();
+        return request;
+    }
     public static DiscuzRequest userFavor(int id, boolean follow, HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
         params.add("id", id);

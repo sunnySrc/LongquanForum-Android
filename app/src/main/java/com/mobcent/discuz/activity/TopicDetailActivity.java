@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -12,6 +13,7 @@ import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.appbyme.dev.R;
@@ -30,6 +32,7 @@ import com.mobcent.discuz.bean.TopicReply;
 import com.mobcent.discuz.bean.TopicResult;
 import com.mobcent.discuz.fragments.EmotionExtraFragment;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
+import com.mobcent.discuz.ui.TopicOptPopup;
 import com.mobcent.discuz.widget.LoadMoreViewManager;
 import com.mobcent.discuz.widget.ViewHolder;
 import com.mobcent.lowest.base.utils.MCToastUtils;
@@ -250,6 +253,16 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         mMoreViewManager = new LoadMoreViewManager(listViewReplies);
         mMoreViewManager.setNoMoreDateHintRes(R.string.mc_forum_detail_load_finish);
 
+        // 顶部Header更多操作
+        View moreOpt = mTopicViewHolder.getView(R.id.nav_btn_more);
+        moreOpt.setVisibility(View.VISIBLE);
+        moreOpt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showHeaderOptMenu(v);
+            }
+        });
+
         // 底部评论bar
         mBottomLayout = getContentView().findViewById(R.id.bottom_over_layout);
         mBottomCommentTv = (TextView)getContentView().findViewById(R.id.bottom_comment_text);
@@ -278,6 +291,16 @@ public class TopicDetailActivity extends BaseRefreshActivity {
        });
 
         return listViewReplies;
+    }
+
+    /**
+     * 显示操作popup - 收藏，浏览器打开，复制链接
+     * @param anchor
+     */
+    private void showHeaderOptMenu(View anchor) {
+        if (resultBean == null) return;
+        TopicOptPopup optPopup = new TopicOptPopup(this,  resultBean.getTopic(), resultBean.getForumTopicUrl());
+        optPopup.showAtLocation(anchor.getRootView(), Gravity.BOTTOM, 0, 0);
     }
 
     private boolean noInputContent() {

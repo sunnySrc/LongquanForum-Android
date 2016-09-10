@@ -17,6 +17,7 @@
     <ImageView
         android:layout_alignParentRight="true"
         android:id="@+id/nav_btn_more"
+        android:src="@drawable/mc_forum_top_bar_button12_n"
         android:visibility="gone"
         style="@style/NavigationButton" />
 </RelativeLayout>

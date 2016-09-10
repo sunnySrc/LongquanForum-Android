@@ -36,4 +36,6 @@ public class UrlFactory {
     public static final String FORUM_LIST = "forum/forumlist";
 
     public static final String USER_FAVOR = "user/userfavorite";
+
+
 }
