@@ -62,6 +62,7 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
         LinearLayout tv = (LinearLayout) findViewById(R.id.bottomBox);
         mStateButton1 = (Button)tv.findViewById(R.id.first);
         mStateButton1.setOnClickListener(this);
+        mStateButton1.setSelected(true);
         mStateButton2 = (Button)tv.findViewById(R.id.second);
         mStateButton2.setOnClickListener(this);
         mStateButton3 = (Button)tv.findViewById(R.id.third);
@@ -70,7 +71,7 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
         mStateButton4.setOnClickListener(this);
         mStatePostButton = tv.findViewById(R.id.nav_btn);
         mStatePostButton.setOnClickListener(this);
-        addBackgroundFilter(mStateButton1, mStateButton2, mStateButton3, mStateButton4, mStatePostButton);
+        addBackgroundFilter(mStateButton1, mStateButton2, mStateButton3, mStateButton4);
 
         LoginUtils.getInstance().init(this);
         LocationProvider.getInstance().init(this);

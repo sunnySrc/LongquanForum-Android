@@ -29,12 +29,11 @@
             </LinearLayout>
             <GridView android:layout_width="match_parent"
                 android:id="@+id/imagegride"
-                android:numColumns="4"
+                android:numColumns="5"
                 android:stretchMode="columnWidth"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/mc_forum_top_content_box"
                 >
-
             </GridView>
             <LinearLayout android:orientation="horizontal" android:id="@id/classfies_parent_layout" android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:layout_below="@id/imagegride">
                 <TextView android:textSize="14.0sp" android:textColor="@color/mc_forum_text3_content_normal_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="5.0dip" android:layout_marginRight="10.0dip" android:text="@string/mc_forum_publish_classfy_title" />
