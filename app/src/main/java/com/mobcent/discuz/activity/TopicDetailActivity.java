@@ -13,7 +13,6 @@ import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.appbyme.dev.R;
@@ -81,7 +80,6 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     @Override
     protected Tasker onExecuteRequest(HttpResponseHandler handler) {
         pageNum = 1;
-        mReplyList.clear();
         return LqForumApi.topicDetail(topicId, pageNum, handler);
     }
 
@@ -103,8 +101,9 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     @Override
     protected void showContent(String result) {
         resultBean = JsonConverter.format(result, TopicResult.class);
+        mReplyList.clear();
 
-        setTitle(resultBean.getForumName());
+        setHeaderTitle(resultBean.getForumName());
         // 帖子主题
         updateTopicView(resultBean.getTopic());
         // 评论列表
@@ -265,11 +264,11 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
         // 底部评论bar
         mBottomLayout = getContentView().findViewById(R.id.bottom_over_layout);
-        mBottomCommentTv = (TextView)getContentView().findViewById(R.id.bottom_comment_text);
+        mBottomCommentTv = (TextView) getContentView().findViewById(R.id.bottom_comment_text);
         mRefreshLayout.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if( SCROLL_STATE_TOUCH_SCROLL == scrollState && noInputContent()) {
+                if (SCROLL_STATE_TOUCH_SCROLL == scrollState && noInputContent()) {
                     enableBottomPlaceHolderLayout(true);
                 }
             }
@@ -283,12 +282,12 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         // 输入键盘bar
         initEmotionLayout();
         // 显示评论输入提示bar
-       mBottomLayout.findViewById(R.id.bottom_comment_layout).setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
+        mBottomLayout.findViewById(R.id.bottom_comment_layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-           }
-       });
+            }
+        });
 
         return listViewReplies;
     }

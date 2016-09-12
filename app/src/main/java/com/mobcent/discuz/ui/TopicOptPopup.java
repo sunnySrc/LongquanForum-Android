@@ -21,7 +21,7 @@ import com.mobcent.discuz.fragments.HttpResponseHandler;
  * Created by sun on 2016/9/9.
  */
 
-public class TopicOptPopup extends BasePopup {
+public class TopicOptPopup extends BasePopup implements View.OnClickListener{
     private final Topic mTopic;
     private final String mUrl;
 

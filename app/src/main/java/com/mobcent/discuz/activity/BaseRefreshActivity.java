@@ -74,6 +74,10 @@ public abstract class BaseRefreshActivity extends BaseActivity implements SuperR
         add(onExecuteRequest(this));
     }
 
+    public void showRereshingAnim() {
+        mRefreshLayout.setRefreshing(true);
+    }
+
     @Override
     public void onSuccess(String result) {
         mRefreshLayout.setRefreshing(false);
@@ -92,7 +96,7 @@ public abstract class BaseRefreshActivity extends BaseActivity implements SuperR
      * 设置Navi Bar 标题
      * @param title
      */
-    public void setTitle(String title) {
+    public void setHeaderTitle(String title) {
         TextView textView = (TextView) findViewById(R.id.nav_title);
         textView.setText(title);
     }

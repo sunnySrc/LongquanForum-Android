@@ -132,10 +132,14 @@ public class LqForumApi {
     }
 
     public static DiscuzRequest topicList(int page, String sortby, String boardId, HttpResponseHandler handler) {
+        return topicList(page, 0, sortby, boardId, handler);
+    }
+
+    public static DiscuzRequest topicList(int page, int filterId, String sortby, String boardId, HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
         params.add("topOrder", "1");
         params.add("pageSize", "20");
-        params.add("filterId", "0");
+        params.add("filterId", filterId);
         params.add("filterType", "typeid");
         params.add("sortby", sortby);
         params.add("page", String.valueOf(page));

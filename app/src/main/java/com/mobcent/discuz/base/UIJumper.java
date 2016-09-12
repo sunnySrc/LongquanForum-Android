@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
+import com.mobcent.discuz.activity.BoardListDetailActivity;
+import com.mobcent.discuz.activity.BoardTopMoreList;
 import com.mobcent.discuz.activity.ModuleConfigActivity;
 import com.mobcent.discuz.activity.MoreNewActivity;
 import com.mobcent.discuz.activity.WebActivity;
@@ -94,8 +96,11 @@ public class UIJumper {
      * @param id
      */
     public static void jumpForumSection(Context context, long id) {
-        //TODO
-        String url = UrlFactory.TOPIC_LIST;
+        BoardListDetailActivity.start(context, id);
+    }
+
+    public static void jumpTopTopicList(Context context, long id) {
+        BoardTopMoreList.start(context, id);
     }
 
     /**

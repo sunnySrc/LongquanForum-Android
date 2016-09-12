@@ -1,24 +1,15 @@
 package com.mobcent.discuz.ui;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.PopupWindow;
-
-import com.appbyme.dev.R;
-import com.mobcent.discuz.base.UIJumper;
-import com.mobcent.discuz.bean.TopicReply;
-
-import java.util.List;
 
 /**
  * Created by sun on 2016/9/2.
  */
-public abstract class BasePopup extends PopupWindow implements View.OnClickListener {
+public abstract class BasePopup extends PopupWindow{
     protected Context mContext;
 
     public BasePopup(Context context) {
