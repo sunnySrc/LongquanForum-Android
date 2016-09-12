@@ -35,6 +35,7 @@ public class UIJumper {
                 break;
             case Component.TYPE_APP:
                 jumpWebView(context, component.getExtParams1().getRedirect(), component.getContent());
+                break;
             case Component.TYPE_TOPIC_LIST:
                 jumpForumSection(context, id);
                 break;
@@ -70,6 +71,7 @@ public class UIJumper {
                 break;
             case Component.TYPE_APP:
                 jumpWebView(context, urlRef, "");
+                break;
             case Component.TYPE_TOPIC_LIST:
                 jumpForumSection(context, id);
                 break;
