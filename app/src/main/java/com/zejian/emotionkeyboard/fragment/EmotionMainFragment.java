@@ -116,6 +116,10 @@ public class EmotionMainFragment extends BaseFragment implements FragmentBackHan
         this.contentView=contentView;
     }
 
+    public void hidePanel() {
+        mEmotionKeyboard.hideAllPanel();
+    }
+
     /**
      * 设定指定的EditText
      * @param editText

@@ -29,6 +29,7 @@ import com.mobcent.discuz.ui.BoardFilterPopup;
 import com.mobcent.discuz.widget.LoadMoreViewManager;
 import com.mobcent.discuz.widget.ViewHolder;
 
+import java.io.PushbackInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -146,7 +147,9 @@ public class BoardListDetailActivity extends BaseRefreshActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO 发帖
+                if (dataResult != null) {
+                    PublishTopicActivity.start(BoardListDetailActivity.this, dataResult.getForumInfo().getId());
+                }
             }
         });
 
