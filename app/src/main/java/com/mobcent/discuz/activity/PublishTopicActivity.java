@@ -21,8 +21,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +32,9 @@ import com.appbyme.dev.R;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.base.constant.LocationProvider;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
+import com.mobcent.discuz.uitls.PermissionUtils;
 import com.zejian.emotionkeyboard.fragment.EmotionMainFragment;
+import com.zejian.emotionkeyboard.utils.ScreenUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -51,6 +55,7 @@ public class PublishTopicActivity extends FragmentActivity {
     private ImageView mLocation;
     private TextView mLocationText;
     private LocationClickListener mLocationClickListener;
+    private boolean isFirst = true;
     private int mCate;
     private int width;
 
@@ -64,14 +69,6 @@ public class PublishTopicActivity extends FragmentActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.publish_topic_activity);
-        String type = getIntent().getExtras().getString("Type");
-        if (type.equals("1")) {
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, 1);
-        } else if (type.equals("2")) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, 2);
-        }
         mGridView = (GridView) findViewById(R.id.imagegride);
         mImageAdapter = new ImageAdapter(this);
         mImageAdapter.addItem(new Item("", BitmapFactory.decodeResource(getResources(), R.drawable.dz_publish_add_picture_h)));
@@ -95,6 +92,7 @@ public class PublishTopicActivity extends FragmentActivity {
                         @Override
                         public void onClick(View v) {
                             dialog.dismiss();
+                            PermissionUtils.verifyCameraPermissions(PublishTopicActivity.this);
                             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             startActivityForResult(intent, 2);
                         }
@@ -173,6 +171,24 @@ public class PublishTopicActivity extends FragmentActivity {
 //        transaction.addToBackStack(null);
         //提交修改
         transaction.commit();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        width = ScreenUtils.getScreenWidth(this) / 5 - 8;
+        if (isFirst) {
+            String type = getIntent().getExtras().getString("Type");
+            if (type.equals("1")) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 1);
+            } else if (type.equals("2")) {
+                PermissionUtils.verifyCameraPermissions(PublishTopicActivity.this);
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 2);
+            }
+            isFirst = false;
+        }
     }
 
     class UploadFileHandler implements HttpResponseHandler {
@@ -425,18 +441,13 @@ public class PublishTopicActivity extends FragmentActivity {
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
-            ImageView imageView = null;
-            if (width == 0) {
-                width = mGridView.getMeasuredWidth() / 5;
-            }
-            if(convertView == null){
+            ImageView imageView = (ImageView)convertView;
+            if(imageView == null){
                 imageView = new ImageView(context);
-            }else{
-                imageView = (ImageView)convertView;
             }
-            imageView.setLayoutParams(new GridView.LayoutParams(width, width));
+            LinearLayout.LayoutParams gridLayout = new LinearLayout.LayoutParams(width, width);
+            imageView.setLayoutParams(gridLayout);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8,8,8,8);
             if (position == getCount() - 1) {
                 imageView.setImageBitmap(mThumbIds.get(0).mBitmap);
             } else {
@@ -447,7 +458,7 @@ public class PublishTopicActivity extends FragmentActivity {
 
     }
 
-    public static Bitmap loadBitmap(String url, int width, int height)
+    public Bitmap loadBitmap(String url, int width, int height)
     {
         Bitmap bitmap = null;
         if (url == null || !new File(url).exists()) return bitmap;
@@ -461,6 +472,7 @@ public class PublishTopicActivity extends FragmentActivity {
             opts.inPreferredConfig = Bitmap.Config.RGB_565;
             opts.inPurgeable = true;
             opts.inInputShareable = true;
+            PermissionUtils.verifyStoragePermissions(this);
             bitmap = BitmapFactory.decodeStream(new FileInputStream(url), null, opts);
             bitmap = ThumbnailUtils.extractThumbnail(bitmap, width, height);
             return bitmap;
