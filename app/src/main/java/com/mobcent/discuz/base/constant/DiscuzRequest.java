@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.litesuits.android.log.Log;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.Tasker;
+import com.mobcent.discuz.base.cookie.CookiesManager;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 
 import org.json.JSONObject;
@@ -21,6 +22,7 @@ import java.util.Iterator;
 import java.util.Vector;
 import java.util.logging.Handler;
 
+import okhttp3.CookieJar;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -35,7 +37,8 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
     private String mMethod = "post";
     public final String baseUrl = "http://forum.longquanzs.org//mobcent/app/web/index.php?r=";
     // Global instance
-    public static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient();
+    public static  CookieJar COOKIE_JAR = new CookiesManager();
+    public static  OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder().cookieJar(COOKIE_JAR).build();
     public DiscuzRequest(String url, String body, HttpResponseHandler handler) {
         mUrl = url;
         mBody = body;
@@ -117,6 +120,7 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
             Response response = OK_HTTP_CLIENT.newCall(request).execute();
             return response.body().string();
         } catch (Exception e) {
+            e.printStackTrace();
             return "";
         }
     }
@@ -124,6 +128,8 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
     @Override
     protected void onPostExecute(String result) {
         Log.d("http result", result);
+        if (mHandler == null) return;
+
         if (!TextUtils.isEmpty(result)) {
             mHandler.onSuccess(result);
         } else {

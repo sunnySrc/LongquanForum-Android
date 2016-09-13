@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.mobcent.discuz.application.DiscuzApplication;
+import com.mobcent.discuz.base.constant.DiscuzRequest;
+import com.mobcent.discuz.config.PasswordHelp;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,5 +52,20 @@ public class LoginUtils {
         editor.putString("secret", obj.getString("secret"));
         editor.putString("token", obj.getString("token"));
         editor.commit();
+    }
+
+    public static void autoLogin() {
+        JSONObject obj = new JSONObject();
+        String[] account = PasswordHelp.readPassword(DiscuzApplication._instance);
+        try {
+            obj.put("type", "login");
+            obj.put("isValidation", "1");
+            obj.put("username", account[0]);
+            obj.put("password", account[1]);
+            new DiscuzRequest("user/login", obj.toString(), null).begin();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }

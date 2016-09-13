@@ -9,7 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appbyme.dev.R;
+import com.mobcent.discuz.application.DiscuzApplication;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
+import com.mobcent.discuz.config.PasswordHelp;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 
 import org.json.JSONObject;
@@ -36,6 +38,7 @@ public class LoginActivity extends Activity {
                 String u = mUsername.getText().toString().trim();
                 String p = mPassword.getText().toString().trim();
                 if (!TextUtils.isEmpty(u) && !TextUtils.isEmpty(p)) {
+                    PasswordHelp.savePassword(DiscuzApplication._instance, u, p, true);
                     try {
                         JSONObject obj = new JSONObject();
                         obj.put("type", "login");
