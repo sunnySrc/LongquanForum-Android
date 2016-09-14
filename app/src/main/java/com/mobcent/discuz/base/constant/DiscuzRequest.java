@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import com.litesuits.android.log.Log;
+import com.mobcent.common.AppHashUtil;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.Tasker;
 import com.mobcent.discuz.base.cookie.CookiesManager;
@@ -91,7 +92,8 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
                             obj.put("egnVersion","v2035.2");
                             obj.put("forumKey", "BW0L5ISVRsOTVLCTJx");
                             obj.put("sdkVersion", "2.4.0");
-                            obj.put("apphash", "85eb3e4b");
+                            // "85eb3e4b"
+                            obj.put("apphash", AppHashUtil.appHash());
                             obj.put("accessSecret", LoginUtils.getInstance().getAccessSecret());
                             obj.put("accessToken", LoginUtils.getInstance().getAccessToken());
                             Iterator it = obj.keys();
