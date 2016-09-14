@@ -10,17 +10,26 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.DownloadListener;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.appbyme.dev.R;
+import com.litesuits.common.assist.Toastor;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
+import com.mobcent.discuz.ui.TopicOptPopup;
+import com.mobcent.discuz.ui.WebOptPopup;
 
 import java.util.List;
 
@@ -86,6 +95,17 @@ public class WebActivity extends Activity implements View.OnClickListener {
 
         // Make the WebView handle all loaded URLs
         mWebView.setWebViewClient(new MyWebViewClient());
+
+        // setupDownload
+        mWebView.setDownloadListener(new DownloadListener() {
+            @Override
+            public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+                finish();
+            }
+        });
         mWebView.loadUrl(mUrl);
     }
 
@@ -142,6 +162,19 @@ public class WebActivity extends Activity implements View.OnClickListener {
             WebActivity.this.setWebTitle(view.getTitle());
             mPlaceHolderView.setVisibility(View.GONE);
         }
+
+        @Override
+        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+            super.onReceivedError(view, request, error);
+            Toast.makeText(getBaseContext(), "error:" + error.toString(), Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+            super.onReceivedHttpError(view, request, errorResponse);
+            Toast.makeText(getBaseContext(), "error:" + errorResponse.toString(), Toast.LENGTH_LONG).show();
+
+        }
     }
 
     private void setWebTitle(String title) {
@@ -179,8 +212,19 @@ public class WebActivity extends Activity implements View.OnClickListener {
         switch(v.getId()) {
             case R.id.nav_btn_more:
                 // show spinner
+                // 顶部Header更多操作
+                showHeaderOptMenu(v);
                 break;
         }
+    }
+
+    /**
+     * 显示操作popup - 收藏，浏览器打开，复制链接
+     * @param anchor
+     */
+    private void showHeaderOptMenu(View anchor) {
+        WebOptPopup webOptPopup = new WebOptPopup(this, mUrl);
+        webOptPopup.showAtLocation(anchor.getRootView(), Gravity.BOTTOM, 0, 0);
     }
 
     /**
