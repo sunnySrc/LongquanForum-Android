@@ -11,7 +11,6 @@
         <Button android:gravity="center" android:id="@id/mc_forum_public_btn" android:background="@drawable/mc_forum_top_bar_button2" android:layout_width="@dimen/mc_forum_top_bar_height" android:layout_height="@dimen/mc_forum_top_bar_height" android:text="@string/mc_forum_msg_chat_room_send" android:layout_alignParentRight="true" style="@style/mc_forum_top_bar_right_button" />
     </RelativeLayout>
 
-
     <RelativeLayout android:paddingBottom="45.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent">
             <LinearLayout android:orientation="vertical" android:id="@id/mc_forum_top_content_box" android:background="@android:color/white" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="284.0dip">
                 <View android:id="@id/mc_forum_top_line_img" android:background="@drawable/dz_icon_line" android:layout_width="fill_parent" android:layout_height="1.0px" />

@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
 import com.appbyme.dev.R;
+import com.mobcent.discuz.activity.PublishTopicActivity;
 import com.mobcent.discuz.base.UIJumper;
+import com.mobcent.discuz.bean.Reply;
 import com.mobcent.discuz.bean.TopicReply;
 
 import java.util.List;
@@ -45,7 +47,7 @@ public class ReplyActionPopup extends PopupWindow implements View.OnClickListene
         View manageView = view.findViewById(R.id.menu_manage_layout);
         manageView.setVisibility(isOtherReply ? View.GONE : View.VISIBLE);
         View reportView = view.findViewById(R.id.menu_report_layout);
-//        reportView.setVisibility(isOtherReply ? View.GONE : View.VISIBLE);
+        reportView.setVisibility(View.GONE);
         manageView.setOnClickListener(this);
         reportView.setOnClickListener(this);
         view.findViewById(R.id.menu_comment_layout).setOnClickListener(this);
@@ -56,6 +58,7 @@ public class ReplyActionPopup extends PopupWindow implements View.OnClickListene
         switch (v.getId()) {
             case R.id.menu_comment_layout:
 //                UIJumper.reply(mContext, reply.get);
+                PublishTopicActivity.start(mContext, Reply.buildQuote(0, reply.getTopicId(), null, reply.getReply_posts_id()));
                 break;
             case R.id.menu_report_layout:
                 //

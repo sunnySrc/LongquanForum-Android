@@ -44,6 +44,9 @@ public class TopicResult extends BaseResult{
     }
 
     public List<TopicReply> getList() {
+        for (TopicReply reply : list) {
+            reply.setTopicId(topic.getTopic_id());
+        }
         return list;
     }
 

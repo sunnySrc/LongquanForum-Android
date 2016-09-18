@@ -29,8 +29,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appbyme.dev.R;
+import com.mobcent.discuz.api.LqForumApi;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.base.constant.LocationProvider;
+import com.mobcent.discuz.bean.Reply;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 import com.mobcent.discuz.uitls.PermissionUtils;
 import com.zejian.emotionkeyboard.fragment.EmotionMainFragment;
@@ -65,10 +67,37 @@ public class PublishTopicActivity extends FragmentActivity {
     private LocationHandler mLocationHandler = new LocationHandler();
     private LocationCheckHandler mLocationCheckHandler = new LocationCheckHandler();
 
+    private Reply reply;
+
+    /**
+     * 回复回帖
+     * @param context
+     * @param reply
+     */
+    public static void start(Context context, Reply reply) {
+        Intent starter = new Intent(context, PublishTopicActivity.class);
+        starter.putExtra("Type","0");
+        starter.putExtra("catId", 1);
+        starter.putExtra("ser_reply", reply);
+        context.startActivity(starter);
+    }
+
+    public static void start(Context context, int catId) {
+        Intent starter = new Intent(context, PublishTopicActivity.class);
+        starter.putExtra("Type","0");
+        starter.putExtra("catId", catId);
+        context.startActivity(starter);
+    }
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.publish_topic_activity);
+        reply = (Reply) getIntent().getSerializableExtra("ser_reply");
+        mCate = getIntent().getIntExtra("catId", 0);
+        if (mCate > 0 || reply != null) {
+            findViewById(R.id.title_layout).setVisibility(View.GONE);
+        }
+
         mGridView = (GridView) findViewById(R.id.imagegride);
         mImageAdapter = new ImageAdapter(this);
         mImageAdapter.addItem(new Item("", BitmapFactory.decodeResource(getResources(), R.drawable.dz_publish_add_picture_h)));
@@ -161,7 +190,7 @@ public class PublishTopicActivity extends FragmentActivity {
         fragmentBundle.putBoolean(EmotionMainFragment.HIDE_BAR_EDITTEXT_AND_BTN,true);
         //替换fragment
         //创建修改实例
-        EmotionMainFragment emotionMainFragment = EmotionMainFragment.newInstance(EmotionMainFragment.class, fragmentBundle);
+        final EmotionMainFragment emotionMainFragment = EmotionMainFragment.newInstance(EmotionMainFragment.class, fragmentBundle);
         emotionMainFragment.bindCustomEditText(content);
         emotionMainFragment.bindToContentView(findViewById(R.id.mc_forum_scrollview));
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -171,6 +200,17 @@ public class PublishTopicActivity extends FragmentActivity {
 //        transaction.addToBackStack(null);
         //提交修改
         transaction.commit();
+
+        // 失去焦点时隐藏表情(防止双键盘出现）
+        content.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    emotionMainFragment.hidePanel();
+                }
+                findViewById(R.id.fl_emotionview_main).setVisibility(hasFocus ? View.VISIBLE : View.GONE);
+            }
+        });
     }
 
     @Override
@@ -219,34 +259,39 @@ public class PublishTopicActivity extends FragmentActivity {
         String titleString = title.getText().toString().trim();
         EditText content = (EditText)findViewById(R.id.mc_forum_content_edit);
         String contentString = content.getText().toString().trim();
-        try {
-            JSONObject contentJson = new JSONObject();
-            contentJson.put("infor", contentString);
-            contentJson.put("type", "0");
-            JSONArray contentArray = new JSONArray();
-            contentArray.put(contentJson);
-            String contentArrayString = URLEncoder.encode(contentArray.toString());
-            JSONObject total = new JSONObject();
-            JSONObject body = new JSONObject();
-            JSONObject json = new JSONObject();
-            json.put("typeId", "80");
-            json.put("isShowPostion", "1");
-            json.put("content", contentArrayString);
-            json.put("aid", "");
-            json.put("isQuote", "0");
-            json.put("fid", mCate);
-            json.put("longitude", mLongitude);
-            json.put("latitude", mLatitude);
-            json.put("title", URLEncoder.encode(titleString));
-            total.put("body", body);
-            body.put("json", json);
-            JSONObject param = new JSONObject();
-            param.put("platType", 5);
-            param.put("act", "new");
-            param.put("json", URLEncoder.encode(total.toString()));
-            new DiscuzRequest("forum/topicadmin", param.toString(), new PublishHandler()).execute();
-        } catch (Exception e) {
+        if (reply != null) {
+            reply.getBody().getJson().setContentStr(contentString);
+            LqForumApi.reply(reply, new PublishHandler());
+        } else {
+            try {
+                JSONObject contentJson = new JSONObject();
+                contentJson.put("infor", contentString);
+                contentJson.put("type", "0");
+                JSONArray contentArray = new JSONArray();
+                contentArray.put(contentJson);
+                String contentArrayString = URLEncoder.encode(contentArray.toString());
+                JSONObject total = new JSONObject();
+                JSONObject body = new JSONObject();
+                JSONObject json = new JSONObject();
+                json.put("typeId", "80");
+                json.put("isShowPostion", "1");
+                json.put("content", contentArrayString);
+                json.put("aid", "");
+                json.put("isQuote", "0");
+                json.put("fid", mCate);
+                json.put("longitude", mLongitude);
+                json.put("latitude", mLatitude);
+                json.put("title", URLEncoder.encode(titleString));
+                total.put("body", body);
+                body.put("json", json);
+                JSONObject param = new JSONObject();
+                param.put("platType", 5);
+                param.put("act", "new");
+                param.put("json", URLEncoder.encode(total.toString()));
+                new DiscuzRequest("forum/topicadmin", param.toString(), new PublishHandler()).execute();
+            } catch (Exception e) {
 
+            }
         }
 
     }

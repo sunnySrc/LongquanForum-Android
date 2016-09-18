@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -92,13 +93,19 @@ public class WebActivity extends Activity implements View.OnClickListener {
         CookieJar cookieJar = DiscuzRequest.OK_HTTP_CLIENT.cookieJar();
         HttpUrl httpUrl = HttpUrl.parse(mUrl);
         List<Cookie> cookies = cookieJar.loadForRequest(httpUrl);
-        StringBuilder sb = new StringBuilder();
-        for (Cookie c : cookies) {
-            sb.append(c.toString());
-            sb.append(";");
+//        StringBuilder sb = new StringBuilder();
+        for (Cookie cookie : cookies) {
+//            sb.append(cookie.toString());
+//            sb.append(";");
+//                Log.d("COOKIE", cookie.getName() + "=" + cookie.getValue() + ",path=" + cookie.getPath() + ",domain=" + cookie.getDomain());
+            CookieManager.getInstance().setCookie(cookie.domain(), cookie.name() + "=" + cookie.value() + "; domain=" + cookie.domain() + "; path=" + cookie.path());
         }
-
-        CookieManager.getInstance().setCookie(mUrl, sb.toString());
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            CookieSyncManager.getInstance().sync();
+        } else {
+            CookieManager.getInstance().flush();
+        }
+//        CookieManager.getInstance().setCookie(mUrl, sb.toString());
     }
 
     public void setUpUserAgent(WebView web) {
