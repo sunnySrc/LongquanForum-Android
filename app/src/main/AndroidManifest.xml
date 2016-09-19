@@ -81,6 +81,14 @@
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:configChanges="keyboardHidden|orientation"
             android:windowSoftInputMode="stateAlwaysHidden|stateAlwaysVisible|adjustResize" />
+
+        <activity
+            android:name="com.foamtrace.photopicker.PhotoPickerActivity"
+            android:theme="@style/PhotoPickerTheme"
+            android:configChanges="orientation|screenSize"/>
+
+        <activity android:name="com.foamtrace.photopicker.PhotoPreviewActivity"
+            android:theme="@style/PhotoPickerTheme"/>
         <!--activity android:theme="@style/no_title_activity" android:name="com.mobcent.discuz.module.person.activity.UserHomeActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" />
         <activity android:theme="@style/no_title_activity" android:name="com.mobcent.discuz.module.person.activity.UserPhotosActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" />
         <activity android:theme="@style/no_title_activity" android:name="com.mobcent.discuz.module.person.activity.UserPhotosSubActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" />
