@@ -5,6 +5,7 @@ package com.mobcent.discuz.api;
  */
 
 public class UrlFactory {
+    public static final String LOGIN = "user/login";
     /**
      * 首页,  /网络直播
      */

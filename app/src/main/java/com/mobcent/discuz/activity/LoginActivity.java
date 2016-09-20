@@ -28,6 +28,12 @@ public class LoginActivity extends Activity {
     {
         super.onCreate(paramBundle);
         setContentView(R.layout.user_login_fragment);
+        findViewById(R.id.find_password).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebActivity.start(LoginActivity.this, DiscuzRequest.baseUrl + "user/getpwd", "找回密码");
+            }
+        });
         mUsername = (TextView)findViewById(R.id.user_login_name_edit);
         mPassword = (TextView)findViewById(R.id.user_login_password_edit);
 

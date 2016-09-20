@@ -54,6 +54,14 @@ public class LoginUtils {
         editor.commit();
     }
 
+    public void setLogout() throws JSONException {
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("userinfo", "");
+        editor.putString("secret", "");
+        editor.putString("token", "");
+        editor.commit();
+    }
+
     public static void autoLogin() {
         JSONObject obj = new JSONObject();
         String[] account = PasswordHelp.readPassword(DiscuzApplication._instance);
