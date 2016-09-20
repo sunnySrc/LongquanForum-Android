@@ -41,6 +41,10 @@ public class LoginUtils {
         return sp.getString("secret", "");
     }
 
+    public String getUserInfo() {
+        return sp.getString("userinfo", "");
+    }
+
     public String getAccessToken() {
         return sp.getString("token", "");
     }

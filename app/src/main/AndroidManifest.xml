@@ -89,8 +89,8 @@
 
         <activity android:name="com.foamtrace.photopicker.PhotoPreviewActivity"
             android:theme="@style/PhotoPickerTheme"/>
-        <!--activity android:theme="@style/no_title_activity" android:name="com.mobcent.discuz.module.person.activity.UserHomeActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" />
-        <activity android:theme="@style/no_title_activity" android:name="com.mobcent.discuz.module.person.activity.UserPhotosActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" />
+        <activity android:theme="@style/no_title_activity" android:name="com.mobcent.discuz.module.person.activity.UserHomeActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" />
+        <!--activity android:theme="@style/no_title_activity" android:name="com.mobcent.discuz.module.person.activity.UserPhotosActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" />
         <activity android:theme="@style/no_title_activity" android:name="com.mobcent.discuz.module.person.activity.UserPhotosSubActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" />
         <activity android:theme="@android:style/Theme.Black.NoTitleBar" android:name="com.mobcent.discuz.module.person.activity.ReportActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" />
         <activity android:theme="@style/no_title_activity" android:name="com.mobcent.discuz.module.person.activity.BasePhotoActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation" />

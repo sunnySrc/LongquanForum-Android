@@ -5,17 +5,23 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appbyme.dev.R;
+import com.bumptech.glide.Glide;
 import com.mobcent.discuz.activity.LoginActivity;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.api.UrlFactory;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
+import com.mobcent.discuz.module.person.activity.UserHomeActivity;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -41,6 +47,24 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         view.findViewById(R.id.mc_forum_user_collect).setOnClickListener(this);
         view.findViewById(R.id.mc_forum_user_info).setOnClickListener(this);
 
+        String userinfo = LoginUtils.getInstance().getUserInfo();
+        if (!TextUtils.isEmpty(userinfo)) {
+            try {
+                JSONObject object = new JSONObject(userinfo);
+                Glide.with(getContext()).load(object.getString("avatar")).into((ImageView) view.findViewById(R.id.mc_forum_user_header_icon));
+                ((TextView)view.findViewById(R.id.mc_forum_user_name)).setText(object.getString("userName"));
+                ((TextView)view.findViewById(R.id.mc_forum_user_level)).setText(object.getString("userTitle"));
+                JSONArray array = object.getJSONArray("creditShowList");
+                String integral = "";
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject o = array.getJSONObject(i);
+                    integral += o.getString("title") + ":" + o.getString("data");
+                }
+                ((TextView) view.findViewById(R.id.mc_forum_user_integral)).setText(integral);
+            } catch (Exception e) {
+
+            }
+        }
         return view;
     }
 
@@ -107,6 +131,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.mc_forum_user_collect:
                 break;
             case R.id.mc_forum_user_info:
+                Intent intent = new Intent(getContext(), UserHomeActivity.class);
+                startActivity(intent);
                 break;
         }
     }
