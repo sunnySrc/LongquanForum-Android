@@ -40,7 +40,7 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
     private HttpResponseHandler mHandler;
     private Vector<String> mFiles;
     private String mMethod = "post";
-    public final String baseUrl = "http://forum.longquanzs.org//mobcent/app/web/index.php?r=";
+    public static final String baseUrl = "http://forum.longquanzs.org//mobcent/app/web/index.php?r=";
     // Global instance
     public static  CookieJar COOKIE_JAR = new CookiesManager();
     public static  OkHttpClient OK_HTTP_CLIENT ;

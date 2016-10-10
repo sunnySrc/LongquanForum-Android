@@ -21,18 +21,26 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appbyme.dev.R;
+import com.foamtrace.photopicker.PhotoPickerActivity;
+import com.foamtrace.photopicker.PhotoPreviewActivity;
+import com.foamtrace.photopicker.SelectModel;
+import com.foamtrace.photopicker.intent.PhotoPickerIntent;
 import com.mobcent.discuz.api.LqForumApi;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.base.constant.LocationProvider;
 import com.mobcent.discuz.bean.Reply;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
+import com.mobcent.discuz.uitls.PermissionUtils;
 import com.zejian.emotionkeyboard.fragment.EmotionMainFragment;
+import com.zejian.emotionkeyboard.utils.ScreenUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -40,6 +48,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Vector;
 
 
@@ -53,11 +62,13 @@ public class PublishTopicActivity extends FragmentActivity {
     private ImageView mLocation;
     private TextView mLocationText;
     private LocationClickListener mLocationClickListener;
+    private boolean isFirst = true;
     private int mCate;
     private int width;
 
     private String mLongitude;
     private String mLatitude;
+    private String mCameraStore;
     private UploadFileHandler mUploadFileHandler = new UploadFileHandler();
     private LocationHandler mLocationHandler = new LocationHandler();
     private LocationCheckHandler mLocationCheckHandler = new LocationCheckHandler();
@@ -87,20 +98,12 @@ public class PublishTopicActivity extends FragmentActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.publish_topic_activity);
-        String type = getIntent().getExtras().getString("Type");
         reply = (Reply) getIntent().getSerializableExtra("ser_reply");
         mCate = getIntent().getIntExtra("catId", 0);
         if (mCate > 0 || reply != null) {
             findViewById(R.id.title_layout).setVisibility(View.GONE);
         }
 
-        if (type.equals("1")) {
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, 1);
-        } else if (type.equals("2")) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, 2);
-        }
         mGridView = (GridView) findViewById(R.id.imagegride);
         mImageAdapter = new ImageAdapter(this);
         mImageAdapter.addItem(new Item("", BitmapFactory.decodeResource(getResources(), R.drawable.dz_publish_add_picture_h)));
@@ -116,16 +119,14 @@ public class PublishTopicActivity extends FragmentActivity {
                         @Override
                         public void onClick(View v) {
                             dialog.dismiss();
-                            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                            startActivityForResult(intent, 1);
+                            startSelectPicture();
                         }
                     });
                     view.findViewById(R.id.mc_forun_publish_from_camera).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             dialog.dismiss();
-                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(intent, 2);
+                            startCamera();
                         }
                     });
 
@@ -158,7 +159,7 @@ public class PublishTopicActivity extends FragmentActivity {
                     return;
                 }
                 if (mImageAdapter.getCount() > 1) {
-                    String url = "forum/sendattachmentex&type=image&forumKey=BW0L5ISVRsOTVLCTJx&accessSecret=" + LoginUtils.getInstance().getAccessSecret() + "&accessToken=" + LoginUtils.getInstance().getAccessToken() +
+                    String url = DiscuzRequest.baseUrl + "forum/sendattachmentex&type=image&forumKey=BW0L5ISVRsOTVLCTJx&accessSecret=" + LoginUtils.getInstance().getAccessSecret() + "&accessToken=" + LoginUtils.getInstance().getAccessToken() +
                             "&module=forum&egnVersion=v2035.2&sdkVersion=2.4.3.0&fid=" + mCate + "&apphash=4c37ae6f";
                     Vector<String> files = new Vector<String>();
                     for (int i = 1; i < mImageAdapter.getCount(); i++) {
@@ -166,7 +167,7 @@ public class PublishTopicActivity extends FragmentActivity {
                     }
                     new DiscuzRequest(url, files, mUploadFileHandler).execute();
                 } else {
-                    doPublish();
+                    doPublish(new Vector<String>());
                 }
             }
         });
@@ -215,6 +216,45 @@ public class PublishTopicActivity extends FragmentActivity {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        width = ScreenUtils.getScreenWidth(this) / 5 - 8;
+        if (isFirst) {
+            String type = getIntent().getExtras().getString("Type");
+            if (type.equals("1")) {
+                startSelectPicture();
+            } else if (type.equals("2")) {
+                startCamera();
+            }
+            isFirst = false;
+        }
+    }
+
+    private void startSelectPicture() {
+        PermissionUtils.verifyStoragePermissions(PublishTopicActivity.this);
+        PhotoPickerIntent intent = new PhotoPickerIntent(this);
+        intent.setSelectModel(SelectModel.MULTI);
+        //intent.setShowCarema(true); // 是否显示拍照， 默认false
+        intent.setMaxTotal(10); // 最多选择照片数量，默认为9
+        // intent.setSelectedPaths(imagePaths); // 已选中的照片地址， 用于回显选中状态
+        startActivityForResult(intent, 1);
+    }
+
+    private void startCamera() {
+        PermissionUtils.verifyCameraPermissions(PublishTopicActivity.this);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(getImagePath())));
+        intent.putExtra("return-data", true);
+        startActivityForResult(intent, 2);
+    }
+
+    private String getImagePath() {
+        mCameraStore = android.os.Environment.getExternalStorageDirectory().toString() + "/DCIM/Bitmap[" +
+                android.os.SystemClock.uptimeMillis() + "].jpg";
+        return mCameraStore;
+    }
+
     class UploadFileHandler implements HttpResponseHandler {
         private DiscuzRequest mLocationRequest;
 
@@ -225,7 +265,17 @@ public class PublishTopicActivity extends FragmentActivity {
                 if (!"1".equals(object.getString("rs"))) {
                     onFail(object.getString("errcode"));
                 } else {
-                    doPublish();
+                    try {
+                        JSONArray array = object.getJSONObject("body").getJSONArray("attachment");
+                        Vector<String> v = new Vector<>();
+                        for (int i = 0; i < array.length(); i++) {
+                            v.add(array.getJSONObject(i).getString("urlName"));
+                        }
+                        doPublish(v);
+                    } catch (Exception e) {
+
+                    }
+
                 }
             } catch (Exception e) {
 
@@ -238,7 +288,7 @@ public class PublishTopicActivity extends FragmentActivity {
         }
     }
 
-    private void doPublish() {
+    private void doPublish(Vector<String> urlNames) {
         EditText title = (EditText)findViewById(R.id.mc_forum_title_edit);
         String titleString = title.getText().toString().trim();
         EditText content = (EditText)findViewById(R.id.mc_forum_content_edit);
@@ -251,8 +301,17 @@ public class PublishTopicActivity extends FragmentActivity {
                 JSONObject contentJson = new JSONObject();
                 contentJson.put("infor", contentString);
                 contentJson.put("type", "0");
+
                 JSONArray contentArray = new JSONArray();
                 contentArray.put(contentJson);
+
+                for (int i = 0; i < urlNames.size(); i++) {
+                    JSONObject urlName = new JSONObject();
+                    urlName.put("infor", urlNames.get(i));
+                    urlName.put("type", "1");
+                    contentArray.put(urlName);
+                }
+
                 String contentArrayString = URLEncoder.encode(contentArray.toString());
                 JSONObject total = new JSONObject();
                 JSONObject body = new JSONObject();
@@ -403,24 +462,21 @@ public class PublishTopicActivity extends FragmentActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==2)
         {
-            if (resultCode==Activity.RESULT_OK && data != null) {
-                Bitmap cameraBitmap = (Bitmap) data.getExtras().get("data");
-                mImageAdapter.addItem(new Item("", cameraBitmap));
+            if (resultCode==Activity.RESULT_OK) {
+                Bitmap cameraBitmap = loadBitmap(mCameraStore, width, width);
+                mImageAdapter.addItem(new Item(mCameraStore, cameraBitmap));
                 mImageAdapter.notifyDataSetChanged();
             }
         } else if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK && data != null) {
-                Uri selectImageUri  = data.getData();
-                String[] filePathColumn = new String[]{MediaStore.Images.Media.DATA};
-                Cursor cursor = getContentResolver().query(selectImageUri,filePathColumn,null,null,null);
-                String pirPath = null;
-                while(cursor.moveToNext()){
-                    pirPath = cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
+                ArrayList<String > arrayList = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT);
+                mImageAdapter.removeAll();
+                for (int i = 0; i < arrayList.size(); i++) {
+                    String pirPath = arrayList.get(i);
                     Bitmap bitmap = loadBitmap(pirPath, width, width);
                     mImageAdapter.addItem(new Item(pirPath, bitmap));
                 }
                 mImageAdapter.notifyDataSetChanged();
-                cursor.close();
             }
         } else if (requestCode == 3) {
             if (resultCode == Activity.RESULT_OK && data != null) {
@@ -458,7 +514,15 @@ public class PublishTopicActivity extends FragmentActivity {
         }
 
         public void addItem(Item bitmap) {
+            if (mThumbIds.size() == 10) {
+                mThumbIds.remove(0);
+            }
             mThumbIds.add(bitmap);
+        }
+
+        public void removeAll() {
+            mThumbIds.removeAllElements();
+            mThumbIds.add(new Item("", BitmapFactory.decodeResource(getResources(), R.drawable.dz_publish_add_picture_h)));
         }
 
         public Object getItem(int position) {
@@ -470,18 +534,13 @@ public class PublishTopicActivity extends FragmentActivity {
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
-            ImageView imageView = null;
-            if (width == 0) {
-                width = mGridView.getMeasuredWidth() / 5;
-            }
-            if(convertView == null){
+            ImageView imageView = (ImageView)convertView;
+            if(imageView == null){
                 imageView = new ImageView(context);
-            }else{
-                imageView = (ImageView)convertView;
             }
-            imageView.setLayoutParams(new GridView.LayoutParams(width, width));
+            LinearLayout.LayoutParams gridLayout = new LinearLayout.LayoutParams(width, width);
+            imageView.setLayoutParams(gridLayout);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8,8,8,8);
             if (position == getCount() - 1) {
                 imageView.setImageBitmap(mThumbIds.get(0).mBitmap);
             } else {
@@ -492,7 +551,7 @@ public class PublishTopicActivity extends FragmentActivity {
 
     }
 
-    public static Bitmap loadBitmap(String url, int width, int height)
+    public Bitmap loadBitmap(String url, int width, int height)
     {
         Bitmap bitmap = null;
         if (url == null || !new File(url).exists()) return bitmap;
@@ -506,6 +565,7 @@ public class PublishTopicActivity extends FragmentActivity {
             opts.inPreferredConfig = Bitmap.Config.RGB_565;
             opts.inPurgeable = true;
             opts.inInputShareable = true;
+            PermissionUtils.verifyStoragePermissions(this);
             bitmap = BitmapFactory.decodeStream(new FileInputStream(url), null, opts);
             bitmap = ThumbnailUtils.extractThumbnail(bitmap, width, height);
             return bitmap;

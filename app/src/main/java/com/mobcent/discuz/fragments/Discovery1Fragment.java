@@ -15,6 +15,7 @@ import com.appbyme.dev.R;
 import com.bumptech.glide.Glide;
 import com.mobcent.common.TimeUtil;
 import com.mobcent.discuz.api.LqForumApi;
+import com.mobcent.discuz.base.UIJumper;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.bean.Link;
 
@@ -101,7 +102,7 @@ public class Discovery1Fragment extends BaseRefreshFragment {
         request = LqForumApi.newsList(page, "1", this);
     }
 
-    public View getView(JSONObject object, View convertView, ViewGroup parent) {
+    public View getView(final JSONObject object, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.portal_list_photo1_item, parent, false);
         }
@@ -118,6 +119,16 @@ public class Discovery1Fragment extends BaseRefreshFragment {
             TextView time = (TextView) convertView.findViewById(R.id.mc_forum_time_text);
             String timeText = TimeUtils.getTimeText(object.getString("last_reply_date"));
             time.setText(timeText);
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        UIJumper.jumpTopic(getContext(), (object.optInt("source_id", 0) != 0) ? object.getInt("source_id") : object.getInt("topic_id"));
+                    } catch (Exception e) {
+
+                    }
+                }
+            });
         } catch (Exception e) {
         }
         return convertView;

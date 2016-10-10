@@ -41,6 +41,10 @@ public class LoginUtils {
         return sp.getString("secret", "");
     }
 
+    public String getUserInfo() {
+        return sp.getString("userinfo", "");
+    }
+
     public String getAccessToken() {
         return sp.getString("token", "");
     }
@@ -51,6 +55,14 @@ public class LoginUtils {
         JSONObject obj = new JSONObject(info);
         editor.putString("secret", obj.getString("secret"));
         editor.putString("token", obj.getString("token"));
+        editor.commit();
+    }
+
+    public void setLogout() throws JSONException {
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("userinfo", "");
+        editor.putString("secret", "");
+        editor.putString("token", "");
         editor.commit();
     }
 
