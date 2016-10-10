@@ -37,5 +37,10 @@ public class UrlFactory {
 
     public static final String USER_FAVOR = "user/userfavorite";
 
+    /**
+     * 论坛设置
+     */
+    public static final String SETTING = "user/getsetting";
+
 
 }

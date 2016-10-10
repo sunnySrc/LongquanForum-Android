@@ -23,13 +23,13 @@ import com.mobcent.discuz.base.Tasker;
 import com.mobcent.discuz.base.UIJumper;
 import com.mobcent.discuz.bean.Base;
 import com.mobcent.discuz.bean.BoardListResult;
+import com.mobcent.discuz.bean.ClassificationTypeListBean;
 import com.mobcent.discuz.bean.MoreNewResult;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 import com.mobcent.discuz.ui.BoardFilterPopup;
 import com.mobcent.discuz.widget.LoadMoreViewManager;
 import com.mobcent.discuz.widget.ViewHolder;
 
-import java.io.PushbackInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -270,7 +270,7 @@ public class BoardListDetailActivity extends BaseRefreshActivity {
     }
 
     // 顶部展开view
-    private void updateNavExpandView(List<BoardListResult.ClassificationTypeListBean> list) {
+    private void updateNavExpandView(List<ClassificationTypeListBean> list) {
         if (list == null || list.isEmpty()) return;
         mViewHolder.getView(R.id.nav_icon_expand).setVisibility(View.VISIBLE);
         headerNav.setOnClickListener(new View.OnClickListener() {

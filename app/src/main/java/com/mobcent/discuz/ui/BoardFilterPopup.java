@@ -1,13 +1,13 @@
 package com.mobcent.discuz.ui;
 
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.appbyme.dev.R;
 import com.mobcent.discuz.bean.BoardListResult;
+import com.mobcent.discuz.bean.ClassificationTypeListBean;
 import com.mobcent.discuz.widget.ComAdapter;
 import com.mobcent.discuz.widget.ViewHolder;
 
@@ -21,9 +21,9 @@ import java.util.List;
 
 public class BoardFilterPopup extends BasePopup {
     private final GridView gridView;
-    private final BoardListResult.ClassificationTypeListBean mDefaultBean;
+    private final ClassificationTypeListBean mDefaultBean;
     private Callback callback;
-    private final List<BoardListResult.ClassificationTypeListBean> list = new ArrayList<>();
+    private final List<ClassificationTypeListBean> list = new ArrayList<>();
     private boolean noRefresh = true;
 
     public BoardFilterPopup(final Context context) {
@@ -37,7 +37,7 @@ public class BoardFilterPopup extends BasePopup {
                 dismiss();
             }
         });
-        mDefaultBean = new BoardListResult.ClassificationTypeListBean();
+        mDefaultBean = new ClassificationTypeListBean();
         mDefaultBean.setClassificationType_id(0);
         mDefaultBean.setClassificationType_name("全部");
     }
@@ -53,7 +53,7 @@ public class BoardFilterPopup extends BasePopup {
         list.clear();
         list.add(mDefaultBean);
         list.addAll(result.getClassificationType_list());
-        gridView.setAdapter(new ComAdapter<BoardListResult.ClassificationTypeListBean>(mContext, R.layout.popup_grid_item, list
+        gridView.setAdapter(new ComAdapter<ClassificationTypeListBean>(mContext, R.layout.popup_grid_item, list
         ) {
             @Override
             public void customSet(ViewHolder holder, final int position) {

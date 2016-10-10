@@ -34,7 +34,8 @@ public class LqForumApi {
     public static DiscuzRequest moduleConfig(HttpResponseHandler handler , long id) {
         RequestParams params = new RequestParams();
         params.add("moduleId", id);
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.MODULE_CONFIG, params.getJsonStr(), handler);
+        params.setUseCache(true);
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.MODULE_CONFIG, params, handler);
         request.begin();
         return request;
     }
@@ -47,7 +48,8 @@ public class LqForumApi {
         RequestParams params = new RequestParams();
         params.add("moduleId", newsModelId);
         params.add("page",page);
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.NEWS_LIST, params.getJsonStr(), handler);
+        params.setUseCache(true);
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.NEWS_LIST, params, handler);
         request.begin();
         return request;
     }
@@ -61,7 +63,8 @@ public class LqForumApi {
         params.add("topicId",topicId);
         params.add("page",page);
         params.add("pageSize", PAGE_SIZE_TOPIC_REPLY);
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.DETAIL_FORUM, params.getJsonStr(), handler);
+        params.setUseCache(true);
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.DETAIL_FORUM, params, handler);
         request.begin();
         return request;
     }
@@ -98,7 +101,8 @@ public class LqForumApi {
 
     public static DiscuzRequest forumList(HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.FORUM_LIST, params.getJsonStr(), handler);
+        params.setUseCache(true);
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.FORUM_LIST, params, handler);
         request.begin();
         return request;
     }
@@ -108,7 +112,8 @@ public class LqForumApi {
         if (!TextUtils.isEmpty(Type)) {
             params.add("type", Type);
         }
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.FORUM_LIST, params.getJsonStr(), handler);
+        params.setUseCache(true);
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.FORUM_LIST, params, handler);
         request.begin();
         return request;
     }
@@ -137,6 +142,7 @@ public class LqForumApi {
 
     public static DiscuzRequest topicList(int page, int filterId, String sortby, String boardId, HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
+        params.setUseCache(true);
         params.add("topOrder", "1");
         params.add("pageSize", "20");
         params.add("filterId", filterId);
@@ -147,20 +153,33 @@ public class LqForumApi {
         params.add("circle", "0");
         params.add("isImageList", "1");
         params.add("boardId", boardId);
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.TOPIC_LIST, params.getJsonStr(), handler);
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.TOPIC_LIST, params, handler);
         request.begin();
         return request;
     }
 
     public static DiscuzRequest newsList(int page, String moduleId, HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
+        params.setUseCache(true);
         params.add("pageSize", "20");
         params.add("moduleId", moduleId);
         params.add("page", String.valueOf(page));
         params.add("circle", "0");
         params.add("isImageList", "1");
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.NEWS_LIST, params.getJsonStr(), handler);
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.NEWS_LIST, params, handler);
         request.begin();
         return request;
     }
+
+    public static DiscuzRequest getSettings(HttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.setUseCache(true);
+        params.add("socket_timeout", 3000);
+        params.add("connection_timeout",1000);
+        params.add("getSetting","%7b%22body%22%3a%7b%22postInfo%22%3a%7b%22forumIds%22%3a%220%22%7d%7d%7d");
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.USER_ADMIN, params, handler);
+        request.begin();
+        return request;
+    }
+
 }

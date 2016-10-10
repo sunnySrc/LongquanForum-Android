@@ -4,14 +4,17 @@ import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import com.litesuits.android.log.Log;
+import com.litesuits.common.assist.Network;
 import com.mobcent.common.AppHashUtil;
 import com.mobcent.discuz.activity.LoginUtils;
+import com.mobcent.discuz.api.RequestParams;
+import com.mobcent.discuz.application.DiscuzApplication;
 import com.mobcent.discuz.base.Tasker;
+import com.mobcent.discuz.base.cache.OkHttpCacheSetting;
 import com.mobcent.discuz.base.cookie.CookiesManager;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,8 +24,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Vector;
-import java.util.logging.Handler;
 
+import okhttp3.CacheControl;
 import okhttp3.CookieJar;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -31,6 +34,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements Tasker{
+    private  boolean useCache;
     private String mUrl;
     private String mBody;
     private HttpResponseHandler mHandler;
@@ -39,10 +43,18 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
     public final String baseUrl = "http://forum.longquanzs.org//mobcent/app/web/index.php?r=";
     // Global instance
     public static  CookieJar COOKIE_JAR = new CookiesManager();
-    public static  OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder().cookieJar(COOKIE_JAR).build();
+    public static  OkHttpClient OK_HTTP_CLIENT ;
     public DiscuzRequest(String url, String body, HttpResponseHandler handler) {
         mUrl = url;
         mBody = body;
+        mHandler = handler;
+    }
+
+    public DiscuzRequest(String url, RequestParams params, HttpResponseHandler handler) {
+        mUrl = url;
+        this.useCache = params.isUseCache();
+        OK_HTTP_CLIENT = OkHttpCacheSetting.getNewOKHttp(params);
+        mBody = params.getJsonStr();
         mHandler = handler;
     }
 
@@ -117,8 +129,17 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
                         .addHeader("content-type", "application/x-www-form-urlencoded");
                         //.addHeader("content-type", "multipart/form-data; boundary=---011000010111000001101001");
             }
-            Request request = builder.build();
+            // 客户端缓存
+            CacheControl cacheControl;
+            if (Network.isConnected(DiscuzApplication._instance)) {
+                cacheControl = CacheControl.FORCE_NETWORK;
+            } else {
+                cacheControl = CacheControl.FORCE_CACHE;
+            }
+            Request request = builder.cacheControl(cacheControl).build();
             Log.d("http request", request.url());
+
+            // 响应端的缓存处理（修改了Response的Cache不建议使用）
             Response response = OK_HTTP_CLIENT.newCall(request).execute();
             return response.body().string();
         } catch (Exception e) {

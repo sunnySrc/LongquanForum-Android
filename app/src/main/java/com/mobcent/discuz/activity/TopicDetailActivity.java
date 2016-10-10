@@ -65,6 +65,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     private TextView mBottomCommentTv;
     private EmotionExtraFragment emotionMainFragment; //表情键盘
     private TopicResult resultBean;
+    private int mTopicId;
 
     public static void start(Context context, long id) {
         Intent starter = new Intent(context, TopicDetailActivity.class);
@@ -88,6 +89,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
             @Override
             public void onSuccess(String result) {
                 TopicResult home = JsonConverter.format(result, TopicResult.class);
+                home.setTopicId(mTopicId);
                 updateReplyListView(home);
             }
 
@@ -101,6 +103,8 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     @Override
     protected void showContent(String result) {
         resultBean = JsonConverter.format(result, TopicResult.class);
+        mTopicId = resultBean.getTopic().getTopic_id();
+        resultBean.setTopicId(mTopicId);
         mReplyList.clear();
 
         setHeaderTitle(resultBean.getForumName());
