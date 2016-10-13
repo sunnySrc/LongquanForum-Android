@@ -1,5 +1,6 @@
 package com.mobcent.discuz.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.appbyme.dev.R;
+import com.foamtrace.photopicker.PhotoPickerActivity;
 import com.mobcent.common.ImageLoader;
 import com.mobcent.common.JsonConverter;
 import com.mobcent.common.TimeUtil;
@@ -82,6 +84,23 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     protected Tasker onExecuteRequest(HttpResponseHandler handler) {
         pageNum = 1;
         return LqForumApi.topicDetail(topicId, pageNum, handler);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        int requestCodeNoMask = requestCode&0xffff;
+        if ( requestCodeNoMask == 1 && resultCode == Activity.RESULT_OK && data != null) {
+            ArrayList<String > arrayList = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT);
+            emotionMainFragment.showPicturePreview(arrayList);
+//            mImageAdapter.removeAll();
+//            for (int i = 0; i < arrayList.size(); i++) {
+//                String pirPath = arrayList.get(i);
+//                Bitmap bitmap = loadBitmap(pirPath, width, width);
+//                mImageAdapter.addItem(new Item(pirPath, bitmap));
+//            }
+//            mImageAdapter.notifyDataSetChanged();
+        }
     }
 
     public void onLoadMore() {
@@ -229,7 +248,10 @@ public class TopicDetailActivity extends BaseRefreshActivity {
      * 回复
      */
     private void sendContent() {
-        if (noInputContent()) return;
+        List<String> pictures = emotionMainFragment.getPictures();
+
+        if (noInputContent() && pictures.isEmpty()) return;
+        // TODO 如果有图片发送图片先
 
         Reply re = Reply.build(resultBean.getBoardId(), resultBean.getTopic().getTopic_id(), getInputContent());
         add(LqForumApi.reply(re, new HttpResponseHandler() {

@@ -1,16 +1,21 @@
 package com.mobcent.discuz.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.appbyme.dev.R;
 import com.mobcent.common.FragmentBackHandler;
+import com.mobcent.discuz.adapter.GalleryAdapter;
 import com.zejian.emotionkeyboard.fragment.EmotionMainFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +24,21 @@ import java.util.List;
  */
 public class EmotionExtraFragment extends com.zejian.emotionkeyboard.fragment.EmotionMainFragment implements FragmentBackHandler {
 
+    private RecyclerView recyclerView;
+    private final ArrayList<String> mPictures = new ArrayList<>();
+    private FrameLayout mPreviewLayout;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = super.onCreateView(inflater, container, savedInstanceState);
+         mPreviewLayout = (FrameLayout) v.findViewById(R.id.content_preview_container);
+        recyclerView = (RecyclerView) inflater.inflate(R.layout.ex_scroll_list, mPreviewLayout, false);
+        //设置布局管理器
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        return v;
+    }
 
     @Override
     protected void addOtherPanelFragment(List<Fragment> fragments) {
@@ -38,35 +58,25 @@ public class EmotionExtraFragment extends com.zejian.emotionkeyboard.fragment.Em
         mEmotionKeyboard.hideAllPanel();
     }
 
-
-    /**
-     * Extra 面板，添加 照片
-     */
-    public static class FunctionFragment extends Fragment {
-
-        @Nullable
-        @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.fragment_inputpanel_function, container, false);
-        }
-
-        @Override
-        public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-            super.onViewCreated(view, savedInstanceState);
-            view.findViewById(R.id.pan_camera).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //相机
-                }
-            });
-            view.findViewById(R.id.pan_album).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //点击
-                }
-            });
-        }
+    //处理返回的图片
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
+
+    public void showPicturePreview(ArrayList<String> arrayList) {
+        mPictures.clear();
+        mPictures.addAll(arrayList);
+        mPreviewLayout.removeAllViews();
+        mPreviewLayout.addView(recyclerView);
+        GalleryAdapter adapter = new GalleryAdapter(getContext(), arrayList, mPreviewLayout);
+        recyclerView.setAdapter(adapter);
+    }
+
+    public ArrayList<String> getPictures() {
+        return mPictures;
+    }
+
 }
 
 

@@ -15,7 +15,7 @@ import com.mobcent.discuz.application.DiscuzApplication;
  *  图片加载
  */
 public class ImageLoader {
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
     // 示例
     public static void load(final String url, ImageView target) {
         if (DEBUG) {
