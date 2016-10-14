@@ -88,6 +88,14 @@ public class Topic {
      */
 
     private List<TopicContent> content;
+    /**
+     * action : http://forum.longquanzs.org/mobcent/app/web/index.php?r=forum/topicrate&sdkVersion=2.5.0.0&accessToken=274d079f604beba7d6edaa76be052&accessSecret=db799660500f1cafae3d030c09caa&apphash=276399a6&tid=64551&pid=332663&type=view
+     * title : 评分
+     * extParams : {"beforeAction":"http://forum.longquanzs.org/mobcent/app/web/index.php?r=forum/topicrate&sdkVersion=2.5.0.0&accessToken=274d079f604beba7d6edaa76be052&accessSecret=db799660500f1cafae3d030c09caa&apphash=276399a6&tid=64551&pid=332663&type=check"}
+     * type : rate
+     */
+
+    private List<ExtraPanelBean> extraPanel;
 
     public int getTopic_id() {
         return topic_id;
@@ -289,6 +297,14 @@ public class Topic {
         this.content = content;
     }
 
+    public List<ExtraPanelBean> getExtraPanel() {
+        return extraPanel;
+    }
+
+    public void setExtraPanel(List<ExtraPanelBean> extraPanel) {
+        this.extraPanel = extraPanel;
+    }
+
     /**
      * 赞赏列表
      */
@@ -393,4 +409,33 @@ public class Topic {
         }
     }
 
+    public static class ExtraPanelBean {
+        private String action;
+        private String title;
+        private String type;
+
+        public String getAction() {
+            return action;
+        }
+
+        public void setAction(String action) {
+            this.action = action;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+    }
 }
