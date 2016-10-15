@@ -187,7 +187,8 @@ public class TopicHelper {
 
             } else if (type == TYPE_IMAGE) {
                 //图片
-                final String url = item.getInfor().endsWith(".gif") ? item.getOriginalInfo() : item.getInfor();
+                final String url = item.getOriginalInfo();
+//                final String url = item.getInfor().endsWith(".gif") ? item.getOriginalInfo() : item.getInfor();
                 final ImageView imageView = holder.getView(R.id.img_view);
                 holder.getConvertView().post(new Runnable() {
                     @Override

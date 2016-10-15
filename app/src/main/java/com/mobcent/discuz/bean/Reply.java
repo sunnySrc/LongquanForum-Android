@@ -6,6 +6,7 @@ import com.mobcent.common.JsonConverter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sun on 2016/9/4.
@@ -38,6 +39,29 @@ public class Reply implements Serializable{
 
     public static Reply build(int fid, int topicId, String content) {
        return build(fid, topicId, content, 0);
+    }
+
+    public static Reply build(int fid, int topicId, String content, List<String> pics) {
+        JsonBean json = new JsonBean();
+        json.setFid(fid);
+        json.setTid(topicId);
+        json.setIsQuote(0);
+
+        ArrayList<Content> cs = new ArrayList<>();
+        Content c = new Content();
+        c.setType(0);
+        c.setInfo(content);
+        cs.add(c);
+
+        for (String imgUrl : pics) {
+            Content c1 = new Content();
+            c1.setType(1);
+            c1.setInfo(imgUrl);
+            cs.add(c1);
+        }
+        json.setContent(JsonConverter.toString(cs));
+
+        return build(json);
     }
 
     private static Reply build(int fid, int topicId, String content, int isQuote) {

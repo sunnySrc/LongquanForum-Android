@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.appbyme.dev.R;
 import com.foamtrace.photopicker.PhotoPickerActivity;
+import com.mobcent.common.AppHashUtil;
 import com.mobcent.common.ImageLoader;
 import com.mobcent.common.JsonConverter;
 import com.mobcent.common.ScreenUtil;
@@ -31,11 +32,13 @@ import com.mobcent.discuz.api.LqForumApi;
 import com.mobcent.discuz.base.Tasker;
 import com.mobcent.discuz.base.UIJumper;
 import com.mobcent.discuz.base.constant.BaseIntentConstant;
+import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.bean.Base;
 import com.mobcent.discuz.bean.Reply;
 import com.mobcent.discuz.bean.Topic;
 import com.mobcent.discuz.bean.TopicReply;
 import com.mobcent.discuz.bean.TopicResult;
+import com.mobcent.discuz.bean.UploadPicResult;
 import com.mobcent.discuz.fragments.EmotionExtraFragment;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 import com.mobcent.discuz.ui.TopicOptPopup;
@@ -46,9 +49,8 @@ import com.zejian.emotionkeyboard.fragment.EmotionMainFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
-import static com.appbyme.dev.R.id.img;
-import static com.appbyme.dev.R.id.include_emotion_view;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_ERROR;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NORMAL;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
@@ -100,13 +102,6 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         if (requestCodeNoMask == 1 && resultCode == Activity.RESULT_OK && data != null) {
             ArrayList<String> arrayList = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT);
             emotionMainFragment.showPicturePreview(arrayList);
-//            mImageAdapter.removeAll();
-//            for (int i = 0; i < arrayList.size(); i++) {
-//                String pirPath = arrayList.get(i);
-//                Bitmap bitmap = loadBitmap(pirPath, width, width);
-//                mImageAdapter.addItem(new Item(pirPath, bitmap));
-//            }
-//            mImageAdapter.notifyDataSetChanged();
         }
     }
 
@@ -320,9 +315,30 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         List<String> pictures = emotionMainFragment.getPictures();
 
         if (noInputContent() && pictures.isEmpty()) return;
-        // TODO 如果有图片发送图片先
+        String url = DiscuzRequest.baseUrl + "forum/sendattachmentex&type=image&forumKey=BW0L5ISVRsOTVLCTJx&accessSecret=" + LoginUtils.getInstance().getAccessSecret() + "&accessToken=" + LoginUtils.getInstance().getAccessToken() +
+                "&module=forum&egnVersion=v2035.2&sdkVersion=2.4.3.0&fid=" + resultBean.getBoardId() + "&apphash=" + AppHashUtil.appHash();
+        Vector<String> files = new Vector<String>(pictures);
+        Tasker picUploader = new DiscuzRequest(url, files, new HttpResponseHandler() {
+            @Override
+            public void onSuccess(String result) {
+                UploadPicResult uploadPicResult = JsonConverter.format(result, UploadPicResult.class);
+                reply(uploadPicResult);
+                // 上传成功清空图片
+                emotionMainFragment.clearPreviewList();
+            }
 
-        Reply re = Reply.build(resultBean.getBoardId(), resultBean.getTopic().getTopic_id(), getInputContent());
+            @Override
+            public void onFail(String result) {
+                MCToastUtils.toast(getBaseContext(), result);
+            }
+        });
+        picUploader.begin();
+        add(picUploader);
+    }
+
+    private void reply(UploadPicResult uploadPicResult) {
+        Reply re = Reply.build(resultBean.getBoardId(), resultBean.getTopic().getTopic_id(), getInputContent(),
+                uploadPicResult.getImgUrls());
         add(LqForumApi.reply(re, new HttpResponseHandler() {
             @Override
             public void onSuccess(String result) {

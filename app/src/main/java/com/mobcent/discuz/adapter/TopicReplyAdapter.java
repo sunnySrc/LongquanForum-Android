@@ -49,7 +49,7 @@ public class TopicReplyAdapter extends ComAdapter<TopicReply> {
         LinearLayout linearLayout = holder.getView(R.id.reply_content_container);
         final TextView tv = holder.getView(R.id.reply_content_text);
         List<TopicContent> topicContents = item.getReply_content();
-        if (topicContents.size() == 1) {
+        if (topicContents.size() == 1 && topicContents.get(0).getType() == TopicContent.TYPE_TEXT) {
             // 单个文本的使用一个简单布局
             tv.setVisibility(View.VISIBLE);
             linearLayout.setVisibility(View.GONE);

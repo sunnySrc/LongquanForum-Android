@@ -77,6 +77,10 @@ public class EmotionExtraFragment extends com.zejian.emotionkeyboard.fragment.Em
         return mPictures;
     }
 
+    public void clearPreviewList() {
+        mPreviewLayout.removeAllViews();
+        mPictures.clear();
+    }
 }
 
 
