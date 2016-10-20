@@ -43,7 +43,7 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
     public static final String baseUrl = "http://forum.longquanzs.org//mobcent/app/web/index.php?r=";
     // Global instance
     public static  CookieJar COOKIE_JAR = new CookiesManager();
-    public static  OkHttpClient OK_HTTP_CLIENT ;
+    public static  OkHttpClient OK_HTTP_CLIENT = OkHttpCacheSetting.getNewOKHttp();
     public DiscuzRequest(String url, String body, HttpResponseHandler handler) {
         mUrl = url;
         mBody = body;
@@ -56,7 +56,6 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
         if (useCache) {
             mMethod = "get";
         }
-        OK_HTTP_CLIENT = OkHttpCacheSetting.getNewOKHttp(params);
         mBody = params.getJsonStr();
         mHandler = handler;
     }
@@ -160,7 +159,7 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
                 }
                 //bodyString += "-----011000010111000001101001--";
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
         }
         return bodyString.toString();

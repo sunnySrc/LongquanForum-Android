@@ -1,184 +1,61 @@
 package com.mobcent.discuz.fragments;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 
-import com.appbyme.dev.R;
-import com.bumptech.glide.Glide;
-import com.mobcent.discuz.api.LqForumApi;
-import com.mobcent.discuz.base.UIJumper;
-import com.mobcent.discuz.base.constant.DiscuzRequest;
+import com.mobcent.discuz.config.ForumSettings;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
- * Created by ubuntu on 16-6-21.
+ * Created by sundxing
+ * 适应动态配置页面
  */
-public class DiscoveryBaseFragment extends BaseRefreshFragment {
+public abstract class DiscoveryBaseFragment extends BaseRefreshFragment {
 
-    private DiscuzRequest request;
-    private ViewGroup viewGroup;
-    private int page = 1;
-    private double left;
-    private double right;
-    private LinearLayout leftView;
-    private LinearLayout rightView;
-
+    private static  int DEFUALTID = 0;
 
     public static DiscoveryBaseFragment newInstance(int newsModuleId, String type, String style) {
         Bundle args = new Bundle();
-        args.putInt("id", newsModuleId);
+        args.putString("id", String.valueOf(newsModuleId));
         args.putString("type", type);
-        args.putString("style", style);
-        DiscoveryBaseFragment fragment = new DiscoveryBaseFragment();
+
+        DiscoveryBaseFragment fragment;
+        switch (style) {
+            case ForumSettings.LIST_TYPE_IMAGE:
+                fragment = new Discovery1Fragment();
+                break;
+            case ForumSettings.LIST_TYPE_NINE:
+                fragment = new Discovery2Fragment();
+                break;
+            case ForumSettings.LIST_TYPE_TIE_BA:
+                fragment = new Discovery3Fragment();
+                break;
+            default:
+                fragment= new Discovery3Fragment();
+        }
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        if (getArguments() == null ||
+                TextUtils.isEmpty(getNewsListId())) {
+            Bundle args = new Bundle();
+            args.putString("id", String.valueOf(++DEFUALTID));
+        }
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    protected View onCreateContentLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        viewGroup = (ViewGroup) inflater.inflate(R.layout.listview_base, container, false);
-        ListView listView = (ListView)viewGroup.findViewById(R.id.topic_reply_list);
-        listView.setAdapter(new BaseAdapter() {
-            @Override
-            public int getCount() {
-                return 1;
-            }
-
-            @Override
-            public Object getItem(int position) {
-                return null;
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return 0;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view = LayoutInflater.from(getContext()).inflate(R.layout.two_list_middle, parent, false);
-                leftView = (LinearLayout)view.findViewById(R.id.left_list);
-                rightView = (LinearLayout)view.findViewById(R.id.right_list);
-                return view;
-            }
-        });
-
-        return viewGroup;
-    }
-
-    @Override
-    public void onRefreshing() {
-
-    }
-
-    @Override
-    public void onLoadMore() {
-        page++;
-        LqForumApi.newsList(page, "1", new HttpResponseHandler() {
-            @Override
-            public void onSuccess(String result) {
-                addView(result);
-            }
-
-            @Override
-            public void onFail(String result) {
-
-            }
-        });
-    }
-
-    @Override
-    protected void onExecuteRequest(HttpResponseHandler handler) {
-        page = 1;
-        request = LqForumApi.newsList(page, "1", this);
-    }
-
-    public View getView(final JSONObject object, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.portal_list_photo1_item, parent, false);
-        }
-        try {
-            ImageView imageView = (ImageView) convertView.findViewById(R.id.mc_forum_photo_shader);
-            ImageUtils.getImageViewSizeInit(imageView, Double.parseDouble(object.getString("ratio")));
-            Glide.with(getContext()).load(object.getString("pic_path")).into(imageView);
-            TextView comment = (TextView) convertView.findViewById(R.id.mc_forum_comment_text);
-            comment.setText(object.getString("hits"));
-            TextView title = (TextView) convertView.findViewById(R.id.mc_forum_title);
-            title.setText(object.getString("title"));
-            TextView auth = (TextView) convertView.findViewById(R.id.mc_forum_username);
-            auth.setText(object.getString("user_nick_name"));
-            TextView time = (TextView) convertView.findViewById(R.id.mc_forum_time_text);
-            String timeText = TimeUtils.getTimeText(object.getString("last_reply_date"));
-            time.setText(timeText);
-            convertView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        UIJumper.jumpTopic(getContext(), (object.optInt("source_id", 0) != 0) ? object.getInt("source_id") : object.getInt("topic_id"));
-                    } catch (Exception e) {
-
-                    }
-                }
-            });
-        } catch (Exception e) {
-        }
-        return convertView;
-    }
-
-    @Override
-    protected void showContent(String result) {
-        leftView.removeAllViews();
-        rightView.removeAllViews();
-        left = 0;
-        right = 0;
-        addView(result);
-    }
-
-    private void addView(String result) {
-        try {
-            JSONObject object = new JSONObject(result);
-            if (object.getInt("rs") == 1) {
-                JSONArray array = object.getJSONArray("list");
-                for (int i = 0; i < array.length(); i++) {
-                    JSONObject item = array.getJSONObject(i);
-                    double ratio = Double.parseDouble(item.getString("ratio"));
-                    if (left < right) {
-                        left += ratio;
-                        View view = getView(item, null, leftView);
-                        leftView.addView(view);
-                    } else {
-                        right += ratio;
-                        View view = getView(item, null, rightView);
-                        rightView.addView(view);
-                    }
-                }
-                mRefreshLayout.onLoadComplete();
-                mRefreshLayout.setCanLoadMore();
-            }
-        } catch (Exception e) {
-
-        }
-    }
-
-    @Override
     public void onDestroy() {
-        if (request != null) {
-            request.cancel(true);
-        }
+        DEFUALTID--;
         super.onDestroy();
     }
+
+    public  String getNewsListId() {
+       return getArguments().getString("id");
+    }
+
 }

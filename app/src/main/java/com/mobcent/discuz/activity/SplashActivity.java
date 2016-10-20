@@ -17,6 +17,7 @@ import android.content.Intent;
 import com.baidu.android.pushservice.CustomPushNotificationBuilder;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
+import com.mobcent.discuz.config.ForumSettings;
 
 public class SplashActivity extends Activity {
     private int MESSAGE_LOAD_PAYSTATE_PAGE;
@@ -91,6 +92,7 @@ public class SplashActivity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mHandler = new Handler();
         /*configId = ConfigOptHelper.getConfigId(this);
         resource = MCResource.getInstance(getApplicationContext());
         db = SharedPreferencesDB.getInstance(getApplicationContext());
@@ -158,6 +160,9 @@ public class SplashActivity extends Activity {
 
         PushManager.startWork(getApplicationContext(),PushConstants.LOGIN_TYPE_API_KEY,"lgSqPsPav906Gf6NaEPyt2pd");
 
+        ForumSettings.getInstance().loadSetting();
+
+
         /*initHelper.init(this, configId, getAllDataByNet, new RequestCalback(this) {
 
             public void onPreExecute() {
@@ -179,14 +184,18 @@ public class SplashActivity extends Activity {
                 (DiscuzApplication)getApplication().setPermissionModel(permissionModel);
             }
         });*/
-        new Handler().postDelayed(new Runnable() {
+        mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent it = new Intent(SplashActivity.this, HomeActivity.class);
-                startActivity(it);
-                finish();
+                if (ForumSettings.getInstance().isLoading()) {
+                    mHandler.postDelayed(this, 1000);
+                } else {
+                    Intent it = new Intent(SplashActivity.this, HomeActivity.class);
+                    startActivity(it);
+                    finish();
+                }
             }
-        }, 5000);
+        }, 3000);
     }
 
     private void prepareView() {

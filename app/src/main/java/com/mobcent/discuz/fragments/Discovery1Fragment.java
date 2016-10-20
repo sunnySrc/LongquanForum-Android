@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,22 +12,17 @@ import android.widget.TextView;
 
 import com.appbyme.dev.R;
 import com.bumptech.glide.Glide;
-import com.mobcent.common.TimeUtil;
 import com.mobcent.discuz.api.LqForumApi;
 import com.mobcent.discuz.base.UIJumper;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
-import com.mobcent.discuz.bean.Link;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * Created by ubuntu on 16-6-21.
  */
-public class Discovery1Fragment extends BaseRefreshFragment {
+public class Discovery1Fragment extends DiscoveryBaseFragment {
 
     private DiscuzRequest request;
     private ViewGroup viewGroup;
@@ -83,7 +77,7 @@ public class Discovery1Fragment extends BaseRefreshFragment {
     @Override
     public void onLoadMore() {
         page++;
-        LqForumApi.newsList(page, "1", new HttpResponseHandler() {
+        LqForumApi.newsList(page, getNewsListId(), new HttpResponseHandler() {
             @Override
             public void onSuccess(String result) {
                 addView(result);
@@ -99,7 +93,7 @@ public class Discovery1Fragment extends BaseRefreshFragment {
     @Override
     protected void onExecuteRequest(HttpResponseHandler handler) {
         page = 1;
-        request = LqForumApi.newsList(page, "1", this);
+        request = LqForumApi.newsList(page, getNewsListId(), this);
     }
 
     public View getView(final JSONObject object, View convertView, ViewGroup parent) {

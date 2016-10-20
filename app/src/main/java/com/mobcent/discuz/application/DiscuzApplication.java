@@ -11,6 +11,8 @@ import android.app.Activity;
 import android.os.Handler;
 
 import com.litesuits.android.log.Log;
+import com.mobcent.discuz.activity.LoginUtils;
+import com.mobcent.discuz.base.constant.LocationProvider;
 
 public class DiscuzApplication extends Application {
     public static final String TAG = "DiscuzApplication";
@@ -28,6 +30,8 @@ public class DiscuzApplication extends Application {
         super.onCreate();
         Log.isPrint = true;
         _instance = this;
+        LoginUtils.getInstance().init(this);
+        LocationProvider.getInstance().init(this);
         /*MCLogUtil.e(TAG, "======DiscuzApplication======");
         MCLogUtil.isLog = 0x0;
         activityList = new ArrayList();

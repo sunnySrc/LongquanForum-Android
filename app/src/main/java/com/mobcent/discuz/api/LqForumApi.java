@@ -177,7 +177,22 @@ public class LqForumApi {
         params.add("socket_timeout", 3000);
         params.add("connection_timeout",1000);
         params.add("getSetting","%7b%22body%22%3a%7b%22postInfo%22%3a%7b%22forumIds%22%3a%220%22%7d%7d%7d");
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.USER_ADMIN, params, handler);
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.SETTING, params, handler);
+        request.begin();
+        return request;
+    }
+
+    /**
+     * app界面显示结构配置
+     * @param handler
+     * @return
+     */
+    public static DiscuzRequest initUI(HttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.setUseCache(true);
+        params.add("connection_timeout",5000);
+        params.add("forumType","7");
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.INIT_UI, params, handler);
         request.begin();
         return request;
     }

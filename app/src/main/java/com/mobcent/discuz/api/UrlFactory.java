@@ -43,5 +43,10 @@ public class UrlFactory {
      */
     public static final String SETTING = "user/getsetting";
 
+    /**
+     * App显示配置
+     */
+    public static final String INIT_UI = "app/initui";
+
 
 }

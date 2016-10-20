@@ -57,18 +57,12 @@ public class OkHttpCacheSetting {
         }
     };
 
-    public static OkHttpClient getNewOKHttp(RequestParams param) {
-        int timeout = param.getTimeout();
+    public static OkHttpClient getNewOKHttp() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.cookieJar(DiscuzRequest.COOKIE_JAR);
-        if (timeout > 0) {
-            builder.connectTimeout(timeout, TimeUnit.MILLISECONDS);
-        }
-        if (param.isUseCache()) {
-            builder.cache(cache);
-            builder.networkInterceptors().add(REWRITE_CACHE_CONTROL_INTERCEPTOR);
+        builder.cache(cache);
+        builder.networkInterceptors().add(REWRITE_CACHE_CONTROL_INTERCEPTOR);
 
-        }
         builder.addInterceptor(new LoggingInterceptor());
         return builder.build();
     }
