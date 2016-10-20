@@ -14,6 +14,10 @@ import android.widget.ImageView;
 import android.os.Bundle;
 import android.content.Intent;
 
+import com.baidu.android.pushservice.CustomPushNotificationBuilder;
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
+
 public class SplashActivity extends Activity {
     private int MESSAGE_LOAD_PAYSTATE_PAGE;
     private int MESSAGE_START_HOME;
@@ -151,6 +155,9 @@ public class SplashActivity extends Activity {
             }
         }*/
         prepareView();
+
+        PushManager.startWork(getApplicationContext(),PushConstants.LOGIN_TYPE_API_KEY,"lgSqPsPav906Gf6NaEPyt2pd");
+
         /*initHelper.init(this, configId, getAllDataByNet, new RequestCalback(this) {
 
             public void onPreExecute() {
