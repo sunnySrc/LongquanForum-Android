@@ -53,6 +53,9 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
     public DiscuzRequest(String url, RequestParams params, HttpResponseHandler handler) {
         mUrl = url;
         this.useCache = params.isUseCache();
+        if (useCache) {
+            mMethod = "get";
+        }
         OK_HTTP_CLIENT = OkHttpCacheSetting.getNewOKHttp(params);
         mBody = params.getJsonStr();
         mHandler = handler;
@@ -84,42 +87,24 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
     }
 
     private String sendRequest() {
-        // TODO Auto-generated method stub
         // String request = "type=login&forumKey=BW0L5ISVRsOTVLCTJx&accessSecret=&accessToken=&isValidation=1&password=Mrzl2009&sdkVersion=2.4.0&apphash=85eb3e4b&username=17710275730";
+        mUrl = mUrl.startsWith("http") ? mUrl : baseUrl + mUrl;
         try {
             Request.Builder builder= new Request.Builder()
-                    .url(mUrl.startsWith("http") ? mUrl : baseUrl + mUrl)
-                    .addHeader("cache-control", "no-cache");
+
+//                    .addHeader("cache-control", "no-cache")
+                    ;
             if (mMethod.equals("get")) {
                 builder = builder.get();
+                // Get 请求参数 (OkHttp 可启用缓存设置）
+                mUrl +=buildParamString(mBody);
             } else {
                 MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
                 //RequestBody body = RequestBody.create(mediaType, "topOrder=1&sdkVersion=2.4.3.0&apphash=5038dae8&forumKey=BW0L5ISVRsOTVLCTJx&pageSize=20&filterId=0&filterType=typeid&sortby=new&boardId=0&egnVersion=v2035.2&page=1&isRatio=1&accessToken=&accessSecret=&=");
                 //MediaType mediaType = MediaType.parse("multipart/form-data; boundary=---011000010111000001101001");
                 String bodyString = "";
                 if (mMethod == "post") {
-                    if (!TextUtils.isEmpty(mBody)) {
-                        try {
-                            JSONObject obj = new JSONObject(mBody);
-                            obj.put("egnVersion","v2035.2");
-                            obj.put("forumKey", "BW0L5ISVRsOTVLCTJx");
-                            obj.put("sdkVersion", "2.4.0");
-                            // "85eb3e4b"
-                            obj.put("apphash", AppHashUtil.appHash());
-                            obj.put("accessSecret", LoginUtils.getInstance().getAccessSecret());
-                            obj.put("accessToken", LoginUtils.getInstance().getAccessToken());
-                            Iterator it = obj.keys();
-                            while (it.hasNext()) {
-                                String key = (String) it.next();
-                                String value = obj.getString(key);
-                                bodyString += "&" + key + "=" + value;
-                                //bodyString += "-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"" + key + "\"\r\n\r\n" + value + "\r\n";
-                            }
-                            //bodyString += "-----011000010111000001101001--";
-                        } catch (Exception e) {
-
-                        }
-                    }
+                    bodyString = buildParamString(mBody);
                 }
                 if (!TextUtils.isEmpty(bodyString)) {
                     bodyString = bodyString.substring(1);
@@ -129,6 +114,7 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
                         .addHeader("content-type", "application/x-www-form-urlencoded");
                         //.addHeader("content-type", "multipart/form-data; boundary=---011000010111000001101001");
             }
+
             // 客户端缓存
             CacheControl cacheControl;
             if (Network.isConnected(DiscuzApplication._instance)) {
@@ -136,7 +122,11 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
             } else {
                 cacheControl = CacheControl.FORCE_CACHE;
             }
-            Request request = builder.cacheControl(cacheControl).build();
+
+            // 构建
+            Request request = builder
+                    .url(mUrl)
+                    .cacheControl(cacheControl).build();
             Log.d("http request", request.url());
 
             // 响应端的缓存处理（修改了Response的Cache不建议使用）
@@ -146,6 +136,34 @@ public class DiscuzRequest extends AsyncTask<Void, Integer, String> implements T
             e.printStackTrace();
             return "";
         }
+    }
+
+    private String buildParamString(String body) {
+        final StringBuilder bodyString = new StringBuilder();
+        if (!TextUtils.isEmpty(body)) {
+            try {
+                JSONObject obj = new JSONObject(body);
+                obj.put("egnVersion","v2035.2");
+                obj.put("forumKey", "BW0L5ISVRsOTVLCTJx");
+                obj.put("sdkVersion", "2.4.0");
+                // "85eb3e4b"
+                obj.put("apphash", AppHashUtil.appHash());
+                obj.put("accessSecret", LoginUtils.getInstance().getAccessSecret());
+                obj.put("accessToken", LoginUtils.getInstance().getAccessToken());
+                Iterator it = obj.keys();
+                while (it.hasNext()) {
+                    String key = (String) it.next();
+                    String value = obj.getString(key);
+                    bodyString .append("&").append(key)
+                            .append("=").append(value);
+                    //bodyString += "-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"" + key + "\"\r\n\r\n" + value + "\r\n";
+                }
+                //bodyString += "-----011000010111000001101001--";
+            } catch (Exception e) {
+
+            }
+        }
+        return bodyString.toString();
     }
 
     @Override
