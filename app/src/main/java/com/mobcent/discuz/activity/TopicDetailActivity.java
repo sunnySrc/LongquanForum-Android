@@ -41,6 +41,7 @@ import com.mobcent.discuz.bean.TopicResult;
 import com.mobcent.discuz.bean.UploadPicResult;
 import com.mobcent.discuz.fragments.EmotionExtraFragment;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
+import com.mobcent.discuz.ui.TopicActionPopup;
 import com.mobcent.discuz.ui.TopicOptPopup;
 import com.mobcent.discuz.widget.LoadMoreViewManager;
 import com.mobcent.discuz.widget.ViewHolder;
@@ -54,10 +55,12 @@ import java.util.Vector;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_ERROR;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NORMAL;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
+import static java.security.AccessController.getContext;
 
 /**
  * Created by sun on 2016/8/29.
  * 帖子详情
+ * 测试帖子id 70546
  */
 
 public class TopicDetailActivity extends BaseRefreshActivity {
@@ -80,6 +83,8 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
     public static void start(Context context, long id) {
         Intent starter = new Intent(context, TopicDetailActivity.class);
+        // TODO
+        id = 70546;
         starter.putExtra(BaseIntentConstant.BUNDLE_TOPIC_ID, id);
         context.startActivity(starter);
     }
@@ -235,7 +240,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     }
 
     // 更新帖子主题
-    private void updateTopicView(Topic topic) {
+    private void updateTopicView(final Topic topic) {
         //标题区域
         mTopicViewHolder.setText(R.id.post_title, topic.getTitle());
         mTopicViewHolder.getView(R.id.post_is_essence).setVisibility(topic.getEssence() > 0 ? View.VISIBLE : View.GONE);
@@ -264,6 +269,17 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         // 帖子内容
         lvContent = mTopicViewHolder.getView(R.id.topic_content_list);
         TopicHelper.updateContent(this, lvContent, topic.getContent());
+
+        // 帖子管理按钮
+        mTopicViewHolder.getView(R.id.posts_more_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 显示
+                TopicActionPopup popupWindow = new TopicActionPopup(TopicDetailActivity.this, topic.getManagePanel(), mTopicId);
+                popupWindow.showAsLeft(v);
+            }
+        });
+
 
     }
 
@@ -315,7 +331,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
         List<String> pictures = emotionMainFragment.getPictures();
 
         if (noInputContent() && pictures.isEmpty()) return;
-        String url = DiscuzRequest.baseUrl + "forum/sendattachmentex&type=image&forumKey=BW0L5ISVRsOTVLCTJx&accessSecret=" + LoginUtils.getInstance().getAccessSecret() + "&accessToken=" + LoginUtils.getInstance().getAccessToken() +
+        String url = DiscuzRequest.baseUrl + "forum/sendattachmentex&mType=image&forumKey=BW0L5ISVRsOTVLCTJx&accessSecret=" + LoginUtils.getInstance().getAccessSecret() + "&accessToken=" + LoginUtils.getInstance().getAccessToken() +
                 "&module=forum&egnVersion=v2035.2&sdkVersion=2.4.3.0&fid=" + resultBean.getBoardId() + "&apphash=" + AppHashUtil.appHash();
         Vector<String> files = new Vector<String>(pictures);
         Tasker picUploader = new DiscuzRequest(url, files, new HttpResponseHandler() {

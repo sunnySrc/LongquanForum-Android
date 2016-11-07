@@ -256,24 +256,4 @@ public class TopicReply {
         this.topicId = topicId;
     }
 
-    public static class ManagePanelBean {
-        private String action;
-        private String title;
-
-        public String getAction() {
-            return action;
-        }
-
-        public void setAction(String action) {
-            this.action = action;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-    }
 }

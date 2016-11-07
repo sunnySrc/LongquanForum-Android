@@ -123,15 +123,15 @@ public class SplashActivity extends Activity {
                             } else if(key.equals("appbyme_url")) {
                                 uriSkipModel.url = value;
                             } else if(key.equals("topic_type")) {
-                                uriSkipModel.type = Integer.parseInt(value);
+                                uriSkipModel.mType = Integer.parseInt(value);
                             }
                         }
                         if(domain.equals("usercenter.appbymeclient.com")) {
                             uriSkipModel.skip = UriConstant.ActionSkip.USERCENTER;
                         } else if(domain.equals("detail.appbymeclient.com")) {
-                            if(uriSkipModel.type == 0x1) {
+                            if(uriSkipModel.mType == 0x1) {
                                 uriSkipModel.skip = UriConstant.ActionSkip.TOPIC_DETAIL;
-                            } else if(uriSkipModel.type == 0x2) {
+                            } else if(uriSkipModel.mType == 0x2) {
                                 uriSkipModel.skip = UriConstant.ActionSkip.ARTICLE_DETAIL;
                             } else {
                                 uriSkipModel = 0x0;

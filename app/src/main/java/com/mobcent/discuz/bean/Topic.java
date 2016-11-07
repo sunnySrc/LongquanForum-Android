@@ -97,6 +97,8 @@ public class Topic {
 
     private List<ExtraPanelBean> extraPanel;
 
+    private List<ManagePanelBean> managePanel;
+
     public int getTopic_id() {
         return topic_id;
     }
@@ -303,6 +305,14 @@ public class Topic {
 
     public void setExtraPanel(List<ExtraPanelBean> extraPanel) {
         this.extraPanel = extraPanel;
+    }
+
+    public List<ManagePanelBean> getManagePanel() {
+        return managePanel;
+    }
+
+    public void setManagePanel(List<ManagePanelBean> managePanel) {
+        this.managePanel = managePanel;
     }
 
     /**

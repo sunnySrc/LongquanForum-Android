@@ -47,7 +47,7 @@ public class LoginActivity extends Activity {
                     PasswordHelp.savePassword(DiscuzApplication._instance, u, p, true);
                     try {
                         JSONObject obj = new JSONObject();
-                        obj.put("type", "login");
+                        obj.put("mType", "login");
                         obj.put("isValidation", "1");
                         obj.put("username", u);
                         obj.put("password", p);

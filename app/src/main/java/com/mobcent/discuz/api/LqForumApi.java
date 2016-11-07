@@ -13,6 +13,7 @@ import java.net.URLEncoder;
 
 import static android.R.attr.id;
 import static com.appbyme.dev.R.id.page;
+import static com.appbyme.dev.R.id.reply;
 import static com.litesuits.android.async.AsyncExecutor.handler;
 
 /**
@@ -98,6 +99,30 @@ public class LqForumApi {
         request.begin();
         return request;
     }
+
+    /**
+     * 举报帖子
+     * @param id
+     * @param type
+     * @param text
+     * @param handler
+     * @return
+     */
+    public static DiscuzRequest report(long id, String type, String text, HttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.add("idType",  "post");
+        params.add("id",id);
+        try {
+            String encode = URLEncoder.encode("["+type +"]", "utf-8");
+            params.add("message", encode + text);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.USER_REPORT, params.getJsonStr(), handler);
+        request.begin();
+        return request;
+    }
+
 
     public static DiscuzRequest forumList(HttpResponseHandler handler) {
         RequestParams params = new RequestParams();

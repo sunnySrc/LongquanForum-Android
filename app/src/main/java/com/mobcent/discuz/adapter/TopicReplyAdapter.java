@@ -14,7 +14,7 @@ import com.mobcent.discuz.activity.helper.TopicHelper;
 import com.mobcent.discuz.base.EmoticonHelper;
 import com.mobcent.discuz.bean.TopicContent;
 import com.mobcent.discuz.bean.TopicReply;
-import com.mobcent.discuz.ui.ReplyActionPopup;
+import com.mobcent.discuz.ui.TopicActionPopup;
 import com.mobcent.discuz.widget.ComAdapter;
 import com.mobcent.discuz.widget.ViewHolder;
 
@@ -27,7 +27,7 @@ import java.util.List;
 
 public class TopicReplyAdapter extends ComAdapter<TopicReply> {
 
-    private  ReplyActionPopup popupWindow;
+    private TopicActionPopup popupWindow;
     public TopicReplyAdapter(Context context, List<TopicReply> objects) {
         super(context, R.layout.topic_detail_reply_item, objects);
     }
@@ -84,7 +84,7 @@ public class TopicReplyAdapter extends ComAdapter<TopicReply> {
     }
 
     private void showPopupWindow(View anchor, TopicReply item) {
-        popupWindow = new ReplyActionPopup(getContext(), item);
+        popupWindow = new TopicActionPopup(getContext(), item);
         popupWindow.showAsLeft(anchor);
     }
 

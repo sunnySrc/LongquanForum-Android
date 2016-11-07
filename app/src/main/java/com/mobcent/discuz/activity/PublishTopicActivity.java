@@ -159,7 +159,7 @@ public class PublishTopicActivity extends FragmentActivity {
                     return;
                 }
                 if (mImageAdapter.getCount() > 1) {
-                    String url = DiscuzRequest.baseUrl + "forum/sendattachmentex&type=image&forumKey=BW0L5ISVRsOTVLCTJx&accessSecret=" + LoginUtils.getInstance().getAccessSecret() + "&accessToken=" + LoginUtils.getInstance().getAccessToken() +
+                    String url = DiscuzRequest.baseUrl + "forum/sendattachmentex&mType=image&forumKey=BW0L5ISVRsOTVLCTJx&accessSecret=" + LoginUtils.getInstance().getAccessSecret() + "&accessToken=" + LoginUtils.getInstance().getAccessToken() +
                             "&module=forum&egnVersion=v2035.2&sdkVersion=2.4.3.0&fid=" + mCate + "&apphash=4c37ae6f";
                     Vector<String> files = new Vector<String>();
                     for (int i = 1; i < mImageAdapter.getCount(); i++) {
@@ -300,7 +300,7 @@ public class PublishTopicActivity extends FragmentActivity {
             try {
                 JSONObject contentJson = new JSONObject();
                 contentJson.put("infor", contentString);
-                contentJson.put("type", "0");
+                contentJson.put("mType", "0");
 
                 JSONArray contentArray = new JSONArray();
                 contentArray.put(contentJson);
@@ -308,7 +308,7 @@ public class PublishTopicActivity extends FragmentActivity {
                 for (int i = 0; i < urlNames.size(); i++) {
                     JSONObject urlName = new JSONObject();
                     urlName.put("infor", urlNames.get(i));
-                    urlName.put("type", "1");
+                    urlName.put("mType", "1");
                     contentArray.put(urlName);
                 }
 

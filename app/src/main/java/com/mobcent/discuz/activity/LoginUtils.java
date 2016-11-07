@@ -70,7 +70,7 @@ public class LoginUtils {
         JSONObject obj = new JSONObject();
         String[] account = PasswordHelp.readPassword(DiscuzApplication._instance);
         try {
-            obj.put("type", "login");
+            obj.put("mType", "login");
             obj.put("isValidation", "1");
             obj.put("username", account[0]);
             obj.put("password", account[1]);

@@ -38,6 +38,8 @@ public class UrlFactory {
 
     public static final String USER_FAVOR = "user/userfavorite";
 
+    public static final String USER_REPORT = "user/report";
+
     /**
      * 论坛设置
      */
