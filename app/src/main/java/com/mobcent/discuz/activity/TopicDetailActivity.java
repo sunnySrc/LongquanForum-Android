@@ -55,7 +55,6 @@ import java.util.Vector;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_ERROR;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NORMAL;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
-import static java.security.AccessController.getContext;
 
 /**
  * Created by sun on 2016/8/29.
@@ -78,8 +77,9 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     private View mBottomLayout;
     private TextView mBottomCommentTv;
     private EmotionExtraFragment emotionMainFragment; //表情键盘
-    private TopicResult resultBean;
+    private TopicResult mResultBean;
     private int mTopicId;
+    private TopicOptPopup optPopup;
 
     public static void start(Context context, long id) {
         Intent starter = new Intent(context, TopicDetailActivity.class);
@@ -128,18 +128,18 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
     @Override
     protected void showContent(String result) {
-        resultBean = JsonConverter.format(result, TopicResult.class);
-        mTopicId = resultBean.getTopic().getTopic_id();
-        resultBean.setTopicId(mTopicId);
+        mResultBean = JsonConverter.format(result, TopicResult.class);
+        mTopicId = mResultBean.getTopic().getTopic_id();
+        mResultBean.setTopicId(mTopicId);
         mReplyList.clear();
 
-        setHeaderTitle(resultBean.getForumName());
+        setHeaderTitle(mResultBean.getForumName());
         // 帖子主题
-        updateTopicView(resultBean.getTopic());
+        updateTopicView(mResultBean.getTopic());
         // 评论列表
-        updateReplyListView(resultBean);
+        updateReplyListView(mResultBean);
 
-        updateRateView(resultBean.getTopic());
+        updateRateView(mResultBean.getTopic());
 
         enableBottomPlaceHolderLayout(true);
 
@@ -192,7 +192,6 @@ public class TopicDetailActivity extends BaseRefreshActivity {
                     });
                 } else {
                     ImageLoader.load(rewardBean.getUserList().get(i).getUserIcon(), imageView, r);
-                    // TODO 用户详情
                 }
             }
         }
@@ -225,7 +224,6 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
     // 更新回帖
     private void updateReplyListView(TopicResult resultBean) {
-
         mBottomCommentTv.setText(String.valueOf(resultBean.getTotalNum())
                 + getString(R.string.mc_forum_topic_detail_bottom_commnet_num_text));
 
@@ -332,7 +330,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
         if (noInputContent() && pictures.isEmpty()) return;
         String url = DiscuzRequest.baseUrl + "forum/sendattachmentex&mType=image&forumKey=BW0L5ISVRsOTVLCTJx&accessSecret=" + LoginUtils.getInstance().getAccessSecret() + "&accessToken=" + LoginUtils.getInstance().getAccessToken() +
-                "&module=forum&egnVersion=v2035.2&sdkVersion=2.4.3.0&fid=" + resultBean.getBoardId() + "&apphash=" + AppHashUtil.appHash();
+                "&module=forum&egnVersion=v2035.2&sdkVersion=2.4.3.0&fid=" + mResultBean.getBoardId() + "&apphash=" + AppHashUtil.appHash();
         Vector<String> files = new Vector<String>(pictures);
         Tasker picUploader = new DiscuzRequest(url, files, new HttpResponseHandler() {
             @Override
@@ -353,7 +351,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     }
 
     private void reply(UploadPicResult uploadPicResult) {
-        Reply re = Reply.build(resultBean.getBoardId(), resultBean.getTopic().getTopic_id(), getInputContent(),
+        Reply re = Reply.build(mResultBean.getBoardId(), mResultBean.getTopic().getTopic_id(), getInputContent(),
                 uploadPicResult.getImgUrls());
         add(LqForumApi.reply(re, new HttpResponseHandler() {
             @Override
@@ -426,10 +424,25 @@ public class TopicDetailActivity extends BaseRefreshActivity {
      * @param anchor
      */
     private void showHeaderOptMenu(View anchor) {
-        if (resultBean == null) return;
-        TopicOptPopup optPopup = new TopicOptPopup(this, resultBean.getTopic(), resultBean.getForumTopicUrl());
+        if (mResultBean == null) return;
+        if (optPopup == null) {
+            optPopup = new TopicOptPopup(this, mResultBean.getTopic(), mResultBean.getForumTopicUrl());
+
+            optPopup.setOnlyPosterCallback(new TopicOptPopup.ViewModeCallback() {
+                @Override
+                public void onlyPoster(boolean onlyPoster) {
+                    mReplyAdapter.updateShowMode(onlyPoster, getPosterName());
+                }
+            });
+        }
         optPopup.showAtLocation(anchor.getRootView(), Gravity.BOTTOM, 0, 0);
     }
+
+    // 楼主名称
+    private String getPosterName() {
+       return mResultBean.getTopic().getUser_nick_name();
+    }
+
 
     private boolean noInputContent() {
         return TextUtils.isEmpty(getInputContent());

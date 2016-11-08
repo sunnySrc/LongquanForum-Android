@@ -2,6 +2,7 @@ package com.mobcent.discuz.adapter;
 
 import android.content.Context;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,10 +15,14 @@ import com.mobcent.discuz.activity.helper.TopicHelper;
 import com.mobcent.discuz.base.EmoticonHelper;
 import com.mobcent.discuz.bean.TopicContent;
 import com.mobcent.discuz.bean.TopicReply;
+import com.mobcent.discuz.bean.TopicResult;
 import com.mobcent.discuz.ui.TopicActionPopup;
 import com.mobcent.discuz.widget.ComAdapter;
 import com.mobcent.discuz.widget.ViewHolder;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,9 +32,16 @@ import java.util.List;
 
 public class TopicReplyAdapter extends ComAdapter<TopicReply> {
 
+    private final List<TopicReply> mAllData;
+    private  List<TopicReply> mCurrentDataSet;
     private TopicActionPopup popupWindow;
+    private boolean mOnlyPoster;
+    private String mPosterName;
+
     public TopicReplyAdapter(Context context, List<TopicReply> objects) {
         super(context, R.layout.topic_detail_reply_item, objects);
+        mAllData = new ArrayList<>(objects);
+        mCurrentDataSet = objects;
     }
 
     @Override
@@ -88,4 +100,28 @@ public class TopicReplyAdapter extends ComAdapter<TopicReply> {
         popupWindow.showAsLeft(anchor);
     }
 
+
+    @Override
+    public void notifyDataSetChanged() {
+        if (mOnlyPoster) {
+            mCurrentDataSet.clear();
+            for (TopicReply item : mAllData) {
+                if (item.getReply_name().equals(mPosterName)) {
+                    mCurrentDataSet.add(item);
+                }
+            }
+        } else {
+            mCurrentDataSet.clear();
+            mCurrentDataSet.addAll(mAllData);
+        }
+
+        super.notifyDataSetChanged();
+    }
+
+    public void updateShowMode(boolean onlyPoster, String posterName) {
+        if (onlyPoster == mOnlyPoster) return;
+        mOnlyPoster = onlyPoster;
+        mPosterName = posterName;
+        notifyDataSetChanged();
+    }
 }

@@ -67,4 +67,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/post_only_poster_visible"
+            android:layout_width="48dp"
+            android:background="@drawable/dz_toolbar_posts_author"
+            android:layout_gravity="bottom|center"
+            android:includeFontPadding="false"
+            android:layout_height="48dp" />
+        <TextView
+            android:text="@string/mc_forum_posts_dialog_by_author"
+            android:id="@+id/post_only_poster_visible_txt"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/gray"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </LinearLayout>

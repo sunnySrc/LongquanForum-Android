@@ -7,23 +7,26 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appbyme.dev.R;
 import com.mobcent.common.JsonConverter;
 import com.mobcent.discuz.api.LqForumApi;
 import com.mobcent.discuz.bean.Base;
-import com.mobcent.discuz.bean.BaseResult;
 import com.mobcent.discuz.bean.Topic;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 
 /**
  * Created by sun on 2016/9/9.
+ * 帖子操作（右上角触发）
  */
 
 public class TopicOptPopup extends BasePopup implements View.OnClickListener{
     private final Topic mTopic;
     private final String mUrl;
+    private ViewModeCallback onlyPosterCallback;
+    private boolean mOnlyPoster = false;
 
     public TopicOptPopup(Context context, Topic topic, String url) {
         super(context);
@@ -35,6 +38,7 @@ public class TopicOptPopup extends BasePopup implements View.OnClickListener{
         getContentView().findViewById(R.id.post_collect).setOnClickListener(this);
         getContentView().findViewById(R.id.post_browser_open).setOnClickListener(this);
         getContentView().findViewById(R.id.post_link_copy).setOnClickListener(this);
+        getContentView().findViewById(R.id.post_only_poster_visible).setOnClickListener(this);
     }
 
     @Override
@@ -49,6 +53,16 @@ public class TopicOptPopup extends BasePopup implements View.OnClickListener{
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(mUrl));
                 mContext.startActivity(intent);
+                break;
+            case R.id.post_only_poster_visible:
+                // 只看楼主
+                if (onlyPosterCallback != null) {
+                    mOnlyPoster = !mOnlyPoster;
+                    onlyPosterCallback.onlyPoster(mOnlyPoster);
+                }
+               TextView tv = (TextView) getContentView().findViewById(R.id.post_only_poster_visible_txt);
+                tv.setText(mOnlyPoster ? mContext.getString(R.string.mc_forum_posts_by_all)
+                        : mContext.getString(R.string.mc_forum_posts_by_author));
                 break;
             case R.id.post_collect:
 //                final WeakReference<Context> reference = new WeakReference<Context>(mContext);
@@ -86,5 +100,13 @@ public class TopicOptPopup extends BasePopup implements View.OnClickListener{
     @Override
     public void dismiss() {
         super.dismiss();
+    }
+
+    public void setOnlyPosterCallback(ViewModeCallback onlyPosterCallback) {
+        this.onlyPosterCallback = onlyPosterCallback;
+    }
+
+    public interface ViewModeCallback{
+        void onlyPoster(boolean onlyPoster);
     }
 }
