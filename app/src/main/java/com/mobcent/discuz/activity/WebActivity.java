@@ -31,6 +31,10 @@ import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.ui.TopicOptPopup;
 import com.mobcent.discuz.ui.WebOptPopup;
 
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.w3c.dom.Text;
+
+import java.nio.charset.Charset;
 import java.util.List;
 
 import okhttp3.Cookie;
@@ -59,6 +63,13 @@ public class WebActivity extends Activity implements View.OnClickListener {
         starter.putExtra(BUNDLE_WEB_VIEW_URL, url);
         starter.putExtra(BUNDLE_WEB_TITLE, title);
         context.startActivity(starter);
+    }
+
+    public static void startActivityForResult(Context context, String url, String title) {
+        Intent starter = new Intent(context, WebActivity.class);
+        starter.putExtra(BUNDLE_WEB_VIEW_URL, url);
+        starter.putExtra(BUNDLE_WEB_TITLE, title);
+        ((Activity)context).startActivityForResult(starter, LoginActivity.QQ_LOGIN);
     }
 
     @Override
@@ -145,6 +156,31 @@ public class WebActivity extends Activity implements View.OnClickListener {
          */
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            Uri uri = Uri.parse(url);
+            if (!TextUtils.isEmpty(uri.getQuery()) && uri.getQuery().indexOf("openid=") != -1) {
+
+                String query = uri.getQuery();
+                String[] params = query.split("&");
+                String openid = "";
+                String oauth_token = "";
+                for (String param : params) {
+                    String[] values = param.split("=");
+                    if (values[0].equals("openid")) {
+                        openid = values[1];
+                    }
+                    if (values[0].equals("oauth_token")) {
+                        oauth_token = values[1];
+                    }
+                }
+                if (!TextUtils.isEmpty(oauth_token) && !TextUtils.isEmpty(openid)) {
+                    Intent intent = new Intent();
+                    intent.putExtra("oauth_token", oauth_token);
+                    intent.putExtra("openid", openid);
+                    WebActivity.this.setResult(RESULT_OK, intent);
+                    finish();
+                    return true;
+                }
+            }
             return false;
 //            if (Uri.parse(url).getHost().equals("www.baidu.com")) {
 //                // 这个是我的网页，所以不要覆盖，让我的WebView来加载页面

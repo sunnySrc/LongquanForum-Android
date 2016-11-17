@@ -53,8 +53,14 @@ public class LoginUtils {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("userinfo", info);
         JSONObject obj = new JSONObject(info);
-        editor.putString("secret", obj.getString("secret"));
-        editor.putString("token", obj.getString("token"));
+        try {
+            editor.putString("secret", obj.getString("secret"));
+            editor.putString("token", obj.getString("token"));
+        } catch (Exception e) {
+            obj = obj.getJSONObject("body");
+            editor.putString("secret", obj.getString("secret"));
+            editor.putString("token", obj.getString("token"));
+        }
         editor.commit();
     }
 
