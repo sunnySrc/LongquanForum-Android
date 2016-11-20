@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.appbyme.dev.R;
@@ -24,7 +25,7 @@ public abstract class BasePopActivity
 
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
-    setContentView(R.layout.base_pop_activity);
+    setContentView(initLayout());
   }
   
   protected String getLayoutName()
@@ -35,12 +36,16 @@ public abstract class BasePopActivity
   protected void initActions() {}
   
   protected abstract Fragment initContentFragment();
+
+  public int initLayout(){
+    return R.layout.base_pop_activity;
+  }
   
   protected void initViews()
   {
     this.containerBox = ((FrameLayout)findViewById(R.id.container_layout));
     this.contentFragment = initContentFragment();
-    getSupportFragmentManager().beginTransaction().add(this.containerBox.getId(), this.contentFragment);
+    getSupportFragmentManager().beginTransaction().replace(this.containerBox.getId(), this.contentFragment).commit();
   }
 
   protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
@@ -55,4 +60,9 @@ public abstract class BasePopActivity
   {
     super.onDestroy();
   }
+
+  protected <T> T $( int id) {
+    return (T) findViewById(id);
+  }
+
 }

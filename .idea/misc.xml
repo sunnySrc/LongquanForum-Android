@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< 362772f50955086493903f53ac9baccf3900f260
+=======
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+>>>>>>> 添加新的library，支持用户页滑动viewpager&stickheader；实现用户资料页左右切换；完成部分bean类整理；添加tools自动生成res目录脚本；修改gradle, 使res支持二级目录
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
@@ -24,5 +30,9 @@
       </value>
     </option>
   </component>
+<<<<<<< 362772f50955086493903f53ac9baccf3900f260
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_3" assert-keyword="false" jdk-15="false" />
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK" />
+>>>>>>> 添加新的library，支持用户页滑动viewpager&stickheader；实现用户资料页左右切换；完成部分bean类整理；添加tools自动生成res目录脚本；修改gradle, 使res支持二级目录
 </project>

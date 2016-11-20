@@ -19,7 +19,7 @@ import com.mobcent.discuz.activity.LoginActivity;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.api.UrlFactory;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
-import com.mobcent.discuz.module.person.activity.UserHomeActivity;
+import com.mobcent.discuz.module.user.activity.UserHomeActivity;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
