@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/A178470.iml" filepath="$PROJECT_DIR$/A178470.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_scrollable_viewpager/library_scrollable_viewpager.iml" filepath="$PROJECT_DIR$/library_scrollable_viewpager/library_scrollable_viewpager.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_scrollable_viewpager/library_viewpager.iml" filepath="$PROJECT_DIR$/library_scrollable_viewpager/library_viewpager.iml" />
     </modules>
   </component>

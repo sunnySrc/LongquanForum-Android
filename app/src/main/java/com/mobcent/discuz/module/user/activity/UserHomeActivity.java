@@ -9,7 +9,6 @@ import com.appbyme.dev.R;
 import com.mobcent.discuz.activity.BasePopActivity;
 import com.mobcent.discuz.componentview.SlidingTabLayout;
 import com.mobcent.discuz.module.user.adapter.UserHomeAdapter;
-import com.mobcent.discuz.module.user.fragment.UserHomeFragment;
 import com.mobcent.discuz.module.user.view.UserHomeCenterFragmentHeader;
 
 import ru.noties.scrollable.CanScrollVerticallyDelegate;
