@@ -7,9 +7,13 @@ import android.view.View;
 
 import com.appbyme.dev.R;
 import com.mobcent.discuz.activity.BasePopActivity;
+import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.componentview.SlidingTabLayout;
 import com.mobcent.discuz.module.user.adapter.UserHomeAdapter;
 import com.mobcent.discuz.module.user.view.UserHomeCenterFragmentHeader;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import ru.noties.scrollable.CanScrollVerticallyDelegate;
 import ru.noties.scrollable.OnFlingOverListener;
@@ -34,6 +38,7 @@ public class UserHomeActivity extends BasePopActivity {
         setContentView(R.layout.user_home_center_fragment);
         initView();
         initData();
+        requestUserInfo();
     }
 
     @Override
@@ -89,6 +94,17 @@ public class UserHomeActivity extends BasePopActivity {
                 mUserCenterHeander.setTranslationY(y / 2);
             }
         });
+    }
+
+    private void requestUserInfo(){
+        //TODO  怎么传参数?
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("userId", "");
+            new DiscuzRequest("user/userinfo", obj.toString(), null).begin();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 
