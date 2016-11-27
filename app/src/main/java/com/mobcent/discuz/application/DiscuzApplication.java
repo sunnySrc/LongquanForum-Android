@@ -14,6 +14,9 @@ import com.litesuits.android.log.Log;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.constant.LocationProvider;
 
+import discuz.com.net.service.DiscuzRetrofit;
+import discuz.com.net.service.DiscuzRetrofitCallbackImpl;
+
 public class DiscuzApplication extends Application {
     public static final String TAG = "DiscuzApplication";
     public static DiscuzApplication _instance;
@@ -32,6 +35,7 @@ public class DiscuzApplication extends Application {
         _instance = this;
         LoginUtils.getInstance().init(this);
         LocationProvider.getInstance().init(this);
+        initDiscuzApiCallback();
         /*MCLogUtil.e(TAG, "======DiscuzApplication======");
         MCLogUtil.isLog = 0x0;
         activityList = new ArrayList();
@@ -65,6 +69,10 @@ public class DiscuzApplication extends Application {
                 DZPushHelper.bindPushToAnMiServer(getApplicationContext(), true);
             }
         });*/
+    }
+
+    private void initDiscuzApiCallback(){
+        DiscuzRetrofit.init(new DiscuzRetrofitCallbackImpl(this));
     }
 
     public void addActivity(Activity activity) {

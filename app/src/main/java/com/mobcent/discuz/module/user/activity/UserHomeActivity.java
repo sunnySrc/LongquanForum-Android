@@ -7,6 +7,8 @@ import android.view.View;
 
 import com.appbyme.dev.R;
 import com.mobcent.discuz.activity.BasePopActivity;
+import com.mobcent.discuz.activity.LoginUtils;
+import com.mobcent.discuz.base.WebParamsMap;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.componentview.SlidingTabLayout;
 import com.mobcent.discuz.module.user.adapter.UserHomeAdapter;
@@ -15,6 +17,9 @@ import com.mobcent.discuz.module.user.view.UserHomeCenterFragmentHeader;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import discuz.com.net.service.DiscuzRetrofit;
+import discuz.com.net.service.model.me.UserResult;
+import discuz.com.retrofit.library.HTTPSubscriber;
 import ru.noties.scrollable.CanScrollVerticallyDelegate;
 import ru.noties.scrollable.OnFlingOverListener;
 import ru.noties.scrollable.OnScrollChangedListener;
@@ -97,14 +102,17 @@ public class UserHomeActivity extends BasePopActivity {
     }
 
     private void requestUserInfo(){
-        //TODO  怎么传参数?
-        JSONObject obj = new JSONObject();
-        try {
-            obj.put("userId", "");
-            new DiscuzRequest("user/userinfo", obj.toString(), null).begin();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        DiscuzRetrofit.getUserInfoService(this).requestUserInfo(LoginUtils.getInstance().getUserId(),WebParamsMap.map()).subscribe(new HTTPSubscriber<UserResult>() {
+            @Override
+            public void onSuccess(UserResult userResult) {
+                showToast(userResult.getUserTitle());
+            }
+
+            @Override
+            public void onFail(int httpCode, int errorUserCode, String message) {
+                showToast(message);
+            }
+        });
     }
 
 

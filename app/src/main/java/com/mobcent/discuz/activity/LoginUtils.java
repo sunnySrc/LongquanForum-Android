@@ -49,11 +49,16 @@ public class LoginUtils {
         return sp.getString("token", "");
     }
 
+    public  String getUserId(){
+        return sp.getString("uid", "");
+    }
+
     public void setLogin(String info) throws JSONException {
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("userinfo", info);
         JSONObject obj = new JSONObject(info);
         try {
+            editor.putString("uid", obj.getString("uid"));
             editor.putString("secret", obj.getString("secret"));
             editor.putString("token", obj.getString("token"));
         } catch (Exception e) {
@@ -86,4 +91,6 @@ public class LoginUtils {
         }
 
     }
+
+
 }

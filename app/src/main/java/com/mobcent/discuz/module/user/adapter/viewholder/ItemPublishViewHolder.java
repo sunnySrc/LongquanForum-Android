@@ -3,7 +3,8 @@ package com.mobcent.discuz.module.user.adapter.viewholder;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.mobcent.discuz.bean.user.Publish;
+import discuz.com.bean.me.Publish;
+
 
 /**
  * Created by pangxiaomin on 16/11/20.

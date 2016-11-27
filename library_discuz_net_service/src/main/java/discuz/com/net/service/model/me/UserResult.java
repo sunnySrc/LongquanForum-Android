@@ -1,13 +1,14 @@
-package com.mobcent.discuz.bean.user;
+package discuz.com.net.service.model.me;
 
-import java.util.ArrayList;
+
+import discuz.com.bean.me.UserBodyList;
+import discuz.com.net.service.model.BaseResult;
 
 /**
  * Created by pangxiaomin on 16/11/21.
  */
-public class User {
+public class UserResult extends BaseResult<UserBodyList> {
 
-    private ArrayList<Profile> profileList;
     private int flag;
     private int is_black;
     private int is_follow;
@@ -28,14 +29,6 @@ public class User {
     private String userTitle;
     private String sign;
     private String mobile;
-
-    public ArrayList<Profile> getProfileList() {
-        return profileList;
-    }
-
-    public void setProfileList(ArrayList<Profile> profileList) {
-        this.profileList = profileList;
-    }
 
     public int getFlag() {
         return flag;

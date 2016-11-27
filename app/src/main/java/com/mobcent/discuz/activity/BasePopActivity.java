@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.appbyme.dev.R;
 import com.mobcent.discuz.base.constant.BaseIntentConstant;
@@ -63,6 +64,10 @@ public abstract class BasePopActivity
 
   protected <T> T $( int id) {
     return (T) findViewById(id);
+  }
+
+  public void showToast(String message){
+    Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
   }
 
 }

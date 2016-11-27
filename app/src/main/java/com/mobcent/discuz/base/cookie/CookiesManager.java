@@ -6,6 +6,7 @@ import com.mobcent.discuz.application.DiscuzApplication;
 
 import java.util.List;
 
+import discuz.com.net.service.cookie.PersistentCookieStore;
 import okhttp3.Cookie;
 import okhttp3.CookieJar;
 import okhttp3.HttpUrl;

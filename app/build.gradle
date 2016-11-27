@@ -57,7 +57,7 @@ dependencies {
     compile 'com.android.support:support-v4:23.0.1'
     compile('com.android.support:recyclerview-v7:23.4.0')
 
-    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'com.squareup.okhttp3:okhttp:3.3.0'
     compile "com.google.code.gson:gson:2.7"
     // image tool
     compile 'com.github.bumptech.glide:glide:3.7.0'
@@ -71,8 +71,11 @@ dependencies {
     // permission
     compile 'com.github.hotchemi:permissionsdispatcher:2.2.0'
     apt 'com.github.hotchemi:permissionsdispatcher-processor:2.2.0'
-    compile project(':library_scrollable_viewpager')
     compile 'com.android.support:recyclerview-v7:23.3.0'
+    compile project(':library_scrollable_viewpager')
+    compile project(':library_discuz_net_service')
+    compile project(':library_discuz_model')
+    compile project(':library_rxretrofit')
 
 }
 

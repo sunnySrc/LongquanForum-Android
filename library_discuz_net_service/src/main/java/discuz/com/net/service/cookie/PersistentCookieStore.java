@@ -1,4 +1,4 @@
-package com.mobcent.discuz.base.cookie;
+package discuz.com.net.service.cookie;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,8 +19,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import okhttp3.Cookie;
 import okhttp3.HttpUrl;
-
-import static android.R.attr.name;
 
 public class PersistentCookieStore {
     private static final String LOG_TAG = "PersistentCookieStore";

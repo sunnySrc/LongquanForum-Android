@@ -1,4 +1,4 @@
-package com.mobcent.discuz.bean.user;
+package discuz.com.bean.me;
 
 import java.util.ArrayList;
 

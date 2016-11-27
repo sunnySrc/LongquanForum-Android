@@ -1,4 +1,4 @@
-package com.mobcent.discuz.base.cookie;
+package discuz.com.net.service.cookie;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -7,6 +7,9 @@ import java.io.Serializable;
 
 import okhttp3.Cookie;
 
+/**
+ * @see https://segmentfault.com/a/1190000004345545
+ */
 public class SerializableOkHttpCookies implements Serializable {
 
     private transient final Cookie cookies;
