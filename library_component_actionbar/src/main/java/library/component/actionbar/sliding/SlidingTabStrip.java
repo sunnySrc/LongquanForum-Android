@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mobcent.discuz.componentview;
+package library.component.actionbar.sliding;
 
 import android.content.Context;
 import android.graphics.Canvas;

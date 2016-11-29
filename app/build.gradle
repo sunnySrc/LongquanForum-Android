@@ -76,6 +76,7 @@ dependencies {
     compile project(':library_discuz_net_service')
     compile project(':library_discuz_model')
     compile project(':library_rxretrofit')
+    compile project(':library_component_actionbar')
 
 }
 

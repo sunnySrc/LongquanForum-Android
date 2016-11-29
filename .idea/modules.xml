@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/A178470.iml" filepath="$PROJECT_DIR$/A178470.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_component_actionbar/library_component_actionbar.iml" filepath="$PROJECT_DIR$/library_component_actionbar/library_component_actionbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_discuz_model/library_discuz_model.iml" filepath="$PROJECT_DIR$/library_discuz_model/library_discuz_model.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_discuz_net_service/library_discuz_net_service.iml" filepath="$PROJECT_DIR$/library_discuz_net_service/library_discuz_net_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_rxretrofit/library_rxretrofit.iml" filepath="$PROJECT_DIR$/library_rxretrofit/library_rxretrofit.iml" />

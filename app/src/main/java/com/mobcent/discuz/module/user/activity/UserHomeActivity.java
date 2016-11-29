@@ -9,17 +9,13 @@ import com.appbyme.dev.R;
 import com.mobcent.discuz.activity.BasePopActivity;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.WebParamsMap;
-import com.mobcent.discuz.base.constant.DiscuzRequest;
-import com.mobcent.discuz.componentview.SlidingTabLayout;
 import com.mobcent.discuz.module.user.adapter.UserHomeAdapter;
 import com.mobcent.discuz.module.user.view.UserHomeCenterFragmentHeader;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import discuz.com.net.service.DiscuzRetrofit;
 import discuz.com.net.service.model.me.UserResult;
 import discuz.com.retrofit.library.HTTPSubscriber;
+import library.component.actionbar.sliding.SlidingTabLayout;
 import ru.noties.scrollable.CanScrollVerticallyDelegate;
 import ru.noties.scrollable.OnFlingOverListener;
 import ru.noties.scrollable.OnScrollChangedListener;
@@ -29,7 +25,7 @@ import ru.noties.scrollable.ScrollableLayout;
  * Created by pangxiaomin on 16/11/20
  * 用户资料页
  */
-public class UserHomeActivity extends BasePopActivity {
+public class UserHomeActivity extends BasePopActivity implements View.OnClickListener{
 
     private ScrollableLayout mScrollableLayout;
     private UserHomeCenterFragmentHeader mUserCenterHeander;
@@ -40,10 +36,14 @@ public class UserHomeActivity extends BasePopActivity {
 
     public void onCreate(Bundle paramBundle) {
         super.onCreate(paramBundle);
-        setContentView(R.layout.user_home_center_fragment);
         initView();
         initData();
         requestUserInfo();
+    }
+
+    @Override
+    public int initLayout() {
+        return R.layout.user_home_center_fragment;
     }
 
     @Override
@@ -52,6 +52,8 @@ public class UserHomeActivity extends BasePopActivity {
     }
 
     private void initView(){
+        getAppActionBar().setBackgroundAlpha(0);
+        getAppActionBar().setRightTitle(R.string.mc_forum_userifo_update,this);
         mScrollableLayout = $(R.id.user_home_scrollable_layout);
         mUserCenterHeander = $(R.id.header_layout);
         mUserViewPager = $(R.id.fragment_user_viewpager);
@@ -61,6 +63,13 @@ public class UserHomeActivity extends BasePopActivity {
         mSlideTabLayout.setCustomTabView(R.layout.view_sliding_tab_indicator, android.R.id.text1);
         mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
         mSlideTabLayout.setDistributeEvenly(false);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.action_bar_right_title){
+            //TODO edit user info
+        }
     }
 
     private void initData(){
@@ -94,11 +103,17 @@ public class UserHomeActivity extends BasePopActivity {
                     tabsTranslationY = y - maxY;
                 }
 
+                invalidateActionBarBackground(y,maxY);
                 mSlideTabLayout.setTranslationY(tabsTranslationY);
-
                 mUserCenterHeander.setTranslationY(y / 2);
             }
         });
+    }
+
+    //背景颜色渐变
+    private void invalidateActionBarBackground(int transY,int maxY){
+        //0-maxY 0-255
+        getAppActionBar().setBackgroundAlpha(transY*255/maxY);
     }
 
     private void requestUserInfo(){
