@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/library_discuz_net_service/library_discuz_net_service.iml" filepath="$PROJECT_DIR$/library_discuz_net_service/library_discuz_net_service.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_rxretrofit/library_rxretrofit.iml" filepath="$PROJECT_DIR$/library_rxretrofit/library_rxretrofit.iml" />
       <module fileurl="file://$PROJECT_DIR$/library_scrollable_viewpager/library_scrollable_viewpager.iml" filepath="$PROJECT_DIR$/library_scrollable_viewpager/library_scrollable_viewpager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library_stack_blur/library_stack_blur.iml" filepath="$PROJECT_DIR$/library_stack_blur/library_stack_blur.iml" />
     </modules>
   </component>
 </project>

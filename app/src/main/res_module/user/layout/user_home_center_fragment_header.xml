@@ -1,191 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="214dp"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
-        android:id="@id/mc_forum_backgroud_center"
+        android:id="@+id/user_center_background"
         android:layout_width="fill_parent"
-        android:layout_height="240.0dip"
+        android:layout_height="214dp"
         android:scaleType="centerCrop" />
 
     <ImageView
-        android:id="@id/mc_forum_backgroud_shadow"
         android:layout_width="fill_parent"
-        android:layout_height="240.0dip"
-        android:background="#33000000" />
+        android:layout_height="214dp"
+        android:scaleType="centerCrop"
+        android:background="@color/shadow"/>
+
+    <ImageView
+        android:id="@+id/user_center_avatar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="centerInside"
+        android:layout_marginTop="44dp"
+        android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@id/mc_forum_user_about_center"
+        android:id="@+id/user_center_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/mc_forum_backgroud_center"
+        android:layout_below="@id/user_center_avatar"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13.0dip"
-        android:layout_marginLeft="30.0dip"
-        android:layout_marginRight="30.0dip"
-        android:ellipsize="end"
-        android:includeFontPadding="false"
-        android:maxLines="1"
-        android:textColor="#ffffffff"
-        android:textSize="@dimen/mc_forum_text_size_12" />
+        android:layout_marginTop="6dp"
+        android:textColor="@color/white"
+        tools:text="name"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/user_center_user_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_center_name"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/selector_gender_background"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        tools:text="user_title"
+        android:textSize="12sp" />
 
     <LinearLayout
-        android:id="@id/mc_forum_active"
+        android:id="@+id/user_center_active"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/mc_forum_user_about_center"
-        android:layout_marginBottom="10.0dip">
+        android:layout_below="@id/user_center_user_title"
+        android:layout_marginTop="8dp">
 
         <TextView
-            android:id="@id/mc_forum_participation_center"
+            android:id="@+id/user_center_essence_num"
             android:layout_width="0.0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/mc_forum_my_partin"
-            android:textColor="#ffffffff"
-            android:textSize="@dimen/mc_forum_text_size_13" />
+            android:textColor="@color/white"
+            android:textSize="13sp" />
 
         <View
-            android:layout_width="1.0px"
-            android:layout_height="fill_parent"
-            android:background="@drawable/dz_bg_gray" />
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/line" />
 
         <TextView
-            android:id="@id/mc_forum_foucs_center"
+            android:id="@+id/user_center_friend_num"
             android:layout_width="0.0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/mc_forum_user_follow"
-            android:textColor="#ffffffff"
-            android:textSize="@dimen/mc_forum_text_size_13" />
+            android:textColor="@color/white"
+            android:textSize="13sp" />
 
         <View
-            android:layout_width="1.0px"
+            android:layout_width="0.5dp"
             android:layout_height="fill_parent"
-            android:background="@drawable/dz_bg_gray" />
+            android:background="@color/line" />
 
         <TextView
-            android:id="@id/mc_forum_fans_center"
+            android:id="@+id/user_center_follow_num"
             android:layout_width="0.0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1.0"
             android:gravity="center"
             android:includeFontPadding="false"
             android:text="@string/mc_forum_user_fan"
-            android:textColor="#ffffffff"
-            android:textSize="@dimen/mc_forum_text_size_13" />
+            android:textColor="@color/white"
+            android:textSize="13sp" />
     </LinearLayout>
-
-    <View
-        android:id="@id/mc_forum_user_verify_center"
-        android:layout_width="fill_parent"
-        android:layout_height="15.0dip"
-        android:layout_above="@id/mc_forum_active"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8.0dip"
-        android:gravity="center"
-        android:includeFontPadding="false" />
 
     <TextView
-        android:id="@id/mc_forum_user_name_center"
+        android:id="@+id/user_center_sign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/mc_forum_user_verify_center"
+        android:layout_below="@id/user_center_active"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10.0dip"
+        android:layout_marginTop="9dp"
+        android:layout_marginLeft="30.0dip"
+        android:layout_marginRight="30.0dip"
+        android:ellipsize="end"
         android:includeFontPadding="false"
-        android:textColor="#ffffffff"
-        android:textSize="@dimen/mc_forum_text_size_15" />
+        android:maxLines="1"
+        tools:text="sign"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
 
-    <ImageView
-        android:id="@id/mc_forum_user_sex_icon_center"
-        android:layout_width="14.0dip"
-        android:layout_height="14.0dip"
-        android:layout_alignTop="@id/mc_forum_user_name_center"
-        android:layout_marginLeft="7.0dip"
-        android:layout_marginTop="3.0dip"
-        android:layout_toRightOf="@id/mc_forum_user_name_center" />
-
-    <ImageView
-        android:id="@id/mc_forum_user_icon_center"
-        android:layout_width="60.0dip"
-        android:layout_height="60.0dip"
-        android:layout_above="@id/mc_forum_user_name_center"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10.0dip" />
-
-    <LinearLayout
-        android:id="@id/mc_forum_publish_and_info"
-        android:layout_width="fill_parent"
-        android:layout_height="40.0dip"
-        android:layout_below="@id/mc_forum_backgroud_center"
-        android:background="#ffffffff"
-        android:orientation="horizontal"
-        android:paddingLeft="85.0dip"
-        android:paddingRight="85.0dip"
-        android:visibility="gone">
-
-        <RelativeLayout
-            android:layout_width="0.0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0">
-
-            <TextView
-                android:id="@id/mc_forum_publish_center"
-                android:layout_width="wrap_content"
-                android:layout_height="40.0dip"
-                android:layout_centerHorizontal="true"
-                android:clickable="true"
-                android:enabled="true"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:text="@string/mc_forum_publish"
-                android:textColor="@color/dz_skin_custom_main_color"
-                android:textSize="@dimen/mc_forum_text_size_15" />
-
-            <View
-                android:id="@id/mc_forum_publish_select"
-                android:layout_width="fill_parent"
-                android:layout_height="2.0dip"
-                android:layout_alignParentBottom="true"
-                android:background="@color/dz_skin_custom_main_color" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0.0dip"
-            android:layout_height="fill_parent"
-            android:layout_weight="1.0">
-
-            <TextView
-                android:id="@id/mc_forum_info_center"
-                android:layout_width="wrap_content"
-                android:layout_height="40.0dip"
-                android:layout_centerHorizontal="true"
-                android:clickable="true"
-                android:enabled="true"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:text="@string/mc_forum_my_datum"
-                android:textColor="@color/mc_forum_tabbar_normal_color"
-                android:textSize="@dimen/mc_forum_text_size_15" />
-
-            <View
-                android:id="@id/mc_forum_info_select"
-                android:layout_width="fill_parent"
-                android:layout_height="2.0dip"
-                android:layout_alignParentBottom="true"
-                android:background="#ffffffff" />
-        </RelativeLayout>
-    </LinearLayout>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1.0px"
-        android:layout_below="@id/mc_forum_publish_and_info"
-        android:background="#ffcccccc" />
 </RelativeLayout>
