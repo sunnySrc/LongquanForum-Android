@@ -46,8 +46,8 @@
         android:background="@drawable/selector_gender_background"
         android:layout_marginTop="8dp"
         android:textColor="@color/white"
-        tools:text="user_title"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:visibility="invisible"/>
 
     <LinearLayout
         android:id="@+id/user_center_active"

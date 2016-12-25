@@ -11,12 +11,10 @@ import android.widget.TextView;
 
 import com.appbyme.dev.R;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.mobcent.common.GlideCircleTransform;
 import com.phone.niuche.views.widget.stackblur.NativeBlurProcess;
-import com.mobcent.common.GlideRoundTransform;
 
 import discuz.com.net.service.model.me.UserResult;
 
@@ -62,6 +60,7 @@ public class UserHomeCenterHeader extends RelativeLayout {
     }
 
     public void setContent(UserResult userInfo){
+        if(userInfo == null) return;
         Glide.with(getContext()).load(userInfo.getIcon()).transform(new GlideCircleTransform(getContext())).into(mAvatar);
         Glide.with(getContext()).load(userInfo.getIcon()).asBitmap().into(new SimpleTarget<Bitmap>() {
             @Override
@@ -86,6 +85,7 @@ public class UserHomeCenterHeader extends RelativeLayout {
         mName.setText(userInfo.getName());
         mUserTitle.setText(userInfo.getUserTitle());
         mUserTitle.setSelected(userInfo.getGender() == 0);
+        mUserTitle.setVisibility(VISIBLE);
         mEssenceNum.setText(getResources().getString(R.string.mc_forum_my_partin)+userInfo.getEssence_num());
         mFriendNum.setText(getResources().getString(R.string.mc_forum_user_follow)+userInfo.getFriend_num());
         mFollowNum.setText(getResources().getString(R.string.mc_forum_user_fan)+userInfo.getFollow_num());

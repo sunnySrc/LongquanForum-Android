@@ -10,6 +10,8 @@ import com.mobcent.discuz.activity.BasePopActivity;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.WebParamsMap;
 import com.mobcent.discuz.module.user.adapter.UserHomeAdapter;
+import com.mobcent.discuz.module.user.fragment.UserHomeInformationFragment;
+import com.mobcent.discuz.module.user.fragment.UserHomePublishFragment;
 import com.mobcent.discuz.module.user.view.UserHomeCenterHeader;
 
 import discuz.com.net.service.DiscuzRetrofit;
@@ -122,6 +124,8 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
             @Override
             public void onSuccess(UserResult userResult) {
                 mUserCenterHeader.setContent(userResult);
+                ((UserHomeInformationFragment)mUserHomeAdapter.getItem(1)).setContent(userResult.getBody().getProfileList(),
+                        userResult.getBody().getCreditList());
             }
 
             @Override
