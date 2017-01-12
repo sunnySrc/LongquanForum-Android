@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        app:scrollable_maxScroll="160dp"
+        app:scrollable_maxScroll="170dp"
+        android:overScrollMode="always"
         app:scrollable_autoMaxScrollViewId="@+id/header_layout"
         app:scrollable_closeUpAnimationMillis="250"
         app:scrollable_closeUpAnimatorInterpolator="@android:anim/accelerate_decelerate_interpolator"
@@ -23,10 +24,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.mobcent.discuz.module.user.view.UserHomeCenterFragmentHeader
+            <com.mobcent.discuz.module.user.view.UserHomeCenterHeader
                 android:id="@+id/header_layout"
                 android:layout_width="match_parent"
-                android:layout_height="204dp"/>
+                android:layout_height="214dp"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -42,6 +43,9 @@
 
 
         </LinearLayout>
+
+        <View
+            style="@style/line"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/fragment_user_viewpager"

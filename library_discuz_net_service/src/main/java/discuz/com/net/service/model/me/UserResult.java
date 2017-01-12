@@ -24,8 +24,10 @@ public class UserResult extends BaseResult<UserBodyList> {
     private int photo_num;
     private int reply_posts_num;
     private int essence_num;
+    private int friend_num;
     private int follow_num;
     private int level;
+    private String name;
     private String userTitle;
     private String sign;
     private String mobile;
@@ -188,5 +190,21 @@ public class UserResult extends BaseResult<UserBodyList> {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getFriend_num() {
+        return friend_num;
+    }
+
+    public void setFriend_num(int friend_num) {
+        this.friend_num = friend_num;
     }
 }

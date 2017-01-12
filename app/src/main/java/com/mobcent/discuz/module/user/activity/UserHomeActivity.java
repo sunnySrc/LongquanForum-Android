@@ -10,7 +10,9 @@ import com.mobcent.discuz.activity.BasePopActivity;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.WebParamsMap;
 import com.mobcent.discuz.module.user.adapter.UserHomeAdapter;
-import com.mobcent.discuz.module.user.view.UserHomeCenterFragmentHeader;
+import com.mobcent.discuz.module.user.fragment.UserHomeInformationFragment;
+import com.mobcent.discuz.module.user.fragment.UserHomePublishFragment;
+import com.mobcent.discuz.module.user.view.UserHomeCenterHeader;
 
 import discuz.com.net.service.DiscuzRetrofit;
 import discuz.com.net.service.model.me.UserResult;
@@ -28,7 +30,7 @@ import ru.noties.scrollable.ScrollableLayout;
 public class UserHomeActivity extends BasePopActivity implements View.OnClickListener{
 
     private ScrollableLayout mScrollableLayout;
-    private UserHomeCenterFragmentHeader mUserCenterHeander;
+    private UserHomeCenterHeader mUserCenterHeader;
     private SlidingTabLayout mSlideTabLayout;
     private ViewPager mUserViewPager;
     private UserHomeAdapter mUserHomeAdapter;
@@ -52,10 +54,11 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
     }
 
     private void initView(){
+        getAppActionBar().setTitle(R.string.user_center);
         getAppActionBar().setBackgroundAlpha(0);
         getAppActionBar().setRightTitle(R.string.mc_forum_userifo_update,this);
         mScrollableLayout = $(R.id.user_home_scrollable_layout);
-        mUserCenterHeander = $(R.id.header_layout);
+        mUserCenterHeader = $(R.id.header_layout);
         mUserViewPager = $(R.id.fragment_user_viewpager);
         tabView = $(R.id.fragment_user_viewpager);
 
@@ -105,7 +108,7 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
 
                 invalidateActionBarBackground(y,maxY);
                 mSlideTabLayout.setTranslationY(tabsTranslationY);
-                mUserCenterHeander.setTranslationY(y / 2);
+                mUserCenterHeader.setTranslationY(y / 2);
             }
         });
     }
@@ -120,7 +123,9 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
         DiscuzRetrofit.getUserInfoService(this).requestUserInfo(LoginUtils.getInstance().getUserId(),WebParamsMap.map()).subscribe(new HTTPSubscriber<UserResult>() {
             @Override
             public void onSuccess(UserResult userResult) {
-                showToast(userResult.getUserTitle());
+                mUserCenterHeader.setContent(userResult);
+                ((UserHomeInformationFragment)mUserHomeAdapter.getItem(1)).setContent(userResult.getBody().getProfileList(),
+                        userResult.getBody().getCreditList());
             }
 
             @Override
