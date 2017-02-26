@@ -9,11 +9,11 @@ import rx.Observable;
 /**
  * Created by pangxiaomin on 16/11/27.
  */
-public class RxCallAdapter implements CallAdapter<Observable<?>> {
+public class RxCallAdapter implements CallAdapter<Object,Observable<?>> {
 
-    public CallAdapter<?> adapter;
+    public CallAdapter<?,?> adapter;
 
-    public RxCallAdapter(CallAdapter<?> adapter) {
+    public RxCallAdapter(CallAdapter<?,?> adapter) {
         this.adapter = adapter;
     }
 
@@ -22,8 +22,9 @@ public class RxCallAdapter implements CallAdapter<Observable<?>> {
         return adapter.responseType();
     }
 
+
     @Override
-    public <R> Observable<?> adapt(Call<R> call) {
+    public Observable<?> adapt(Call call) {
         return ((Observable) adapter.adapt(call)).compose(new HTTPTransformer<>());
     }
 }

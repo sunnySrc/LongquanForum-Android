@@ -17,7 +17,8 @@ public class RxCallAdapterFactory extends CallAdapter.Factory {
     public RxCallAdapterFactory() {
     }
 
-    public CallAdapter<?> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
+    @Override
+    public CallAdapter<?, ?> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
         return new RxCallAdapter(rxJavaCallAdapterFactor.get(returnType, annotations, retrofit));
     }
 }
