@@ -1,8 +1,6 @@
 package com.jcodecraeer.xrecyclerview;
 
 import android.content.Context;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +9,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 
 import com.jcodecraeer.xrecyclerview.base.BaseLoadMoreFooter;
 import com.jcodecraeer.xrecyclerview.base.BaseRefreshHeader;
@@ -190,7 +187,7 @@ public class XRecyclerView extends RecyclerView {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         //解决和CollapsingToolbarLayout冲突的问题
-        AppBarLayout appBarLayout = null;
+        /*AppBarLayout appBarLayout = null;
         ViewParent p = getParent();
         while (p != null) {
             if (p instanceof CoordinatorLayout) {
@@ -216,7 +213,7 @@ public class XRecyclerView extends RecyclerView {
                     }
                 });
             }
-        }
+        }*/
     }
 
     /**
