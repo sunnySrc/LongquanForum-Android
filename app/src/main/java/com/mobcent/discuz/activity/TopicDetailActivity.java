@@ -52,6 +52,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_ERROR;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NORMAL;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
@@ -83,8 +84,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
     public static void start(Context context, long id) {
         Intent starter = new Intent(context, TopicDetailActivity.class);
-        // TODO
-        id = 70546;
+
         starter.putExtra(BaseIntentConstant.BUNDLE_TOPIC_ID, id);
         context.startActivity(starter);
     }
@@ -490,7 +490,6 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     public void initParams(Bundle bundle) {
         pageNum = 1;
         topicId = bundle.getLong(BaseIntentConstant.BUNDLE_TOPIC_ID);
-//        topicId = 64551;
     }
 
     /**
