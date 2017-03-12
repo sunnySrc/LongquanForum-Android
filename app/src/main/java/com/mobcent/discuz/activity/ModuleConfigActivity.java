@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.appbyme.dev.R;
-import com.litesuits.android.log.Log;
 import com.mobcent.common.JsonConverter;
 import com.mobcent.discuz.api.LqForumApi;
 import com.mobcent.discuz.base.Tasker;
@@ -51,7 +50,6 @@ public class ModuleConfigActivity extends BaseRefreshActivity {
         View comView = builder.buildComponentGroup(home.getComponentList(), true);
         viewGroup.removeAllViews();
         viewGroup.addView(comView);
-        Log.d(TAG,"showContent()!" );
     }
 
     @Override

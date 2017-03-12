@@ -5,11 +5,13 @@ import android.content.Context;
 import com.mobcent.discuz.android.constant.BaseErrorCodeConstant;
 import com.mobcent.lowest.base.utils.MCToastUtils;
 
+import java.util.List;
+
 /**
  * Created by sun on 2016/8/21.
  */
 
-public abstract class BaseResult {
+public abstract class BaseResult<C extends discuz.com.net.service.model.BaseResult<List>> {
 
     /**
      * rs : 1

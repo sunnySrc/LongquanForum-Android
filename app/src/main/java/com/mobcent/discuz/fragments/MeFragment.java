@@ -19,6 +19,7 @@ import com.mobcent.discuz.activity.LoginActivity;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.api.UrlFactory;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
+import com.mobcent.discuz.module.user.activity.CollectionActivity;
 import com.mobcent.discuz.module.user.activity.UserHomeActivity;
 
 import org.json.JSONArray;
@@ -46,7 +47,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         view.findViewById(R.id.mc_forum_user_friend).setOnClickListener(this);
         view.findViewById(R.id.mc_forum_user_collect).setOnClickListener(this);
         view.findViewById(R.id.mc_forum_user_info).setOnClickListener(this);
-
         String userinfo = LoginUtils.getInstance().getUserInfo();
         if (!TextUtils.isEmpty(userinfo)) {
             try {
@@ -75,10 +75,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (!LoginUtils.getInstance().isLogin()) {
-            startLoginActivity();
-            return;
-        }
+//        if (!LoginUtils.getInstance().isLogin()) {
+//            startLoginActivity();
+//            return;
+//        }
         int id = v.getId();
         switch (id) {
             case R.id.draft:
@@ -129,6 +129,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.mc_forum_user_friend:
                 break;
             case R.id.mc_forum_user_collect:
+                Intent intent1=new Intent(getContext(), CollectionActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.mc_forum_user_info:
                 Intent intent = new Intent(getContext(), UserHomeActivity.class);
