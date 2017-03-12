@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_compile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="com.mobcent.discuz.module.user.activity.CompileActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include
+            layout="@layout/include_app_action_bar" />
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
+    <RelativeLayout
+        android:id="@+id/compile_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mc_forum_default_progress_bar_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="头像"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/pickerview_textsize"
+            android:layout_marginStart="20dp" />
+        <!--
+        <circleimageview.CircleDisplayer
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/circleImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_launcher"
+            app:border_width="2dp"
+            app:border_color="#ccc"
+            />
+        -->
+
+        <ImageView
+            android:id="@+id/compile_back_image"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_launcher"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/mc_forum_detail_user_icon_width"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/dz_list_about"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
+    </RelativeLayout>
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
+    <RelativeLayout
+        android:id="@+id/compile_signature"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mc_autogen_main_bar_btn_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="签名"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/pickerview_textsize"
+            android:layout_marginStart="20dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/dz_list_about"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
+    </RelativeLayout>
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
+    <RelativeLayout
+        android:id="@+id/compile_cellphone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mc_autogen_main_bar_btn_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="手机"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/pickerview_textsize"
+            android:layout_marginStart="20dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/dz_list_about"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
+    </RelativeLayout>
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
+    <RelativeLayout
+        android:id="@+id/compile_qq"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mc_autogen_main_bar_btn_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="QQ"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/pickerview_textsize"
+            android:layout_marginStart="20dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/dz_list_about"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
+    </RelativeLayout>
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
+    <RelativeLayout
+        android:id="@+id/compile_email"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mc_autogen_main_bar_btn_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="常用邮箱"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/pickerview_textsize"
+            android:layout_marginStart="20dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/dz_list_about"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
+    </RelativeLayout>
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
+
+    <RelativeLayout
+        android:id="@+id/compile_graduate_institutions"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mc_autogen_main_bar_btn_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="毕业院校"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/pickerview_textsize"
+            android:layout_marginStart="20dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/dz_list_about"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
+    </RelativeLayout>
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
+
+    <RelativeLayout
+        android:id="@+id/compile_education"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mc_autogen_main_bar_btn_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="学历"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/pickerview_textsize"
+            android:layout_marginStart="20dp" />
+        <ImageView
+            android:id="@+id/compile_activity_img_edu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/dz_list_about"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
+        <TextView
+            android:id="@+id/compile_activity_text_edu"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_toLeftOf="@id/compile_activity_img_edu"
+            />
+    </RelativeLayout>
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
+    <RelativeLayout
+        android:id="@+id/compile_company"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mc_autogen_main_bar_btn_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="公司"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/pickerview_textsize"
+            android:layout_marginStart="20dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/dz_list_about"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
+    </RelativeLayout>
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
+
+    <RelativeLayout
+        android:id="@+id/compile_profession"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mc_autogen_main_bar_btn_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="职业"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/pickerview_textsize"
+            android:layout_marginStart="20dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/dz_list_about"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
+    </RelativeLayout>
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
+    <RelativeLayout
+        android:id="@+id/compile_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mc_autogen_main_bar_btn_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="昵称"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textSize="@dimen/pickerview_textsize"
+            android:layout_marginStart="20dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/dz_list_about"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
+    </RelativeLayout>
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="match_parent" />
+
+</LinearLayout>
+</ScrollView>
