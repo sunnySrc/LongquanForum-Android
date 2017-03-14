@@ -17,43 +17,12 @@ import discuz.com.net.service.model.BaseResult;
  */
 public class ColoectionBean extends BaseResult {
 
-//    private int rs;
-//    private String errcode;
-//    private Head head;
-//   private Body body;
     private List<CollectionList> list;
     private int page;
     @JsonProperty("has_next")
     private int hasNext;
     @JsonProperty("total_num")
     private int totalNum;
-//    public void setRs(int rs) {
-//         this.rs = rs;
-//     }
-//     public int getRs() {
-//         return rs;
-//     }
-//
-//    public void setErrcode(String errcode) {
-//         this.errcode = errcode;
-//     }
-//     public String getErrcode() {
-//         return errcode;
-//     }
-//
-//    public void setHead(Head head) {
-//         this.head = head;
-//     }
-//     public Head getHead() {
-//         return head;
-//     }
-//
-//    public void setBody(Body body) {
-//         this.body = body;
-//     }
-//     public Body getBody() {
-//         return body;
-//     }
 
     public void setList(List<CollectionList> list) {
          this.list = list;
