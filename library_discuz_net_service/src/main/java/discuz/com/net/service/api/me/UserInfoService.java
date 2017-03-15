@@ -2,6 +2,7 @@ package discuz.com.net.service.api.me;
 
 import java.util.Map;
 
+import discuz.com.net.service.model.me.PublishResult;
 import discuz.com.net.service.model.me.UserResult;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
@@ -21,8 +22,8 @@ public interface UserInfoService {
 
     /**获取用户发表*/
     @FormUrlEncoded
-    @POST("user/topiclist")
-    Observable<UserResult> requestUserPublish(@FieldMap Map<String,String> params);
+    @POST("index.php?r=user/topiclist")
+    Observable<PublishResult> requestUserPublish(@FieldMap Map<String,String> params);
 
 
 

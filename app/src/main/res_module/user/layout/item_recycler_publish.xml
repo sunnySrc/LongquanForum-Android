@@ -46,7 +46,8 @@
             android:textColor="@color/mc_forum_bg3_text_n"
             android:layout_below="@id/item_publish_avatar"
             android:layout_marginTop="10dp"
-            android:text="我发表的内容"/>
+            android:text="我发表的内容"
+            android:id="@+id/tv_content" />
 
 
         <TextView
@@ -57,7 +58,8 @@
             android:layout_marginRight="5dp"
             android:textColor="@color/mc_forum_text4_other_normal_color"
             android:textSize="10sp"
-            android:text="浏览(9)"/>
+            android:text="浏览(9)"
+            android:id="@+id/tv_look_num" />
 
         <TextView
             android:id="@+id/item_publish_reply"
