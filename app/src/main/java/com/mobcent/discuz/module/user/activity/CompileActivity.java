@@ -181,10 +181,7 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
                 View outerView = LayoutInflater.from(this).inflate(R.layout.layout_wheelview, null);
                 TextView cancel= (TextView) outerView.findViewById(R.id.dialog_wheel_cancel);
                 TextView positive= (TextView)outerView.findViewById(R.id.dialog_wheel_positive);
-
-                //outerView.setGravity(Gravity.CENTER);
                 outerView.setBackgroundColor(Color.WHITE);
-                //outerView.setT
                 WView mWView= (WView) outerView.findViewById(R.id.view_wheel);
 
                 mWView.setOnWheelChangeListener(new WView.OnWheelChangeListener() {
@@ -211,13 +208,10 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
 
 
                 Window dialogWindow = dialog.getWindow();
+
                 dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
                 dialogWindow.setGravity(Gravity.BOTTOM);
-/*实例化Window*/
                 WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-/*实例化Window操作者*/
-//                lp.x = 0; // 新位置X坐标
-//                lp.y = 1000; // 新位置Y坐标
                 dialogWindow.setAttributes(lp);
                 cancel.setOnClickListener(new View.OnClickListener() {
                     @Override

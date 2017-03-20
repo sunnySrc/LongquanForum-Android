@@ -2,7 +2,8 @@ package discuz.com.net.service.api.me;
 
 import java.util.Map;
 
-import discuz.com.net.service.model.bean.ColoectionBean;
+import discuz.com.net.service.model.bean.collectionBean.ColoectionBean;
+import discuz.com.net.service.model.bean.registbean.RegistBean;
 import discuz.com.net.service.model.me.UserResult;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
@@ -28,5 +29,9 @@ public interface UserInfoService {
     @FormUrlEncoded
     @POST("index.php?r=user/topiclist")
     Observable<ColoectionBean> requestUserCollection(@Field("userId")String userId, @FieldMap Map<String,String> params);
-//@Field("userId")String userId,
+
+    /**注册*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/register")
+    Observable<RegistBean> userregist(@FieldMap Map<String,String> params);
 }

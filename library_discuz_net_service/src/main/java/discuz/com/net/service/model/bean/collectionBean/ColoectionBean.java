@@ -1,7 +1,7 @@
 /**
   * Copyright 2017 jb51.net 
   */
-package discuz.com.net.service.model.bean;
+package discuz.com.net.service.model.bean.collectionBean;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

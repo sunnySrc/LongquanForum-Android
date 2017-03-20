@@ -7,13 +7,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appbyme.dev.R;
+import com.bumptech.glide.Glide;
 
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-import discuz.com.net.service.model.bean.CollectionList;
+import discuz.com.net.service.model.bean.collectionBean.CollectionList;
 
 public class Collection_adapter extends MyBaseAdapter<CollectionList> {
 	InputStream inputStream = null;
@@ -55,7 +56,8 @@ public class Collection_adapter extends MyBaseAdapter<CollectionList> {
 		vh.date.setText(collectionList.getLastReplyDate());
 		vh.name.setText(collectionList.getBoardName());
 		vh.readed.setText(collectionList.getEssence());
-
+		Glide.with(context).load(collectionList.getPicPath()).into(vh.head);
+		Glide.with(context).load(collectionList.getUseravatar()).into(vh.cream);
 //		vh.cream.setImageBitmap(bitmap);
 //		vh.head.setImageBitmap();
 		return convertView;

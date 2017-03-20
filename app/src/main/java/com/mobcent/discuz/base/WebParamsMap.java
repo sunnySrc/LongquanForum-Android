@@ -45,4 +45,26 @@ public class WebParamsMap {
         map.put("imsi", "460001001651621");
         return map;
     }
+    //注册
+    public static HashMap<String,String> regist_map(String name,String pwd,String email) {
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put(WebParamsKey.forumKey, "BW0L5ISVRsOTVLCTJx");
+        map.put("isValidation","1");
+        map.put("accessSecret","");
+        map.put("accessToken","");
+
+        map.put("sdkVersion", "2.4.0");
+        map.put("username", name);
+        map.put("password", pwd);
+        map.put("email", email);
+        map.put("apphash", "44c00ca2");
+        map.put("forumType", "7");
+        map.put("platType", "1");
+        map.put("imsi", "460001001651621");
+        map.put("egnVersion", "v2035.2");
+        map.put("fastRegister", "0");
+        map.put("packageName", "com.appbyme.app178470");
+        return map;
+    }
 }

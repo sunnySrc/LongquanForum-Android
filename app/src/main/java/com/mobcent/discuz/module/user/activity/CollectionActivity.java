@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import discuz.com.net.service.DiscuzRetrofit;
-import discuz.com.net.service.model.bean.CollectionList;
-import discuz.com.net.service.model.bean.ColoectionBean;
+import discuz.com.net.service.model.bean.collectionBean.CollectionList;
+import discuz.com.net.service.model.bean.collectionBean.ColoectionBean;
 import discuz.com.retrofit.library.HTTPSubscriber;
 
 public class CollectionActivity extends BaseRefreshActivity {
