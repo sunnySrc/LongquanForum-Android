@@ -54,6 +54,11 @@ android {
     }
 
     packagingOptions {
+
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/maven/com.belerweb/pinyin4j/pom.xml'
+        exclude 'META-INF/maven/com.belerweb/pinyin4j/pom.properties'
+
         exclude 'META-INF/DEPENDENCIES.txt'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
@@ -64,6 +69,7 @@ android {
         exclude 'META-INF/license.txt'
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
+
     }
 }
 
@@ -88,7 +94,6 @@ dependencies {
     // permission
     compile 'com.github.hotchemi:permissionsdispatcher:2.2.0'
     apt 'com.github.hotchemi:permissionsdispatcher-processor:2.2.0'
-    compile 'com.android.support:recyclerview-v7:23.3.0'
     compile project(':library_scrollable_viewpager')
     compile project(':library_discuz_net_service')
     compile project(':library_discuz_model')
