@@ -94,5 +94,6 @@ dependencies {
     compile project(':library_component_actionbar')
     compile project(':library_stack_blur')
     compile files('libs/universal-image-loader-1.9.2_sources.jar')
+    compile project(path: ':library_xrecyclerview')
 }
 

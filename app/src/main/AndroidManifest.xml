@@ -444,7 +444,8 @@
             android:protectionLevel="signature"
             android:writePermission="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.mobcent.discuz.activity" />
 
-        <activity android:name="com.mobcent.discuz.module.user.activity.CollectionActivity" />
+        <activity android:name="com.mobcent.discuz.module.user.activity.CollectionActivity"
+            android:theme="@style/no_title_activity"/>
 
     </application>
 

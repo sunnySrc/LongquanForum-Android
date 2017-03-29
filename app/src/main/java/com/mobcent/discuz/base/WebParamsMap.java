@@ -25,7 +25,7 @@ public class WebParamsMap {
         return map;
     }
 
-    public static HashMap<String,String> maps(){
+    public static HashMap<String,String> maps(int uid){
         HashMap<String,String> map = new HashMap<>();
         map.put(WebParamsKey.packageName, "com.appbyme.app178470");
         map.put("forumType", "7");

@@ -2,6 +2,7 @@
   * Copyright 2017 jb51.net 
   */
 package discuz.com.net.service.model.bean.collectionBean;
+
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**

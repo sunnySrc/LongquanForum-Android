@@ -3,7 +3,8 @@
   */
 package discuz.com.net.service.model.bean.collectionBean;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.util.List;
 
@@ -20,14 +21,14 @@ public class ColoectionBean extends BaseResult {
     private List<CollectionList> list;
     private int page;
     @JsonProperty("has_next")
-    private int hasNext;
+    private int has_Next;
     @JsonProperty("total_num")
-    private int totalNum;
+    private int total_Num;
 
     public void setList(List<CollectionList> list) {
          this.list = list;
      }
-     public List<CollectionList> getList() {
+    public List<CollectionList> getList() {
          return list;
      }
 
@@ -39,17 +40,17 @@ public class ColoectionBean extends BaseResult {
      }
 
     public void setHasNext(int hasNext) {
-         this.hasNext = hasNext;
+         this.has_Next = hasNext;
      }
      public int getHasNext() {
-         return hasNext;
+         return has_Next;
      }
 
     public void setTotalNum(int totalNum) {
-         this.totalNum = totalNum;
+         this.total_Num = totalNum;
      }
      public int getTotalNum() {
-         return totalNum;
+         return total_Num;
      }
 
 }
