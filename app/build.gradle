@@ -86,7 +86,6 @@ dependencies {
     // permission
     compile 'com.github.hotchemi:permissionsdispatcher:2.2.0'
     apt 'com.github.hotchemi:permissionsdispatcher-processor:2.2.0'
-    compile 'com.android.support:recyclerview-v7:23.3.0'
     compile project(':library_scrollable_viewpager')
     compile project(':library_discuz_net_service')
     compile project(':library_discuz_model')
@@ -94,6 +93,5 @@ dependencies {
     compile project(':library_component_actionbar')
     compile project(':library_stack_blur')
     compile files('libs/universal-image-loader-1.9.2_sources.jar')
-    compile project(path: ':library_xrecyclerview')
 }
 
