@@ -4,12 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Stack;
-
-import static com.appbyme.dev.R.id.first;
-import static com.baidu.android.pushservice.message.a.m.i;
-
 
 /**
  * Created by sun on 2016/10/14.

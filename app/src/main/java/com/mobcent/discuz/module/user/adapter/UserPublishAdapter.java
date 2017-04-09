@@ -8,15 +8,24 @@ import android.view.ViewGroup;
 import com.appbyme.dev.R;
 import com.mobcent.discuz.module.user.adapter.viewholder.ItemPublishViewHolder;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import discuz.com.bean.me.Publish;
+
 /**
  * Created by pangxiaomin on 16/11/20.
+ * 我的发表
+ * @author 张春生
  */
 public class UserPublishAdapter extends RecyclerView.Adapter {
 
     private Context context;
+    public List<Publish> datas;
 
-    public UserPublishAdapter(Context context) {
+    public UserPublishAdapter(Context context,List<Publish> datas) {
         this.context = context;
+        this.datas = datas;
     }
 
     @Override
@@ -26,11 +35,12 @@ public class UserPublishAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+        ItemPublishViewHolder holerData = (ItemPublishViewHolder) holder;
+        holerData.bindConent(datas.get(position),context);
     }
 
     @Override
     public int getItemCount() {
-        return 20;
+        return datas.size();
     }
 }

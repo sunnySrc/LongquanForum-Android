@@ -4,12 +4,14 @@ import java.util.Map;
 
 import discuz.com.net.service.model.bean.collectionBean.ColoectionBean;
 import discuz.com.net.service.model.bean.registbean.RegistBean;
+import discuz.com.net.service.model.me.PublishResult;
 import discuz.com.net.service.model.me.UserResult;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import rx.Observable;
+
 /**
  * Created by pangxiaomin on 16/11/27.
  */
@@ -22,8 +24,8 @@ public interface UserInfoService {
 
     /**获取用户发表*/
     @FormUrlEncoded
-    @POST("user/topiclist")
-    Observable<UserResult> requestUserPublish(@FieldMap Map<String,String> params);
+    @POST("index.php?r=user/topiclist")
+    Observable<PublishResult> requestUserPublish(@FieldMap Map<String,String> params);
 
     /**获取用户收藏*/
     @FormUrlEncoded
