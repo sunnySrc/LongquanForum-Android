@@ -1,13 +1,12 @@
 package com.mobcent.discuz.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.appbyme.dev.R;
-import com.litesuits.android.log.Log;
 import com.mobcent.common.JsonConverter;
 import com.mobcent.discuz.api.LqForumApi;
 import com.mobcent.discuz.base.constant.DiscuzRequest;

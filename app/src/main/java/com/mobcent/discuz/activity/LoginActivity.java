@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appbyme.dev.R;
+import com.mobcent.discuz.activity.helper.RegistActivity;
 import com.mobcent.discuz.application.DiscuzApplication;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.config.PasswordHelp;
@@ -30,6 +31,13 @@ public class LoginActivity extends Activity {
     {
         super.onCreate(paramBundle);
         setContentView(R.layout.user_login_fragment);
+        findViewById(R.id.reg_submit_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(LoginActivity.this, RegistActivity.class);
+                startActivity(intent);
+            }
+        });
         findViewById(R.id.find_password).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

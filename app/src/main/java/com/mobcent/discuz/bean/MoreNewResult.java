@@ -6,7 +6,7 @@ import java.util.List;
  * Created by sun on 2016/9/6.
  */
 
-public class MoreNewResult extends BaseResult {
+public class MoreNewResult extends BaseResult<discuz.com.net.service.model.BaseResult<List>> {
     /**
      * page : 1
      * has_next : 1

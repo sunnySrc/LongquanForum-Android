@@ -7,7 +7,7 @@ import java.util.List;
  * Created by sun on 2016/10/20.
  */
 
-public class InitUIResult extends BaseResult{
+public class InitUIResult extends BaseResult<discuz.com.net.service.model.BaseResult<List>> {
 
     /**
      * externInfo : {"padding":""}
@@ -685,7 +685,7 @@ public class InitUIResult extends BaseResult{
 //                        private int isShowMessagelist;
 //                        private int listImagePosition;
 //                        private String filter;
-//                        private List<?> fastpostForumIds;
+//                        private CollectionList<?> fastpostForumIds;
 //
 //                        public int getModuleId() {
 //                            return moduleId;
@@ -847,11 +847,11 @@ public class InitUIResult extends BaseResult{
 //                            this.filter = filter;
 //                        }
 //
-//                        public List<?> getFastpostForumIds() {
+//                        public CollectionList<?> getFastpostForumIds() {
 //                            return fastpostForumIds;
 //                        }
 //
-//                        public void setFastpostForumIds(List<?> fastpostForumIds) {
+//                        public void setFastpostForumIds(CollectionList<?> fastpostForumIds) {
 //                            this.fastpostForumIds = fastpostForumIds;
 //                        }
 //                    }
