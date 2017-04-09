@@ -7,7 +7,7 @@ import java.util.List;
  * 首页数据
  */
 
-public class HomeResult extends BaseResult {
+public class HomeResult extends BaseResult<discuz.com.net.service.model.BaseResult<List>> {
     private Body body;
 
     public Body getBody() {

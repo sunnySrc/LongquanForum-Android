@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_my_friend"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffd9d9d9"
+    tools:context="com.mobcent.discuz.module.user.activity.MyFriendsActivity">
+    <include
+        layout="@layout/include_app_action_bar" />
+    <TextView
+        android:id="@+id/myfriends_button"
+        android:layout_width="320dp"
+        android:layout_height="32dp"
+        android:text="搜索"
+        android:background="#FFFFFF"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"/>
+
+
+</LinearLayout>

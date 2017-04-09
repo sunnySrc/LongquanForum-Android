@@ -2,6 +2,9 @@ package discuz.com.net.service.api.me;
 
 import java.util.Map;
 
+import discuz.com.net.service.model.bean.MyFriend.MyFriends;
+import discuz.com.net.service.model.bean.collectionBean.ColoectionBean;
+import discuz.com.net.service.model.bean.registbean.RegistBean;
 import discuz.com.net.service.model.me.PublishResult;
 import discuz.com.net.service.model.me.UserResult;
 import retrofit2.http.Field;
@@ -25,7 +28,19 @@ public interface UserInfoService {
     @POST("index.php?r=user/topiclist")
     Observable<PublishResult> requestUserPublish(@FieldMap Map<String,String> params);
 
+    /**获取用户收藏*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/topiclist")
+    Observable<ColoectionBean> requestUserCollection(@Field("userId")String userId, @FieldMap Map<String,String> params);
 
+    /**注册*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/register")
+    Observable<RegistBean> userregist(@FieldMap Map<String,String> params);
 
+    /**获取我的好友*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/searchuser")
+    Observable<MyFriends> requestUserMyFriends(@Field("userId")String userId, @FieldMap Map<String,String> params);
 
 }

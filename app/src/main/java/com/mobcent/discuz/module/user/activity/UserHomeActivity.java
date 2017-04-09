@@ -1,5 +1,6 @@
 package com.mobcent.discuz.module.user.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -11,7 +12,6 @@ import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.WebParamsMap;
 import com.mobcent.discuz.module.user.adapter.UserHomeAdapter;
 import com.mobcent.discuz.module.user.fragment.UserHomeInformationFragment;
-import com.mobcent.discuz.module.user.fragment.UserHomePublishFragment;
 import com.mobcent.discuz.module.user.view.UserHomeCenterHeader;
 
 import discuz.com.net.service.DiscuzRetrofit;
@@ -71,7 +71,8 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.action_bar_right_title){
-            //TODO edit user info
+            Intent intents=new Intent(UserHomeActivity.this, CompileActivity.class);
+            startActivity(intents);
         }
     }
 
