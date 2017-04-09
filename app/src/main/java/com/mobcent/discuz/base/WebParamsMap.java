@@ -67,4 +67,25 @@ public class WebParamsMap {
         map.put("packageName", "com.appbyme.app178470");
         return map;
     }
+    //我的好友
+    public static HashMap<String,String> map_friend(String name){
+        HashMap<String,String> map = new HashMap<>();
+        map.put(WebParamsKey.packageName, "com.appbyme.app178470");
+        map.put("searchid", "0");
+        map.put("pageSize", "10");
+        map.put(WebParamsKey.accessToken, "b8c746f3a931e0d0ffdbcc76c6360");
+        map.put(WebParamsKey.appName, WebParamsValue.appName);
+        map.put(WebParamsKey.egnVersion, "v2035.2");
+        map.put(WebParamsKey.accessSecret,  "6e9f2606bed4b530dcb58ff210299");
+        map.put("sdkVersion", "2.4.3.0");
+        map.put("imei", "868029029800109");
+        map.put("apphash", "38b69752");
+        map.put("keyword", name);
+        map.put(WebParamsKey.forumKey,"BW0L5ISVRsOTVLCTJx");
+        map.put("page", "1");
+        map.put("platType", "1");
+        map.put("imsi", "460001001651621");
+        map.put("forumType", "7");
+        return map;
+    }
 }

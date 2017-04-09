@@ -2,6 +2,7 @@ package discuz.com.net.service.api.me;
 
 import java.util.Map;
 
+import discuz.com.net.service.model.bean.MyFriend.MyFriends;
 import discuz.com.net.service.model.bean.collectionBean.ColoectionBean;
 import discuz.com.net.service.model.bean.registbean.RegistBean;
 import discuz.com.net.service.model.me.PublishResult;
@@ -36,4 +37,9 @@ public interface UserInfoService {
     @FormUrlEncoded
     @POST("index.php?r=user/register")
     Observable<RegistBean> userregist(@FieldMap Map<String,String> params);
+
+    /**获取我的好友*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/searchuser")
+    Observable<MyFriends> requestUserMyFriends(@Field("userId")String userId, @FieldMap Map<String,String> params);
 }

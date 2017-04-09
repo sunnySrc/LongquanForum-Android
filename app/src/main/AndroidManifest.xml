@@ -446,7 +446,11 @@
 
         <activity android:name="com.mobcent.discuz.module.user.activity.CollectionActivity"
             android:theme="@style/no_title_activity"/>
-
+        <activity
+            android:name="com.mobcent.discuz.module.user.activity.MyFriendsActivity"
+            android:theme="@style/no_title_activity" />
+        <activity android:name="com.mobcent.discuz.module.user.activity.MyFriendsSearchActivity"
+            android:theme="@style/no_title_activity"/>
     </application>
 
 </manifest>

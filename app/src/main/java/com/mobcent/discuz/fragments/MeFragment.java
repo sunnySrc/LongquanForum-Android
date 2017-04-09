@@ -20,6 +20,7 @@ import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.api.UrlFactory;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.module.user.activity.CollectionActivity;
+import com.mobcent.discuz.module.user.activity.MyFriendsActivity;
 import com.mobcent.discuz.module.user.activity.UserHomeActivity;
 
 import org.json.JSONArray;
@@ -127,6 +128,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.mc_forum_user_publish:
                 break;
             case R.id.mc_forum_user_friend:
+                Intent intent2=new Intent(getActivity(), MyFriendsActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.mc_forum_user_collect:
                 Intent intent1=new Intent(getContext(), CollectionActivity.class);
