@@ -42,25 +42,25 @@ public class CollectionRecycle_adapter extends RecyclerView.Adapter<CollectionRe
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         //holder.mTextView.setText(datas.get(position));
-        Log.i("TAG","getpic_path()="+datas.get(position).getPic_path());
-        Log.i("TAG","getBoardId()="+datas.get(position).getBoard_id());
-        Log.i("TAG","getBoardName()="+datas.get(position).getBoard_name());
-        Log.i("TAG","getTopicId()="+datas.get(position).getTopic_id());
-        Log.i("TAG","getTypeId()="+datas.get(position).getType_id());
-        Log.i("TAG","getSortId()="+datas.get(position).getSort_id());
-        Log.i("TAG","getTitle()="+datas.get(position).getTitle());
-        Log.i("TAG","getSubject()="+datas.get(position).getSubject());
-        Log.i("TAG","getUserId()="+datas.get(position).getUser_id());
-        Log.i("TAG","getLastReplyDate()="+datas.get(position).getLast_reply_date());
-        Log.i("TAG","getUserNickName()="+datas.get(position).getUser_nick_name());
-        Log.i("TAG","getHits()="+datas.get(position).getHits());
-        Log.i("TAG","getReplies()="+datas.get(position).getReplies());
-        Log.i("TAG","getTop()="+datas.get(position).getTop());
-        Log.i("TAG","getStatus()="+datas.get(position).getStatus());
-        Log.i("TAG","getEssence()="+datas.get(position).getEssence());
-        Log.i("TAG","getHot()="+datas.get(position).getHot());
-        Log.i("TAG","getUseravatar()="+datas.get(position).getUserAvatar());
-        Log.i("TAG","getSpecial()="+datas.get(position).getSpecial());
+//        Log.i("TAG","getpic_path()="+datas.get(position).getPic_path());
+//        Log.i("TAG","getBoardId()="+datas.get(position).getBoard_id());
+//        Log.i("TAG","getBoardName()="+datas.get(position).getBoard_name());
+//        Log.i("TAG","getTopicId()="+datas.get(position).getTopic_id());
+//        Log.i("TAG","getTypeId()="+datas.get(position).getType_id());
+//        Log.i("TAG","getSortId()="+datas.get(position).getSort_id());
+//        Log.i("TAG","getTitle()="+datas.get(position).getTitle());
+//        Log.i("TAG","getSubject()="+datas.get(position).getSubject());
+//        Log.i("TAG","getUserId()="+datas.get(position).getUser_id());
+//        Log.i("TAG","getLastReplyDate()="+datas.get(position).getLast_reply_date());
+//        Log.i("TAG","getUserNickName()="+datas.get(position).getUser_nick_name());
+//        Log.i("TAG","getHits()="+datas.get(position).getHits());
+//        Log.i("TAG","getReplies()="+datas.get(position).getReplies());
+//        Log.i("TAG","getTop()="+datas.get(position).getTop());
+//        Log.i("TAG","getStatus()="+datas.get(position).getStatus());
+//        Log.i("TAG","getEssence()="+datas.get(position).getEssence());
+//        Log.i("TAG","getHot()="+datas.get(position).getHot());
+//        Log.i("TAG","getUseravatar()="+datas.get(position).getUserAvatar());
+//        Log.i("TAG","getSpecial()="+datas.get(position).getSpecial());
         int essence=datas.get(position).getEssence();
         if (essence==0){
             holder.cream.setVisibility(View.GONE);

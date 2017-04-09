@@ -110,16 +110,9 @@ public class CollectionActivity extends BasePopActivity {
 
             @Override
             public void onSuccess(ColoectionBean coloectionBean) {
-//                errCode=coloectionBean.getHead().getErrCode();
-//                Log.i("TAG","errCode="+errCode);
-//                totalNum=coloectionBean.getTotalNum();
-//                Log.i("TAG","totalNum="+totalNum);
-//                Log.i("TAG","ColList="+coloectionBean.getColList().toString());
                 Log.i("TAG", "errcode="+coloectionBean.getHead().getErrCode());
                 final List<CollectionList> list=coloectionBean.getList();
                 adapter=new CollectionRecycle_adapter(CollectionActivity.this,list);
-                // adapter.addAll(list,false);
-                //adapter.addAll(list,true);
 
                 //设置点击事件
                 adapter.setOnItemClickLitener(new CollectionRecycle_adapter.OnItemClickLitener() {
@@ -130,11 +123,7 @@ public class CollectionActivity extends BasePopActivity {
                         int topid=list.get(pos-1).getTopic_id();
                         int boardid=list.get(pos-1).getBoard_id();
                         // TODO: 2017/3/28
-//                        Intent intent=new Intent(CollectionActivity.this,TopicDetailActivity.class);
-//                        intent.putExtra("userid",userid);
-//                        intent.putExtra("topid",topid);
-//                        intent.putExtra("boardid",boardid);
-//                        startActivity(intent);
+
                         UIJumper.jumpTopic(CollectionActivity.this,topid);
                     }
 
