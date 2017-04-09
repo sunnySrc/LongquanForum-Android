@@ -26,6 +26,7 @@ import discuz.com.retrofit.library.HTTPSubscriber;
 
 import static android.widget.Toast.makeText;
 
+//ABCDEF
 public class CollectionActivity extends BasePopActivity {
     int num = 0;
     int num2 = 0;
