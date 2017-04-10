@@ -61,7 +61,6 @@ import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
  * 帖子详情
  * 测试帖子id 70546
  */
-//abc
 public class TopicDetailActivity extends BaseRefreshActivity {
     private int pageNum;
     private long topicId;
