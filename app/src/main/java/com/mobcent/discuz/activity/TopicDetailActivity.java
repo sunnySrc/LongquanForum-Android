@@ -52,7 +52,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import static android.content.Context.INPUT_METHOD_SERVICE;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_ERROR;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NORMAL;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
@@ -62,7 +61,7 @@ import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
  * 帖子详情
  * 测试帖子id 70546
  */
-
+//abc
 public class TopicDetailActivity extends BaseRefreshActivity {
     private int pageNum;
     private long topicId;
