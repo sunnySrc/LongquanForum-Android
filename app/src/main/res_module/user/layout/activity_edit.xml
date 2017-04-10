@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_edit"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context="com.mobcent.discuz.module.user.activity.EditActivity">
+    <include
+        layout="@layout/include_app_action_bar" />
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_board_height" />
+    <EditText
+        android:id="@+id/edit_single"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:background="@null"
+        />
+    <EditText
+        android:id="@+id/edit_double"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:visibility="gone"
+        android:background="@null"
+        android:gravity="left|start"
+        android:lines="5"
+        android:minLines="5"
+        android:maxLines="5"
+        />
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="match_parent" />
+</LinearLayout>

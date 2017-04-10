@@ -7,7 +7,7 @@ import java.util.List;
  *  帖子
  */
 
-public class TopicResult extends BaseResult{
+public class TopicResult extends BaseResult<discuz.com.net.service.model.BaseResult<List>> {
 
 
     /**
