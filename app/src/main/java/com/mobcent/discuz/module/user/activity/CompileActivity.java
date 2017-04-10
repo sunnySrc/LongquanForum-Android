@@ -229,8 +229,6 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
                 });
                 break;
 
-
-
             default:
                 break;
 

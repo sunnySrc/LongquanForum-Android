@@ -1,9 +1,11 @@
 package com.mobcent.discuz.module.user.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -26,11 +28,12 @@ public class MyFriendsSearchActivity extends BasePopActivity {
     private EditText edittext;
     String nickname;
     Myfriends_adapter adapter;
-
+    String page="1";
+    int pages=1;
     XRecyclerView xRecycler;
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_friends_search);
         edittext= (EditText) findViewById(R.id.myfriends_edittext);
         nickname=edittext.getText().toString();
@@ -39,8 +42,8 @@ public class MyFriendsSearchActivity extends BasePopActivity {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         //mRecyclerView.setAdapter(adapter);
-//        View header = LayoutInflater.from(this).inflate(R.layout.item_myfriends_listviewhead, (ViewGroup)findViewById(android.R.id.content),false);
-//        xRecycler.addHeaderView(header);
+        View header = LayoutInflater.from(this).inflate(R.layout.item_myfriends_listviewhead, (ViewGroup)findViewById(android.R.id.content),false);
+        xRecycler.addHeaderView(header);
 
 
         //设置瀑布流管理器
@@ -50,13 +53,13 @@ public class MyFriendsSearchActivity extends BasePopActivity {
         //xRecycler.addItemDecoration(new DividerItemDecoration(dip2px(this, 10), DividerItemDecoration.LIST, 1));
 
         //是否屏蔽下拉
-        //xRecycler.setPullRefreshEnabled(false);
+        xRecycler.setPullRefreshEnabled(false);
         //xRecycler.setRefreshHeader(new MyCustomRefreshHeader(this));
         /*xRecycler.setFootView(new CustomLoadMoreFooter(this));*/
         //上拉加载更多样式，也可以设置下拉
         xRecycler.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotatePulse);
         xRecycler.setRefreshProgressStyle(ProgressStyle.BallScaleRippleMultiple);
-        onRefresh(nickname);
+        onRefreshs("我",page);
 
 
 
@@ -80,6 +83,9 @@ public class MyFriendsSearchActivity extends BasePopActivity {
                     @Override
                     public void run() {
                         makeText(MyFriendsSearchActivity.this,"加载更多",Toast.LENGTH_SHORT).show();
+                        pages++;
+                        page=Integer.toString(pages);
+                        onRefreshs(nickname,page);
                         xRecycler.loadMoreComplete();
                     }
                 }, 1000);
@@ -88,8 +94,8 @@ public class MyFriendsSearchActivity extends BasePopActivity {
         });
     }
 
-    private void onRefresh(String nickname) {
-        DiscuzRetrofit.getUserInfoService(this).requestUserMyFriends(LoginUtils.getInstance().getUserId(), WebParamsMap.map_friend(nickname)).subscribe(new HTTPSubscriber<MyFriends>() {
+    private void onRefreshs(String nickname,String page) {
+        DiscuzRetrofit.getUserInfoService(this).requestUserMyFriends(LoginUtils.getInstance().getUserId(), WebParamsMap.map_friend(nickname,page)).subscribe(new HTTPSubscriber<MyFriends>() {
             @Override
             public void onSuccess(MyFriends myFriends) {
                 final java.util.List<List> list=myFriends.getBody().getList();
