@@ -20,10 +20,17 @@ import java.util.List;
  */
 
 public class Myfriends_adapter extends RecyclerView.Adapter<Myfriends_adapter.ViewHolder> {
-    private List<discuz.com.net.service.model.bean.MyFriend.List> datas;
+    private static List<discuz.com.net.service.model.bean.MyFriend.List> datas;
     private Context context;
-    public  Myfriends_adapter(Context context, List datas) {
-        this.datas = datas;
+    public void setMyfriends_adapter(Context context, List datass) {
+        if (datas==null){
+            this.datas = datass;
+
+        }else {
+            datas.addAll(datass);
+            notifyDataSetChanged();
+        }
+
         this.context=context;
     }
     @Override
@@ -64,4 +71,12 @@ public class Myfriends_adapter extends RecyclerView.Adapter<Myfriends_adapter.Vi
             head = (ImageView)view.findViewById(R.id.item_myfriends_header);
         }
     }
+    public void addAll(List<discuz.com.net.service.model.bean.MyFriend.List> list, boolean isClear){
+        if(isClear){
+            datas.clear();
+        }
+        datas.addAll(list);
+        notifyDataSetChanged();
+    }
+
 }

@@ -3,9 +3,6 @@ package com.mobcent.discuz.module.user.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,6 +22,7 @@ import discuz.com.retrofit.library.HTTPSubscriber;
 import static android.widget.Toast.makeText;
 
 public class MyFriendsSearchActivity extends BasePopActivity {
+    java.util.List<List> list;
     private EditText edittext;
     String nickname;
     Myfriends_adapter adapter;
@@ -38,14 +36,14 @@ public class MyFriendsSearchActivity extends BasePopActivity {
         edittext= (EditText) findViewById(R.id.myfriends_edittext);
         nickname=edittext.getText().toString();
 
+        //adapter=new Myfriends_adapter(MyFriendsSearchActivity.this,list);
+        adapter=new Myfriends_adapter();
         xRecycler= (XRecyclerView) findViewById(R.id.xr_test_myfrieds_search);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         //mRecyclerView.setAdapter(adapter);
-        View header = LayoutInflater.from(this).inflate(R.layout.item_myfriends_listviewhead, (ViewGroup)findViewById(android.R.id.content),false);
-        xRecycler.addHeaderView(header);
-
-
+//        View header = LayoutInflater.from(this).inflate(R.layout.item_myfriends_listviewhead, (ViewGroup)findViewById(android.R.id.content),false);
+//        xRecycler.addHeaderView(header);
         //设置瀑布流管理器
         xRecycler.setLayoutManager(layoutManager);
         //添加分割线，注意位置是会从下拉那个Item的实际位置开始的，所以如果支持下拉需要屏蔽下拉和HeaderView
@@ -59,7 +57,7 @@ public class MyFriendsSearchActivity extends BasePopActivity {
         //上拉加载更多样式，也可以设置下拉
         xRecycler.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotatePulse);
         xRecycler.setRefreshProgressStyle(ProgressStyle.BallScaleRippleMultiple);
-        onRefreshs("我",page);
+        onRefreshs("我",page,false);
 
 
 
@@ -85,28 +83,31 @@ public class MyFriendsSearchActivity extends BasePopActivity {
                         makeText(MyFriendsSearchActivity.this,"加载更多",Toast.LENGTH_SHORT).show();
                         pages++;
                         page=Integer.toString(pages);
-                        onRefreshs(nickname,page);
+                        onRefreshs("我",page,true);
+                        //adapter.addAll(list,false);
                         xRecycler.loadMoreComplete();
                     }
                 }, 1000);
 
             }
         });
+
     }
 
-    private void onRefreshs(String nickname,String page) {
+    private void onRefreshs(String nickname, String page, final Boolean isLoad) {
         DiscuzRetrofit.getUserInfoService(this).requestUserMyFriends(LoginUtils.getInstance().getUserId(), WebParamsMap.map_friend(nickname,page)).subscribe(new HTTPSubscriber<MyFriends>() {
             @Override
             public void onSuccess(MyFriends myFriends) {
-                final java.util.List<List> list=myFriends.getBody().getList();
-                adapter=new Myfriends_adapter(MyFriendsSearchActivity.this,list);
+                list=myFriends.getBody().getList();
+                adapter.setMyfriends_adapter(MyFriendsSearchActivity.this,list);
+                //adapter.addAll(list,false);
                 xRecycler.setAdapter(adapter);
                 xRecycler.refreshComplete();
+
             }
 
             @Override
             public void onFail(int httpCode, int errorUserCode, String message) {
-
             }
         });
     }
@@ -115,4 +116,5 @@ public class MyFriendsSearchActivity extends BasePopActivity {
     protected Fragment initContentFragment() {
         return null;
     }
+
 }
