@@ -88,4 +88,22 @@ public class WebParamsMap {
         map.put("forumType", "7");
         return map;
     }
+    //我的好友详情页
+    public static HashMap<String,String> userinfo(String uid){
+        HashMap<String,String> map = new HashMap<>();
+        map.put(WebParamsKey.packageName, WebParamsValue.packageName);
+        map.put("forumType", "7");
+        map.put("userId", uid);
+        map.put(WebParamsKey.accessToken, "b8c746f3a931e0d0ffdbcc76c6360");
+        map.put(WebParamsKey.appName, WebParamsValue.appName);
+        map.put(WebParamsKey.egnVersion, WebParamsValue.egnVersion);
+        map.put(WebParamsKey.accessSecret,"6e9f2606bed4b530dcb58ff210299");
+        map.put("sdkVersion", "2.4.3.0");
+        map.put("imei", "868029029800109");
+        map.put("apphash", "5bd6ff26");
+        map.put(WebParamsKey.forumKey, WebParamsValue.forumKey);
+        map.put("platType", "1");
+        map.put("imsi", "460001001651621");
+        return map;
+    }
 }
