@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="64dp">
+    <com.mobcent.discuz.module.user.wheelview.WView
+        android:id="@+id/view_wheel"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:padding="20dp"/>
+</RelativeLayout>

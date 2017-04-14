@@ -8,7 +8,7 @@ import java.util.List;
  * 回复时添加图片，上传返回结果
  */
 
-public class UploadPicResult extends BaseResult {
+public class UploadPicResult extends BaseResult<discuz.com.net.service.model.BaseResult<List>> {
 
     private BodyBean body;
 

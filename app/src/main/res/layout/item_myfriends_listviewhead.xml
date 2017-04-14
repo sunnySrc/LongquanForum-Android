@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_myfriends_listviewhead"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:orientation="horizontal"
+    android:background="#ffd9d9d9">
+    <EditText
+        android:id="@+id/myfriends_edittext"
+        android:layout_width="280dp"
+        android:layout_height="32dp"
+        android:hint="搜索"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:background="#FFFFFF"/>
+    <Button
+        android:id="@+id/myfriend_search_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="点击搜索"/>
+</LinearLayout>

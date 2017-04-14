@@ -52,7 +52,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import static android.content.Context.INPUT_METHOD_SERVICE;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_ERROR;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NORMAL;
 import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
@@ -62,7 +61,6 @@ import static com.mobcent.discuz.widget.LoadMoreViewManager.TYPE_NO_MORE;
  * 帖子详情
  * 测试帖子id 70546
  */
-
 public class TopicDetailActivity extends BaseRefreshActivity {
     private int pageNum;
     private long topicId;
@@ -84,6 +82,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
 
     public static void start(Context context, long id) {
         Intent starter = new Intent(context, TopicDetailActivity.class);
+        //id = 70546;
 
         // TODO
         //id = 70546;
@@ -493,6 +492,7 @@ public class TopicDetailActivity extends BaseRefreshActivity {
     public void initParams(Bundle bundle) {
         pageNum = 1;
         topicId = bundle.getLong(BaseIntentConstant.BUNDLE_TOPIC_ID);
+//        topicId = 64551;
     }
 
     /**

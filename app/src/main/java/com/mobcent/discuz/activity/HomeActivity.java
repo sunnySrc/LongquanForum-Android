@@ -24,7 +24,6 @@ import android.widget.TextView;
 import com.appbyme.dev.R;
 import com.mobcent.discuz.android.constant.ConfigConstant;
 import com.mobcent.discuz.base.constant.BaseIntentConstant;
-import com.mobcent.discuz.base.constant.LocationProvider;
 import com.mobcent.discuz.bean.InitUIResult;
 import com.mobcent.discuz.config.ForumSettings;
 import com.mobcent.discuz.fragments.Discovery1Fragment;
@@ -38,11 +37,10 @@ import com.mobcent.discuz.fragments.DiscuzFragment;
 import com.mobcent.discuz.fragments.HomeFragment;
 import com.mobcent.discuz.fragments.MeFragment;
 import com.mobcent.lowest.android.ui.module.plaza.constant.PlazaConstant;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import java.util.Arrays;
 import java.util.List;
-
-import static android.media.CamcorderProfile.get;
 
 public class HomeActivity extends FragmentActivity implements BaseIntentConstant, PlazaConstant, ConfigConstant, View.OnClickListener {
     private static final int POS_DISCOVERY= 2;
@@ -65,6 +63,8 @@ public class HomeActivity extends FragmentActivity implements BaseIntentConstant
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page_activity);
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        imageLoader.init(ImageLoaderConfiguration.createDefault(this));
         LinearLayout tv = (LinearLayout) findViewById(R.id.bottomBox);
         mStateButton1 = (Button)tv.findViewById(R.id.first);
         mStateButton1.setOnClickListener(this);
