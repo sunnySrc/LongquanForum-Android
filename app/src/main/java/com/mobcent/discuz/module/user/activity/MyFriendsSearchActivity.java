@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -49,11 +47,11 @@ public class MyFriendsSearchActivity extends BasePopActivity {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         //mRecyclerView.setAdapter(adapter);
-        View header = LayoutInflater.from(this).inflate(R.layout.item_myfriends_listviewhead, (ViewGroup)findViewById(android.R.id.content),false);
-        edittext= (EditText)header.findViewById(R.id.myfriends_edittext);
-        search_button= (Button)header.findViewById(R.id.myfriend_search_button);
-        xRecycler.addHeaderView(header);
-//        xRecycler.setEmptyView(edittext);
+//        View header = LayoutInflater.from(this).inflate(R.layout.item_myfriends_listviewhead, (ViewGroup)findViewById(android.R.id.content),false);
+//        xRecycler.addHeaderView(header);
+        edittext= (EditText)findViewById(R.id.myfriends_edittext);
+        search_button= (Button)findViewById(R.id.myfriend_search_button);
+//      xRecycler.setEmptyView(edittext);
         search_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,9 +62,12 @@ public class MyFriendsSearchActivity extends BasePopActivity {
                     Toast.makeText(MyFriendsSearchActivity.this,"搜索内容为空",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                adapter.clear();
+                try {
+                    adapter.clear();
+                }catch (NullPointerException e){
+
+                }
                 onRefreshs(nickname,page,false);
-                Toast.makeText(MyFriendsSearchActivity.this,"nickname="+nickname,Toast.LENGTH_SHORT).show();
             }
         });
         //设置瀑布流管理器
@@ -82,7 +83,7 @@ public class MyFriendsSearchActivity extends BasePopActivity {
         //上拉加载更多样式，也可以设置下拉
         xRecycler.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotatePulse);
         xRecycler.setRefreshProgressStyle(ProgressStyle.BallScaleRippleMultiple);
-        onRefreshs(nickname,page,false);
+        //onRefreshs(nickname,page,false);
 
 
 
@@ -119,9 +120,6 @@ public class MyFriendsSearchActivity extends BasePopActivity {
     }
 
     private void onRefreshs(String nickname, String page, final Boolean isLoad) {
-        if (nickname==null){
-            nickname="我";
-        }
         DiscuzRetrofit.getUserInfoService(this).requestUserMyFriends(LoginUtils.getInstance().getUserId(), WebParamsMap.map_friend(nickname,page)).subscribe(new HTTPSubscriber<MyFriends>() {
             @Override
             public void onSuccess(MyFriends myFriends) {
@@ -133,16 +131,19 @@ public class MyFriendsSearchActivity extends BasePopActivity {
                     @Override
                     public void onitemclick(View view, int pos) {
                         Toast.makeText(MyFriendsSearchActivity.this,"点击 pos="+pos,Toast.LENGTH_SHORT).show();
-                        String uid=Integer.toString(datas.get(pos).getUid());
+                        final String uid=Integer.toString(datas.get(pos).getUid());
                         DiscuzRetrofit.getUserInfoService(MyFriendsSearchActivity.this).requestUserInfo(LoginUtils.getInstance().getUserId(), WebParamsMap.userinfo(uid)).subscribe(new HTTPSubscriber<UserResult>() {
                             @Override
                             public void onSuccess(UserResult myFriends) {
                                 Intent intent=new Intent(MyFriendsSearchActivity.this,UserHomeActivity.class);
+                                intent.putExtra("uid",uid);
+                                intent.putExtra("from",true);
                                 startActivity(intent);
                             }
 
                             @Override
                             public void onFail(int httpCode, int errorUserCode, String message) {
+
                             }
                         });
                     }

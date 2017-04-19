@@ -36,11 +36,25 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
     private UserHomeAdapter mUserHomeAdapter;
     private View tabView;
 
+    private Boolean from;
+
     public void onCreate(Bundle paramBundle) {
         super.onCreate(paramBundle);
-        initView();
+        //判断该页面从哪里打开
+        judgementfrom();
         initData();
         requestUserInfo();
+    }
+    String uid;
+    private void judgementfrom() {
+        Intent intent=getIntent();
+        from=intent.getBooleanExtra("from",false);
+        uid=intent.getStringExtra("uid");
+        if (from){
+            myFriends_initView();
+        }else {
+            initView();
+        }
     }
 
     @Override
@@ -53,10 +67,17 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
         return null;
     }
 
-    private void initView(){
+
+    //我的好友的详情页
+    private void myFriends_initView(){
         getAppActionBar().setTitle(R.string.user_center);
         getAppActionBar().setBackgroundAlpha(0);
-        getAppActionBar().setRightTitle(R.string.mc_forum_userifo_update,this);
+        getAppActionBar().setRightIcon(R.drawable.dz_toolbar_share_more_n, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            alertDialogs();
+            }
+        });
         mScrollableLayout = $(R.id.user_home_scrollable_layout);
         mUserCenterHeader = $(R.id.header_layout);
         mUserViewPager = $(R.id.fragment_user_viewpager);
@@ -66,6 +87,33 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
         mSlideTabLayout.setCustomTabView(R.layout.view_sliding_tab_indicator, android.R.id.text1);
         mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
         mSlideTabLayout.setDistributeEvenly(false);
+
+
+    }
+
+    private void alertDialogs() {
+        Intent intent = new Intent(this, MainWeixinTitleRightActivity.class);
+        intent.putExtra("from","UserHomeActivity");
+        intent.putExtra("uid",uid);
+        startActivity(intent);
+    }
+
+    //我的详情页
+    private void initView(){
+            getAppActionBar().setTitle(R.string.user_center);
+            getAppActionBar().setBackgroundAlpha(0);
+            getAppActionBar().setRightTitle(R.string.mc_forum_userifo_update,this);
+            mScrollableLayout = $(R.id.user_home_scrollable_layout);
+            mUserCenterHeader = $(R.id.header_layout);
+            mUserViewPager = $(R.id.fragment_user_viewpager);
+            tabView = $(R.id.fragment_user_viewpager);
+
+            mSlideTabLayout =  $(R.id.sliding_tab_layout);
+            mSlideTabLayout.setCustomTabView(R.layout.view_sliding_tab_indicator, android.R.id.text1);
+            mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
+            mSlideTabLayout.setDistributeEvenly(false);
+
+
     }
 
     @Override

@@ -9,15 +9,15 @@
     <include
         layout="@layout/include_app_action_bar" />
 
-
+    <include
+        layout="@layout/item_myfriends_listviewhead" />
 
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/xr_test_myfrieds_search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:overScrollMode="never"
         android:visibility="visible"
         android:background="#FFFFFF"
         />
-
 </LinearLayout>

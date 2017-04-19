@@ -106,4 +106,66 @@ public class WebParamsMap {
         map.put("imsi", "460001001651621");
         return map;
     }
+
+    //拉黑
+    public static HashMap<String,String> block(String uid){
+        HashMap<String,String> map = new HashMap<>();
+        map.put(WebParamsKey.packageName, "com.appbyme.app178470");
+        map.put("forumType", "7");
+        map.put(WebParamsKey.accessToken, "b8c746f3a931e0d0ffdbcc76c6360");
+        map.put(WebParamsKey.appName, WebParamsValue.appName);
+        map.put(WebParamsKey.egnVersion, "v2091.5");
+        map.put(WebParamsKey.accessSecret,  "6e9f2606bed4b530dcb58ff210299");
+        map.put("sdkVersion", "2.5.0.0");
+        map.put("imei", "868029029800109");
+        map.put("apphash", "ab970d53");
+        map.put("uid", "196601");
+        map.put(WebParamsKey.forumKey,"BW0L5ISVRsOTVLCTJx");
+        map.put("type", "black");
+        map.put("platType", "1");
+        map.put("imsi", "460001001651621");
+        return map;
+    }
+
+    //取消拉黑
+    public static HashMap<String,String> blockcancle(String uid){
+        HashMap<String,String> map = new HashMap<>();
+        map.put(WebParamsKey.packageName, "com.appbyme.app178470");
+        map.put("forumType", "7");
+        map.put(WebParamsKey.accessToken, "b8c746f3a931e0d0ffdbcc76c6360");
+        map.put(WebParamsKey.appName, WebParamsValue.appName);
+        map.put(WebParamsKey.egnVersion, "v2091.5");
+        map.put(WebParamsKey.accessSecret,  "6e9f2606bed4b530dcb58ff210299");
+        map.put("sdkVersion", "2.5.0.0");
+        map.put("imei", "868029029800109");
+        map.put("apphash", "ab970d53");
+        map.put("uid", "196601");
+        map.put(WebParamsKey.forumKey,"BW0L5ISVRsOTVLCTJx");
+        map.put("type", "delblack");
+        map.put("platType", "1");
+        map.put("imsi", "460001001651621");
+        return map;
+    }
+
+    //举报
+    public static HashMap<String,String> report(String id,String message){
+        HashMap<String,String> map = new HashMap<>();
+        map.put(WebParamsKey.packageName, "com.appbyme.app178470");
+        map.put("forumType", "7");
+        map.put(WebParamsKey.accessToken, "b8c746f3a931e0d0ffdbcc76c6360");
+        map.put("idType", "user");
+        map.put(WebParamsKey.appName, WebParamsValue.appName);
+        map.put(WebParamsKey.egnVersion, "v2091.5");
+        map.put(WebParamsKey.accessSecret,  "6e9f2606bed4b530dcb58ff210299");
+        map.put("sdkVersion", "2.5.0.0");
+        map.put("imei", "868029029800109");
+        map.put("id", id);
+        map.put("apphash", "ab970d53");
+        map.put("message", message);
+        map.put(WebParamsKey.forumKey,"BW0L5ISVRsOTVLCTJx");
+        map.put("platType", "1");
+        map.put("imsi", "460001001651621");
+        return map;
+    }
+
 }

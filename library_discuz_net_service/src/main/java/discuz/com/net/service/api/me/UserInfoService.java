@@ -3,6 +3,7 @@ package discuz.com.net.service.api.me;
 import java.util.Map;
 
 import discuz.com.net.service.model.bean.MyFriend.MyFriends;
+import discuz.com.net.service.model.bean.block.Block;
 import discuz.com.net.service.model.bean.collectionBean.ColoectionBean;
 import discuz.com.net.service.model.bean.registbean.RegistBean;
 import discuz.com.net.service.model.me.PublishResult;
@@ -42,4 +43,19 @@ public interface UserInfoService {
     @FormUrlEncoded
     @POST("index.php?r=user/searchuser")
     Observable<MyFriends> requestUserMyFriends(@Field("userId")String userId, @FieldMap Map<String,String> params);
+
+    /**拉黑*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/useradmin")
+    Observable<Block> block(@Field("userId")String userId, @FieldMap Map<String,String> params);
+
+    /**取消拉黑*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/useradmin")
+    Observable<Block> blockcancle(@Field("userId")String userId, @FieldMap Map<String,String> params);
+
+    /**举报*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/report")
+    Observable<Block> report(@Field("userId")String userId, @FieldMap Map<String,String> params);
 }
