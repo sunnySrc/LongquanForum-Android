@@ -25,6 +25,31 @@ public class WebParamsMap {
         return map;
     }
 
+    //用户发表
+    public static HashMap<String,String> user_public(String uid){
+        HashMap<String,String> map = new HashMap<>();
+        map.put(WebParamsKey.packageName, WebParamsValue.packageName);
+        map.put("forumType", "7");
+        map.put("longitude", "117");
+        map.put("pageSize", "20");
+        map.put(WebParamsKey.accessToken,"b8c746f3a931e0d0ffdbcc76c6360");
+        map.put(WebParamsKey.appName, WebParamsValue.appName);
+        map.put("isImageList", "1");
+        map.put(WebParamsKey.egnVersion, "v2091.5");
+        map.put(WebParamsKey.accessSecret,  "6e9f2606bed4b530dcb58ff210299");
+        map.put("sdkVersion",  "2.5.0.0");
+        map.put("imei",  "868029029800109");
+        map.put("apphash",  "83837a08");
+        map.put("latitude",  "40");
+        map.put("uid", uid);
+        map.put(WebParamsKey.forumKey, WebParamsValue.forumKey);
+        map.put("type", "topic");
+        map.put("page", "1");
+        map.put("platType", "1");
+        map.put("imsi", "460001001651621");
+        return map;
+    }
+
     public static HashMap<String,String> maps(int uid){
         HashMap<String,String> map = new HashMap<>();
         map.put(WebParamsKey.packageName, "com.appbyme.app178470");

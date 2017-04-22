@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.appbyme.dev.R;
 import com.mobcent.discuz.base.WebParamsMap;
@@ -21,6 +22,9 @@ import discuz.com.bean.me.Publish;
 import discuz.com.net.service.DiscuzRetrofit;
 import discuz.com.net.service.model.me.PublishResult;
 import discuz.com.retrofit.library.HTTPSubscriber;
+
+import static com.mobcent.discuz.module.user.activity.UserHomeActivity.from;
+import static com.mobcent.discuz.module.user.activity.UserHomeActivity.uid;
 
 
 /**
@@ -58,9 +62,34 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
         super.onViewCreated(view, savedInstanceState);
         mPublishRecyclerView = $(view,R.id.fragment_publish_recyclerview);
         mPublishRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        datas = new ArrayList<>();
-        adapter = new UserPublishAdapter(getActivity(),datas);
-        mPublishRecyclerView.setAdapter(adapter);
+        if (from==true){
+            DiscuzRetrofit.getUserInfoService(getActivity()).requestUserPublish(WebParamsMap.user_public(uid)).subscribe(new HTTPSubscriber<PublishResult>() {
+
+                @Override
+                public void onSuccess(PublishResult userResult) {
+                    Toast.makeText(getActivity(),"成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"errCode="+userResult.getHead().getErrCode(),Toast.LENGTH_SHORT).show();
+                    Log.i("TAG", "errCode="+userResult.getHead().getErrCode());
+                    if(userResult!=null && userResult.list!=null){
+                        datas.addAll(userResult.list);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onFail(int httpCode, int errorUserCode, String message) {
+
+                }
+            });
+            datas = new ArrayList<>();
+            adapter = new UserPublishAdapter(getActivity(),datas);
+            mPublishRecyclerView.setAdapter(adapter);
+        }else {
+            datas = new ArrayList<>();
+            adapter = new UserPublishAdapter(getActivity(),datas);
+            mPublishRecyclerView.setAdapter(adapter);
+        }
+
     }
 
     @Override

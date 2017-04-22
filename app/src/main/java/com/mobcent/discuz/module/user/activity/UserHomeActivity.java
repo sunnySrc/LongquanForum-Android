@@ -15,6 +15,7 @@ import com.mobcent.discuz.module.user.fragment.UserHomeInformationFragment;
 import com.mobcent.discuz.module.user.view.UserHomeCenterHeader;
 
 import discuz.com.net.service.DiscuzRetrofit;
+import discuz.com.net.service.model.bean.searchfriendsinfo.SearchFriendsInfo;
 import discuz.com.net.service.model.me.UserResult;
 import discuz.com.retrofit.library.HTTPSubscriber;
 import library.component.actionbar.sliding.SlidingTabLayout;
@@ -36,16 +37,16 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
     private UserHomeAdapter mUserHomeAdapter;
     private View tabView;
 
-    private Boolean from;
+    public static Boolean from;
+    public static String uid;
 
     public void onCreate(Bundle paramBundle) {
         super.onCreate(paramBundle);
-        //判断该页面从哪里打开
+        //判断该页面来源
         judgementfrom();
         initData();
-        requestUserInfo();
+        //requestUserInfo();
     }
-    String uid;
     private void judgementfrom() {
         Intent intent=getIntent();
         from=intent.getBooleanExtra("from",false);
@@ -54,6 +55,7 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
             myFriends_initView();
         }else {
             initView();
+            requestUserInfo();
         }
     }
 
@@ -87,8 +89,24 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
         mSlideTabLayout.setCustomTabView(R.layout.view_sliding_tab_indicator, android.R.id.text1);
         mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
         mSlideTabLayout.setDistributeEvenly(false);
+        //mUserViewPager.setAdapter(mUserHomeAdapter);
+        DiscuzRetrofit.getUserInfoService(this).friendsinfo(LoginUtils.getInstance().getUserId(), WebParamsMap.userinfo(uid)).subscribe(new HTTPSubscriber<SearchFriendsInfo>() {
 
+            @Override
+            public void onSuccess(SearchFriendsInfo searchFriendsInfo) {
+                //UserHomeCenterHeader header=new UserHomeCenterHeader(UserHomeActivity.this);
+                String errCode=searchFriendsInfo.getHead().getErrCode();
+                if (errCode.equals("00000000")){
+                    mUserCenterHeader.setContentFriends(searchFriendsInfo);
 
+                }
+            }
+
+            @Override
+            public void onFail(int httpCode, int errorUserCode, String message) {
+
+            }
+        });
     }
 
     private void alertDialogs() {
@@ -113,6 +131,26 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
             mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
             mSlideTabLayout.setDistributeEvenly(false);
 
+//        DiscuzRetrofit.getUserInfoService(this).requestUserInfo(LoginUtils.getInstance().getUserId(), WebParamsMap.userinfo(uid)).subscribe(new HTTPSubscriber<UserResult>() {
+//
+//
+//            @Override
+//            public void onSuccess(UserResult userResult) {
+//                UserHomeCenterHeader header=new UserHomeCenterHeader(UserHomeActivity.this);
+//                header.setContent(userResult);
+//                String errCode=userResult.getHead().getErrCode();
+//                Toast.makeText(UserHomeActivity.this,"errCode="+errCode,Toast.LENGTH_SHORT).show();
+//                if (errCode.equals("00000000")){
+//                    Toast.makeText(UserHomeActivity.this,"成功",Toast.LENGTH_SHORT).show();
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFail(int httpCode, int errorUserCode, String message) {
+//
+//            }
+//        });
 
     }
 

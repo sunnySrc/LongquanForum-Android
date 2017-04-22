@@ -5,7 +5,9 @@ import java.util.Map;
 import discuz.com.net.service.model.bean.MyFriend.MyFriends;
 import discuz.com.net.service.model.bean.block.Block;
 import discuz.com.net.service.model.bean.collectionBean.ColoectionBean;
+import discuz.com.net.service.model.bean.searchfriendsinfo.*;
 import discuz.com.net.service.model.bean.registbean.RegistBean;
+import discuz.com.net.service.model.bean.userpublic.UserPublic;
 import discuz.com.net.service.model.me.PublishResult;
 import discuz.com.net.service.model.me.UserResult;
 import retrofit2.http.Field;
@@ -28,6 +30,11 @@ public interface UserInfoService {
     @FormUrlEncoded
     @POST("index.php?r=user/topiclist")
     Observable<PublishResult> requestUserPublish(@FieldMap Map<String,String> params);
+
+    /**获取(查询)用户发表*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/topiclist")
+    Observable<UserPublic> requestUserPublishs(@FieldMap Map<String,String> params);
 
     /**获取用户收藏*/
     @FormUrlEncoded
@@ -58,4 +65,9 @@ public interface UserInfoService {
     @FormUrlEncoded
     @POST("index.php?r=user/report")
     Observable<Block> report(@Field("userId")String userId, @FieldMap Map<String,String> params);
+
+    /**获取我的好友详情(资料)*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/userinfo")
+    Observable<SearchFriendsInfo> friendsinfo(@Field("userId")String userId, @FieldMap Map<String,String> params);
 }

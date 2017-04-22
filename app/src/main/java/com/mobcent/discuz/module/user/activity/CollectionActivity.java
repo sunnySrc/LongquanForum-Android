@@ -95,13 +95,6 @@ public class CollectionActivity extends BasePopActivity {
             }
         });
 
-       /* commonRecyclerAdapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(Context context, int position) {
-                //需要减去你的header和刷新的view的数量
-                Toast.makeText(context, "点击了！！　" + (position - 2), Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
     }
 
@@ -110,38 +103,26 @@ public class CollectionActivity extends BasePopActivity {
 
             @Override
             public void onSuccess(ColoectionBean coloectionBean) {
-//                errCode=coloectionBean.getHead().getErrCode();
-//                Log.i("TAG","errCode="+errCode);
-//                totalNum=coloectionBean.getTotalNum();
-//                Log.i("TAG","totalNum="+totalNum);
-//                Log.i("TAG","ColList="+coloectionBean.getColList().toString());
                 Log.i("TAG", "errcode="+coloectionBean.getHead().getErrCode());
                 final List<CollectionList> list=coloectionBean.getList();
                 adapter=new CollectionRecycle_adapter(CollectionActivity.this,list);
-                // adapter.addAll(list,false);
-                //adapter.addAll(list,true);
 
                 //设置点击事件
                 adapter.setOnItemClickLitener(new CollectionRecycle_adapter.OnItemClickLitener() {
                     @Override
                     public void onitemclick(View view, int pos) {
-                        Toast.makeText(CollectionActivity.this,"pos="+pos,Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(CollectionActivity.this,"pos="+pos,Toast.LENGTH_SHORT).show();
                         int userid=list.get(pos-1).getUser_id();
                         int topid=list.get(pos-1).getTopic_id();
                         int boardid=list.get(pos-1).getBoard_id();
                         // TODO: 2017/3/28
-//                        Intent intent=new Intent(CollectionActivity.this,TopicDetailActivity.class);
-//                        intent.putExtra("userid",userid);
-//                        intent.putExtra("topid",topid);
-//                        intent.putExtra("boardid",boardid);
-//                        startActivity(intent);
+
                         UIJumper.jumpTopic(CollectionActivity.this,topid);
                     }
 
                     @Override
                     public void onitemlongclick(View view, int pos) {
-                        makeText(CollectionActivity.this,"view="+view,Toast.LENGTH_SHORT).show();
-                        makeText(CollectionActivity.this,"pos="+pos,Toast.LENGTH_SHORT).show();
+
                     }
                 });
 

@@ -11,12 +11,6 @@
         android:scaleType="centerCrop" />
 
     <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="214dp"
-        android:scaleType="centerCrop"
-        android:background="@color/shadow"/>
-
-    <ImageView
         android:id="@+id/user_center_avatar"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -115,5 +109,14 @@
         tools:text="sign"
         android:textColor="@color/white"
         android:textSize="12sp" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="214dp"
+        android:scaleType="centerCrop"
+        android:background="@color/shadow"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.appbyme.dev.R;
@@ -28,8 +27,8 @@ public class ItemPublishViewHolder extends RecyclerView.ViewHolder {
             item_publish_name.setText(publish.getUser_nick_name());
             item_publish_time.setText(publish.getLast_reply_date()+"");
             tv_content.setText(publish.getTitle());
-            tv_look_num.setText(publish.getHits());
-            item_publish_reply.setText(publish.getReplies());
+            tv_look_num.setText(Integer.toString(publish.getHits()));
+            item_publish_reply.setText(Integer.toString(publish.getReplies()));
         }
 
     }

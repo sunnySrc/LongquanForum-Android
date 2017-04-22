@@ -58,7 +58,13 @@ public class ReportActivity extends BasePopActivity {
     @Override
     protected void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent) {
         super.onActivityResult(paramInt1, paramInt2, paramIntent);
-        String intent=paramIntent.getStringExtra("reason");
+
+        String intent= null;
+        try {
+            intent = paramIntent.getStringExtra("reason");
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         reason.setText(intent);
     }
     public void submit(View view){
