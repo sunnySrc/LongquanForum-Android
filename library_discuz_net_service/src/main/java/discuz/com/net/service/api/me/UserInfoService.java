@@ -5,6 +5,7 @@ import java.util.Map;
 import discuz.com.net.service.model.bean.MyFriend.MyFriends;
 import discuz.com.net.service.model.bean.block.Block;
 import discuz.com.net.service.model.bean.collectionBean.ColoectionBean;
+import discuz.com.net.service.model.bean.myfriendsHomepage.MyfriendsHomepage;
 import discuz.com.net.service.model.bean.searchfriendsinfo.*;
 import discuz.com.net.service.model.bean.registbean.RegistBean;
 import discuz.com.net.service.model.bean.userpublic.UserPublic;
@@ -70,4 +71,9 @@ public interface UserInfoService {
     @FormUrlEncoded
     @POST("index.php?r=user/userinfo")
     Observable<SearchFriendsInfo> friendsinfo(@Field("userId")String userId, @FieldMap Map<String,String> params);
+
+    /**我的好友(我的-我的好友页面)*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/userlist")
+    Observable<MyfriendsHomepage> friendList(@Field("userId")String userId, @FieldMap Map<String,String> params);
 }

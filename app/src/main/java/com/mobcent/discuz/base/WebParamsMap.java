@@ -7,6 +7,8 @@ import java.util.HashMap;
 import discuz.com.net.service.config.WebParamsKey;
 import discuz.com.net.service.config.WebParamsValue;
 
+import static com.mobcent.discuz.module.user.activity.UserHomeActivity.uid;
+
 /**
  * Created by pangxiaomin on 16/11/27.
  */
@@ -92,7 +94,7 @@ public class WebParamsMap {
         map.put("packageName", "com.appbyme.app178470");
         return map;
     }
-    //我的好友
+    //我的好友(搜索好友页面)
     public static HashMap<String,String> map_friend(String name,String page){
         HashMap<String,String> map = new HashMap<>();
         map.put(WebParamsKey.packageName, "com.appbyme.app178470");
@@ -113,6 +115,32 @@ public class WebParamsMap {
         map.put("forumType", "7");
         return map;
     }
+
+    //我的好友(我的-我的好友)
+     public static HashMap<String,String>  myfriends_homepage(){
+        HashMap<String,String> map = new HashMap<>();
+        map.put(WebParamsKey.packageName, "com.appbyme.app178470");
+        map.put("forumType", "7");
+        map.put("longitude", "117");
+         map.put("pageSize", "20");
+         map.put(WebParamsKey.accessToken, "b8c746f3a931e0d0ffdbcc76c6360");
+         map.put(WebParamsKey.appName, WebParamsValue.appName);
+         map.put(WebParamsKey.egnVersion, "v2091.5");
+         map.put(WebParamsKey.accessSecret,  "6e9f2606bed4b530dcb58ff210299");
+         map.put("sdkVersion", "2.5.0.0");
+         map.put("imei", "868029029800109");
+         map.put("apphash", "38b69752");
+         map.put("latitude", "40");
+         map.put("uid", uid);
+         map.put("orderBy", "dateline");
+         map.put(WebParamsKey.forumKey,"BW0L5ISVRsOTVLCTJx");
+        map.put("type", "friend");
+        map.put("page", "1");
+        map.put("platType", "1");
+        map.put("imsi", "460001001651621");
+        return map;
+    }
+
     //我的好友详情页
     public static HashMap<String,String> userinfo(String uid){
         HashMap<String,String> map = new HashMap<>();
