@@ -7,8 +7,6 @@ import java.util.HashMap;
 import discuz.com.net.service.config.WebParamsKey;
 import discuz.com.net.service.config.WebParamsValue;
 
-import static com.mobcent.discuz.module.user.activity.UserHomeActivity.uid;
-
 /**
  * Created by pangxiaomin on 16/11/27.
  */
@@ -129,16 +127,16 @@ public class WebParamsMap {
          map.put(WebParamsKey.accessSecret,  "6e9f2606bed4b530dcb58ff210299");
          map.put("sdkVersion", "2.5.0.0");
          map.put("imei", "868029029800109");
-         map.put("apphash", "38b69752");
+         map.put("apphash", "17f66603");
          map.put("latitude", "40");
-         map.put("uid", uid);
+         map.put("uid", "222436");
          map.put("orderBy", "dateline");
          map.put(WebParamsKey.forumKey,"BW0L5ISVRsOTVLCTJx");
-        map.put("type", "friend");
-        map.put("page", "1");
-        map.put("platType", "1");
-        map.put("imsi", "460001001651621");
-        return map;
+         map.put("type", "friend");
+         map.put("page", "1");
+         map.put("platType", "1");
+         map.put("imsi", "460001001651621");
+         return map;
     }
 
     //我的好友详情页

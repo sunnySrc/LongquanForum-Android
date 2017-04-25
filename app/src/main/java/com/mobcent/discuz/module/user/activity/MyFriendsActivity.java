@@ -1,13 +1,16 @@
 package com.mobcent.discuz.module.user.activity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.appbyme.dev.R;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -15,16 +18,20 @@ import com.jcodecraeer.xrecyclerview.other.ProgressStyle;
 import com.mobcent.discuz.activity.BasePopActivity;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.WebParamsMap;
+import com.mobcent.discuz.module.user.adapter.collectionAdapter.CollectionRecycle_adapter;
 import com.mobcent.discuz.module.user.adapter.myFriends_adapter.Myfriends_homepage_adapter;
+
 import discuz.com.net.service.DiscuzRetrofit;
 import discuz.com.net.service.model.bean.myfriendsHomepage.List;
 import discuz.com.net.service.model.bean.myfriendsHomepage.MyfriendsHomepage;
+import discuz.com.net.service.model.me.UserResult;
 import discuz.com.retrofit.library.HTTPSubscriber;
 
+import static android.widget.Toast.makeText;
 
 public class MyFriendsActivity extends BasePopActivity {
     private java.util.List<List> list;
-    Myfriends_homepage_adapter adapter;
+    private Myfriends_homepage_adapter adapter;
     TextView btn_myfriends;
     XRecyclerView xRecycler;
     @Override
@@ -44,27 +51,54 @@ public class MyFriendsActivity extends BasePopActivity {
                 startActivity(intent);
             }
         });
+        //设置瀑布流管理器
+        xRecycler.setLayoutManager(layoutManager);
         xRecycler.setPullRefreshEnabled(true);
         xRecycler.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotatePulse);
         xRecycler.setRefreshProgressStyle(ProgressStyle.BallScaleRippleMultiple);
-        netWork();
-        
+        newWork();
     }
 
-    private void netWork() {
-        DiscuzRetrofit.getUserInfoService(this).friendList(LoginUtils.getInstance().getUserId(), WebParamsMap.myfriends_homepage()).subscribe(new HTTPSubscriber<MyfriendsHomepage>() {
-
+    private void newWork() {
+        DiscuzRetrofit.getUserInfoService(this).friendList(WebParamsMap.myfriends_homepage()).subscribe(new HTTPSubscriber<MyfriendsHomepage>(){
             @Override
-            public void onSuccess(MyfriendsHomepage myFriends) {
-                list=myFriends.getList();
-                //adapter=new Myfriends_homepage_adapter(MyFriendsActivity.this,list);
+            public void onSuccess(MyfriendsHomepage myfriendsHomepage) {
+                list=myfriendsHomepage.getList();
+                adapter=new Myfriends_homepage_adapter(MyFriendsActivity.this,list);
+                //设置点击事件
+                adapter.setOnItemClickLitener(new CollectionRecycle_adapter.OnItemClickLitener() {
+                    @Override
+                    public void onitemclick(View view, int pos) {
+                        final String uid=Integer.toString(list.get(pos-2).getUid());
+                        DiscuzRetrofit.getUserInfoService(MyFriendsActivity.this).requestUserInfo(LoginUtils.getInstance().getUserId(), WebParamsMap.userinfo(uid)).subscribe(new HTTPSubscriber<UserResult>() {
+                            @Override
+                            public void onSuccess(UserResult myFriends) {
+                                Intent intent=new Intent(MyFriendsActivity.this,UserHomeActivity.class);
+                                intent.putExtra("uid",uid);
+                                intent.putExtra("from",true);
+                                startActivity(intent);
+                            }
 
+                            @Override
+                            public void onFail(int httpCode, int errorUserCode, String message) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onitemlongclick(View view, int pos) {
+                        makeText(MyFriendsActivity.this,"长按 pos="+pos,Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                xRecycler.setAdapter(adapter);
             }
 
             @Override
             public void onFail(int httpCode, int errorUserCode, String message) {
+                Log.i("TAG", "失败");
             }
-
         });
     }
 

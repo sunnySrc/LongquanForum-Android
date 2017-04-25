@@ -75,5 +75,5 @@ public interface UserInfoService {
     /**我的好友(我的-我的好友页面)*/
     @FormUrlEncoded
     @POST("index.php?r=user/userlist")
-    Observable<MyfriendsHomepage> friendList(@Field("userId")String userId, @FieldMap Map<String,String> params);
+    Observable<MyfriendsHomepage> friendList( @FieldMap Map<String,String> params);
 }

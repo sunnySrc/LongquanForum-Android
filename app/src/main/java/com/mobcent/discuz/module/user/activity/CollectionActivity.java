@@ -3,7 +3,6 @@ package com.mobcent.discuz.module.user.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -103,7 +102,6 @@ public class CollectionActivity extends BasePopActivity {
 
             @Override
             public void onSuccess(ColoectionBean coloectionBean) {
-                Log.i("TAG", "errcode="+coloectionBean.getHead().getErrCode());
                 final List<CollectionList> list=coloectionBean.getList();
                 adapter=new CollectionRecycle_adapter(CollectionActivity.this,list);
 

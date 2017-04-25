@@ -49,7 +49,6 @@ public class Myfriends_adapter extends RecyclerView.Adapter<Myfriends_adapter.Vi
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-
         String date= DateUtils.stampToDate(datas.get(position).getDateline());
         String signture=datas.get(position).getSignture();
         holder.nickname.setText(datas.get(position).getName());

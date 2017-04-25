@@ -130,7 +130,6 @@ public class MyFriendsSearchActivity extends BasePopActivity {
                 adapter.setOnItemClickLitener(new CollectionRecycle_adapter.OnItemClickLitener() {
                     @Override
                     public void onitemclick(View view, int pos) {
-                        Toast.makeText(MyFriendsSearchActivity.this,"点击 pos="+pos,Toast.LENGTH_SHORT).show();
                         final String uid=Integer.toString(datas.get(pos).getUid());
                         DiscuzRetrofit.getUserInfoService(MyFriendsSearchActivity.this).requestUserInfo(LoginUtils.getInstance().getUserId(), WebParamsMap.userinfo(uid)).subscribe(new HTTPSubscriber<UserResult>() {
                             @Override
