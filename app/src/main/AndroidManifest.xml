@@ -453,10 +453,16 @@
             android:theme="@style/no_title_activity" />
         <activity
             android:name="com.mobcent.discuz.module.user.activity.MainWeixinTitleRightActivity"
-            android:theme="@style/MyDialogTopRight"></activity>
+            android:theme="@style/MyDialogTopRight" />
         <activity
             android:name="com.mobcent.discuz.module.user.activity.ReportActivity"
-            android:theme="@style/no_title_activity"/>
+            android:theme="@style/no_title_activity" />
+        <activity
+            android:name="com.mobcent.discuz.module.user.activity.SettingActivity"
+            android:label="@string/title_activity_setting" />
+        <activity
+            android:name="com.mobcent.discuz.module.user.activity.PasswordSettingActivity"
+            android:label="@string/title_activity_password_setting"></activity>
     </application>
 
 </manifest>

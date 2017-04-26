@@ -1,5 +1,6 @@
 package com.mobcent.discuz.module.user.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import com.appbyme.dev.R;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jcodecraeer.xrecyclerview.other.ProgressStyle;
 import com.mobcent.discuz.activity.BasePopActivity;
+import com.mobcent.discuz.activity.LoginActivity;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.UIJumper;
 import com.mobcent.discuz.base.WebParamsMap;
@@ -32,6 +34,7 @@ public class CollectionActivity extends BasePopActivity {
     private ViewGroup viewGroup;
     private String errCode;
     private int totalNum;
+    private String uid;
     XRecyclerView xRecycler;
     CollectionRecycle_adapter adapter;
 
@@ -41,6 +44,18 @@ public class CollectionActivity extends BasePopActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection);
+        if (!LoginUtils.getInstance().isLogin()){
+            Intent intent=new Intent(this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        uid=LoginUtils.getInstance().getUserId();
+        //Toast.makeText(this,"uid="+uid,Toast.LENGTH_SHORT).show();
+        if (uid==null){
+            Intent intent=new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         //list=new ArrayList<CollectionList>();
         xRecycler= (XRecyclerView) findViewById(R.id.xr_test);
 
@@ -98,7 +113,7 @@ public class CollectionActivity extends BasePopActivity {
     }
 
     private void onRefresh() {
-        DiscuzRetrofit.getUserInfoService(this).requestUserCollection(LoginUtils.getInstance().getUserId(), WebParamsMap.maps(123456)).subscribe(new HTTPSubscriber<ColoectionBean>() {
+        DiscuzRetrofit.getUserInfoService(this).requestUserCollection(LoginUtils.getInstance().getUserId(), WebParamsMap.maps(uid)).subscribe(new HTTPSubscriber<ColoectionBean>() {
 
             @Override
             public void onSuccess(ColoectionBean coloectionBean) {

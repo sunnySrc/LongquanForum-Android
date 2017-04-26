@@ -1,5 +1,7 @@
 package com.mobcent.discuz.module.user.activity;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -38,7 +40,10 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
     private View tabView;
 
     public static Boolean from;
-    public static String uid;
+    public static String uid_myfriendsSearch;
+
+    private FragmentManager manager;
+    private FragmentTransaction transaction;
 
     public void onCreate(Bundle paramBundle) {
         super.onCreate(paramBundle);
@@ -47,10 +52,13 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
         initData();
         //requestUserInfo();
     }
+
+
+
     private void judgementfrom() {
         Intent intent=getIntent();
         from=intent.getBooleanExtra("from",false);
-        uid=intent.getStringExtra("uid");
+        uid_myfriendsSearch=intent.getStringExtra("uid");
         if (from){
             myFriends_initView();
         }else {
@@ -90,7 +98,7 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
         mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
         mSlideTabLayout.setDistributeEvenly(false);
         //mUserViewPager.setAdapter(mUserHomeAdapter);
-        DiscuzRetrofit.getUserInfoService(this).friendsinfo(LoginUtils.getInstance().getUserId(), WebParamsMap.userinfo(uid)).subscribe(new HTTPSubscriber<SearchFriendsInfo>() {
+        DiscuzRetrofit.getUserInfoService(this).friendsinfo(LoginUtils.getInstance().getUserId(), WebParamsMap.userinfo(uid_myfriendsSearch)).subscribe(new HTTPSubscriber<SearchFriendsInfo>() {
 
             @Override
             public void onSuccess(SearchFriendsInfo searchFriendsInfo) {
@@ -112,7 +120,7 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
     private void alertDialogs() {
         Intent intent = new Intent(this, MainWeixinTitleRightActivity.class);
         intent.putExtra("from","UserHomeActivity");
-        intent.putExtra("uid",uid);
+        intent.putExtra("uid",uid_myfriendsSearch);
         startActivity(intent);
     }
 

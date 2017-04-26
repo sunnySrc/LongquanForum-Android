@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
@@ -21,7 +20,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,7 +28,6 @@ import android.widget.Toast;
 
 import com.appbyme.dev.R;
 import com.foamtrace.photopicker.PhotoPickerActivity;
-import com.foamtrace.photopicker.PhotoPreviewActivity;
 import com.foamtrace.photopicker.SelectModel;
 import com.foamtrace.photopicker.intent.PhotoPickerIntent;
 import com.mobcent.discuz.api.LqForumApi;
@@ -225,7 +222,7 @@ public class PublishTopicActivity extends FragmentActivity {
             if (type.equals("1")) {
                 startSelectPicture();
             } else if (type.equals("2")) {
-                startCamera();
+               startCamera();
             }
             isFirst = false;
         }

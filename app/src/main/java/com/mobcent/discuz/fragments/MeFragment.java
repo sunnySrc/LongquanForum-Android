@@ -17,20 +17,28 @@ import com.appbyme.dev.R;
 import com.bumptech.glide.Glide;
 import com.mobcent.discuz.activity.LoginActivity;
 import com.mobcent.discuz.activity.LoginUtils;
-import com.mobcent.discuz.api.UrlFactory;
-import com.mobcent.discuz.base.constant.DiscuzRequest;
+import com.mobcent.discuz.activity.PublishTopicActivity;
 import com.mobcent.discuz.module.user.activity.CollectionActivity;
 import com.mobcent.discuz.module.user.activity.MyFriendsActivity;
+import com.mobcent.discuz.module.user.activity.SettingActivity;
 import com.mobcent.discuz.module.user.activity.UserHomeActivity;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import static com.appbyme.dev.R.id.mc_forum_user_publish;
 
 /**
  * Created by ubuntu on 16-6-21.
  */
 public class MeFragment extends BaseFragment implements View.OnClickListener {
-
+    private String userinfo;
+    private TextView user_name;
+    private TextView user_level;
+    private TextView user_integral;
+    TextView login_regist;
+    View view;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,35 +47,67 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.user_self_header_item, container, false);
+        view = inflater.inflate(R.layout.user_self_header_item, container, false);
         view.findViewById(R.id.draft).setOnClickListener(this);
         view.findViewById(R.id.message).setOnClickListener(this);
         view.findViewById(R.id.manage).setOnClickListener(this);
         view.findViewById(R.id.settings).setOnClickListener(this);
-        view.findViewById(R.id.mc_forum_user_publish).setOnClickListener(this);
+        view.findViewById(mc_forum_user_publish).setOnClickListener(this);
         view.findViewById(R.id.mc_forum_user_friend).setOnClickListener(this);
         view.findViewById(R.id.mc_forum_user_collect).setOnClickListener(this);
         view.findViewById(R.id.mc_forum_user_info).setOnClickListener(this);
-        String userinfo = LoginUtils.getInstance().getUserInfo();
+        user_name= (TextView) view.findViewById(R.id.mc_forum_user_name);
+        user_level= (TextView) view.findViewById(R.id.mc_forum_user_level);
+        user_integral= (TextView) view.findViewById(R.id.mc_forum_user_integral);
+        login_regist= (TextView) view.findViewById(R.id.mc_forum_user_isloging);
+
+        userInfo();
+
+        return view;
+    }
+
+    private void setLogout() {
+        Glide.with(getContext()).load(R.drawable.dz_icon_head_default).into((ImageView) view.findViewById(R.id.mc_forum_user_header_icon));
+        login_regist.setVisibility(View.VISIBLE);
+        user_name.setText("");
+        user_level.setText("");
+        user_integral.setText("");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        userInfo();
+    }
+
+    private void userInfo() {
+        userinfo = LoginUtils.getInstance().getUserInfo();
         if (!TextUtils.isEmpty(userinfo)) {
             try {
+                login_regist.setVisibility(View.GONE);
                 JSONObject object = new JSONObject(userinfo);
                 Glide.with(getContext()).load(object.getString("avatar")).into((ImageView) view.findViewById(R.id.mc_forum_user_header_icon));
-                ((TextView)view.findViewById(R.id.mc_forum_user_name)).setText(object.getString("userName"));
-                ((TextView)view.findViewById(R.id.mc_forum_user_level)).setText(object.getString("userTitle"));
+
+                user_name.setText(object.getString("userName"));
+                user_level.setText(object.getString("userTitle"));
                 JSONArray array = object.getJSONArray("creditShowList");
                 String integral = "";
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject o = array.getJSONObject(i);
                     integral += o.getString("title") + ":" + o.getString("data");
                 }
-                ((TextView) view.findViewById(R.id.mc_forum_user_integral)).setText(integral);
+                user_integral.setText(integral);
             } catch (Exception e) {
 
             }
+        }else {
+            setLogout();
+
         }
-        return view;
+
+
     }
+
 
     private void startLoginActivity() {
         Intent intent = new Intent(getContext(), LoginActivity.class);
@@ -87,6 +127,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.message:
                 break;
             case R.id.manage:
+                if (LoginUtils.getInstance().isLogin()){
                 final Dialog dialog = new Dialog(getContext(), R.style.mc_forum_home_publish_dialog_nofullscreen);
                 final LayoutInflater in = LayoutInflater.from(getContext());
                 View view = in.inflate(R.layout.user_home_switch_user_dialog, null);
@@ -94,38 +135,63 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                        builder.setTitle(getContext().getString(R.string.mc_forum_logout_dialog))
-                                .setCancelable(true)
-                                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        JSONObject param = new JSONObject();
-                                        try {
-                                            param.put("type", "logout");
-                                        } catch (Exception e) {
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle(getContext().getString(R.string.mc_forum_logout_dialog))
+                                    .setCancelable(true)
+                                    .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int hich) {
+                                            try {
+                                                setLogout();
+                                                LoginUtils.getInstance().setLogout();
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+//                                        JSONObject param = new JSONObject();
+//                                        try {
+//                                            param.put("type", "logout");
+//                                        } catch (Exception e) {
+//
+//                                        }
+//
+//                                        new DiscuzRequest(UrlFactory.LOGIN, param.toString(), new LogoutHandler()).execute();
+//                                        startLoginActivity();
+                                        }
+                                    })
+                                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
 
                                         }
+                                    });
+                            builder.create().show();
 
-                                        new DiscuzRequest(UrlFactory.LOGIN, param.toString(), new LogoutHandler()).execute();
-                                        startLoginActivity();
-                                    }
-                                })
-                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
 
-                                    }
-                                });
-                        builder.create().show();
                     }
                 });
                 dialog.setContentView(view);
                 dialog.show();
+                }else{
+                    Toast.makeText(getContext(),"请先登录",Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(getContext(),LoginActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.settings:
+                Intent SettingIntent=new Intent(getContext(), SettingActivity.class);
+                startActivity(SettingIntent);
                 break;
-            case R.id.mc_forum_user_publish:
+            case mc_forum_user_publish:
+                if (!LoginUtils.getInstance().isLogin()){
+                    Intent intent=new Intent(getContext(),LoginActivity.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent_publish=new Intent(getContext(), PublishTopicActivity.class);
+                    intent_publish.putExtra("Type", "0");
+                    startActivity(intent_publish);
+                }
+
                 break;
             case R.id.mc_forum_user_friend:
                 Intent intent2=new Intent(getActivity(), MyFriendsActivity.class);
@@ -136,8 +202,14 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(intent1);
                 break;
             case R.id.mc_forum_user_info:
-                Intent intent = new Intent(getContext(), UserHomeActivity.class);
-                startActivity(intent);
+                if (LoginUtils.getInstance().isLogin()){
+                    Intent intent_user_info = new Intent(getContext(), UserHomeActivity.class);
+                    startActivity(intent_user_info);
+                }else {
+                    Intent intent=new Intent(getContext(),LoginActivity.class);
+                    startActivity(intent);
+                }
+
                 break;
         }
     }

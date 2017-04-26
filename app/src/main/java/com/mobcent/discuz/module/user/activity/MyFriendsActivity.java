@@ -16,6 +16,7 @@ import com.appbyme.dev.R;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jcodecraeer.xrecyclerview.other.ProgressStyle;
 import com.mobcent.discuz.activity.BasePopActivity;
+import com.mobcent.discuz.activity.LoginActivity;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.WebParamsMap;
 import com.mobcent.discuz.module.user.adapter.collectionAdapter.CollectionRecycle_adapter;
@@ -38,7 +39,11 @@ public class MyFriendsActivity extends BasePopActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_friend);
-
+        if (!LoginUtils.getInstance().isLogin()){
+            Intent intent=new Intent(this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         xRecycler= (XRecyclerView) findViewById(R.id.xr_test_myfrieds);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         View header = LayoutInflater.from(this).inflate(R.layout.item_myfriendearch_head, (ViewGroup)findViewById(android.R.id.content),false);

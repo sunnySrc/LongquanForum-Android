@@ -50,7 +50,7 @@ public class WebParamsMap {
         return map;
     }
 
-    public static HashMap<String,String> maps(int uid){
+    public static HashMap<String,String> maps(String uid){
         HashMap<String,String> map = new HashMap<>();
         map.put(WebParamsKey.packageName, "com.appbyme.app178470");
         map.put("forumType", "7");
@@ -62,7 +62,7 @@ public class WebParamsMap {
         map.put("sdkVersion", "2.4.3.0");
         map.put("imei", "868029029800109");
         map.put("apphash", "d32cf2e2");
-        map.put("uid", "222436");
+        map.put("uid", uid);
         map.put(WebParamsKey.forumKey,"BW0L5ISVRsOTVLCTJx");
         map.put("type", "favorite");
         map.put("page", "1");

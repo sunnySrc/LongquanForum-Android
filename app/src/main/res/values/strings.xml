@@ -1073,4 +1073,6 @@
     <string name="reply_lab">%d楼</string>
     <string name="title_activity_regist">RegistActivity</string>
     <string name="title_activity_report">ReportActivity</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_password_setting">PasswordSettingActivity</string>
 </resources>

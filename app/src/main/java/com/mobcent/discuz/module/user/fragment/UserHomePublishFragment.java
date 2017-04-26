@@ -1,5 +1,6 @@
 package com.mobcent.discuz.module.user.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,7 +25,7 @@ import discuz.com.net.service.model.me.PublishResult;
 import discuz.com.retrofit.library.HTTPSubscriber;
 
 import static com.mobcent.discuz.module.user.activity.UserHomeActivity.from;
-import static com.mobcent.discuz.module.user.activity.UserHomeActivity.uid;
+import static com.mobcent.discuz.module.user.activity.UserHomeActivity.uid_myfriendsSearch;
 
 
 /**
@@ -53,6 +54,7 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_home_publish, container, false);
+
         return view;
     }
 
@@ -63,13 +65,12 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
         mPublishRecyclerView = $(view,R.id.fragment_publish_recyclerview);
         mPublishRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         if (from==true){
-            DiscuzRetrofit.getUserInfoService(getActivity()).requestUserPublish(WebParamsMap.user_public(uid)).subscribe(new HTTPSubscriber<PublishResult>() {
-
+            Intent intent=getActivity().getIntent();
+            String uid_SearchFriends=intent.getStringExtra("uid");
+            Toast.makeText(getContext(),"uid="+uid_SearchFriends,Toast.LENGTH_SHORT).show();
+            DiscuzRetrofit.getUserInfoService(getActivity()).requestUserPublish(WebParamsMap.user_public(uid_myfriendsSearch)).subscribe(new HTTPSubscriber<PublishResult>() {
                 @Override
                 public void onSuccess(PublishResult userResult) {
-                    Toast.makeText(getActivity(),"成功",Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getActivity(),"errCode="+userResult.getHead().getErrCode(),Toast.LENGTH_SHORT).show();
-                    Log.i("TAG", "errCode="+userResult.getHead().getErrCode());
                     if(userResult!=null && userResult.list!=null){
                         datas.addAll(userResult.list);
                         adapter.notifyDataSetChanged();
