@@ -65,7 +65,8 @@ public class MyFriendsActivity extends BasePopActivity {
     }
 
     private void newWork() {
-        DiscuzRetrofit.getUserInfoService(this).friendList(WebParamsMap.myfriends_homepage()).subscribe(new HTTPSubscriber<MyfriendsHomepage>(){
+        String uid=LoginUtils.getInstance().getUserId();
+        DiscuzRetrofit.getUserInfoService(this).friendList(WebParamsMap.myfriends_homepage(uid)).subscribe(new HTTPSubscriber<MyfriendsHomepage>(){
             @Override
             public void onSuccess(MyfriendsHomepage myfriendsHomepage) {
                 list=myfriendsHomepage.getList();

@@ -115,7 +115,7 @@ public class WebParamsMap {
     }
 
     //我的好友(我的-我的好友)
-     public static HashMap<String,String>  myfriends_homepage(){
+     public static HashMap<String,String>  myfriends_homepage(String uid){
         HashMap<String,String> map = new HashMap<>();
         map.put(WebParamsKey.packageName, "com.appbyme.app178470");
         map.put("forumType", "7");
@@ -129,7 +129,7 @@ public class WebParamsMap {
          map.put("imei", "868029029800109");
          map.put("apphash", "17f66603");
          map.put("latitude", "40");
-         map.put("uid", "222436");
+         map.put("uid", uid);
          map.put("orderBy", "dateline");
          map.put(WebParamsKey.forumKey,"BW0L5ISVRsOTVLCTJx");
          map.put("type", "friend");
@@ -219,4 +219,53 @@ public class WebParamsMap {
         return map;
     }
 
+    //我的发表
+    public static HashMap<String,String> myPublic(String uid){
+        HashMap<String,String> map = new HashMap<>();
+        map.put(WebParamsKey.packageName, "com.appbyme.app178470");
+        map.put("forumType", "7");
+        map.put("longitude", "117");
+        map.put("pageSize", "20");
+        map.put("accessToken", "6894e6cf78596ea5bf2c73d8396b6");
+        map.put("appName", "龙泉论坛");
+        map.put("isImageList", "1");
+        map.put("egnVersion", "v2091.5");
+        map.put("accessSecret", "890a0570a00e1dce7e281d2d81505");
+        map.put("sdkVersion", "2.5.0.0");
+        map.put("imei", "868029029800109");
+        map.put("apphash", "2a699579");
+        map.put("latitude", "40");
+        map.put("uid", uid);
+        map.put("forumKey", "BW0L5ISVRsOTVLCTJx");
+        map.put("type", "topic");
+        map.put("page", "1");
+        map.put("platType", "1");
+        map.put("imsi", "460001001651621");
+        return map;
+    }
+
+    //我的发表(详情页)
+    public static HashMap<String,String> myPublic_info(String uid){
+        HashMap<String,String> map = new HashMap<>();
+        map.put(WebParamsKey.packageName, "com.appbyme.app178470");
+        map.put("forumType", "7");
+        map.put("longitude", "117");
+        map.put("pageSize", "20");
+        map.put("accessToken", "b8c746f3a931e0d0ffdbcc76c6360");
+        map.put("appName", "龙泉论坛");
+        map.put("isImageList", "1");
+        map.put("egnVersion", "v2091.5");
+        map.put("accessSecret", "6e9f2606bed4b530dcb58ff210299");
+        map.put("sdkVersion", "2.5.0.0");
+        map.put("imei", "868029029800109");
+        map.put("apphash", "3591506d");
+        map.put("latitude", "40");
+        map.put("uid", uid);
+        map.put("forumKey", "BW0L5ISVRsOTVLCTJx");
+        map.put("type", "topic");
+        map.put("page", "1");
+        map.put("platType", "1");
+        map.put("imsi", "460001001651621");
+        return map;
+    }
 }

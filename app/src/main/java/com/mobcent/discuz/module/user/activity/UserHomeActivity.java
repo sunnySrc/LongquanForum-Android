@@ -17,7 +17,6 @@ import com.mobcent.discuz.module.user.fragment.UserHomeInformationFragment;
 import com.mobcent.discuz.module.user.view.UserHomeCenterHeader;
 
 import discuz.com.net.service.DiscuzRetrofit;
-import discuz.com.net.service.model.bean.searchfriendsinfo.SearchFriendsInfo;
 import discuz.com.net.service.model.me.UserResult;
 import discuz.com.retrofit.library.HTTPSubscriber;
 import library.component.actionbar.sliding.SlidingTabLayout;
@@ -31,7 +30,7 @@ import ru.noties.scrollable.ScrollableLayout;
  * 用户资料页
  */
 public class UserHomeActivity extends BasePopActivity implements View.OnClickListener{
-
+    private String uid;
     private ScrollableLayout mScrollableLayout;
     private UserHomeCenterHeader mUserCenterHeader;
     private SlidingTabLayout mSlideTabLayout;
@@ -60,6 +59,7 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
         from=intent.getBooleanExtra("from",false);
         uid_myfriendsSearch=intent.getStringExtra("uid");
         if (from){
+            initView();
             myFriends_initView();
         }else {
             initView();
@@ -80,41 +80,56 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
 
     //我的好友的详情页
     private void myFriends_initView(){
-        getAppActionBar().setTitle(R.string.user_center);
-        getAppActionBar().setBackgroundAlpha(0);
-        getAppActionBar().setRightIcon(R.drawable.dz_toolbar_share_more_n, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            alertDialogs();
-            }
-        });
-        mScrollableLayout = $(R.id.user_home_scrollable_layout);
-        mUserCenterHeader = $(R.id.header_layout);
-        mUserViewPager = $(R.id.fragment_user_viewpager);
-        tabView = $(R.id.fragment_user_viewpager);
-
-        mSlideTabLayout =  $(R.id.sliding_tab_layout);
-        mSlideTabLayout.setCustomTabView(R.layout.view_sliding_tab_indicator, android.R.id.text1);
-        mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
-        mSlideTabLayout.setDistributeEvenly(false);
+//        getAppActionBar().setTitle(R.string.user_center);
+//        getAppActionBar().setBackgroundAlpha(0);
+//        getAppActionBar().setRightIcon(R.drawable.dz_toolbar_share_more_n, new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//            alertDialogs();
+//            }
+//        });
+//        mScrollableLayout = $(R.id.user_home_scrollable_layout);
+//        mUserCenterHeader = $(R.id.header_layout);
+//        mUserViewPager = $(R.id.fragment_user_viewpager);
+//        tabView = $(R.id.fragment_user_viewpager);
+//
+//        mSlideTabLayout =  $(R.id.sliding_tab_layout);
+//        mSlideTabLayout.setCustomTabView(R.layout.view_sliding_tab_indicator, android.R.id.text1);
+//        mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
+//        mSlideTabLayout.setDistributeEvenly(false);
         //mUserViewPager.setAdapter(mUserHomeAdapter);
-        DiscuzRetrofit.getUserInfoService(this).friendsinfo(LoginUtils.getInstance().getUserId(), WebParamsMap.userinfo(uid_myfriendsSearch)).subscribe(new HTTPSubscriber<SearchFriendsInfo>() {
-
+        DiscuzRetrofit.getUserInfoService(this).requestUserInfo(uid_myfriendsSearch,WebParamsMap.map()).subscribe(new HTTPSubscriber<UserResult>() {
             @Override
-            public void onSuccess(SearchFriendsInfo searchFriendsInfo) {
-                //UserHomeCenterHeader header=new UserHomeCenterHeader(UserHomeActivity.this);
-                String errCode=searchFriendsInfo.getHead().getErrCode();
-                if (errCode.equals("00000000")){
-                    mUserCenterHeader.setContentFriends(searchFriendsInfo);
-
-                }
+            public void onSuccess(UserResult userResult) {
+                mUserCenterHeader.setContent(userResult);
+                ((UserHomeInformationFragment)mUserHomeAdapter.getItem(1)).setContent(userResult.getBody().getProfileList(),
+                        userResult.getBody().getCreditList());
             }
 
             @Override
             public void onFail(int httpCode, int errorUserCode, String message) {
-
+                showToast(message);
             }
         });
+
+//        DiscuzRetrofit.getUserInfoService(this).friendsinfo(LoginUtils.getInstance().getUserId(), WebParamsMap.userinfo(uid_myfriendsSearch)).subscribe(new HTTPSubscriber<SearchFriendsInfo>() {
+//
+//            @Override
+//            public void onSuccess(SearchFriendsInfo searchFriendsInfo) {
+//                //UserHomeCenterHeader header=new UserHomeCenterHeader(UserHomeActivity.this);
+//                String errCode=searchFriendsInfo.getHead().getErrCode();
+//                if (errCode.equals("00000000")){
+//                    mUserCenterHeader.setContentFriends(searchFriendsInfo);
+//
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFail(int httpCode, int errorUserCode, String message) {
+//
+//            }
+//        });
     }
 
     private void alertDialogs() {
@@ -138,27 +153,6 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
             mSlideTabLayout.setCustomTabView(R.layout.view_sliding_tab_indicator, android.R.id.text1);
             mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
             mSlideTabLayout.setDistributeEvenly(false);
-
-//        DiscuzRetrofit.getUserInfoService(this).requestUserInfo(LoginUtils.getInstance().getUserId(), WebParamsMap.userinfo(uid)).subscribe(new HTTPSubscriber<UserResult>() {
-//
-//
-//            @Override
-//            public void onSuccess(UserResult userResult) {
-//                UserHomeCenterHeader header=new UserHomeCenterHeader(UserHomeActivity.this);
-//                header.setContent(userResult);
-//                String errCode=userResult.getHead().getErrCode();
-//                Toast.makeText(UserHomeActivity.this,"errCode="+errCode,Toast.LENGTH_SHORT).show();
-//                if (errCode.equals("00000000")){
-//                    Toast.makeText(UserHomeActivity.this,"成功",Toast.LENGTH_SHORT).show();
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFail(int httpCode, int errorUserCode, String message) {
-//
-//            }
-//        });
 
     }
 

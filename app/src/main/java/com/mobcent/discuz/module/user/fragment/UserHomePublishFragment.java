@@ -9,9 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.appbyme.dev.R;
+import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.WebParamsMap;
 import com.mobcent.discuz.module.user.adapter.UserPublishAdapter;
 
@@ -67,10 +67,11 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
         if (from==true){
             Intent intent=getActivity().getIntent();
             String uid_SearchFriends=intent.getStringExtra("uid");
-            Toast.makeText(getContext(),"uid="+uid_SearchFriends,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(),"uid="+uid_SearchFriends,Toast.LENGTH_SHORT).show();
             DiscuzRetrofit.getUserInfoService(getActivity()).requestUserPublish(WebParamsMap.user_public(uid_myfriendsSearch)).subscribe(new HTTPSubscriber<PublishResult>() {
                 @Override
                 public void onSuccess(PublishResult userResult) {
+                    userResult.getBody();
                     if(userResult!=null && userResult.list!=null){
                         datas.addAll(userResult.list);
                         adapter.notifyDataSetChanged();
@@ -86,6 +87,21 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
             adapter = new UserPublishAdapter(getActivity(),datas);
             mPublishRecyclerView.setAdapter(adapter);
         }else {
+            DiscuzRetrofit.getUserInfoService(getActivity()).requestUserPublish(WebParamsMap.user_public(LoginUtils.getInstance().getUserId())).subscribe(new HTTPSubscriber<PublishResult>() {
+                @Override
+                public void onSuccess(PublishResult userResult) {
+                    userResult.getBody();
+                    if(userResult!=null && userResult.list!=null){
+                        datas.addAll(userResult.list);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onFail(int httpCode, int errorUserCode, String message) {
+
+                }
+            });
             datas = new ArrayList<>();
             adapter = new UserPublishAdapter(getActivity(),datas);
             mPublishRecyclerView.setAdapter(adapter);

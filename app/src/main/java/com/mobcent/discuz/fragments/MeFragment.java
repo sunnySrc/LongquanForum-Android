@@ -17,9 +17,9 @@ import com.appbyme.dev.R;
 import com.bumptech.glide.Glide;
 import com.mobcent.discuz.activity.LoginActivity;
 import com.mobcent.discuz.activity.LoginUtils;
-import com.mobcent.discuz.activity.PublishTopicActivity;
 import com.mobcent.discuz.module.user.activity.CollectionActivity;
 import com.mobcent.discuz.module.user.activity.MyFriendsActivity;
+import com.mobcent.discuz.module.user.activity.MyPublicReportActivity;
 import com.mobcent.discuz.module.user.activity.SettingActivity;
 import com.mobcent.discuz.module.user.activity.UserHomeActivity;
 
@@ -183,13 +183,13 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(SettingIntent);
                 break;
             case mc_forum_user_publish:
+                //我的发表
                 if (!LoginUtils.getInstance().isLogin()){
                     Intent intent=new Intent(getContext(),LoginActivity.class);
                     startActivity(intent);
                 }else{
-                    Intent intent_publish=new Intent(getContext(), PublishTopicActivity.class);
-                    intent_publish.putExtra("Type", "0");
-                    startActivity(intent_publish);
+                   Intent intent_public=new Intent(getContext(),MyPublicReportActivity.class);
+                    startActivity(intent_public);
                 }
 
                 break;

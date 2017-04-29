@@ -6,8 +6,9 @@ import discuz.com.net.service.model.bean.MyFriend.MyFriends;
 import discuz.com.net.service.model.bean.block.Block;
 import discuz.com.net.service.model.bean.collectionBean.ColoectionBean;
 import discuz.com.net.service.model.bean.myfriendsHomepage.MyfriendsHomepage;
-import discuz.com.net.service.model.bean.searchfriendsinfo.*;
+import discuz.com.net.service.model.bean.mypublicbean.MyPublicBean;
 import discuz.com.net.service.model.bean.registbean.RegistBean;
+import discuz.com.net.service.model.bean.searchfriendsinfo.SearchFriendsInfo;
 import discuz.com.net.service.model.bean.userpublic.UserPublic;
 import discuz.com.net.service.model.me.PublishResult;
 import discuz.com.net.service.model.me.UserResult;
@@ -76,4 +77,9 @@ public interface UserInfoService {
     @FormUrlEncoded
     @POST("index.php?r=user/userlist")
     Observable<MyfriendsHomepage> friendList( @FieldMap Map<String,String> params);
+
+    /**我的发表(我的-我的发表页面)*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/topiclist")
+    Observable<MyPublicBean> myPublic(@FieldMap Map<String,String> params);
 }

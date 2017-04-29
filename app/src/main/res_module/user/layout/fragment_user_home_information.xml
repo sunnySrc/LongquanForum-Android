@@ -28,7 +28,8 @@
                 android:layout_height="match_parent"
                 android:text="保密"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
+                android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"
+                android:gravity="center_vertical"/>
         </RelativeLayout>
         <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
         <RelativeLayout

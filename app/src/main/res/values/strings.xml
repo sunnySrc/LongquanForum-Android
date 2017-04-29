@@ -1075,4 +1075,5 @@
     <string name="title_activity_report">ReportActivity</string>
     <string name="title_activity_setting">SettingActivity</string>
     <string name="title_activity_password_setting">PasswordSettingActivity</string>
+    <string name="title_activity_my_public_report">MyPublicReportActivity</string>
 </resources>
