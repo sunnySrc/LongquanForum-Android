@@ -5,6 +5,8 @@ import java.util.Map;
 import discuz.com.net.service.model.bean.MyFriend.MyFriends;
 import discuz.com.net.service.model.bean.block.Block;
 import discuz.com.net.service.model.bean.collectionBean.ColoectionBean;
+import discuz.com.net.service.model.bean.compileBeans.CompileBeans;
+import discuz.com.net.service.model.bean.editInfoBean.EditInfoBean;
 import discuz.com.net.service.model.bean.myfriendsHomepage.MyfriendsHomepage;
 import discuz.com.net.service.model.bean.mypublicbean.MyPublicBean;
 import discuz.com.net.service.model.bean.registbean.RegistBean;
@@ -82,4 +84,19 @@ public interface UserInfoService {
     @FormUrlEncoded
     @POST("index.php?r=user/topiclist")
     Observable<MyPublicBean> myPublic(@FieldMap Map<String,String> params);
+
+    /**编辑页面(个人信息)*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/getprofilegroup")
+    Observable<CompileBeans> compile(@Field("userId")String userId, @FieldMap Map<String,String> params);
+
+    /**编辑(个人信息编辑)*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/updateuserinfo")
+    Observable<EditInfoBean> myselfInfoedit(@FieldMap Map<String,String> params);
+
+    /**编辑(個性簽名)*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/updateusersign")
+    Observable<EditInfoBean> myselfInfoedited(@FieldMap Map<String,String> params);
 }

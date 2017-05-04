@@ -12,12 +12,12 @@ import org.codehaus.jackson.annotate.JsonProperty;
 public class Body {
 
     @JsonProperty("externInfo")
-    private Externinfo externinfo;
+    private Externinfo externInfo;
     public void setExterninfo(Externinfo externinfo) {
-         this.externinfo = externinfo;
+         this.externInfo = externinfo;
      }
      public Externinfo getExterninfo() {
-         return externinfo;
+         return externInfo;
      }
 
 }

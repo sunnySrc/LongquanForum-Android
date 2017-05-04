@@ -75,6 +75,8 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
                     if(userResult!=null && userResult.list!=null){
                         datas.addAll(userResult.list);
                         adapter.notifyDataSetChanged();
+                    }else if (userResult.list==null){
+                        
                     }
                 }
 

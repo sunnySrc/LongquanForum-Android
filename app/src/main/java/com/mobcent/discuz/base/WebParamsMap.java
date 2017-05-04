@@ -268,4 +268,90 @@ public class WebParamsMap {
         map.put("imsi", "460001001651621");
         return map;
     }
+
+    //编辑页面
+    public static HashMap<String,String> compile(){
+        HashMap<String,String> map = new HashMap<>();
+        map.put("r", "user/getprofilegroup");
+        map.put("type", "userInfo");
+        map.put("imei", "868029029800109");
+        map.put("imsi", "460001001651621");
+        map.put("apphash", "c6fbc65a");
+        map.put("appName", "龙泉论坛");
+        map.put(WebParamsKey.packageName, "com.appbyme.app178470");
+        //map.put("sdkType", "");
+        map.put("forumType", "7");
+        map.put("sdkVersion", "2.5.0.0");
+        map.put("platType", "1");
+        map.put("egnVersion", "v2091.5");
+        map.put("forumKey", "BW0L5ISVRsOTVLCTJx");
+        map.put("accessToken", "b8c746f3a931e0d0ffdbcc76c6360");
+        map.put("accessSecret", "6e9f2606bed4b530dcb58ff210299");
+        return map;
+    }
+
+    //编辑页面(个人信息(资料)编辑)
+    public static HashMap<String,String> myselfInfoedit(String name){
+        HashMap<String,String> map = new HashMap<>();
+        map.put("r", "user/updateuserinfo");
+        map.put("type", "userInfo");
+        map.put("userInfo", name);
+        map.put("imei", "868029029800109");
+        map.put("imsi", "460001001651621");
+        map.put("apphash", "9a465bf4");
+        map.put("appName", "龙泉论坛");
+        map.put(WebParamsKey.packageName, "com.appbyme.app178470");
+        map.put("sdkType", "");
+        map.put("forumType", "7");
+        map.put("sdkVersion", "2.5.0.0");
+        map.put("platType", "1");
+        map.put("egnVersion", "v2091.5");
+        map.put("forumKey", "BW0L5ISVRsOTVLCTJx");
+        map.put("accessToken", "b8c746f3a931e0d0ffdbcc76c6360");
+        map.put("accessSecret", "6e9f2606bed4b530dcb58ff210299");
+        return map;
+    }
+    //编辑页面(个人信息(学历)
+    public static HashMap<String,String> myselfInfoedits(String info){
+        HashMap<String,String> map = new HashMap<>();
+        map.put("r", "user/updateuserinfo");
+        map.put("type", "userInfo");
+        map.put("userInfo", info);
+        map.put("imei", "868029029800109");
+        map.put("imsi", "460001001651621");
+        map.put("apphash", "9a465bf4");
+        map.put("appName", "龙泉论坛");
+        map.put(WebParamsKey.packageName, "com.appbyme.app178470");
+        map.put("sdkType", "");
+        map.put("forumType", "7");
+        map.put("sdkVersion", "2.5.0.0");
+        map.put("platType", "1");
+        map.put("egnVersion", "v2091.5");
+        map.put("forumKey", "BW0L5ISVRsOTVLCTJx");
+        map.put("accessToken", "b8c746f3a931e0d0ffdbcc76c6360");
+        map.put("accessSecret", "6e9f2606bed4b530dcb58ff210299");
+        return map;
+    }
+
+
+    //编辑页面(个性签名)
+    public static HashMap<String,String> myselfInfoedited(String name){
+        HashMap<String,String> map = new HashMap<>();
+        map.put("r", "user/updateusersign");
+        map.put("sign", name);
+        map.put("imei", "868029029800109");
+        map.put("imsi", "460001001651621");
+        map.put("apphash", "763854ef");
+        map.put("appName", "龙泉论坛");
+        map.put(WebParamsKey.packageName, "com.appbyme.app178470");
+        map.put("sdkType", "");
+        map.put("forumType", "7");
+        map.put("sdkVersion", "2.5.0.0");
+        map.put("platType", "1");
+        map.put("egnVersion", "v2091.5");
+        map.put("forumKey", "BW0L5ISVRsOTVLCTJx");
+        map.put("accessToken", "b8c746f3a931e0d0ffdbcc76c6360");
+        map.put("accessSecret", "6e9f2606bed4b530dcb58ff210299");
+        return map;
+    }
 }

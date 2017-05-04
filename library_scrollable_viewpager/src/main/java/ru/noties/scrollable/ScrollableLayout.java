@@ -239,7 +239,7 @@ public class ScrollableLayout extends FrameLayout {
     /**
      * Override this method if you wish to create own {@link android.widget.Scroller}
      * @param context {@link android.content.Context}
-     * @param interpolator {@link android.view.animation.Interpolator}, the default implementation passes <code>null</code>
+     * @param interpolator {@link android.view.animation.Interpolator}, the defaults implementation passes <code>null</code>
      * @param flywheel {@link android.widget.Scroller#Scroller(android.content.Context, android.view.animation.Interpolator, boolean)}
      * @return new instance of {@link android.widget.Scroller} must not bu null
      */

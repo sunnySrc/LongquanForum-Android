@@ -95,7 +95,7 @@ public class WebActivity extends Activity implements View.OnClickListener {
         // to make the text auto size to work
         setUpWebViewDefaults(mWebView);
 
-        // Ensure we are using the default TextAutoSize
+        // Ensure we are using the defaults TextAutoSize
         setUseTextAutoSize(mUseTextAutoSize);
 
         // User-Agent
