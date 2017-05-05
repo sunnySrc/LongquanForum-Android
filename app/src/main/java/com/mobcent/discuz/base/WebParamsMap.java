@@ -291,14 +291,14 @@ public class WebParamsMap {
     }
 
     //编辑页面(个人信息(资料)编辑)
-    public static HashMap<String,String> myselfInfoedit(String name){
+    public static HashMap<String,String> myselfInfoedit(String name,String appHash){
         HashMap<String,String> map = new HashMap<>();
         map.put("r", "user/updateuserinfo");
         map.put("type", "userInfo");
         map.put("userInfo", name);
         map.put("imei", "868029029800109");
         map.put("imsi", "460001001651621");
-        map.put("apphash", "9a465bf4");
+        map.put("apphash", appHash);
         map.put("appName", "龙泉论坛");
         map.put(WebParamsKey.packageName, "com.appbyme.app178470");
         map.put("sdkType", "");
@@ -335,13 +335,13 @@ public class WebParamsMap {
 
 
     //编辑页面(个性签名)
-    public static HashMap<String,String> myselfInfoedited(String name){
+    public static HashMap<String,String> myselfInfoedited(String name,String appHash){
         HashMap<String,String> map = new HashMap<>();
         map.put("r", "user/updateusersign");
         map.put("sign", name);
         map.put("imei", "868029029800109");
         map.put("imsi", "460001001651621");
-        map.put("apphash", "763854ef");
+        map.put("apphash", appHash);
         map.put("appName", "龙泉论坛");
         map.put(WebParamsKey.packageName, "com.appbyme.app178470");
         map.put("sdkType", "");

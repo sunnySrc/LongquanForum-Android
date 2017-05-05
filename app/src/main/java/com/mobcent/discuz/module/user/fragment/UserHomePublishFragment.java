@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.appbyme.dev.R;
 import com.mobcent.discuz.activity.LoginUtils;
@@ -35,7 +36,7 @@ import static com.mobcent.discuz.module.user.activity.UserHomeActivity.uid_myfri
  */
 public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
 
-
+    private TextView text_nothing;
     private RecyclerView mPublishRecyclerView;
     UserPublishAdapter adapter;
     List<Publish> datas;
@@ -63,20 +64,23 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPublishRecyclerView = $(view,R.id.fragment_publish_recyclerview);
+        text_nothing = $(view,R.id.fragment_public_nothing);
         mPublishRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         if (from==true){
             Intent intent=getActivity().getIntent();
             String uid_SearchFriends=intent.getStringExtra("uid");
-            //Toast.makeText(getContext(),"uid="+uid_SearchFriends,Toast.LENGTH_SHORT).show();
             DiscuzRetrofit.getUserInfoService(getActivity()).requestUserPublish(WebParamsMap.user_public(uid_myfriendsSearch)).subscribe(new HTTPSubscriber<PublishResult>() {
                 @Override
                 public void onSuccess(PublishResult userResult) {
                     userResult.getBody();
                     if(userResult!=null && userResult.list!=null){
+                        if (userResult.list.size()!=0){
+                            text_nothing.setVisibility(View.INVISIBLE);
+                        }else {
+                            text_nothing.setVisibility(View.VISIBLE);
+                        }
                         datas.addAll(userResult.list);
                         adapter.notifyDataSetChanged();
-                    }else if (userResult.list==null){
-                        
                     }
                 }
 
@@ -94,8 +98,14 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
                 public void onSuccess(PublishResult userResult) {
                     userResult.getBody();
                     if(userResult!=null && userResult.list!=null){
+                        if (userResult.list.size()!=0){
+                            text_nothing.setVisibility(View.INVISIBLE);
+                        }else {
+                            text_nothing.setVisibility(View.VISIBLE);
+                        }
                         datas.addAll(userResult.list);
                         adapter.notifyDataSetChanged();
+
                     }
                 }
 

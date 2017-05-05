@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.appbyme.dev.R;
 import com.mobcent.discuz.activity.BasePopActivity;
 import com.mobcent.discuz.base.WebParamsMap;
+import com.mobcent.discuz.uitls.ApphashUtils;
 
 import java.net.URLEncoder;
 
@@ -100,7 +101,7 @@ public class EditActivity extends BasePopActivity {
                 Intent mIntent106 = new Intent();
                 mIntent106.putExtra("text", edit);
                 this.setResult(106, mIntent106);
-                netWork("graduate",edit);
+                netWork("graduateschool",edit);
                 finish();
                 break;
             case "compile_company":
@@ -135,15 +136,18 @@ public class EditActivity extends BasePopActivity {
     }
 
     private void netWork(String param,String edit){
+        ApphashUtils apphash=new ApphashUtils();
+        String time=apphash.appHashs();
+        String md5=apphash.encrypt(time);
+        String apphashs=md5.substring(8,16);
+
         String ecode=URLEncoder.encode(edit);
         String num="%7B%22"+param+"%22%3A%22"+ecode+"%22%7D";
-        Log.i("TAG", "num="+num);
-        DiscuzRetrofit.getUserInfoService(this).myselfInfoedit( WebParamsMap.myselfInfoedit(num)).subscribe(new HTTPSubscriber<EditInfoBean>() {
+        DiscuzRetrofit.getUserInfoService(this).myselfInfoedit( WebParamsMap.myselfInfoedit(num,apphashs)).subscribe(new HTTPSubscriber<EditInfoBean>() {
 
             @Override
             public void onSuccess(EditInfoBean coloectionBean) {
                 String errInfo=coloectionBean.getHead().getErrinfo();
-                Log.i("TAG", "errInfo="+errInfo);
                 if (coloectionBean.getHead().getErrcode().equals("00000000")){
                     Toast.makeText(EditActivity.this,"保存成功",Toast.LENGTH_SHORT).show();
                 }else {
@@ -161,9 +165,13 @@ public class EditActivity extends BasePopActivity {
         });
     }
     private void netWorkEdit(String edit){
+        ApphashUtils apphash=new ApphashUtils();
+        String time=apphash.appHashs();
+        String md5=apphash.encrypt(time);
+        String apphashs=md5.substring(8,16);
         String ecode=URLEncoder.encode(edit);
         Log.i("TAG", "ecode="+ecode);
-        DiscuzRetrofit.getUserInfoService(this).myselfInfoedited( WebParamsMap.myselfInfoedited(ecode)).subscribe(new HTTPSubscriber<EditInfoBean>() {
+        DiscuzRetrofit.getUserInfoService(this).myselfInfoedited( WebParamsMap.myselfInfoedited(ecode,apphashs)).subscribe(new HTTPSubscriber<EditInfoBean>() {
 
             @Override
             public void onSuccess(EditInfoBean coloectionBean) {
