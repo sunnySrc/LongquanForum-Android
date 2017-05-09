@@ -465,7 +465,9 @@
             android:label="@string/title_activity_password_setting" />
         <activity
             android:name="com.mobcent.discuz.module.user.activity.MyPublicReportActivity"
-            android:theme="@style/no_title_activity"></activity>
+            android:theme="@style/no_title_activity" />
+        <activity android:name="com.mobcent.discuz.module.user.activity.DraftActivity"
+            android:theme="@style/no_title_activity"/>
     </application>
 
 </manifest>

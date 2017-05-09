@@ -54,7 +54,7 @@ public class MainWeixinTitleRightActivity extends Activity
 			public void onClick(View v) {
 				//finish();
 				Intent mIntent = new Intent();
-				mIntent.putExtra("reason", "成人内容");
+				mIntent.putExtra("reason",R.string.mc_forum_report_adult_content);
 				MainWeixinTitleRightActivity.this.setResult(101, mIntent);
 				finish();
 			}
@@ -63,7 +63,7 @@ public class MainWeixinTitleRightActivity extends Activity
 			@Override
 			public void onClick(View v) {
 				Intent mIntent = new Intent();
-				mIntent.putExtra("reason", "政治言论");
+				mIntent.putExtra("reason", R.string.mc_forum_polity_sensi_content);
 				MainWeixinTitleRightActivity.this.setResult(101, mIntent);
 				finish();
 			}
@@ -72,7 +72,7 @@ public class MainWeixinTitleRightActivity extends Activity
 			@Override
 			public void onClick(View v) {
 				Intent mIntent = new Intent();
-				mIntent.putExtra("reason", "粗俗语言");
+				mIntent.putExtra("reason",R.string.mc_forum_vulgar_speech);
 				MainWeixinTitleRightActivity.this.setResult(101, mIntent);
 				finish();
 			}
@@ -81,7 +81,7 @@ public class MainWeixinTitleRightActivity extends Activity
 			@Override
 			public void onClick(View v) {
 				Intent mIntent = new Intent();
-				mIntent.putExtra("reason", "其他原因");
+				mIntent.putExtra("reason",R.string.mc_forum_other_reason);
 				MainWeixinTitleRightActivity.this.setResult(101, mIntent);
 				finish();
 			}
@@ -101,10 +101,10 @@ public class MainWeixinTitleRightActivity extends Activity
 		String text= (String) block.getText();
 		if (text.equals("拉黑")){
 			block();
-			block.setText("取消拉黑");
+			block.setText(R.string.pickerview_block_cancel);
 		}else {
 			blockcancle();
-			block.setText("拉黑");
+			block.setText(R.string.pickerview_block);
 		}
 
 	}
@@ -115,7 +115,7 @@ public class MainWeixinTitleRightActivity extends Activity
 
 			@Override
 			public void onSuccess(Block block) {
-				Toast.makeText(MainWeixinTitleRightActivity.this, "取消拉黑", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainWeixinTitleRightActivity.this, R.string.pickerview_block_cancel, Toast.LENGTH_SHORT).show();
 			}
 
 			@Override
@@ -131,7 +131,7 @@ public class MainWeixinTitleRightActivity extends Activity
 
 			@Override
 			public void onSuccess(Block block) {
-				Toast.makeText(MainWeixinTitleRightActivity.this, "拉黑", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainWeixinTitleRightActivity.this, R.string.pickerview_block, Toast.LENGTH_SHORT).show();
 			}
 
 			@Override
@@ -143,7 +143,7 @@ public class MainWeixinTitleRightActivity extends Activity
 	}
 	public void report(View view)
 	{
-		Toast.makeText(this, "举报", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, R.string.vp_option_report, Toast.LENGTH_SHORT).show();
 		Intent intent=new Intent(this,ReportActivity.class);
 		intent.putExtra("uid",uid);
 		startActivity(intent);

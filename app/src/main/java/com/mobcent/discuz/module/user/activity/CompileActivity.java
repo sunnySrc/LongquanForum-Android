@@ -74,26 +74,10 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
         DiscuzRetrofit.getUserInfoService(this).compile(LoginUtils.getInstance().getUserId(),WebParamsMap.compile()).subscribe(new HTTPSubscriber<CompileBeans>() {
             @Override
             public void onSuccess(CompileBeans compileBean) {
-                Log.i("TAG", "成功");
-                Log.i("TAG", "errCode="+compileBean.getHead().getErrcode());
-                Log.i("TAG", "errInfo="+compileBean.getHead().getErrinfo());
                 if (compileBean.getHead().getErrcode().equals("00000000")){
                     Log.i("TAG", "成功");
                     String name=compileBean.getList().get(0).getField().get(0).getChoices().get(0).getPrimary();
-//                    String name1=compileBean.getList().get(0).getField().get(0).getChoices().get(0).get(0).getPrimary();
-//                    String name2=compileBean.getList().get(0).getField().get(0).getChoices().get(0).getChoices().get(0).getMiddle();
-//                    String name3=compileBean.getList().get(0).getField().get(0).getChoices().get(0).getChoices().get(0).getMaster();
-//                    String name4=compileBean.getList().get(0).getField().get(0).getChoices().get(0).getChoices().get(0).getJunior();
-//                    String name5=compileBean.getList().get(0).getField().get(0).getChoices().get(0).getChoices().get(0).getDoctor();
                     int number=compileBean.getList().size();
-                    Log.i("TAG", "size="+number);
-                    Log.i("TAG", "name="+name);
-//                    Log.i("TAG", "name1="+name1);
-//                    Log.i("TAG", "name2="+name2);
-//                    Log.i("TAG", "name3="+name3);
-//                    Log.i("TAG", "name4="+name4);
-//                    Log.i("TAG", "name5="+name5);
-
                 }
 
             }
@@ -120,7 +104,7 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
     }
 
     private void initial() {
-        getAppActionBar().setTitle("编辑资料");
+        getAppActionBar().setTitle(R.string.mc_forum_user_my_info);
         findViewById(R.id.compile_back_image).setOnClickListener(this);
         findViewById(R.id.compile_head).setOnClickListener(this);
         findViewById(R.id.compile_signature).setOnClickListener(this);
@@ -159,7 +143,7 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
                 Uri value = Uri.fromFile(file);
                 intent2.putExtra(MediaStore.EXTRA_OUTPUT, value);
 
-                Intent intent = Intent.createChooser(intent1, "请选择");
+                Intent intent = Intent.createChooser(intent1,"请选择");
                 intent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{intent2});
 
                 startActivityForResult(intent, 101);

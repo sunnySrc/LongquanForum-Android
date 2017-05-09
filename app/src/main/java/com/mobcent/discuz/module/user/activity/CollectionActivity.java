@@ -50,20 +50,14 @@ public class CollectionActivity extends BasePopActivity {
             finish();
         }
         uid=LoginUtils.getInstance().getUserId();
-        //Toast.makeText(this,"uid="+uid,Toast.LENGTH_SHORT).show();
         if (uid==null){
             Intent intent=new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
         }
-        //list=new ArrayList<CollectionList>();
         xRecycler= (XRecyclerView) findViewById(R.id.xr_test);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        //mRecyclerView.setAdapter(adapter);
-//        View header =   LayoutInflater.from(this).inflate(R.layout.item_collection_follow, (ViewGroup)findViewById(android.R.id.content),false);
-//        xRecycler.addHeaderView(header);
-
 
         //设置瀑布流管理器
         xRecycler.setLayoutManager(layoutManager);
@@ -90,7 +84,7 @@ public class CollectionActivity extends BasePopActivity {
                 xRecycler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        makeText(CollectionActivity.this,"刷新", Toast.LENGTH_SHORT).show();
+                        makeText(CollectionActivity.this,R.string.mc_forum_webview_refresh, Toast.LENGTH_SHORT).show();
                         xRecycler.refreshComplete();
                     }
                 }, 2000);
@@ -101,7 +95,7 @@ public class CollectionActivity extends BasePopActivity {
                 xRecycler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        makeText(CollectionActivity.this,"加载更多",Toast.LENGTH_SHORT).show();
+                        makeText(CollectionActivity.this,R.string.mc_forum_loadmore,Toast.LENGTH_SHORT).show();
                         xRecycler.loadMoreComplete();
                     }
                 }, 1000);
@@ -124,11 +118,9 @@ public class CollectionActivity extends BasePopActivity {
                 adapter.setOnItemClickLitener(new CollectionRecycle_adapter.OnItemClickLitener() {
                     @Override
                     public void onitemclick(View view, int pos) {
-                        //Toast.makeText(CollectionActivity.this,"pos="+pos,Toast.LENGTH_SHORT).show();
                         int userid=list.get(pos-1).getUser_id();
                         int topid=list.get(pos-1).getTopic_id();
                         int boardid=list.get(pos-1).getBoard_id();
-                        // TODO: 2017/3/28
 
                         UIJumper.jumpTopic(CollectionActivity.this,topid);
                     }

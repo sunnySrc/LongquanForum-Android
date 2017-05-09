@@ -124,6 +124,7 @@
     <string name="mc_forum_other_platform_wechat_login_btn">微信登录</string>
     <string name="mc_forum_user_email_length_error_warn">邮箱长度请控制在0–64位</string>
     <string name="mc_forum_warn_login">正在登录…</string>
+    <string name="mc_forum_warn_loginfirst">请先登录</string>
     <string name="mc_forum_warn_bound">正在绑定…</string>
     <string name="mc_forum_user_register_warn">注册表明您已接受</string>
     <string name="mc_forum_user_register_warn_no_url">如立即注册，表明您已接受使用条款</string>
@@ -135,6 +136,7 @@
     <string name="mc_forum_user_email_format_error_warn">邮箱格式不正确</string>
     <string name="mc_forum_warn_register">正在提交注册信息，请稍后…</string>
     <string name="mc_forum_login_fail">登录失败</string>
+    <string name="mc_forum_login_fail_interfError">登录接口有问题,请联系管理员</string>
     <string name="mc_forum_regist_fail">注册失败</string>
     <string name="mc_forum_user_register_succ">恭喜 注册成功！</string>
     <string name="mc_forum_user_register_succ_title">注册成功</string>
@@ -353,8 +355,8 @@
     <string name="mc_forum_webview_refresh">刷新</string>
     <string name="mc_forum_webview_copy_url_succ">已复制到剪贴板</string>
     <string name="mc_forum_webview_url_error">地址错误</string>
-    <string name="mc_forum_rapid_publish_title">来个标题</string>
-    <string name="mc_forum_rapid_publish_content">不吐不快……</string>
+    <string name="mc_forum_rapid_publish_title">点击添加标题</string>
+    <string name="mc_forum_rapid_publish_content">说点什么吧...</string>
     <string name="mc_forum_rapid_publish_add_img">添加照片</string>
     <string name="mc_forum_rapid_publish_addition_voice">附加语音</string>
     <string name="mc_forum_rapid_publish_visible_setting">可见设置</string>
@@ -573,6 +575,7 @@
     <string name="mc_forum_doing_update">加载中...</string>
     <string name="mc_forum_update_time">更新于:</string>
     <string name="mc_forum_more">更多...</string>
+    <string name="mc_forum_loadmore">加载更多...</string>
     <string name="mc_forum_load_fail">加载失败</string>
     <string name="mc_forum_loaded">已加载完成</string>
     <string name="mc_forum_no_content">暂无相关内容</string>
@@ -590,6 +593,8 @@
     <string name="mc_forum_splash_ad_skip_btn">跳过</string>
     <string name="mc_forum_ad_recommend">推荐</string>
     <string name="pickerview_cancel">取消</string>
+    <string name="pickerview_block_cancel">取消拉黑</string>
+    <string name="pickerview_block">拉黑</string>
     <string name="pickerview_submit">确定</string>
     <string name="pickerview_year">年</string>
     <string name="pickerview_month">月</string>
@@ -1064,11 +1069,13 @@
     <string name="mc_share_tencent_tip">缺少腾讯APPID.</string>
     <string name="error_view_network_error_click_to_refresh">没有可用的网络</string>
     <string name="error_view_no_data">暂无内容</string>
+    <string name="error_search_null">搜索内容为空</string>
 
     <!--loadmore footer -->
     <string name="footer_type_loading">正在加载中…</string>
     <string name="footer_type_error">加载失败</string>
     <string name="footer_type_net_error">网络错误</string>
+    <string name="error_type_error">错误</string>
     <string name="footer_type_not_more">没有更多数据</string>
     <string name="reply_lab">%d楼</string>
     <string name="title_activity_regist">RegistActivity</string>

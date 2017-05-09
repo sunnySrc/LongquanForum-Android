@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -56,7 +55,6 @@ public class MyPublicReportActivity extends BasePopActivity {
 
     private void newWork() {
         String uid= LoginUtils.getInstance().getUserId();
-        Log.i("TAG", "uid="+uid);
         DiscuzRetrofit.getUserInfoService(this).myPublic(WebParamsMap.myPublic(uid)).subscribe(new HTTPSubscriber<MyPublicBean>() {
             @Override
             public void onSuccess(MyPublicBean myPublicBean) {
@@ -72,7 +70,6 @@ public class MyPublicReportActivity extends BasePopActivity {
                     xRecycler.refreshComplete();
                 }
             }else {
-                //TODO
                     // 点击跳转到发表页面
                     xRecycler.setVisibility(View.GONE);
                     nothingReport.setVisibility(View.VISIBLE);

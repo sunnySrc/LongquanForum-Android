@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.mobcent.discuz.activity.LoginActivity;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.module.user.activity.CollectionActivity;
+import com.mobcent.discuz.module.user.activity.DraftActivity;
 import com.mobcent.discuz.module.user.activity.MyFriendsActivity;
 import com.mobcent.discuz.module.user.activity.MyPublicReportActivity;
 import com.mobcent.discuz.module.user.activity.SettingActivity;
@@ -116,13 +117,11 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-//        if (!LoginUtils.getInstance().isLogin()) {
-//            startLoginActivity();
-//            return;
-//        }
         int id = v.getId();
         switch (id) {
             case R.id.draft:
+                Intent draftIntent=new Intent(getActivity(), DraftActivity.class);
+                startActivity(draftIntent);
                 break;
             case R.id.message:
                 break;
@@ -137,9 +136,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                         dialog.dismiss();
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                            builder.setTitle(getContext().getString(R.string.mc_forum_logout_dialog))
+                            builder.setTitle(R.string.mc_forum_logout_dialog)
                                     .setCancelable(true)
-                                    .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton(R.string.mc_forum_dialog_confirm, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int hich) {
                                             try {
@@ -148,18 +147,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
-//                                        JSONObject param = new JSONObject();
-//                                        try {
-//                                            param.put("type", "logout");
-//                                        } catch (Exception e) {
-//
-//                                        }
-//
-//                                        new DiscuzRequest(UrlFactory.LOGIN, param.toString(), new LogoutHandler()).execute();
-//                                        startLoginActivity();
                                         }
                                     })
-                                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    .setNegativeButton(R.string.vp_dialog_cancel, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
 
@@ -173,7 +163,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 dialog.setContentView(view);
                 dialog.show();
                 }else{
-                    Toast.makeText(getContext(),"请先登录",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),R.string.mc_forum_warn_loginfirst,Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(getContext(),LoginActivity.class);
                     startActivity(intent);
                 }
@@ -224,7 +214,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 }
                 onFail(object.getString("errcode"));
             } catch (Exception e) {
-                onFail("登出接口有问题，请联系管理员");
+                onFail(getContext().getString(R.string.mc_forum_login_fail_interfError));
             }
         }
 

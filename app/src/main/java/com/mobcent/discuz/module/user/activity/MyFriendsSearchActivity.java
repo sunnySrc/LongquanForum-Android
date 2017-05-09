@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,7 +60,7 @@ public class MyFriendsSearchActivity extends BasePopActivity {
                 pages=1;
                 nickname=edittext.getText().toString();
                 if (nickname.equals("")){
-                    Toast.makeText(MyFriendsSearchActivity.this,"搜索内容为空",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyFriendsSearchActivity.this,R.string.error_search_null,Toast.LENGTH_SHORT).show();
                     return;
                 }
                 try {
@@ -95,7 +96,7 @@ public class MyFriendsSearchActivity extends BasePopActivity {
                 xRecycler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        makeText(MyFriendsSearchActivity.this,"刷新", Toast.LENGTH_SHORT).show();
+                        makeText(MyFriendsSearchActivity.this,R.string.mc_forum_webview_refresh, Toast.LENGTH_SHORT).show();
                         xRecycler.refreshComplete();
                     }
                 }, 2000);
@@ -106,7 +107,7 @@ public class MyFriendsSearchActivity extends BasePopActivity {
                 xRecycler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        makeText(MyFriendsSearchActivity.this,"加载更多",Toast.LENGTH_SHORT).show();
+                        makeText(MyFriendsSearchActivity.this,R.string.mc_forum_loadmore,Toast.LENGTH_SHORT).show();
                         pages++;
                         page=Integer.toString(pages);
                         onRefreshs(nickname,page,true);
@@ -166,6 +167,9 @@ public class MyFriendsSearchActivity extends BasePopActivity {
 
             @Override
             public void onFail(int httpCode, int errorUserCode, String message) {
+                Log.i("TAG", "httpCode="+httpCode);
+                Log.i("TAG", "errorUserCode="+errorUserCode);
+                Log.i("TAG", "message="+message);
             }
         });
     }

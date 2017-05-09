@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appbyme.dev.R;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -27,8 +26,6 @@ import discuz.com.net.service.model.bean.myfriendsHomepage.List;
 import discuz.com.net.service.model.bean.myfriendsHomepage.MyfriendsHomepage;
 import discuz.com.net.service.model.me.UserResult;
 import discuz.com.retrofit.library.HTTPSubscriber;
-
-import static android.widget.Toast.makeText;
 
 public class MyFriendsActivity extends BasePopActivity {
     private java.util.List<List> list;
@@ -94,7 +91,8 @@ public class MyFriendsActivity extends BasePopActivity {
 
                     @Override
                     public void onitemlongclick(View view, int pos) {
-                        makeText(MyFriendsActivity.this,"长按 pos="+pos,Toast.LENGTH_SHORT).show();
+                        //makeText(MyFriendsActivity.this,"长按 pos="+pos,Toast.LENGTH_SHORT).show();
+
                     }
                 });
 

@@ -149,9 +149,9 @@ public class EditActivity extends BasePopActivity {
             public void onSuccess(EditInfoBean coloectionBean) {
                 String errInfo=coloectionBean.getHead().getErrinfo();
                 if (coloectionBean.getHead().getErrcode().equals("00000000")){
-                    Toast.makeText(EditActivity.this,"保存成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditActivity.this,R.string.mc_forum_password_save_succ,Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(EditActivity.this,"保存失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditActivity.this,R.string.mc_forum_pasword_save_fail,Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -170,7 +170,6 @@ public class EditActivity extends BasePopActivity {
         String md5=apphash.encrypt(time);
         String apphashs=md5.substring(8,16);
         String ecode=URLEncoder.encode(edit);
-        Log.i("TAG", "ecode="+ecode);
         DiscuzRetrofit.getUserInfoService(this).myselfInfoedited( WebParamsMap.myselfInfoedited(ecode,apphashs)).subscribe(new HTTPSubscriber<EditInfoBean>() {
 
             @Override
@@ -178,9 +177,9 @@ public class EditActivity extends BasePopActivity {
                 String errInfo=coloectionBean.getHead().getErrinfo();
                 Log.i("TAG", "errInfo="+errInfo);
                 if (coloectionBean.getHead().getErrcode().equals("00000000")){
-                    Toast.makeText(EditActivity.this,"保存成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditActivity.this,R.string.mc_forum_password_save_succ,Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(EditActivity.this,"保存失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditActivity.this,R.string.mc_forum_pasword_save_fail,Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -196,7 +195,7 @@ public class EditActivity extends BasePopActivity {
     private void intiial() {
         single= (EditText) findViewById(R.id.edit_single);
         doubles= (EditText) findViewById(R.id.edit_double);
-        getAppActionBar().setRightTitle("保存", new View.OnClickListener() {
+        getAppActionBar().setRightTitle(R.string.vp_dialog_save, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(isSingle){
@@ -204,7 +203,7 @@ public class EditActivity extends BasePopActivity {
                     if (edit!=null&&!edit.equals("")) {
                         toSend(edit,from);
                     }else {
-                        Toast.makeText(EditActivity.this,"输入内容不能为空",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditActivity.this,R.string.vp_content_empty_error,Toast.LENGTH_SHORT).show();
                     }
 
                 }else {
@@ -212,7 +211,7 @@ public class EditActivity extends BasePopActivity {
                     if (edit!=null&&!edit.equals("")) {
                         toSend(edit,from);
                     }else {
-                        Toast.makeText(EditActivity.this,"输入内容不能为空",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditActivity.this,R.string.vp_content_empty_error,Toast.LENGTH_SHORT).show();
                     }
 
                 }

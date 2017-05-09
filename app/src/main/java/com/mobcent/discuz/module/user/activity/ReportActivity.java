@@ -40,7 +40,6 @@ public class ReportActivity extends BasePopActivity {
                 Intent intent=new Intent(ReportActivity.this,MainWeixinTitleRightActivity.class);
                 intent.putExtra("from","ReportActivity");
                 startActivityForResult(intent,101);
-                //startActivity(intent);
             }
         });
     }
@@ -75,10 +74,10 @@ public class ReportActivity extends BasePopActivity {
             @Override
             public void onSuccess(Block block) {
                 if (block.getErrcode().equals("举报成功")){
-                    Toast.makeText(ReportActivity.this,"举报成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ReportActivity.this,R.string.vp_option_report_success,Toast.LENGTH_SHORT).show();
                     finish();
                 }else {
-                    Toast.makeText(ReportActivity.this,"错误",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ReportActivity.this,R.string.error_type_error,Toast.LENGTH_SHORT).show();
                 }
 
             }

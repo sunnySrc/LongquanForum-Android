@@ -6,16 +6,16 @@ package discuz.com.net.service.config;
 public class WebParamsValue {
 
     public static final String packageName = "com.appbyme.app178470";
-    public static final String accessToken = "";
+    public static final String accessToken = "b8c746f3a931e0d0ffdbcc76c6360";
     public static final String apphash = "";
-    public static final String forumType = "";
-    public static final String imei = "";
-    public static final String platType = "";
-    public static final String imsi = "";
-    public static final String accessSecret = "";
+    public static final String forumType = "7";
+    public static final String imei = "868029029800109";
+    public static final String platType = "1";
+    public static final String imsi = "460001001651621";
+    public static final String accessSecret = "6e9f2606bed4b530dcb58ff210299";
     public static final String egnVersion = "v2035.2";
     public static final String forumKey = "BW0L5ISVRsOTVLCTJx";
     public static final String sdkType = "";
-    public static final String sdkVersion = "2.4.0";
+    public static final String sdkVersion = "2.5.0.0";
     public static final String appName = "龙泉论坛";
 }
