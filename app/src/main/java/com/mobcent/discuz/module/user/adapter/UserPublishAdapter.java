@@ -36,7 +36,7 @@ public class UserPublishAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
         ItemPublishViewHolder holerData = (ItemPublishViewHolder) holder;
-        holerData.bindConent(datas.get(position),context);
+        holerData.bindConent(datas.get(position),context,position,datas);
     }
 
     @Override
