@@ -30,6 +30,7 @@ import ru.noties.scrollable.ScrollableLayout;
  * 用户资料页
  */
 public class UserHomeActivity extends BasePopActivity implements View.OnClickListener{
+    private String userName;
     private String uid;
     private ScrollableLayout mScrollableLayout;
     private UserHomeCenterHeader mUserCenterHeader;
@@ -59,7 +60,7 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
         from=intent.getBooleanExtra("from",false);
         uid_myfriendsSearch=intent.getStringExtra("uid");
         if (from){
-            initView();
+            myfriend_initView();
             myFriends_initView();
         }else {
             initView();
@@ -87,6 +88,7 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
                 mUserCenterHeader.setContent(userResult);
                 ((UserHomeInformationFragment)mUserHomeAdapter.getItem(1)).setContent(userResult.getBody().getProfileList(),
                         userResult.getBody().getCreditList());
+                userName=userResult.getName();
             }
 
             @Override
@@ -120,12 +122,37 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
             mSlideTabLayout.setDistributeEvenly(false);
 
     }
+    //好友详情页
+    private void myfriend_initView(){
+        getAppActionBar().setTitle(userName);
+        getAppActionBar().setBackgroundAlpha(0);
+        //getAppActionBar().setRightTitle("",this);
+        getAppActionBar().setRightIcon(R.drawable.dz_personal_more_h, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialogs();
+            }
+        });
+        mScrollableLayout = $(R.id.user_home_scrollable_layout);
+        mUserCenterHeader = $(R.id.header_layout);
+        mUserViewPager = $(R.id.fragment_user_viewpager);
+        tabView = $(R.id.fragment_user_viewpager);
 
+        mSlideTabLayout =  $(R.id.sliding_tab_layout);
+        mSlideTabLayout.setCustomTabView(R.layout.view_sliding_tab_indicator, android.R.id.text1);
+        mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
+        mSlideTabLayout.setDistributeEvenly(false);
+
+    }
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.action_bar_right_title){
-            Intent intents=new Intent(UserHomeActivity.this, CompileActivity.class);
-            startActivity(intents);
+            if (from){
+                alertDialogs();
+            }else {
+                Intent intents=new Intent(UserHomeActivity.this, CompileActivity.class);
+                startActivity(intents);
+            }
         }
     }
 

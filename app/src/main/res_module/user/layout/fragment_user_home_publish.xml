@@ -8,9 +8,9 @@
         android:layout_width="148dp"
         android:layout_height="96dp"
         android:layout_gravity="center_horizontal"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:visibility="invisible"
-        android:text="暂无相关内容"/>
+        android:text="@string/mc_forum_no_content"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragment_publish_recyclerview"
         android:layout_width="match_parent"

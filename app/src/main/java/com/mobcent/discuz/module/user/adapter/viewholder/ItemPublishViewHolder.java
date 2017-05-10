@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.appbyme.dev.R;
 import com.bumptech.glide.Glide;
+import com.mobcent.discuz.uitls.DateUtils;
 
 import discuz.com.bean.me.Publish;
 
@@ -26,6 +27,7 @@ public class ItemPublishViewHolder extends RecyclerView.ViewHolder {
                     .into(item_publish_avatar);
             item_publish_name.setText(publish.getUser_nick_name());
             item_publish_time.setText(publish.getLast_reply_date()+"");
+            item_publish_time.setText(DateUtils.stampToDate(String.valueOf(publish.getLast_reply_date())));
             tv_content.setText(publish.getTitle());
             tv_look_num.setText(Integer.toString(publish.getHits()));
             item_publish_reply.setText(Integer.toString(publish.getReplies()));

@@ -32,8 +32,6 @@ public class RegistActivity extends Activity {
         regist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 String uname=username.getText().toString();
                 String password=pwd.getText().toString();
                 String email=emails.getText().toString();
