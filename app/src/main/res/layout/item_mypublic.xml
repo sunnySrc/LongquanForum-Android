@@ -11,7 +11,7 @@
         android:layout_width="128dp"
         android:layout_height="64dp"
         android:gravity="left|center_vertical"
-        android:text="标题"
+        android:text="@string/mc_forum_publish_total_title"
         android:layout_marginLeft="6dp"/>
 <LinearLayout
     android:layout_width="match_parent"

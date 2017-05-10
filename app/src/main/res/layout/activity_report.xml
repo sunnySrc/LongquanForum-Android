@@ -15,7 +15,7 @@
             android:id="@+id/report_reason"
             android:layout_width="112dp"
             android:layout_height="match_parent"
-            android:text="选择举报原因:"
+            android:text="@string/mc_forum_select_report_reason_str"
             android:gravity="center"/>
         <ImageView
             android:id="@+id/img_report_pull"
@@ -27,7 +27,7 @@
         android:id="@+id/report_edittext_reason"
         android:layout_width="match_parent"
         android:layout_height="192dp"
-        android:hint="为了我们更好的对您的举报进行处理,给你的举报加点详细说明吧。。。"
+        android:hint="@string/mc_forum_report_tip_detail_content_str"
         android:gravity="top"/>
     <Button
         android:layout_width="288dp"
@@ -35,5 +35,5 @@
         android:layout_marginTop="32dp"
         android:layout_gravity="center"
         android:onClick="submit"
-        android:text="提交"/>
+        android:text="@string/mc_forum_report_submit_str"/>
 </LinearLayout>

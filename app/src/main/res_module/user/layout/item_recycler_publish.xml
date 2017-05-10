@@ -38,7 +38,7 @@
             android:layout_below="@id/item_publish_name"
             android:textColor="@color/mc_forum_text4_other_normal_color"
             android:textSize="10sp"
-            android:text="5分钟前"/>
+            android:text="@string/mc_forum_publish_fiveMinitesLater"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -46,7 +46,7 @@
             android:textColor="@color/mc_forum_bg3_text_n"
             android:layout_below="@id/item_publish_avatar"
             android:layout_marginTop="10dp"
-            android:text="我发表的内容"
+            android:text="@string/mc_forum_publish_content_myself"
             android:id="@+id/tv_content" />
 
 
@@ -58,7 +58,7 @@
             android:layout_marginRight="5dp"
             android:textColor="@color/mc_forum_text4_other_normal_color"
             android:textSize="10sp"
-            android:text="浏览(9)"
+            android:text="@string/mc_forum__browser"
             android:id="@+id/tv_look_num" />
 
         <TextView
@@ -69,7 +69,7 @@
             android:layout_alignParentRight="true"
             android:textColor="@color/mc_forum_text4_other_normal_color"
             android:textSize="10sp"
-            android:text="评论(9)"/>
+            android:text="@string/mc_forum_comment"/>
 
     </RelativeLayout>
 

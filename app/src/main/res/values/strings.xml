@@ -95,6 +95,7 @@
     <string name="mc_forum_posts_browser">浏览器打开</string>
     <string name="mc_forum_copy_url_browser">复制链接</string>
     <string name="mc_forum_copy_content">复制</string>
+    <string name="mc_forum__browser">浏览(9)</string>
     <string name="mc_forum_posts_goto">跳到第</string>
     <string name="mc_forum_posts_page">页</string>
     <string name="mc_forum_posts_by_asc">正序查看</string>
@@ -168,6 +169,7 @@
     <string name="mc_forum_my_infomation">我的资料</string>
     <string name="mc_forum_my_fans">我的粉丝</string>
     <string name="mc_forum_my_publish">我的发表</string>
+    <string name="mc_forum_my_publish_addinfo">添内容,喂饱我0(n_n)0</string>
     <string name="mc_forum_my_reply">我的回复</string>
     <string name="mc_forum_my_favorites">我的收藏</string>
     <string name="mc_forum_my_setting">个人设置</string>
@@ -220,6 +222,7 @@
     <string name="mc_forum_announce_mark">[公告]</string>
     <string name="mc_forum_reply">评</string>
     <string name="mc_forum_topic_list_read">阅读</string>
+    <string name="mc_forum_topic_list_read_num">阅读数</string>
     <string name="mc_forum_topic_state_essence">精</string>
     <string name="mc_forum_topic_state_top">顶</string>
     <string name="mc_forum_create_talk_time">设置话题结束时间</string>
@@ -305,6 +308,13 @@
     <string name="mc_forum_polity_sensi_content">政治内容</string>
     <string name="mc_forum_vulgar_speech">粗俗言论</string>
     <string name="mc_forum_other_reason">其他原因</string>
+    <string name="mc_forum_other">其他</string>
+    <string name="mc_forum_primary">小学</string>
+    <string name="mc_forum_middle">中学</string>
+    <string name="mc_forum_junior">专科</string>
+    <string name="mc_forum_regular">本科</string>
+    <string name="mc_forum_master">硕士</string>
+    <string name="mc_forum_doctor">博士</string>
     <string name="mc_forum_select_report_reason_str">选择举报原因</string>
     <string name="mc_forum_report_tip_detail_content_str">为了我们更好的对您的举报进行处理，给你的举报加点详细说明吧。。。</string>
     <string name="mc_forum_sure_report_user_str">确定举报该人?</string>
@@ -413,10 +423,13 @@
     <string name="mc_forum_posting_anonymous">匿名帖</string>
     <string name="mc_forum_posting_anonymous_user">此用户为匿名用户</string>
     <string name="mc_forum_only_the_author_posts">回复仅作者可见</string>
+    <string name="mc_forum_publish_total_title">标题</string>
     <string name="mc_forum_publish_input_title">标题：不超过25字</string>
+    <string name="mc_forum_publish_fiveMinitesLater">5分钟前</string>
     <string name="mc_forum_publish_min_title_length_error">请给你的帖子加个标题</string>
     <string name="mc_forum_publish_max_title_length_error">标题长度不能超过25个字</string>
     <string name="mc_forum_publish_content">内容</string>
+    <string name="mc_forum_publish_content_myself">我发表的内容</string>
     <string name="mc_forum_publish_input_content">内容：说点什么吧...</string>
     <string name="mc_forum_publish_max_length_error">内容长度不能超过7000个字</string>
     <string name="mc_forum_warn_publish_title">帖子尚未发送，是否保存</string>
@@ -508,6 +521,7 @@
     <string name="mc_forum_invite_title">"邀请朋友安装{0}
 您将得到{1}元奖励!"</string>
     <string name="mc_forum_invite_time">活动日期：{0}至{1}</string>
+    <string name="mc_forum_invite_date">日期</string>
     <string name="mc_forum_invite_detail">查看细则</string>
     <string name="mc_forum_invite_first_step">第一步 邀请朋友安装 {0}</string>
     <string name="mc_forum_invite_two_step">第二步 对暗号，拿奖励</string>
@@ -812,6 +826,7 @@
     <string name="mc_share_check_more">查看更多：</string>
     <string name="mc_share_statistics_share_event">分享事件</string>
     <string name="mc_share_statistics_topic_title">帖子名称</string>
+    <string name="mc_share_statistics_topic_title_name">名称</string>
     <string name="mc_share_statistics_share_platform">分享平台</string>
     <string name="mc_share_facebook">Facebook</string>
     <string name="mc_update_download_title">正在下载：{0}</string>
@@ -924,6 +939,7 @@
     <string name="mc_forum_nick_accounts">帐号</string>
     <string name="mc_forum_nick_name">昵称</string>
     <string name="mc_form_user_sex">性别</string>
+    <string name="mc_form_user_grade">等级</string>
     <string name="mc_form_user_description">简介</string>
     <string name="mc_form_user_job">职业</string>
     <string name="mc_forum_user_my_info">编辑资料</string>

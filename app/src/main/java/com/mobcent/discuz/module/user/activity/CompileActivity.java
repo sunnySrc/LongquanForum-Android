@@ -234,13 +234,13 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
                     }
                 });
                 List<Object> data = new ArrayList<>();
-                data.add("其他");
-                data.add("小学");
-                data.add("中学");
-                data.add("专科");
-                data.add("本科");
-                data.add("硕士");
-                data.add("博士");
+                data.add(getString(R.string.mc_forum_other));
+                data.add(getString(R.string.mc_forum_primary));
+                data.add(getString(R.string.mc_forum_middle));
+                data.add(getString(R.string.mc_forum_junior));
+                data.add(getString(R.string.mc_forum_regular));
+                data.add(getString(R.string.mc_forum_master));
+                data.add(getString(R.string.mc_forum_doctor));
 
                 mWView.setData(data);
 

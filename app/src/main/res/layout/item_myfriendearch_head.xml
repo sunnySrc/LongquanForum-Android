@@ -6,7 +6,7 @@
         android:id="@+id/myfriends_button"
         android:layout_width="320dp"
         android:layout_height="32dp"
-        android:text="搜索"
+        android:text="@string/mc_forum_statistics_search_event"
         android:background="#FFFFFF"
         android:layout_gravity="center_horizontal"
         android:gravity="center"/>

@@ -19,7 +19,7 @@
             android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="32dp"
-            android:text="成人内容"
+            android:text="@string/mc_forum_report_adult_content"
             android:textColor="#fff"
             android:textSize="12sp" />
         <View android:background="#FFFFFF" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
@@ -30,7 +30,7 @@
             android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="32dp"
-            android:text="政治内容"
+            android:text="@string/mc_forum_polity_sensi_content"
             android:textColor="#fff"
             android:textSize="12sp" />
         <View android:background="#FFFFFF" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
@@ -41,7 +41,7 @@
             android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="32dp"
-            android:text="粗俗言论"
+            android:text="@string/mc_forum_vulgar_speech"
             android:textColor="#fff"
             android:textSize="12sp" />
         <View android:background="#FFFFFF" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
@@ -52,7 +52,7 @@
             android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="32dp"
-            android:text="其他原因"
+            android:text="@string/mc_forum_other_reason"
             android:textColor="#fff"
             android:textSize="12sp" />
     </LinearLayout>

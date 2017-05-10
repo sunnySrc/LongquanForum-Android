@@ -19,7 +19,7 @@
             android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="32dp"
-            android:text="拉黑"
+            android:text="@string/pickerview_block"
             android:textColor="#fff"
             android:textSize="12sp" />
         <View android:background="#FFFFFF" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
@@ -30,7 +30,7 @@
             android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="32dp"
-            android:text="举报"
+            android:text="@string/vp_option_report"
             android:textColor="#fff"
             android:textSize="12sp" />
     </LinearLayout>

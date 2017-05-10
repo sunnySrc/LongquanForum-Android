@@ -29,11 +29,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:gravity="center"
-                android:text="添内容,喂饱我0(n_n)0"/>
+                android:text="@string/mc_forum_my_publish_addinfo"/>
             <Button
                 android:layout_width="80dp"
                 android:layout_height="48dp"
-                android:text="发表"
+                android:text="@string/mc_forum_statistics_publish_topic_event"
                 android:layout_gravity="center_horizontal"
                 android:onClick="mypublic"
                 />
