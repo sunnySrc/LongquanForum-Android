@@ -76,7 +76,6 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
             public void onSuccess(CompileBeans compileBean) {
                 if (compileBean.getHead().getErrcode().equals("00000000")){
                     Log.i("TAG", "成功");
-                    String name=compileBean.getList().get(0).getField().get(0).getChoices().get(0).getPrimary();
                     int number=compileBean.getList().size();
                 }
 

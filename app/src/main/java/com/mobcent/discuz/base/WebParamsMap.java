@@ -30,12 +30,12 @@ public class WebParamsMap {
 
     public static HashMap<String,String> map(){
         HashMap<String,String> map = new HashMap<>();
-        map.put(WebParamsKey.egnVersion, WebParamsValue.egnVersion);
-        map.put(WebParamsKey.appName, WebParamsValue.appName);
-        map.put(WebParamsKey.sdkType, WebParamsValue.sdkType);
-        map.put(WebParamsKey.packageName, WebParamsValue.packageName);
+        map.put(WebParamsKey.egnVersion, WebParamsValue.egnVersions);
+        map.put(WebParamsKey.appName, WebParamsValue.appNames);
+        map.put(WebParamsKey.sdkType, WebParamsValue.sdkTypes);
+        map.put(WebParamsKey.packageName, WebParamsValue.packageNames);
 
-        map.put(WebParamsKey.forumKey, WebParamsValue.forumKey);
+        map.put(WebParamsKey.forumKey, WebParamsValue.forumKeys);
         map.put(WebParamsKey.accessSecret,  LoginUtils.getInstance().getAccessSecret());
         map.put(WebParamsKey.accessToken, LoginUtils.getInstance().getAccessToken());
         return map;

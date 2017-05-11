@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.appbyme.dev.R;
 
-import discuz.com.net.service.model.bean.mypublicbean.List;
+import discuz.com.net.service.model.bean.mypublicbean.Lists;
 
 /**
  * Created by $Createdbymynameon on 2017/4/27.
@@ -18,7 +18,7 @@ import discuz.com.net.service.model.bean.mypublicbean.List;
 
 public class MyPublic_adapter extends RecyclerView.Adapter<MyPublic_adapter.ViewHolder> {
     private Context context;
-    private java.util.List<List> list;
+    private java.util.List<Lists> list;
     public MyPublic_adapter(Context context, java.util.List list){
         this.context=context;
         this.list=list;

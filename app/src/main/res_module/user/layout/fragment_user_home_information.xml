@@ -16,7 +16,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="性别"
+                android:text="@string/mc_forum_gender_label"
                 android:textColor="#000000"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="20dp"
@@ -26,7 +26,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="保密"
+                android:text="@string/mc_forum_gender_secrecy"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"
                 android:gravity="center_vertical"/>
@@ -40,7 +40,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="生日"
+                android:text="@string/mc_forum_user_birth"
                 android:textColor="#000000"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="20dp"
@@ -58,7 +58,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="积分"
+                android:text="@string/mc_forum_user_credits_label"
                 android:textColor="#000000"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="20dp"
@@ -81,7 +81,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="微笑"
+                android:text="@string/mc_forum_user_credits_smile"
                 android:textColor="#000000"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="20dp"
@@ -105,7 +105,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="香华"
+                android:text="@string/mc_forum_user_score_incense"
                 android:textColor="#000000"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="20dp"
@@ -129,7 +129,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="合掌"
+                android:text="@string/mc_forum_user_score_daspHands"
                 android:textColor="#000000"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="20dp"

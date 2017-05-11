@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 import com.mobcent.discuz.module.user.adapter.collectionAdapter.CollectionRecycle_adapter;
 import com.mobcent.discuz.uitls.DateUtils;
 
-import discuz.com.net.service.model.bean.myfriendsHomepage.List;
+import discuz.com.net.service.model.bean.myfriendsHomepage.Lists;
 
 /**
  * Created by $Createdbymynameon on 2017/4/22.
@@ -23,7 +23,7 @@ import discuz.com.net.service.model.bean.myfriendsHomepage.List;
 
 public class Myfriends_homepage_adapter extends RecyclerView.Adapter<Myfriends_homepage_adapter.MyfriendViewHolder> {
 
-    private java.util.List <List>datas;
+    private java.util.List <Lists>datas;
     private Context context;
 
     public Myfriends_homepage_adapter(Context context, java.util.List datass) {

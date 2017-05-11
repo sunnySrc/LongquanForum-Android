@@ -30,6 +30,7 @@ public interface UserInfoService {
     @POST("index.php?r=user/userinfo")
     Observable<UserResult> requestUserInfo(@Field("userId")String userId, @FieldMap Map<String,String> params);
 
+
     /**获取用户发表*/
     @FormUrlEncoded
     @POST("index.php?r=user/topiclist")
@@ -95,7 +96,7 @@ public interface UserInfoService {
     @POST("index.php?r=user/updateuserinfo")
     Observable<EditInfoBean> myselfInfoedit(@FieldMap Map<String,String> params);
 
-    /**编辑(個性簽名)*/
+    /**编辑(个性签名)*/
     @FormUrlEncoded
     @POST("index.php?r=user/updateusersign")
     Observable<EditInfoBean> myselfInfoedited(@FieldMap Map<String,String> params);

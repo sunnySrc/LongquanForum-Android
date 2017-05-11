@@ -23,7 +23,7 @@ public class Field {
     private int size;
     @JsonProperty("nowSet")
     private java.util.List<Graduated> nowSet;
-    //private List<String> nowSet;
+    //private Lists<String> nowSet;
     private java.util.List<Choices> choices;
 
 

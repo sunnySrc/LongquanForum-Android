@@ -18,13 +18,15 @@ import com.mobcent.discuz.uitls.DateUtils;
 
 import java.util.List;
 
+import discuz.com.net.service.model.bean.MyFriend.Lists;
+
 
 /**
  * Created by $Createdbymynameon on 2017/4/7.
  */
 
 public class Myfriends_adapter extends RecyclerView.Adapter<Myfriends_adapter.ViewHolder> {
-    public static List<discuz.com.net.service.model.bean.MyFriend.List> datas;
+    public static List<Lists> datas;
     private Context context;
     private EditText edittext;
     private Button search_button;
@@ -101,7 +103,7 @@ public class Myfriends_adapter extends RecyclerView.Adapter<Myfriends_adapter.Vi
     public void clear(){
         datas.clear();
     }
-    public void addAll(List<discuz.com.net.service.model.bean.MyFriend.List> list, boolean isClear){
+    public void addAll(List<Lists> list, boolean isClear){
         if(isClear){
             datas.clear();
         }

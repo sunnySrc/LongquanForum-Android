@@ -17,7 +17,7 @@ public class MyPublicBean {
     private String errcode;
     private Head head;
     private Body body;
-    private List<discuz.com.net.service.model.bean.mypublicbean.List> list;
+    private List<Lists> list;
     private int page;
     @JsonProperty("has_next")
     private int has_next;
@@ -56,11 +56,11 @@ public class MyPublicBean {
         this.body = body;
     }
 
-    public List<discuz.com.net.service.model.bean.mypublicbean.List> getList() {
+    public List<Lists> getList() {
         return list;
     }
 
-    public void setList(List<discuz.com.net.service.model.bean.mypublicbean.List> list) {
+    public void setList(List<Lists> list) {
         this.list = list;
     }
 

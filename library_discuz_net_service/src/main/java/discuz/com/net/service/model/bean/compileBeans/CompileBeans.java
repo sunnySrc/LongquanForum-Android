@@ -16,7 +16,7 @@ public class CompileBeans {
     private String errcode;
     private Head head;
     private Body body;
-    private List<discuz.com.net.service.model.bean.compileBeans.List> list;
+    private List<Lists> list;
     public void setRs(int rs) {
          this.rs = rs;
      }
@@ -45,10 +45,10 @@ public class CompileBeans {
          return body;
      }
 
-    public void setList(List<discuz.com.net.service.model.bean.compileBeans.List> list) {
+    public void setList(List<Lists> list) {
          this.list = list;
      }
-     public List<discuz.com.net.service.model.bean.compileBeans.List> getList() {
+     public List<Lists> getList() {
          return list;
      }
 

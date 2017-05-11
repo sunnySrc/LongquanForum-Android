@@ -9,7 +9,7 @@ package discuz.com.net.service.model.bean.compileBeans;
  * @author jb51.net (i@jb51.net)
  * @website http://tools.jb51.net/code/json2javabean
  */
-public class List {
+public class Lists {
 
     private String name;
     private java.util.List<Field> field;

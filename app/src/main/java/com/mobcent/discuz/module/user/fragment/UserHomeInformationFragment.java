@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.appbyme.dev.R;
-import com.mobcent.discuz.fragments.BaseFragment;
 import com.mobcent.discuz.module.user.view.ProfileTextView;
 import com.mobcent.discuz.uitls.DipUtils;
 

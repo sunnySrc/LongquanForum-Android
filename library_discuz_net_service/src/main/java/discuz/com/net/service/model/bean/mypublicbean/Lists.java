@@ -9,7 +9,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
  * @author jb51.net (i@jb51.net)
  * @website http://tools.jb51.net/code/json2javabean
  */
-public class List {
+public class Lists {
 
     @JsonProperty("imageList")
     private java.util.List<ImageList> imageList;

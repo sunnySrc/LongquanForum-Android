@@ -118,6 +118,7 @@
     <string name="mc_forum_user_loginbtn">登录</string>
     <string name="mc_forum_user_registerbtn">立即注册</string>
     <string name="mc_forum_user_register">注册</string>
+    <string name="mc_forum_user_birth">生日</string>
     <string name="mc_forum_user_fast_register">快速登录</string>
     <string name="mc_forum_user_login_success">登录成功</string>
     <string name="mc_forum_other_platform_login_warn">第三方账号登陆</string>
@@ -285,7 +286,10 @@
     <string name="mc_forum_user_status_online">在线</string>
     <string name="mc_forum_user_status_offline">离线</string>
     <string name="mc_forum_user_credits_label">积分:</string>
+    <string name="mc_forum_user_credits_smile">微笑</string>
     <string name="mc_forum_user_score_label">金币:</string>
+    <string name="mc_forum_user_score_incense">香华</string>
+    <string name="mc_forum_user_score_daspHands">合掌</string>
     <string name="mc_forum_user_last_login_time_label">最后登录</string>
     <string name="mc_forum_user_verified">已认证</string>
     <string name="mc_forum_user_verify_info_waitting_check">待审核</string>

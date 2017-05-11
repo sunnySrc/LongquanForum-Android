@@ -20,7 +20,7 @@ import com.mobcent.discuz.module.user.adapter.collectionAdapter.CollectionRecycl
 import com.mobcent.discuz.module.user.adapter.myFriends_adapter.Myfriends_adapter;
 
 import discuz.com.net.service.DiscuzRetrofit;
-import discuz.com.net.service.model.bean.MyFriend.List;
+import discuz.com.net.service.model.bean.MyFriend.Lists;
 import discuz.com.net.service.model.bean.MyFriend.MyFriends;
 import discuz.com.net.service.model.me.UserResult;
 import discuz.com.retrofit.library.HTTPSubscriber;
@@ -29,7 +29,7 @@ import static android.widget.Toast.makeText;
 import static com.mobcent.discuz.module.user.adapter.myFriends_adapter.Myfriends_adapter.datas;
 
 public class MyFriendsSearchActivity extends BasePopActivity {
-    java.util.List<List> list;
+    java.util.List<Lists> list;
     private EditText edittext;
     String nickname;
     private Button search_button;

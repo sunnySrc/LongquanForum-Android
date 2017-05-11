@@ -53,8 +53,6 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
         //requestUserInfo();
     }
 
-
-
     private void judgementfrom() {
         Intent intent=getIntent();
         from=intent.getBooleanExtra("from",false);
@@ -66,6 +64,15 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
             initView();
             requestUserInfo();
         }
+        mScrollableLayout = $(R.id.user_home_scrollable_layout);
+        mUserCenterHeader = $(R.id.header_layout);
+        mUserViewPager = $(R.id.fragment_user_viewpager);
+        tabView = $(R.id.fragment_user_viewpager);
+
+        mSlideTabLayout =  $(R.id.sliding_tab_layout);
+        mSlideTabLayout.setCustomTabView(R.layout.view_sliding_tab_indicator, android.R.id.text1);
+        mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
+        mSlideTabLayout.setDistributeEvenly(false);
     }
 
     @Override
@@ -111,16 +118,6 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
             getAppActionBar().setTitle(R.string.user_center);
             getAppActionBar().setBackgroundAlpha(0);
             getAppActionBar().setRightTitle(R.string.mc_forum_userifo_update,this);
-            mScrollableLayout = $(R.id.user_home_scrollable_layout);
-            mUserCenterHeader = $(R.id.header_layout);
-            mUserViewPager = $(R.id.fragment_user_viewpager);
-            tabView = $(R.id.fragment_user_viewpager);
-
-            mSlideTabLayout =  $(R.id.sliding_tab_layout);
-            mSlideTabLayout.setCustomTabView(R.layout.view_sliding_tab_indicator, android.R.id.text1);
-            mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
-            mSlideTabLayout.setDistributeEvenly(false);
-
     }
     //好友详情页
     private void myfriend_initView(){
@@ -133,15 +130,6 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
                 alertDialogs();
             }
         });
-        mScrollableLayout = $(R.id.user_home_scrollable_layout);
-        mUserCenterHeader = $(R.id.header_layout);
-        mUserViewPager = $(R.id.fragment_user_viewpager);
-        tabView = $(R.id.fragment_user_viewpager);
-
-        mSlideTabLayout =  $(R.id.sliding_tab_layout);
-        mSlideTabLayout.setCustomTabView(R.layout.view_sliding_tab_indicator, android.R.id.text1);
-        mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
-        mSlideTabLayout.setDistributeEvenly(false);
 
     }
     @Override

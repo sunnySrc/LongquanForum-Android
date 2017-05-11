@@ -18,7 +18,7 @@ import com.mobcent.discuz.base.WebParamsMap;
 import com.mobcent.discuz.module.user.adapter.MyPublic_adapter;
 
 import discuz.com.net.service.DiscuzRetrofit;
-import discuz.com.net.service.model.bean.mypublicbean.List;
+import discuz.com.net.service.model.bean.mypublicbean.Lists;
 import discuz.com.net.service.model.bean.mypublicbean.MyPublicBean;
 import discuz.com.retrofit.library.HTTPSubscriber;
 
@@ -63,7 +63,7 @@ public class MyPublicReportActivity extends BasePopActivity {
                     nothingReport.setVisibility(View.GONE);
                     String errInfo=myPublicBean.getHead().getErrInfo();
                     String errCode=myPublicBean.getHead().getErrCode();
-                java.util.List<List> list=myPublicBean.getList();
+                java.util.List<Lists> list=myPublicBean.getList();
                 adapter=new MyPublic_adapter(MyPublicReportActivity.this,list);
                 xRecycler.setAdapter(adapter);
                 if (myPublicBean.getHead().getErrCode().equals("00000000")){
