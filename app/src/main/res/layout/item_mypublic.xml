@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_mypublic_total"
+    android:layout_width="match_parent"
+    android:layout_height="128dp"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeview_edge_padding" />
+    <TextView
+        android:id="@+id/mypublic_title"
+        android:layout_width="128dp"
+        android:layout_height="64dp"
+        android:gravity="left|center_vertical"
+        android:text="@string/mc_forum_publish_total_title"
+        android:layout_marginLeft="6dp"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:orientation="horizontal"
+    >
+    <TextView
+        android:id="@+id/my_public_time"
+        android:layout_width="96dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="6dp"
+        />
+    <TextView
+        android:id="@+id/my_public_name"
+        android:layout_width="64dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="0dp"
+        android:gravity="left|center_vertical"
+        />
+    <TextView
+        android:id="@+id/my_public_readed"
+        android:layout_width="90dp"
+        android:layout_height="match_parent"
+        android:gravity="right|center_vertical"
+        android:layout_marginLeft="102dp"
+        />
+</LinearLayout>
+</LinearLayout>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -16,6 +17,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.mobcent.common.GlideCircleTransform;
 import com.phone.niuche.views.widget.stackblur.NativeBlurProcess;
 
+import discuz.com.net.service.model.bean.searchfriendsinfo.SearchFriendsInfo;
 import discuz.com.net.service.model.me.UserResult;
 
 /**
@@ -89,6 +91,39 @@ public class UserHomeCenterHeader extends RelativeLayout {
         mEssenceNum.setText(getResources().getString(R.string.mc_forum_my_partin)+userInfo.getEssence_num());
         mFriendNum.setText(getResources().getString(R.string.mc_forum_user_follow)+userInfo.getFriend_num());
         mFollowNum.setText(getResources().getString(R.string.mc_forum_user_fan)+userInfo.getFollow_num());
+        mSign.setText(userInfo.getSign());
+    }
+
+    public void setContentFriends(SearchFriendsInfo userInfo){
+        if(userInfo == null) return;
+        Glide.with(getContext()).load(userInfo.getIcon()).transform(new GlideCircleTransform(getContext())).into(mAvatar);
+        Glide.with(getContext()).load(userInfo.getIcon()).asBitmap().into(new SimpleTarget<Bitmap>() {
+            @Override
+            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                try{
+                    NativeBlurProcess blur = new NativeBlurProcess();
+                    final Bitmap blurImg = blur.blur(resource, 20);
+                    ((Activity)getContext()).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mBackground.setImageBitmap(blurImg);
+                            mBackground.invalidate();
+                        }
+                    });
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        mName.setText(userInfo.getName());
+        mUserTitle.setText(userInfo.getUserTitle());
+        mUserTitle.setSelected(userInfo.getGender() == 0);
+        mUserTitle.setVisibility(VISIBLE);
+        mEssenceNum.setText("参与"+userInfo.getEssence_num());
+        mFriendNum.setText("关注"+userInfo.getFriend_num());
+        mFollowNum.setText("粉丝"+userInfo.getFollow_num());
         mSign.setText(userInfo.getSign());
     }
 

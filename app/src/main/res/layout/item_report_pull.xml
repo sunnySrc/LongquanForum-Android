@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="46dp"
+        android:background="#000000"
+        android:orientation="vertical" >
+        <TextView
+            android:id="@+id/report_adult"
+            android:onClick="block"
+            android:clickable="true"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="32dp"
+            android:text="@string/mc_forum_report_adult_content"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+        <View android:background="#FFFFFF" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
+        <TextView
+            android:id="@+id/report_politics"
+            android:onClick="report"
+            android:clickable="true"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="32dp"
+            android:text="@string/mc_forum_polity_sensi_content"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+        <View android:background="#FFFFFF" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
+        <TextView
+            android:id="@+id/report_coarse"
+            android:onClick="report"
+            android:clickable="true"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="32dp"
+            android:text="@string/mc_forum_vulgar_speech"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+        <View android:background="#FFFFFF" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
+        <TextView
+            android:id="@+id/report_other"
+            android:onClick="report"
+            android:clickable="true"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="32dp"
+            android:text="@string/mc_forum_other_reason"
+            android:textColor="#fff"
+            android:textSize="12sp" />
+    </LinearLayout>
+</RelativeLayout>

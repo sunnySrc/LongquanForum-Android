@@ -340,7 +340,7 @@ public class SampleSlidingTabStrip extends HorizontalScrollView {
 
 		rectPaint.setColor(indicatorColor);
 
-		// default: line below current tab
+		// defaults: line below current tab
 		View currentTab = tabsContainer.getChildAt(currentPosition);
 		float lineLeft = currentTab.getLeft();
 		float lineRight = currentTab.getRight();

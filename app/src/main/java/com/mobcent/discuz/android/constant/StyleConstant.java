@@ -12,7 +12,7 @@ public interface StyleConstant {
     public static final String STYLE_BOARD_SPLIT = "boardSplit";
     public static final String STYLE_CARD = "card";
     public static final String STYLE_CIRCLE = "circle";
-    public static final String STYLE_DEFAULT = "default";
+    public static final String STYLE_DEFAULT = "defaults";
     public static final String STYLE_DISCOVER_CUSTOM = "discoverCustom";
     public static final String STYLE_DISCOVER_DEFAULT = "discoverDefault";
     public static final String STYLE_DISCOVER_SLIDER = "discoverSlider";

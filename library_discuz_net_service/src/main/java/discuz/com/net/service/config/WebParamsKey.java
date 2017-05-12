@@ -10,8 +10,8 @@ public class WebParamsKey {
     public static final String apphash = "apphash";
     public static final String forumType = "forumType";
     public static final String imei = "imei";
+    public static final String imsi = "imsi";
     public static final String platType = "platType";
-    public static final String imsi = "platType";
     public static final String accessSecret = "accessSecret";
     public static final String egnVersion = "egnVersion";
     public static final String forumKey = "forumKey";

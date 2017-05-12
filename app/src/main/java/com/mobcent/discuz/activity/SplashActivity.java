@@ -49,7 +49,7 @@ public class SplashActivity extends Activity {
 //        configId = 0x0;
 //        mHandler = new Handler() {
 //
-//            public void dispatchMessage(Message msg) {
+//            public void dispatchMessage(Signature msg) {
 //                /*if(msg.what == MESSAGE_START_HOME) {
 //                    if(dataTaskExecuted) {
 //                        initHelper.dispatchActivity(this$0, skipToWhere, skipModel);

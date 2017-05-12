@@ -72,6 +72,14 @@
             android:layout_marginLeft="20dp"
             android:textSize="@dimen/pickerview_textsize"
             android:layout_marginStart="20dp" />
+        <TextView
+            android:id="@+id/compile_signature_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingRight="32dp"
+            android:gravity="center_vertical"
+            android:text=""/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -95,7 +103,14 @@
             android:layout_marginLeft="20dp"
             android:textSize="@dimen/pickerview_textsize"
             android:layout_marginStart="20dp" />
-
+        <TextView
+            android:id="@+id/compile_cellphone_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingRight="32dp"
+            android:gravity="center_vertical"
+            android:text=""/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -118,7 +133,14 @@
             android:layout_marginLeft="20dp"
             android:textSize="@dimen/pickerview_textsize"
             android:layout_marginStart="20dp" />
-
+        <TextView
+            android:id="@+id/compile_qq_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingRight="32dp"
+            android:gravity="center_vertical"
+            android:text=""/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -141,7 +163,14 @@
             android:layout_marginLeft="20dp"
             android:textSize="@dimen/pickerview_textsize"
             android:layout_marginStart="20dp" />
-
+        <TextView
+            android:id="@+id/compile_email_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingRight="32dp"
+            android:gravity="center_vertical"
+            android:text=""/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -165,7 +194,14 @@
             android:layout_marginLeft="20dp"
             android:textSize="@dimen/pickerview_textsize"
             android:layout_marginStart="20dp" />
-
+        <TextView
+            android:id="@+id/compile_graduate_institutions_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingRight="32dp"
+            android:gravity="center_vertical"
+            android:text=""/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -189,6 +225,7 @@
             android:layout_marginLeft="20dp"
             android:textSize="@dimen/pickerview_textsize"
             android:layout_marginStart="20dp" />
+
         <ImageView
             android:id="@+id/compile_activity_img_edu"
             android:layout_width="wrap_content"
@@ -200,7 +237,6 @@
             android:id="@+id/compile_activity_text_edu"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="#000000"
             android:textSize="12sp"
             android:gravity="center"
             android:layout_toLeftOf="@id/compile_activity_img_edu"
@@ -221,7 +257,14 @@
             android:layout_marginLeft="20dp"
             android:textSize="@dimen/pickerview_textsize"
             android:layout_marginStart="20dp" />
-
+        <TextView
+            android:id="@+id/compile_company_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingRight="32dp"
+            android:gravity="center_vertical"
+            android:text=""/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -245,7 +288,14 @@
             android:layout_marginLeft="20dp"
             android:textSize="@dimen/pickerview_textsize"
             android:layout_marginStart="20dp" />
-
+        <TextView
+            android:id="@+id/compile_profession_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingRight="32dp"
+            android:gravity="center_vertical"
+            android:text=""/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -268,7 +318,14 @@
             android:layout_marginLeft="20dp"
             android:textSize="@dimen/pickerview_textsize"
             android:layout_marginStart="20dp" />
-
+        <TextView
+            android:id="@+id/compile_nickname_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingRight="32dp"
+            android:gravity="center_vertical"
+            android:text=""/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

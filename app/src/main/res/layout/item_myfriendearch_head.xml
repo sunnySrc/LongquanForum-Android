@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="32dp">
+    <TextView
+        android:id="@+id/myfriends_button"
+        android:layout_width="320dp"
+        android:layout_height="32dp"
+        android:text="@string/mc_forum_statistics_search_event"
+        android:background="#FFFFFF"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"/>
+</RelativeLayout>

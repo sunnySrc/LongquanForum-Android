@@ -1,5 +1,7 @@
 package com.mobcent.discuz.module.user.activity;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,7 +30,8 @@ import ru.noties.scrollable.ScrollableLayout;
  * 用户资料页
  */
 public class UserHomeActivity extends BasePopActivity implements View.OnClickListener{
-
+    private String userName;
+    private String uid;
     private ScrollableLayout mScrollableLayout;
     private UserHomeCenterHeader mUserCenterHeader;
     private SlidingTabLayout mSlideTabLayout;
@@ -36,27 +39,31 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
     private UserHomeAdapter mUserHomeAdapter;
     private View tabView;
 
+    public static Boolean from;
+    public static String uid_myfriendsSearch;
+
+    private FragmentManager manager;
+    private FragmentTransaction transaction;
+
     public void onCreate(Bundle paramBundle) {
         super.onCreate(paramBundle);
-        initView();
+        //判断该页面来源
+        judgementfrom();
         initData();
-        requestUserInfo();
+        //requestUserInfo();
     }
 
-    @Override
-    public int initLayout() {
-        return R.layout.user_home_center_fragment;
-    }
-
-    @Override
-    protected Fragment initContentFragment() {
-        return null;
-    }
-
-    private void initView(){
-        getAppActionBar().setTitle(R.string.user_center);
-        getAppActionBar().setBackgroundAlpha(0);
-        getAppActionBar().setRightTitle(R.string.mc_forum_userifo_update,this);
+    private void judgementfrom() {
+        Intent intent=getIntent();
+        from=intent.getBooleanExtra("from",false);
+        uid_myfriendsSearch=intent.getStringExtra("uid");
+        if (from){
+            myfriend_initView();
+            myFriends_initView();
+        }else {
+            initView();
+            requestUserInfo();
+        }
         mScrollableLayout = $(R.id.user_home_scrollable_layout);
         mUserCenterHeader = $(R.id.header_layout);
         mUserViewPager = $(R.id.fragment_user_viewpager);
@@ -69,10 +76,71 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
     }
 
     @Override
+    public int initLayout() {
+        return R.layout.user_home_center_fragment;
+    }
+
+    @Override
+    protected Fragment initContentFragment() {
+        return null;
+    }
+
+
+    //我的好友的详情页
+    private void myFriends_initView(){
+
+        DiscuzRetrofit.getUserInfoService(this).requestUserInfo(uid_myfriendsSearch,WebParamsMap.map()).subscribe(new HTTPSubscriber<UserResult>() {
+            @Override
+            public void onSuccess(UserResult userResult) {
+                mUserCenterHeader.setContent(userResult);
+                ((UserHomeInformationFragment)mUserHomeAdapter.getItem(1)).setContent(userResult.getBody().getProfileList(),
+                        userResult.getBody().getCreditList());
+                userName=userResult.getName();
+            }
+
+            @Override
+            public void onFail(int httpCode, int errorUserCode, String message) {
+                showToast(message);
+            }
+        });
+
+    }
+
+    private void alertDialogs() {
+        Intent intent = new Intent(this, MainWeixinTitleRightActivity.class);
+        intent.putExtra("from","UserHomeActivity");
+        intent.putExtra("uid",uid_myfriendsSearch);
+        startActivity(intent);
+    }
+
+    //我的详情页
+    private void initView(){
+            getAppActionBar().setTitle(R.string.user_center);
+            getAppActionBar().setBackgroundAlpha(0);
+            getAppActionBar().setRightTitle(R.string.mc_forum_userifo_update,this);
+    }
+    //好友详情页
+    private void myfriend_initView(){
+        getAppActionBar().setTitle(userName);
+        getAppActionBar().setBackgroundAlpha(0);
+        //getAppActionBar().setRightTitle("",this);
+        getAppActionBar().setRightIcon(R.drawable.dz_personal_more_h, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialogs();
+            }
+        });
+
+    }
+    @Override
     public void onClick(View v) {
         if(v.getId() == R.id.action_bar_right_title){
-            Intent intents=new Intent(UserHomeActivity.this, CompileActivity.class);
-            startActivity(intents);
+            if (from){
+                alertDialogs();
+            }else {
+                Intent intents=new Intent(UserHomeActivity.this, CompileActivity.class);
+                startActivity(intents);
+            }
         }
     }
 

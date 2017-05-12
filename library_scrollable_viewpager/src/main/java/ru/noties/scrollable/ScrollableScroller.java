@@ -142,7 +142,7 @@ public class ScrollableScroller  {
 
     /**
      * Create a Scroller with the specified interpolator. If the interpolator is
-     * null, the default (viscous) interpolator will be used. Specify whether or
+     * null, the defaults (viscous) interpolator will be used. Specify whether or
      * not to support progressive "flywheel" behavior in flinging.
      */
     public ScrollableScroller(Context context, Interpolator interpolator, boolean flywheel) {
@@ -160,7 +160,7 @@ public class ScrollableScroller  {
     }
 
     /**
-     * The amount of friction applied to flings. The default value
+     * The amount of friction applied to flings. The defaults value
      * is {@link ViewConfiguration#getScrollFriction}.
      *
      * @param friction A scalar dimension-less value representing the coefficient of

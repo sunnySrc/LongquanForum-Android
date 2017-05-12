@@ -19,17 +19,25 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.appbyme.dev.R;
 import com.mobcent.discuz.activity.BasePopActivity;
+import com.mobcent.discuz.activity.LoginUtils;
+import com.mobcent.discuz.base.WebParamsMap;
 import com.mobcent.discuz.module.user.wheelview.WView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import discuz.com.net.service.DiscuzRetrofit;
+import discuz.com.net.service.model.bean.compileBeans.CompileBeans;
+import discuz.com.net.service.model.bean.editInfoBean.EditInfoBean;
+import discuz.com.retrofit.library.HTTPSubscriber;
 import library.component.actionbar.AppActionBar;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -46,6 +54,10 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
     private  TextView textedu;
     private  TextView mWText;
     private ImageView image;
+    private TextView compile_signature_text,compile_cellphone_text,compile_qq_text,compile_email_text,compile_graduate_institutions_text,
+    compile_company_text,compile_profession_text,compile_nickname_text;
+
+
     public static final int PHOTORESOULT = 3;// 结果
     AppActionBar bar;
 
@@ -54,7 +66,30 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        netWork();
         initial();
+    }
+
+    private void netWork() {
+        DiscuzRetrofit.getUserInfoService(this).compile(LoginUtils.getInstance().getUserId(),WebParamsMap.compile()).subscribe(new HTTPSubscriber<CompileBeans>() {
+            @Override
+            public void onSuccess(CompileBeans compileBean) {
+                if (compileBean.getHead().getErrcode().equals("00000000")){
+                    Log.i("TAG", "成功");
+                    int number=compileBean.getList().size();
+                }
+
+            }
+
+            @Override
+            public void onFail(int httpCode, int errorUserCode, String message) {
+                Log.i("TAG", "失败");
+                Log.i("TAG", "httpCode="+httpCode);
+                Log.i("TAG", "errorUserCode="+errorUserCode);
+                Log.i("TAG", "message="+message);
+            }
+
+        });
     }
 
     @Override
@@ -68,7 +103,7 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
     }
 
     private void initial() {
-        getAppActionBar().setTitle("编辑资料");
+        getAppActionBar().setTitle(R.string.mc_forum_user_my_info);
         findViewById(R.id.compile_back_image).setOnClickListener(this);
         findViewById(R.id.compile_head).setOnClickListener(this);
         findViewById(R.id.compile_signature).setOnClickListener(this);
@@ -81,7 +116,14 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
         findViewById(R.id.compile_profession).setOnClickListener(this);
         findViewById(R.id.compile_nickname).setOnClickListener(this);
         textedu= (TextView) findViewById(R.id.compile_activity_text_edu);
-
+        compile_signature_text= (TextView) findViewById(R.id.compile_signature_text);
+        compile_cellphone_text= (TextView) findViewById(R.id.compile_cellphone_text);
+        compile_qq_text= (TextView) findViewById(R.id.compile_qq_text);
+        compile_email_text= (TextView) findViewById(R.id.compile_email_text);
+        compile_graduate_institutions_text= (TextView) findViewById(R.id.compile_graduate_institutions_text);
+        compile_company_text= (TextView) findViewById(R.id.compile_company_text);
+        compile_profession_text= (TextView) findViewById(R.id.compile_profession_text);
+        compile_nickname_text= (TextView) findViewById(R.id.compile_nickname_text);
     }
 
     @Override
@@ -100,7 +142,7 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
                 Uri value = Uri.fromFile(file);
                 intent2.putExtra(MediaStore.EXTRA_OUTPUT, value);
 
-                Intent intent = Intent.createChooser(intent1, "请选择");
+                Intent intent = Intent.createChooser(intent1,"请选择");
                 intent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{intent2});
 
                 startActivityForResult(intent, 101);
@@ -191,13 +233,13 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
                     }
                 });
                 List<Object> data = new ArrayList<>();
-                data.add("其他");
-                data.add("小学");
-                data.add("中学");
-                data.add("专科");
-                data.add("本科");
-                data.add("硕士");
-                data.add("博士");
+                data.add(getString(R.string.mc_forum_other));
+                data.add(getString(R.string.mc_forum_primary));
+                data.add(getString(R.string.mc_forum_middle));
+                data.add(getString(R.string.mc_forum_junior));
+                data.add(getString(R.string.mc_forum_regular));
+                data.add(getString(R.string.mc_forum_master));
+                data.add(getString(R.string.mc_forum_doctor));
 
                 mWView.setData(data);
 
@@ -223,7 +265,7 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
                     @Override
                     public void onClick(View v) {
                         textedu.setText(edu);
-
+                        netWork(edu);
                         dialog.dismiss();
                     }
                 });
@@ -238,11 +280,9 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (data != null && data.getData() != null) {
             Uri uri = data.getData();
         }
-
 
         if(resultCode==RESULT_OK && requestCode==101){
             //从返回的结果intent中取需要的内容
@@ -307,6 +347,65 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
 
 
 
+        }else if (requestCode==102){
+            //签名
+            try {
+                compile_signature_text.setText(data.getStringExtra("text"));
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }else if (requestCode==103){
+            //手机
+            try {
+                compile_cellphone_text.setText(data.getStringExtra("text"));
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+
+
+        }else if (requestCode==104){
+            //QQ
+            try {
+                compile_qq_text.setText(data.getStringExtra("text"));
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+
+        }else if (requestCode==105){
+            //电子邮件
+            try {
+                compile_email_text.setText(data.getStringExtra("text"));
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }else if (requestCode==106){
+            //毕业院校
+            try {
+                compile_graduate_institutions_text.setText(data.getStringExtra("text"));
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }else if (requestCode==107){
+            //公司
+            try {
+                compile_company_text.setText(data.getStringExtra("text"));
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }else if (requestCode==108){
+            //职业
+            try {
+                compile_profession_text.setText(data.getStringExtra("text"));
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+        }else if (requestCode==109){
+            //昵称
+            try {
+                compile_nickname_text.setText(data.getStringExtra("text"));
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         }
         // 处理结果及圆形图片处理
 
@@ -404,6 +503,31 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
 //        // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_CUT
 //        startActivityForResult(intent, PHOTO_REQUEST_CUT);
 //    }
+
+    private void netWork(final String param){
+        String ecode= URLEncoder.encode(param);
+        String num="%7B%22education%22%3A%22"+ecode+"%22%7D";
+        DiscuzRetrofit.getUserInfoService(this).myselfInfoedit( WebParamsMap.myselfInfoedits(num)).subscribe(new HTTPSubscriber<EditInfoBean>() {
+
+            @Override
+            public void onSuccess(EditInfoBean coloectionBean) {
+                String errInfo=coloectionBean.getHead().getErrinfo();
+                if (coloectionBean.getHead().getErrcode().equals("00000000")){
+                    Toast.makeText(CompileActivity.this,param,Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(CompileActivity.this,errInfo,Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFail(int httpCode, int errorUserCode, String message) {
+                Log.i("TAG", "错误");
+                Log.i("TAG", "errorUserCode="+errorUserCode);
+                Log.i("TAG", "message="+message);
+            }
+
+        });
+    }
 
 }
 

@@ -1,5 +1,6 @@
 package com.mobcent.discuz.module.user.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,8 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.appbyme.dev.R;
+import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.WebParamsMap;
 import com.mobcent.discuz.module.user.adapter.UserPublishAdapter;
 
@@ -22,6 +25,9 @@ import discuz.com.net.service.DiscuzRetrofit;
 import discuz.com.net.service.model.me.PublishResult;
 import discuz.com.retrofit.library.HTTPSubscriber;
 
+import static com.mobcent.discuz.module.user.activity.UserHomeActivity.from;
+import static com.mobcent.discuz.module.user.activity.UserHomeActivity.uid_myfriendsSearch;
+
 
 /**
  * Created by pangxiaomin on 16/11/20.
@@ -30,7 +36,7 @@ import discuz.com.retrofit.library.HTTPSubscriber;
  */
 public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
 
-
+    private TextView text_nothing;
     private RecyclerView mPublishRecyclerView;
     UserPublishAdapter adapter;
     List<Publish> datas;
@@ -49,6 +55,7 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_home_publish, container, false);
+
         return view;
     }
 
@@ -57,10 +64,61 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPublishRecyclerView = $(view,R.id.fragment_publish_recyclerview);
+        text_nothing = $(view,R.id.fragment_public_nothing);
         mPublishRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        datas = new ArrayList<>();
-        adapter = new UserPublishAdapter(getActivity(),datas);
-        mPublishRecyclerView.setAdapter(adapter);
+        if (from==true){
+            Intent intent=getActivity().getIntent();
+            String uid_SearchFriends=intent.getStringExtra("uid");
+            DiscuzRetrofit.getUserInfoService(getActivity()).requestUserPublish(WebParamsMap.user_public(uid_myfriendsSearch)).subscribe(new HTTPSubscriber<PublishResult>() {
+                @Override
+                public void onSuccess(PublishResult userResult) {
+                    userResult.getBody();
+                    if(userResult!=null && userResult.list!=null){
+                        if (userResult.list.size()!=0){
+                            text_nothing.setVisibility(View.INVISIBLE);
+                        }else {
+                            text_nothing.setVisibility(View.VISIBLE);
+                        }
+                        datas.addAll(userResult.list);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onFail(int httpCode, int errorUserCode, String message) {
+
+                }
+            });
+            datas = new ArrayList<>();
+            adapter = new UserPublishAdapter(getActivity(),datas);
+            mPublishRecyclerView.setAdapter(adapter);
+        }else {
+            DiscuzRetrofit.getUserInfoService(getActivity()).requestUserPublish(WebParamsMap.user_public(LoginUtils.getInstance().getUserId())).subscribe(new HTTPSubscriber<PublishResult>() {
+                @Override
+                public void onSuccess(PublishResult userResult) {
+                    userResult.getBody();
+                    if(userResult!=null && userResult.list!=null){
+                        if (userResult.list.size()!=0){
+                            text_nothing.setVisibility(View.INVISIBLE);
+                        }else {
+                            text_nothing.setVisibility(View.VISIBLE);
+                        }
+                        datas.addAll(userResult.list);
+                        adapter.notifyDataSetChanged();
+
+                    }
+                }
+
+                @Override
+                public void onFail(int httpCode, int errorUserCode, String message) {
+
+                }
+            });
+            datas = new ArrayList<>();
+            adapter = new UserPublishAdapter(getActivity(),datas);
+            mPublishRecyclerView.setAdapter(adapter);
+        }
+
     }
 
     @Override

@@ -114,5 +114,6 @@ dependencies {
     compile files('libs/universal-image-loader-1.9.2_sources.jar')
     //compile project(':library_xrecyclerview')
     compile project(':library_xrecyclerview')
+    compile files('libs/commons-codec-1.10.jar')
 }
 

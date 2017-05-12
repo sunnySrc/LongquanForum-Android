@@ -24,7 +24,7 @@
             android:id="@+id/item_collection_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="标题"
+            android:text="@string/mc_forum_publish_total_title"
             android:gravity="center_vertical"
             android:textColor="#000000"
             android:textSize="16sp"
@@ -44,7 +44,7 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="8dp"
                 android:gravity="center_vertical"
-                android:text="日期"
+                android:text="@string/mc_forum_invite_date"
                 />
             <TextView
                 android:id="@+id/item_collection_name"
@@ -52,14 +52,14 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="名称"/>
+                android:text="@string/mc_share_statistics_topic_title_name"/>
             <TextView
                 android:id="@+id/item_collection_readed"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="阅读数"
+                android:text="@string/mc_forum_topic_list_read_num"
                 />
         </LinearLayout>
     </LinearLayout>

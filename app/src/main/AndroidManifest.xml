@@ -89,12 +89,10 @@
                 <data android:scheme="appbyme178470" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.mobcent.discuz.activity.helper.RegistActivity"
             android:label="@string/title_activity_regist"
-            android:theme="@style/no_title_activity"></activity>
-
+            android:theme="@style/no_title_activity" />
         <activity
             android:name="com.mobcent.discuz.module.user.activity.CompileActivity"
             android:theme="@style/no_title_activity" />
@@ -444,12 +442,31 @@
             android:protectionLevel="signature"
             android:writePermission="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.mobcent.discuz.activity" />
 
-        <activity android:name="com.mobcent.discuz.module.user.activity.CollectionActivity"
-            android:theme="@style/no_title_activity"/>
+        <activity
+            android:name="com.mobcent.discuz.module.user.activity.CollectionActivity"
+            android:theme="@style/no_title_activity" />
         <activity
             android:name="com.mobcent.discuz.module.user.activity.MyFriendsActivity"
             android:theme="@style/no_title_activity" />
-        <activity android:name="com.mobcent.discuz.module.user.activity.MyFriendsSearchActivity"
+        <activity
+            android:name="com.mobcent.discuz.module.user.activity.MyFriendsSearchActivity"
+            android:theme="@style/no_title_activity" />
+        <activity
+            android:name="com.mobcent.discuz.module.user.activity.MainWeixinTitleRightActivity"
+            android:theme="@style/MyDialogTopRight" />
+        <activity
+            android:name="com.mobcent.discuz.module.user.activity.ReportActivity"
+            android:theme="@style/no_title_activity" />
+        <activity
+            android:name="com.mobcent.discuz.module.user.activity.SettingActivity"
+            android:label="@string/title_activity_setting" />
+        <activity
+            android:name="com.mobcent.discuz.module.user.activity.PasswordSettingActivity"
+            android:label="@string/title_activity_password_setting" />
+        <activity
+            android:name="com.mobcent.discuz.module.user.activity.MyPublicReportActivity"
+            android:theme="@style/no_title_activity" />
+        <activity android:name="com.mobcent.discuz.module.user.activity.DraftActivity"
             android:theme="@style/no_title_activity"/>
     </application>
 

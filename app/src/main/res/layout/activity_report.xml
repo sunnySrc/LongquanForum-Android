@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_report"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context="com.mobcent.discuz.module.user.activity.ReportActivity">
+    <LinearLayout
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/report_reason"
+            android:layout_width="112dp"
+            android:layout_height="match_parent"
+            android:text="@string/mc_forum_select_report_reason_str"
+            android:gravity="center"/>
+        <ImageView
+            android:id="@+id/img_report_pull"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/report_selector" />
+    </LinearLayout>
+    <EditText
+        android:id="@+id/report_edittext_reason"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:hint="@string/mc_forum_report_tip_detail_content_str"
+        android:gravity="top"/>
+    <Button
+        android:layout_width="288dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center"
+        android:onClick="submit"
+        android:text="@string/mc_forum_report_submit_str"/>
+</LinearLayout>

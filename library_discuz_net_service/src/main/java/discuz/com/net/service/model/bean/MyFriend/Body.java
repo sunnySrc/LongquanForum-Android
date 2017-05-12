@@ -14,7 +14,7 @@ public class Body {
 
     @JsonProperty("externInfo")
     private Externinfo externInfo;
-    private java.util.List<List> list;
+    private java.util.List<Lists> list;
 
     public Externinfo getExternInfo() {
         return externInfo;
@@ -24,11 +24,11 @@ public class Body {
         this.externInfo = externInfo;
     }
 
-    public java.util.List<List> getList() {
+    public java.util.List<Lists> getList() {
         return list;
     }
 
-    public void setList(java.util.List<List> list) {
+    public void setList(java.util.List<Lists> list) {
         this.list = list;
     }
 }

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import com.appbyme.dev.R;
 import com.mobcent.discuz.module.user.adapter.viewholder.ItemPublishViewHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import discuz.com.bean.me.Publish;
@@ -35,8 +34,9 @@ public class UserPublishAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
         ItemPublishViewHolder holerData = (ItemPublishViewHolder) holder;
-        holerData.bindConent(datas.get(position),context);
+        holerData.bindConent(datas.get(position),context,position,datas);
     }
 
     @Override

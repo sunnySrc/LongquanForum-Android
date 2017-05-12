@@ -1,9 +1,9 @@
 package com.mobcent.discuz.module.user.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -12,6 +12,7 @@ import com.appbyme.dev.R;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jcodecraeer.xrecyclerview.other.ProgressStyle;
 import com.mobcent.discuz.activity.BasePopActivity;
+import com.mobcent.discuz.activity.LoginActivity;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.UIJumper;
 import com.mobcent.discuz.base.WebParamsMap;
@@ -33,6 +34,7 @@ public class CollectionActivity extends BasePopActivity {
     private ViewGroup viewGroup;
     private String errCode;
     private int totalNum;
+    private String uid;
     XRecyclerView xRecycler;
     CollectionRecycle_adapter adapter;
 
@@ -42,14 +44,20 @@ public class CollectionActivity extends BasePopActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection);
-        //list=new ArrayList<CollectionList>();
+        if (!LoginUtils.getInstance().isLogin()){
+            Intent intent=new Intent(this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        uid=LoginUtils.getInstance().getUserId();
+        if (uid==null){
+            Intent intent=new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         xRecycler= (XRecyclerView) findViewById(R.id.xr_test);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        //mRecyclerView.setAdapter(adapter);
-//        View header =   LayoutInflater.from(this).inflate(R.layout.item_collection_follow, (ViewGroup)findViewById(android.R.id.content),false);
-//        xRecycler.addHeaderView(header);
-
 
         //设置瀑布流管理器
         xRecycler.setLayoutManager(layoutManager);
@@ -76,7 +84,7 @@ public class CollectionActivity extends BasePopActivity {
                 xRecycler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        makeText(CollectionActivity.this,"刷新", Toast.LENGTH_SHORT).show();
+                        makeText(CollectionActivity.this,R.string.mc_forum_webview_refresh, Toast.LENGTH_SHORT).show();
                         xRecycler.refreshComplete();
                     }
                 }, 2000);
@@ -87,7 +95,7 @@ public class CollectionActivity extends BasePopActivity {
                 xRecycler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        makeText(CollectionActivity.this,"加载更多",Toast.LENGTH_SHORT).show();
+                        makeText(CollectionActivity.this,R.string.mc_forum_loadmore,Toast.LENGTH_SHORT).show();
                         xRecycler.loadMoreComplete();
                     }
                 }, 1000);
@@ -95,53 +103,31 @@ public class CollectionActivity extends BasePopActivity {
             }
         });
 
-       /* commonRecyclerAdapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(Context context, int position) {
-                //需要减去你的header和刷新的view的数量
-                Toast.makeText(context, "点击了！！　" + (position - 2), Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
     }
 
     private void onRefresh() {
-        DiscuzRetrofit.getUserInfoService(this).requestUserCollection(LoginUtils.getInstance().getUserId(), WebParamsMap.maps(123456)).subscribe(new HTTPSubscriber<ColoectionBean>() {
+        DiscuzRetrofit.getUserInfoService(this).requestUserCollection(LoginUtils.getInstance().getUserId(), WebParamsMap.maps(uid)).subscribe(new HTTPSubscriber<ColoectionBean>() {
 
             @Override
             public void onSuccess(ColoectionBean coloectionBean) {
-//                errCode=coloectionBean.getHead().getErrCode();
-//                Log.i("TAG","errCode="+errCode);
-//                totalNum=coloectionBean.getTotalNum();
-//                Log.i("TAG","totalNum="+totalNum);
-//                Log.i("TAG","ColList="+coloectionBean.getColList().toString());
-                Log.i("TAG", "errcode="+coloectionBean.getHead().getErrCode());
                 final List<CollectionList> list=coloectionBean.getList();
                 adapter=new CollectionRecycle_adapter(CollectionActivity.this,list);
-                // adapter.addAll(list,false);
-                //adapter.addAll(list,true);
 
                 //设置点击事件
                 adapter.setOnItemClickLitener(new CollectionRecycle_adapter.OnItemClickLitener() {
                     @Override
                     public void onitemclick(View view, int pos) {
-                        Toast.makeText(CollectionActivity.this,"pos="+pos,Toast.LENGTH_SHORT).show();
                         int userid=list.get(pos-1).getUser_id();
                         int topid=list.get(pos-1).getTopic_id();
                         int boardid=list.get(pos-1).getBoard_id();
-                        // TODO: 2017/3/28
-//                        Intent intent=new Intent(CollectionActivity.this,TopicDetailActivity.class);
-//                        intent.putExtra("userid",userid);
-//                        intent.putExtra("topid",topid);
-//                        intent.putExtra("boardid",boardid);
-//                        startActivity(intent);
+
                         UIJumper.jumpTopic(CollectionActivity.this,topid);
                     }
 
                     @Override
                     public void onitemlongclick(View view, int pos) {
-                        makeText(CollectionActivity.this,"view="+view,Toast.LENGTH_SHORT).show();
-                        makeText(CollectionActivity.this,"pos="+pos,Toast.LENGTH_SHORT).show();
+
                     }
                 });
 

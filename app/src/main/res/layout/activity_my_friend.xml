@@ -9,14 +9,13 @@
     tools:context="com.mobcent.discuz.module.user.activity.MyFriendsActivity">
     <include
         layout="@layout/include_app_action_bar" />
-    <TextView
-        android:id="@+id/myfriends_button"
-        android:layout_width="320dp"
-        android:layout_height="32dp"
-        android:text="搜索"
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/xr_test_myfrieds"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:visibility="visible"
         android:background="#FFFFFF"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"/>
-
+        />
 
 </LinearLayout>
