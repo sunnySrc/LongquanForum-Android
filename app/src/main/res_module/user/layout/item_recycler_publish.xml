@@ -76,29 +76,48 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dz_list_circle_pv"
+            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_look_num"
+            />
         <TextView
+            android:id="@+id/tv_look_num"
             android:layout_toLeftOf="@+id/item_publish_reply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="30dp"
             android:textColor="@color/mc_forum_text4_other_normal_color"
-            android:textSize="10sp"
+            android:textSize="13sp"
             android:text="@string/mc_forum__browser"
-            android:id="@+id/tv_look_num" />
-
+            android:layout_centerVertical="true"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dz_list_circle_replies"
+            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/item_publish_reply"
+            />
         <TextView
             android:id="@+id/item_publish_reply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
             android:textColor="@color/mc_forum_text4_other_normal_color"
-            android:textSize="10sp"
+            android:textSize="13sp"
             android:text="@string/mc_forum_comment"/>
     </RelativeLayout>
     <View
-       style="@style/divider_line"/>
+       style="@style/divider_lines"/>
 
 
 </LinearLayout>

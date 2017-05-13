@@ -54,8 +54,7 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user_home_publish, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_user_home_publish,container, false);
         return view;
     }
 
@@ -120,6 +119,7 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
         }
 
     }
+
 
     @Override
     public boolean canScrollVertically(int direction) {

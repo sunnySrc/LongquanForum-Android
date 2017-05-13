@@ -412,6 +412,8 @@
     <string name="mc_forum_posts_face">表情</string>
     <string name="mc_forum_posts_location">定位</string>
     <string name="mc_forum_friend">好友</string>
+    <string name="mc_forum_add_friends">添加好友</string>
+    <string name="mc_forum_del_friends">删除好友</string>
     <string name="mc_forum_pic_topic_list">图片</string>
     <string name="mc_forum_camera">相机</string>
     <string name="mc_forum_publish_choose">请选择</string>

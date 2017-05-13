@@ -233,5 +233,25 @@ public class WebParamsMap {
         map.putAll(baseMap());
         return map;
     }
+    //编辑页面(添加关注)
+    public static HashMap<String,String> addFollow(String uid){
+        HashMap<String,String> map = new HashMap<>();
+        map.put("uid", uid);
+        map.put("type", "follow");
+        map.put("apphash", "06661a55");
+        map.put("sdkType", "");
+        map.putAll(baseMap());
+        return map;
+    }
 
+    //编辑页面(取消关注)
+    public static HashMap<String,String> unFollow(String uid){
+        HashMap<String,String> map = new HashMap<>();
+        map.put("uid", uid);
+        map.put("type", "unfollow");
+        map.put("apphash", "06661a55");
+        map.put("sdkType", "");
+        map.putAll(baseMap());
+        return map;
+    }
 }

@@ -58,7 +58,8 @@
 
     <include
         layout="@layout/include_app_action_bar" />
-
-
+    <include
+        layout="@layout/item_userinfo_bottom"
+        />
 </FrameLayout>
 

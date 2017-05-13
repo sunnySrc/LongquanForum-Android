@@ -43,4 +43,5 @@ public class UserPublishAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return datas.size();
     }
+
 }
