@@ -142,12 +142,11 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
                     datas.addAll(userResult.list);
                     adapter.notifyDataSetChanged();
                 }
-                Log.i("longquan","获取数据成功");
             }
 
             @Override
             public void onFail(int httpCode, int errorUserCode, String message) {
-                Log.i("longquan","获取失败");
+                Log.i("longquan","获取失败,失败原因:"+message);
             }
         });
     }

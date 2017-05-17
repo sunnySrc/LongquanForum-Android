@@ -81,7 +81,7 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
         }else {
             initView();
             requestUserInfo();
-            userinfo_bottom.setVisibility(View.INVISIBLE);
+            userinfo_bottom.setVisibility(View.GONE);
 
         }
 
