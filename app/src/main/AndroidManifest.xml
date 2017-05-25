@@ -468,6 +468,9 @@
             android:theme="@style/no_title_activity" />
         <activity android:name="com.mobcent.discuz.module.user.activity.DraftActivity"
             android:theme="@style/no_title_activity"/>
+        <activity
+            android:name="com.mobcent.discuz.module.user.activity.MyMessageActivity"
+            android:theme="@style/no_title_activity" />
     </application>
 
 </manifest>

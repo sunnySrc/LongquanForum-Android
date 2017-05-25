@@ -20,6 +20,7 @@ import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.module.user.activity.CollectionActivity;
 import com.mobcent.discuz.module.user.activity.DraftActivity;
 import com.mobcent.discuz.module.user.activity.MyFriendsActivity;
+import com.mobcent.discuz.module.user.activity.MyMessageActivity;
 import com.mobcent.discuz.module.user.activity.MyPublicReportActivity;
 import com.mobcent.discuz.module.user.activity.SettingActivity;
 import com.mobcent.discuz.module.user.activity.UserHomeActivity;
@@ -40,6 +41,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private TextView user_integral;
     TextView login_regist;
     View view;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,10 +59,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         view.findViewById(R.id.mc_forum_user_friend).setOnClickListener(this);
         view.findViewById(R.id.mc_forum_user_collect).setOnClickListener(this);
         view.findViewById(R.id.mc_forum_user_info).setOnClickListener(this);
-        user_name= (TextView) view.findViewById(R.id.mc_forum_user_name);
-        user_level= (TextView) view.findViewById(R.id.mc_forum_user_level);
-        user_integral= (TextView) view.findViewById(R.id.mc_forum_user_integral);
-        login_regist= (TextView) view.findViewById(R.id.mc_forum_user_isloging);
+        user_name = (TextView) view.findViewById(R.id.mc_forum_user_name);
+        user_level = (TextView) view.findViewById(R.id.mc_forum_user_level);
+        user_integral = (TextView) view.findViewById(R.id.mc_forum_user_integral);
+        login_regist = (TextView) view.findViewById(R.id.mc_forum_user_isloging);
 
         userInfo();
 
@@ -101,7 +103,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
             } catch (Exception e) {
 
             }
-        }else {
+        } else {
             setLogout();
 
         }
@@ -120,20 +122,21 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
         int id = v.getId();
         switch (id) {
             case R.id.draft:
-                Intent draftIntent=new Intent(getActivity(), DraftActivity.class);
+                Intent draftIntent = new Intent(getActivity(), DraftActivity.class);
                 startActivity(draftIntent);
                 break;
             case R.id.message:
+                startActivity(new Intent(getActivity(), MyMessageActivity.class));
                 break;
             case R.id.manage:
-                if (LoginUtils.getInstance().isLogin()){
-                final Dialog dialog = new Dialog(getContext(), R.style.mc_forum_home_publish_dialog_nofullscreen);
-                final LayoutInflater in = LayoutInflater.from(getContext());
-                View view = in.inflate(R.layout.user_home_switch_user_dialog, null);
-                view.findViewById(R.id.logout_layout).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
+                if (LoginUtils.getInstance().isLogin()) {
+                    final Dialog dialog = new Dialog(getContext(), R.style.mc_forum_home_publish_dialog_nofullscreen);
+                    final LayoutInflater in = LayoutInflater.from(getContext());
+                    View view = in.inflate(R.layout.user_home_switch_user_dialog, null);
+                    view.findViewById(R.id.logout_layout).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setTitle(R.string.mc_forum_logout_dialog)
@@ -158,45 +161,45 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                             builder.create().show();
 
 
-                    }
-                });
-                dialog.setContentView(view);
-                dialog.show();
-                }else{
-                    Toast.makeText(getContext(),R.string.mc_forum_warn_loginfirst,Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(getContext(),LoginActivity.class);
+                        }
+                    });
+                    dialog.setContentView(view);
+                    dialog.show();
+                } else {
+                    Toast.makeText(getContext(), R.string.mc_forum_warn_loginfirst, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                 }
                 break;
             case R.id.settings:
-                Intent SettingIntent=new Intent(getContext(), SettingActivity.class);
+                Intent SettingIntent = new Intent(getContext(), SettingActivity.class);
                 startActivity(SettingIntent);
                 break;
             case mc_forum_user_publish:
                 //我的发表
-                if (!LoginUtils.getInstance().isLogin()){
-                    Intent intent=new Intent(getContext(),LoginActivity.class);
+                if (!LoginUtils.getInstance().isLogin()) {
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
-                }else{
-                   Intent intent_public=new Intent(getContext(),MyPublicReportActivity.class);
+                } else {
+                    Intent intent_public = new Intent(getContext(), MyPublicReportActivity.class);
                     startActivity(intent_public);
                 }
 
                 break;
             case R.id.mc_forum_user_friend:
-                Intent intent2=new Intent(getActivity(), MyFriendsActivity.class);
+                Intent intent2 = new Intent(getActivity(), MyFriendsActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.mc_forum_user_collect:
-                Intent intent1=new Intent(getContext(), CollectionActivity.class);
+                Intent intent1 = new Intent(getContext(), CollectionActivity.class);
                 startActivity(intent1);
                 break;
             case R.id.mc_forum_user_info:
-                if (LoginUtils.getInstance().isLogin()){
+                if (LoginUtils.getInstance().isLogin()) {
                     Intent intent_user_info = new Intent(getContext(), UserHomeActivity.class);
                     startActivity(intent_user_info);
-                }else {
-                    Intent intent=new Intent(getContext(),LoginActivity.class);
+                } else {
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                 }
 
