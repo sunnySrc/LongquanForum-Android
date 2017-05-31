@@ -117,8 +117,6 @@
             android:text="@string/mc_forum_comment"/>
     </RelativeLayout>
     <View
-       style="@style/divider_lines"/>
-
+        style="@style/divider_lines"/>
 
 </LinearLayout>
-

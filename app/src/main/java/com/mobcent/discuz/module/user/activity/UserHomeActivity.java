@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ import ru.noties.scrollable.OnFlingOverListener;
 import ru.noties.scrollable.OnScrollChangedListener;
 import ru.noties.scrollable.ScrollableLayout;
 
+import static com.appbyme.dev.R.string.mc_forum_del_friends;
+
 /**
  * Created by pangxiaomin on 16/11/20
  * 用户资料页
@@ -39,8 +42,8 @@ import ru.noties.scrollable.ScrollableLayout;
 public class UserHomeActivity extends BasePopActivity implements View.OnClickListener{
     private String userName;
     private String uid;
-    private int isFollow=0;//0关注  1 未关注
-    private int friend_num;//好友编号(为0则不是好友)
+    private int isFollow;//0关注  1 未关注
+    private int isFriend;//好友(为0则不是好友)
     private ScrollableLayout mScrollableLayout;
     private UserHomeCenterHeader mUserCenterHeader;
     private SlidingTabLayout mSlideTabLayout;
@@ -54,6 +57,7 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
     private TextView textView_isblack;
     private TextView textView_isFollow;
 
+    ProgressBar userHome_progressbar;
     public static Boolean from;
     public static String uid_myfriendsSearch;
 
@@ -62,6 +66,7 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
 
     public void onCreate(Bundle paramBundle) {
         super.onCreate(paramBundle);
+
         //判断该页面来源
         judgementfrom();
         initData();
@@ -69,23 +74,6 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
     }
 
     private void judgementfrom() {
-        userinfo_bottom = $(R.id.item_userinfo_bottom);
-        Intent intent=getIntent();
-        from=intent.getBooleanExtra("from",false);
-        uid_myfriendsSearch=intent.getStringExtra("uid");
-        if (from){
-            myfriend_initView();
-            myFriends_initView();
-            visible_userInfo_bottom();
-
-        }else {
-            initView();
-            requestUserInfo();
-            userinfo_bottom.setVisibility(View.GONE);
-
-        }
-
-
         mScrollableLayout = $(R.id.user_home_scrollable_layout);
         mUserCenterHeader = $(R.id.header_layout);
         mUserViewPager = $(R.id.fragment_user_viewpager);
@@ -95,6 +83,22 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
         mSlideTabLayout.setCustomTabView(R.layout.view_sliding_tab_indicator, android.R.id.text1);
         mSlideTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.dz_skin_custom_main_color));
         mSlideTabLayout.setDistributeEvenly(false);
+
+
+        userinfo_bottom = $(R.id.item_userinfo_bottom);
+        Intent intent=getIntent();
+        from=intent.getBooleanExtra("from",false);
+        uid_myfriendsSearch=intent.getStringExtra("uid");
+        if (from){
+            myfriend_initView();
+            myFriends_initView();
+            visible_userInfo_bottom();
+        }else {
+            initView();
+            requestUserInfo();
+            userinfo_bottom.setVisibility(View.GONE);
+
+        }
     }
 
     private void visible_userInfo_bottom() {
@@ -118,46 +122,45 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
     private void myFriends_initView(){
         LinearLayout linearLayout_addFriends= (LinearLayout) findViewById(R.id.linearlayout_userinfo_bottom_addfriends);
         LinearLayout linearLayout_follow= (LinearLayout) findViewById(R.id.linearlayout_userinfo_bottom_follow);
+        userHome_progressbar=(ProgressBar) findViewById(R.id.userHome_progressbar);
+        //添加/删除好友
         linearLayout_addFriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (friend_num==0){
-                    Toast.makeText(UserHomeActivity.this,"添加好友",Toast.LENGTH_SHORT).show();
+                if (isFriend==0){
+                    Toast.makeText(UserHomeActivity.this,R.string.mc_forum_add_friends,Toast.LENGTH_SHORT).show();
                     Log.i("TAG", "uid_myfriendsSearch="+uid_myfriendsSearch);
-                    Log.i("TAG", "friend_num="+friend_num);
+                    Log.i("TAG", "friend_num="+isFriend);
                     //添加好友
                     String url_add="http://forum.longquanzs.org///mobcent/app/web/index.php?r=user/" +
                             "useradminview&accessToken=b8c746f3a931e0d0ffdbcc76c6360&accessSecret=6e9f2606bed4b530dcb58ff210299" +
                             "&uid="+uid_myfriendsSearch+"&act=add";
                     WebActivity.start(UserHomeActivity.this,url_add,getResources().getString(R.string.mc_forum_add_friends));
                 }else {
-                    Log.i("TAG", "friend_num="+friend_num);
+                    Toast.makeText(UserHomeActivity.this, mc_forum_del_friends,Toast.LENGTH_SHORT).show();
+                    Log.i("TAG", "friend_num="+isFriend);
                     String url_delete="http://forum.longquanzs.org///mobcent/app/web/index.php?r=user/useradminview&" +
                             "accessToken=b8c746f3a931e0d0ffdbcc76c6360&" +
                             "accessSecret=6e9f2606bed4b530dcb58ff210299&" +
                             "uid="+uid_myfriendsSearch+"&act=ignore";
-                    WebActivity.start(UserHomeActivity.this,url_delete,getResources().getString(R.string.mc_forum_del_friends));
-                    friend_num=0;
+                    WebActivity webActivity=new WebActivity();
+                    webActivity.start(UserHomeActivity.this,url_delete,getResources().getString(R.string. mc_forum_del_friends));
                 }
 
             }
         });
+        //关注/取消关注
         linearLayout_follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userHome_progressbar.setVisibility(View.VISIBLE);
                 //Toast.makeText(UserHomeActivity.this,"加关注",Toast.LENGTH_SHORT).show();
-                if (isFollow==1){
+                if (isFollow==0){
                     //添加关注
                     addFollow();
-                    imageView_isfollow.setImageResource(R.drawable.dz_personal_friend_unfollow);
-                    textView_isFollow.setText(R.string.mc_forum_cancle_follow);
-                    isFollow=0;
-                }else {
+                }else if(isFollow==1){
                     //取消关注
                     unFollow();
-                    imageView_isfollow.setImageResource(R.drawable.dz_personal_friend_follow);
-                    textView_isFollow.setText(R.string.mc_forum_add_follow);
-                    isFollow=1;
                 }
             }
         });
@@ -169,22 +172,8 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
                         userResult.getBody().getCreditList());
                 userName=userResult.getName();
                 isFollow=userResult.getIs_follow();
-                friend_num=userResult.getFriend_num();
-                Log.i("TAG", "status="+userResult.getStatus());
-                Log.i("TAG", "userTitle="+userResult.getUserTitle());
-                Log.i("TAG", "flag="+userResult.getFlag());
-                Log.i("TAG", "getEssence_num="+userResult.getEssence_num());
-                Log.i("TAG", "getCredits="+userResult.getCredits());
-                Log.i("TAG", "getIcon="+userResult.getIcon());
-                Log.i("TAG", "getSign="+userResult.getSign());
-                Log.i("TAG", "getIs_black="+userResult.getIs_black());
-                Log.i("TAG", "getIs_follow="+userResult.getIs_follow());
-                Log.i("TAG", "getFriend_num="+userResult.getFriend_num());
-                Log.i("TAG", "getIs_friend="+userResult.getIs_friend());
-                Log.i("TAG", "getScore="+userResult.getScore());
-                Log.i("TAG", "getTopic_num="+userResult.getTopic_num());
-                Log.i("TAG", "getReply_posts_num="+userResult.getReply_posts_num());
-                judgementfriends(isFollow,friend_num);
+                isFriend=userResult.getIs_friend();
+                judgementfriends(isFollow,isFriend);
             }
 
             @Override
@@ -196,39 +185,53 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
     }
     //添加关注
     private void addFollow() {
-        DiscuzRetrofit.getUserInfoService(this).addFollow(WebParamsMap.addFollow(uid_myfriendsSearch)).subscribe(new HTTPSubscriber<AddFollowBean>() {
+        DiscuzRetrofit.getUserInfoService(this).addFollow(LoginUtils.getInstance().getUserId(),WebParamsMap.addFollow(uid_myfriendsSearch)).subscribe(new HTTPSubscriber<AddFollowBean>() {
             @Override
             public void onSuccess(AddFollowBean userResult) {
-                String errCode=userResult.getHead().getErrcode();
+                if (userResult.getHead().getErrcode().equals("02000023")){
+                    userHome_progressbar.setVisibility(View.GONE);
+                    Toast.makeText(UserHomeActivity.this,R.string.mc_forum_follow_succ,Toast.LENGTH_SHORT).show();
+                    String errCode=userResult.getHead().getErrcode();
+                    imageView_isfollow.setImageResource(R.drawable.dz_personal_friend_unfollow);
+                    textView_isFollow.setText(R.string.mc_forum_cancle_follow);
+                    isFollow=1;
+                }else {
+                    userHome_progressbar.setVisibility(View.GONE);
+                    Toast.makeText(UserHomeActivity.this,userResult.getErrcode(),Toast.LENGTH_SHORT).show();
+                }
 
-                Log.i("TAG", "errCode="+errCode);
-                Log.i("TAG", "errInfo="+userResult.getHead().getErrinfo());
             }
 
             @Override
             public void onFail(int httpCode, int errorUserCode, String message) {
-
+                userHome_progressbar.setVisibility(View.GONE);
             }
         });
 
     }
     //取消关注
     private void unFollow() {
-        DiscuzRetrofit.getUserInfoService(this).addFollow(WebParamsMap.unFollow(uid_myfriendsSearch)).subscribe(new HTTPSubscriber<AddFollowBean>() {
+        DiscuzRetrofit.getUserInfoService(this).unFollow(LoginUtils.getInstance().getUserId(),WebParamsMap.unFollow(uid_myfriendsSearch)).subscribe(new HTTPSubscriber<AddFollowBean>() {
             @Override
             public void onSuccess(AddFollowBean userResult) {
                 String errCode=userResult.getHead().getErrcode();
                 if (errCode.equals("02000024")){
-
+                    userHome_progressbar.setVisibility(View.GONE);
+                    imageView_isfollow.setImageResource(R.drawable.dz_personal_friend_follow);
+                    textView_isFollow.setText(R.string.mc_forum_add_follow);
+                    isFollow=0;
+                    Toast.makeText(UserHomeActivity.this,R.string.mc_forum_unfollow_succ,Toast.LENGTH_SHORT).show();
+                }else {
+                    userHome_progressbar.setVisibility(View.GONE);
+                    Toast.makeText(UserHomeActivity.this,userResult.getErrcode(),Toast.LENGTH_SHORT).show();
                 }
 
-                Log.i("TAG", "errCode="+errCode);
-                Log.i("TAG", "errInfo="+userResult.getHead().getErrinfo());
             }
 
             @Override
             public void onFail(int httpCode, int errorUserCode, String message) {
-
+                userHome_progressbar.setVisibility(View.GONE);
+                Toast.makeText(UserHomeActivity.this,message,Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -242,18 +245,16 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
         if (isFollows==1){
             imageView_isfollow.setImageResource(R.drawable.dz_personal_friend_unfollow);
             textView_isFollow.setText(R.string.mc_forum_cancle_follow);
-            isFollow=0;
         }else if (isFollows==0){
             imageView_isfollow.setImageResource(R.drawable.dz_personal_friend_follow);
             textView_isFollow.setText(R.string.mc_forum_add_follow);
-            isFollow=1;
         };
 
         //好友
-        if (friend_num>0){
+        if (isFriend==1){
             textView_isblack.setText(R.string.mc_forum_cancel_friend);
             imageView_isblack.setImageResource(R.drawable.dz_personal_friend_del);
-        }else if (friend_num==0){
+        }else if (isFriend==0){
             textView_isblack.setText(R.string.mc_forum_add_friend);
             imageView_isblack.setImageResource(R.drawable.dz_personal_friend_add);
         }

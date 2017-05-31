@@ -31,7 +31,6 @@ public interface UserInfoService {
     @POST("index.php?r=user/userinfo")
     Observable<UserResult> requestUserInfo(@Field("userId")String userId, @FieldMap Map<String,String> params);
 
-
     /**获取用户发表*/
     @FormUrlEncoded
     @POST("index.php?r=user/topiclist")
@@ -105,5 +104,10 @@ public interface UserInfoService {
     /**编辑(添加关注)*/
     @FormUrlEncoded
     @POST("index.php?r=user/useradmin")
-    Observable<AddFollowBean> addFollow(@FieldMap Map<String,String> params);
+    Observable<AddFollowBean> addFollow(@Field("userId")String userId,@FieldMap Map<String,String> params);
+
+    /**编辑(取消关注)*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/useradmin")
+    Observable<AddFollowBean> unFollow(@Field("userId")String userId,@FieldMap Map<String,String> params);
 }

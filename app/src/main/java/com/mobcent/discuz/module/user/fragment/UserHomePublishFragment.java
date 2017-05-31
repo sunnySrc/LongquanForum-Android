@@ -62,9 +62,12 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //LinearLayoutManager manager=new LinearLayoutManager(getActivity());
         mPublishRecyclerView = $(view,R.id.fragment_publish_recyclerview);
         text_nothing = $(view,R.id.fragment_public_nothing);
         mPublishRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //manager.setAutoMeasureEnabled(true);
+        //mPublishRecyclerView.setLayoutManager(manager);
         if (from==true){
             Intent intent=getActivity().getIntent();
             String uid_SearchFriends=intent.getStringExtra("uid");
@@ -104,7 +107,6 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
                         }
                         datas.addAll(userResult.list);
                         adapter.notifyDataSetChanged();
-
                     }
                 }
 

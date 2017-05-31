@@ -7,7 +7,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_weight="14"
         >
     <ru.noties.scrollable.ScrollableLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -47,7 +47,6 @@
 
             </FrameLayout>
 
-
         </LinearLayout>
 
         <View
@@ -64,8 +63,15 @@
 
     <include
         layout="@layout/include_app_action_bar" />
+        <ProgressBar
+            android:id="@+id/userHome_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
     </FrameLayout>
-
+    <View
+        style="@style/line"/>
     <include
         layout="@layout/item_userinfo_bottom"
         />

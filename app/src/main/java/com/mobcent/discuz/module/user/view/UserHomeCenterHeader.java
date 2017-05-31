@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -121,9 +120,9 @@ public class UserHomeCenterHeader extends RelativeLayout {
         mUserTitle.setText(userInfo.getUserTitle());
         mUserTitle.setSelected(userInfo.getGender() == 0);
         mUserTitle.setVisibility(VISIBLE);
-        mEssenceNum.setText("参与"+userInfo.getEssence_num());
-        mFriendNum.setText("关注"+userInfo.getFriend_num());
-        mFollowNum.setText("粉丝"+userInfo.getFollow_num());
+        mEssenceNum.setText(getResources().getString(R.string.mc_forum_my_partin)+userInfo.getEssence_num());
+        mFriendNum.setText(getResources().getString(R.string.mc_forum_user_follow)+userInfo.getFriend_num());
+        mFollowNum.setText(getResources().getString(R.string.mc_forum_user_fan)+userInfo.getFollow_num());
         mSign.setText(userInfo.getSign());
     }
 

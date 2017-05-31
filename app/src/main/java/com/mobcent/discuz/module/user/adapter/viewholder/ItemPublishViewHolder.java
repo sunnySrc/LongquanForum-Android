@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.appbyme.dev.R;
 import com.bumptech.glide.Glide;
 import com.mobcent.discuz.base.UIJumper;
-import com.mobcent.discuz.module.user.adapter.collectionAdapter.CollectionRecycle_adapter;
 import com.mobcent.discuz.uitls.DateUtils;
 
 import java.util.ArrayList;
@@ -56,19 +55,11 @@ public class ItemPublishViewHolder extends RecyclerView.ViewHolder {
         item_publish_total.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //onItemClickLitener.onitemclick(item_publish_total, position);
                 String topic_id=datas.get(position).getTopic_id();
                 UIJumper.jumpTopic(ctx,Long.parseLong(topic_id));
             }
         });
     }
-    private CollectionRecycle_adapter.OnItemClickLitener onItemClickLitener;
-
-//    //设置回调接口
-//    public interface OnItemClickLitener {
-//        void onitemclick(View view, int pos);
-//        void onitemlongclick(View view, int pos);
-//    }
 
     private void invisible() {
         image01.setVisibility(View.GONE);
