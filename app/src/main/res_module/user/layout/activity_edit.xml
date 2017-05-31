@@ -9,7 +9,7 @@
     tools:context="com.mobcent.discuz.module.user.activity.EditActivity">
     <include
         layout="@layout/include_app_action_bar" />
-    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_board_height" />
+    <View android:background="#ffdddddd" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_board_height" />
     <EditText
         android:id="@+id/edit_single"
         android:layout_width="match_parent"
@@ -29,5 +29,5 @@
         android:minLines="5"
         android:maxLines="5"
         />
-    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="match_parent" />
+    <View android:background="#ffdddddd" android:layout_width="fill_parent" android:layout_height="match_parent" />
 </LinearLayout>

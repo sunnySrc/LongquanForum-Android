@@ -12,7 +12,7 @@
         android:orientation="vertical">
         <include
             layout="@layout/include_app_action_bar" />
-    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
+    <View android:background="#ffdddddd" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
     <RelativeLayout
         android:id="@+id/compile_head"
         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
     </RelativeLayout>
-    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
+    <View android:background="#ffdddddd" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
     <RelativeLayout
         android:id="@+id/compile_signature"
         android:layout_width="match_parent"
@@ -88,7 +88,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
     </RelativeLayout>
-    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
+    <View android:background="#ffdddddd" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
     <RelativeLayout
         android:id="@+id/compile_cellphone"
         android:layout_width="match_parent"
@@ -118,7 +118,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
     </RelativeLayout>
-    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
+    <View android:background="#ffdddddd" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
     <RelativeLayout
         android:id="@+id/compile_qq"
         android:layout_width="match_parent"
@@ -148,7 +148,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
     </RelativeLayout>
-    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
+    <View android:background="#ffdddddd" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
     <RelativeLayout
         android:id="@+id/compile_email"
         android:layout_width="match_parent"
