@@ -27,19 +27,6 @@
             android:layout_marginLeft="20dp"
             android:textSize="@dimen/pickerview_textsize"
             android:layout_marginStart="20dp" />
-        <!--
-        <circleimageview.CircleDisplayer
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/circleImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_launcher"
-            app:border_width="2dp"
-            app:border_color="#ccc"
-            />
-
-        -->
 
         <ImageView
             android:id="@+id/compile_back_image"
@@ -178,7 +165,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
     </RelativeLayout>
-    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
+    <View android:background="#ffdddddd" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
 
     <RelativeLayout
         android:id="@+id/compile_graduate_institutions"
@@ -209,7 +196,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
     </RelativeLayout>
-    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
+    <View android:background="#ffdddddd" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
 
     <RelativeLayout
         android:id="@+id/compile_education"
@@ -242,7 +229,7 @@
             android:layout_toLeftOf="@id/compile_activity_img_edu"
             />
     </RelativeLayout>
-    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
+    <View android:background="#ffdddddd" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
     <RelativeLayout
         android:id="@+id/compile_company"
         android:layout_width="match_parent"
@@ -272,7 +259,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
     </RelativeLayout>
-    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
+    <View android:background="#ffdddddd" android:layout_width="fill_parent" android:layout_height="@dimen/com_facebook_likeboxcountview_border_width" />
 
     <RelativeLayout
         android:id="@+id/compile_profession"
@@ -303,7 +290,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
     </RelativeLayout>
-    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
+    <View android:background="#ffdddddd" android:layout_width="fill_parent" android:layout_height="@dimen/mc_forum_layout_height" />
     <RelativeLayout
         android:id="@+id/compile_nickname"
         android:layout_width="match_parent"
@@ -333,7 +320,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/com_facebook_share_button_compound_drawable_padding"/>
     </RelativeLayout>
-    <View android:background="#ffd9d9d9" android:layout_width="fill_parent" android:layout_height="match_parent" />
+    <View android:background="#ffdddddd" android:layout_width="fill_parent" android:layout_height="match_parent" />
 
 </LinearLayout>
 </ScrollView>
