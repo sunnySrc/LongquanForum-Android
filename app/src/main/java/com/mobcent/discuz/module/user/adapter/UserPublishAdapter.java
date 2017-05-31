@@ -2,6 +2,7 @@ package com.mobcent.discuz.module.user.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -21,15 +22,18 @@ public class UserPublishAdapter extends RecyclerView.Adapter {
 
     private Context context;
     public List<Publish> datas;
+    private int from;
 
-    public UserPublishAdapter(Context context,List<Publish> datas) {
+    public UserPublishAdapter(Context context,List<Publish> datas,int from) {
         this.context = context;
         this.datas = datas;
+        this.from = from;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ItemPublishViewHolder(View.inflate(context, R.layout.item_recycler_publish,null));
+        Log.i("TAG", "viewType="+viewType);
+        return new ItemPublishViewHolder(View.inflate(context, R.layout.item_recycler_publish,null),from);
     }
 
     @Override

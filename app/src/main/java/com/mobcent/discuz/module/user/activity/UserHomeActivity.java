@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -129,8 +128,6 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
             public void onClick(View v) {
                 if (isFriend==0){
                     Toast.makeText(UserHomeActivity.this,R.string.mc_forum_add_friends,Toast.LENGTH_SHORT).show();
-                    Log.i("TAG", "uid_myfriendsSearch="+uid_myfriendsSearch);
-                    Log.i("TAG", "friend_num="+isFriend);
                     //添加好友
                     String url_add="http://forum.longquanzs.org///mobcent/app/web/index.php?r=user/" +
                             "useradminview&accessToken=b8c746f3a931e0d0ffdbcc76c6360&accessSecret=6e9f2606bed4b530dcb58ff210299" +
@@ -138,7 +135,6 @@ public class UserHomeActivity extends BasePopActivity implements View.OnClickLis
                     WebActivity.start(UserHomeActivity.this,url_add,getResources().getString(R.string.mc_forum_add_friends));
                 }else {
                     Toast.makeText(UserHomeActivity.this, mc_forum_del_friends,Toast.LENGTH_SHORT).show();
-                    Log.i("TAG", "friend_num="+isFriend);
                     String url_delete="http://forum.longquanzs.org///mobcent/app/web/index.php?r=user/useradminview&" +
                             "accessToken=b8c746f3a931e0d0ffdbcc76c6360&" +
                             "accessSecret=6e9f2606bed4b530dcb58ff210299&" +

@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/item_public_relative_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
@@ -38,16 +39,34 @@
             android:textSize="10sp"
             android:text="@string/mc_forum_publish_fiveMinitesLater"/>
 
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp">
+        <ImageView
+            android:id="@+id/item_mypublic_image_essence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dz_list_icon_essence"
+            android:visibility="gone"/>
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/item_mypublic_text_hot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/mc_forum_hot_posts_mark"
+            android:textColor="#0000ff"/>
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/mc_forum_bg3_text_n"
-            android:layout_below="@id/item_publish_avatar"
-            android:layout_marginTop="10dp"
             android:text="@string/mc_forum_publish_content_myself"
             android:id="@+id/tv_content" />
+    </LinearLayout>
 
-    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

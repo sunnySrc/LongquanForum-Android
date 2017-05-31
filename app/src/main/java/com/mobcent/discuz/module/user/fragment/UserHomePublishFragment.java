@@ -35,7 +35,7 @@ import static com.mobcent.discuz.module.user.activity.UserHomeActivity.uid_myfri
  * @author 张春生
  */
 public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
-
+    private int UserHomeActivity=1;
     private TextView text_nothing;
     private RecyclerView mPublishRecyclerView;
     UserPublishAdapter adapter;
@@ -92,7 +92,7 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
                 }
             });
             datas = new ArrayList<>();
-            adapter = new UserPublishAdapter(getActivity(),datas);
+            adapter = new UserPublishAdapter(getActivity(),datas,UserHomeActivity);
             mPublishRecyclerView.setAdapter(adapter);
         }else {
             DiscuzRetrofit.getUserInfoService(getActivity()).requestUserPublish(WebParamsMap.user_public(LoginUtils.getInstance().getUserId())).subscribe(new HTTPSubscriber<PublishResult>() {
@@ -116,7 +116,7 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
                 }
             });
             datas = new ArrayList<>();
-            adapter = new UserPublishAdapter(getActivity(),datas);
+            adapter = new UserPublishAdapter(getActivity(),datas,UserHomeActivity);
             mPublishRecyclerView.setAdapter(adapter);
         }
 
