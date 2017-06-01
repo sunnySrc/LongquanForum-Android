@@ -66,10 +66,22 @@ public class ItemPublishViewHolder extends RecyclerView.ViewHolder {
             if (num>0){
                 visible();
                 for (int i=0;i<=2;i++){
-                    publish.getImageList().get(i);
-                    Glide.with(ctx)
-                            .load(publish.getImageList().get(i))
-                            .into(imageList.get(i));
+                    //publish.getImageList().get(i);
+                    try {
+                        Glide.with(ctx)
+                                .load(publish.getImageList().get(i))
+                                .into(imageList.get(i));
+                    } catch (IndexOutOfBoundsException e) {
+                        switch (i){
+                            case 1:
+                                image02.setVisibility(View.INVISIBLE);
+                                image03.setVisibility(View.INVISIBLE);
+                                break;
+                            case 2:
+                                image03.setVisibility(View.INVISIBLE);
+                                break;
+                        }
+                    }
                 }
             }else {
                 invisible();
