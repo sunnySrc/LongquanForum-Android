@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appbyme.dev.R;
+import com.bumptech.glide.Glide;
 import com.mobcent.discuz.activity.BasePopActivity;
 import com.mobcent.discuz.activity.LoginUtils;
 import com.mobcent.discuz.base.WebParamsMap;
@@ -47,7 +48,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.appbyme.dev.R.id.compile_back_image;
+
 public class CompileActivity extends BasePopActivity implements View.OnClickListener {
+    ImageView head_image;
     static File file;
     static String photoPath;
     private String edu;
@@ -75,8 +79,26 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
             @Override
             public void onSuccess(CompileBeans compileBean) {
                 if (compileBean.getHead().getErrcode().equals("00000000")){
-                    Log.i("TAG", "成功");
                     int number=compileBean.getList().size();
+                    String head=compileBean.getList().get(0).getField().get(0).getNowSet().toString();
+                    String sign=compileBean.getList().get(0).getField().get(1).getNowSet().toString();
+                    String mobile=compileBean.getList().get(1).getField().get(0).getNowSet().toString();
+                    String qq=compileBean.getList().get(1).getField().get(1).getNowSet().toString();
+                    String email=compileBean.getList().get(1).getField().get(2).getNowSet().toString();
+                    String graduateschool=compileBean.getList().get(2).getField().get(0).getNowSet().toString();
+                    String education=compileBean.getList().get(2).getField().get(1).getNowSet().toString();
+                    String company=compileBean.getList().get(3).getField().get(0).getNowSet().toString();
+                    String occupation=compileBean.getList().get(3).getField().get(1).getNowSet().toString();
+                    String nickname=compileBean.getList().get(4).getField().get(0).getNowSet().toString();
+                    Glide.with(CompileActivity.this).load(head).into(head_image);
+                    compile_signature_text.setText(sign);
+                    compile_cellphone_text.setText(mobile);
+                    compile_qq_text.setText(qq);
+                    compile_email_text.setText(email);
+                    compile_graduate_institutions_text.setText(graduateschool);
+                    compile_company_text.setText(company);
+                    compile_profession_text.setText(occupation);
+                    compile_nickname_text.setText(nickname);
                 }
 
             }
@@ -104,7 +126,8 @@ public class CompileActivity extends BasePopActivity implements View.OnClickList
 
     private void initial() {
         getAppActionBar().setTitle(R.string.mc_forum_user_my_info);
-        findViewById(R.id.compile_back_image).setOnClickListener(this);
+        head_image= (ImageView) findViewById(compile_back_image);
+        head_image.setOnClickListener(this);
         findViewById(R.id.compile_head).setOnClickListener(this);
         findViewById(R.id.compile_signature).setOnClickListener(this);
         findViewById(R.id.compile_education).setOnClickListener(this);

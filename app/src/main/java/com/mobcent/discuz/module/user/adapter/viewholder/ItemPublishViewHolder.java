@@ -32,6 +32,8 @@ public class ItemPublishViewHolder extends RecyclerView.ViewHolder {
         imageList.add(image03);
         if(publish!=null){
             if (from==1){
+                item_publish_bottom1.setVisibility(View.VISIBLE);
+                item_publish_bottom2.setVisibility(View.GONE);
                 Glide.with(ctx)
                         .load(publish.getUserAvatar())
                         .into(item_publish_avatar);
@@ -42,10 +44,13 @@ public class ItemPublishViewHolder extends RecyclerView.ViewHolder {
                 tv_look_num.setText(Integer.toString(publish.getHits()));
                 item_publish_reply.setText(Integer.toString(publish.getReplies()));
             }else if (from==2){
+                item_publish_bottom1.setVisibility(View.GONE);
+                item_publish_bottom2.setVisibility(View.VISIBLE);
                 item_publish_head.setVisibility(View.GONE);
                 tv_content.setText(publish.getTitle());
-                tv_look_num.setText(Integer.toString(publish.getHits()));
-                item_publish_reply.setText(Integer.toString(publish.getReplies()));
+                item_publish_bottom2_readed.setText(Integer.toString(publish.getHits())+ctx.getResources().getString(R.string.mc_forum_topic_list_read));
+                item_publish_bottom2_time.setText(DateUtils.stampToDate(String.valueOf(publish.getLast_reply_date())));
+                item_publish_bottom2_title.setText(publish.getUser_nick_name());
                 if (publish.getEssence()==0){
                     item_publish_essence.setVisibility(View.GONE);
                 }else {
@@ -92,6 +97,8 @@ public class ItemPublishViewHolder extends RecyclerView.ViewHolder {
     }
 
     LinearLayout item_publish_total;
+    RelativeLayout item_publish_bottom1;
+    LinearLayout item_publish_bottom2;
     RelativeLayout item_publish_head;
     ImageView item_publish_avatar;
     ImageView item_publish_essence;
@@ -101,6 +108,10 @@ public class ItemPublishViewHolder extends RecyclerView.ViewHolder {
     TextView tv_look_num;
     TextView item_publish_reply;
     TextView item_mypublic_text_hot;
+
+    TextView item_publish_bottom2_time;
+    TextView item_publish_bottom2_title;
+    TextView item_publish_bottom2_readed;
     ImageView image01,image02,image03;
 
     public ItemPublishViewHolder(View view,int from) {
@@ -108,16 +119,19 @@ public class ItemPublishViewHolder extends RecyclerView.ViewHolder {
         this.from=from;
         item_publish_total = (LinearLayout) view.findViewById(R.id.item_publish_total);
         item_publish_head = (RelativeLayout) view.findViewById(R.id.item_public_relative_head);
+        item_publish_bottom1 = (RelativeLayout) view.findViewById(R.id.item_public_relative_bottom1);
+        item_publish_bottom2 = (LinearLayout) view.findViewById(R.id.item_public_relative_bottom2);
         item_publish_avatar = (ImageView) view.findViewById(R.id.item_publish_avatar);
-
         item_publish_essence = (ImageView) view.findViewById(R.id.item_mypublic_image_essence);
         item_mypublic_text_hot = (TextView) view.findViewById(R.id.item_mypublic_text_hot);
-
         item_publish_name = (TextView) view.findViewById(R.id.item_publish_name);
         item_publish_time = (TextView) view.findViewById(R.id.item_publish_time);
         tv_content = (TextView) view.findViewById(R.id.tv_content);
         tv_look_num = (TextView) view.findViewById(R.id.tv_look_num);
         item_publish_reply = (TextView) view.findViewById(R.id.item_publish_reply);
+        item_publish_bottom2_time = (TextView) view.findViewById(R.id.item_publish_bottom2_time);
+        item_publish_bottom2_title = (TextView) view.findViewById(R.id.item_publish_bottom2_title);
+        item_publish_bottom2_readed = (TextView) view.findViewById(R.id.item_publish_bottom2_readed);
         image01 = (ImageView) view.findViewById(R.id.item_image_myfriend_infoImage1);
         image02 = (ImageView) view.findViewById(R.id.item_image_myfriend_infoImage2);
         image03 = (ImageView) view.findViewById(R.id.item_image_myfriend_infoImage3);

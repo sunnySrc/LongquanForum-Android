@@ -10,7 +10,7 @@ import discuz.com.net.service.model.bean.compilebean.userInfo.UserInfo;
  * Created by $Createdbymynameon on 2017/5/1.
  */
 
-public class Lists {
+public class List {
     java.util.List<Defaults> defaults;
     java.util.List<Contact> contacts;
     java.util.List<Education> educations;
