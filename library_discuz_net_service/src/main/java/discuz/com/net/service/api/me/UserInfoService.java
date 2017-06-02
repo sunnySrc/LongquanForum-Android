@@ -3,6 +3,7 @@ package discuz.com.net.service.api.me;
 import java.util.Map;
 
 import discuz.com.net.service.model.bean.MyFriend.MyFriends;
+import discuz.com.net.service.model.bean.addFollowBean.AddFollowBean;
 import discuz.com.net.service.model.bean.block.Block;
 import discuz.com.net.service.model.bean.collectionBean.ColoectionBean;
 import discuz.com.net.service.model.bean.compileBeans.CompileBeans;
@@ -29,7 +30,6 @@ public interface UserInfoService {
     @FormUrlEncoded
     @POST("index.php?r=user/userinfo")
     Observable<UserResult> requestUserInfo(@Field("userId")String userId, @FieldMap Map<String,String> params);
-
 
     /**获取用户发表*/
     @FormUrlEncoded
@@ -100,4 +100,14 @@ public interface UserInfoService {
     @FormUrlEncoded
     @POST("index.php?r=user/updateusersign")
     Observable<EditInfoBean> myselfInfoedited(@FieldMap Map<String,String> params);
+
+    /**编辑(添加关注)*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/useradmin")
+    Observable<AddFollowBean> addFollow(@Field("userId")String userId,@FieldMap Map<String,String> params);
+
+    /**编辑(取消关注)*/
+    @FormUrlEncoded
+    @POST("index.php?r=user/useradmin")
+    Observable<AddFollowBean> unFollow(@Field("userId")String userId,@FieldMap Map<String,String> params);
 }

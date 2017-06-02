@@ -23,6 +23,7 @@ import discuz.com.retrofit.library.HTTPSubscriber;
 public class EditActivity extends BasePopActivity {
     private String edit;
     private String  title;
+    private String content;
     private EditText single;
     private EditText doubles;
     //private String edit;
@@ -34,6 +35,7 @@ public class EditActivity extends BasePopActivity {
         intiial();
         Intent  intent =getIntent();
         title=intent.getStringExtra("title");
+        content=intent.getStringExtra("content");
         getAppActionBar().setTitle(title);
         isSingle=intent.getBooleanExtra("single",false);
         Boolean iscellphone=intent.getBooleanExtra("phone",false);
@@ -41,12 +43,14 @@ public class EditActivity extends BasePopActivity {
         if (isSingle){
             single.setVisibility(View.VISIBLE);
             doubles.setVisibility(View.GONE);
+            single.setText(content);
             if(iscellphone){
                 single.setInputType(InputType.TYPE_CLASS_PHONE);//只能输入手机号码
             }
         }else {
             single.setVisibility(View.GONE);
             doubles.setVisibility(View.VISIBLE);
+            doubles.setText(content);
 
         }
     }

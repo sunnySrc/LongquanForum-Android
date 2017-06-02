@@ -12,7 +12,7 @@ public class UserResult extends BaseResult<UserBodyList> {
     private int flag;
     private int is_black;
     private int is_follow;
-    private int is_friend;
+    private int isFriend;
     private String icon;
     private String level_url;
     private String email;
@@ -57,11 +57,11 @@ public class UserResult extends BaseResult<UserBodyList> {
     }
 
     public int getIs_friend() {
-        return is_friend;
+        return isFriend;
     }
 
     public void setIs_friend(int is_friend) {
-        this.is_friend = is_friend;
+        this.isFriend = is_friend;
     }
 
     public String getIcon() {

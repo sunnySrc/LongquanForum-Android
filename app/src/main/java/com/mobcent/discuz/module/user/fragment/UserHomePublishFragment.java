@@ -35,7 +35,7 @@ import static com.mobcent.discuz.module.user.activity.UserHomeActivity.uid_myfri
  * @author 张春生
  */
 public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
-
+    private int UserHomeActivity=1;
     private TextView text_nothing;
     private RecyclerView mPublishRecyclerView;
     UserPublishAdapter adapter;
@@ -54,8 +54,7 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user_home_publish, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_user_home_publish,container, false);
         return view;
     }
 
@@ -63,9 +62,12 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //LinearLayoutManager manager=new LinearLayoutManager(getActivity());
         mPublishRecyclerView = $(view,R.id.fragment_publish_recyclerview);
         text_nothing = $(view,R.id.fragment_public_nothing);
         mPublishRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //manager.setAutoMeasureEnabled(true);
+        //mPublishRecyclerView.setLayoutManager(manager);
         if (from==true){
             Intent intent=getActivity().getIntent();
             String uid_SearchFriends=intent.getStringExtra("uid");
@@ -90,7 +92,7 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
                 }
             });
             datas = new ArrayList<>();
-            adapter = new UserPublishAdapter(getActivity(),datas);
+            adapter = new UserPublishAdapter(getActivity(),datas,UserHomeActivity);
             mPublishRecyclerView.setAdapter(adapter);
         }else {
             DiscuzRetrofit.getUserInfoService(getActivity()).requestUserPublish(WebParamsMap.user_public(LoginUtils.getInstance().getUserId())).subscribe(new HTTPSubscriber<PublishResult>() {
@@ -105,7 +107,6 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
                         }
                         datas.addAll(userResult.list);
                         adapter.notifyDataSetChanged();
-
                     }
                 }
 
@@ -115,11 +116,12 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
                 }
             });
             datas = new ArrayList<>();
-            adapter = new UserPublishAdapter(getActivity(),datas);
+            adapter = new UserPublishAdapter(getActivity(),datas,UserHomeActivity);
             mPublishRecyclerView.setAdapter(adapter);
         }
 
     }
+
 
     @Override
     public boolean canScrollVertically(int direction) {
@@ -142,12 +144,11 @@ public class UserHomePublishFragment extends BaseUserInnerScrollFragment  {
                     datas.addAll(userResult.list);
                     adapter.notifyDataSetChanged();
                 }
-                Log.i("longquan","获取数据成功");
             }
 
             @Override
             public void onFail(int httpCode, int errorUserCode, String message) {
-                Log.i("longquan","获取失败");
+                Log.i("longquan","获取失败,失败原因:"+message);
             }
         });
     }

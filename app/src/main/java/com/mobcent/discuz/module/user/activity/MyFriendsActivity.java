@@ -35,7 +35,7 @@ public class MyFriendsActivity extends BasePopActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_friend);
+        getAppActionBar().setTitle(R.string.mc_forum_my_friends);
         if (!LoginUtils.getInstance().isLogin()){
             Intent intent=new Intent(this,LoginActivity.class);
             startActivity(intent);
@@ -109,5 +109,10 @@ public class MyFriendsActivity extends BasePopActivity {
     @Override
     protected Fragment initContentFragment() {
         return null;
+    }
+
+    @Override
+    public int initLayout() {
+        return R.layout.activity_my_friend;
     }
 }

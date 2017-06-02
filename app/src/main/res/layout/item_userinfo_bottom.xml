@@ -1,55 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/item_userinfo_bottom"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:background="#FFFFFF"
         android:visibility="visible"
-        android:layout_gravity="bottom">
-
+        >
         <LinearLayout
+            android:id="@+id/linearlayout_userinfo_bottom_addfriends"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="24dp"
             android:layout_weight="1">
+
             <ImageView
+                android:id="@+id/userinfo_imageview_isblack"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:layout_gravity="center_vertical"
                 />
+
             <TextView
+                android:id="@+id/userinfo_textview_isblack"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:text="1"/>
+                android:gravity="center_vertical"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_userinfo_bottom_follow"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="24dp"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/userinfo_imageview_isFollow"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/userinfo_textview_isFollow"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="24dp"
             android:layout_weight="1">
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:src="@drawable/dz_personal_msg_send"
                 android:layout_weight="1"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:text="2"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:text="3"/>
+                android:gravity="center_vertical"
+                android:text="@string/mc_forum_send_msg"/>
         </LinearLayout>
 </LinearLayout>

@@ -3,6 +3,8 @@
   */
 package discuz.com.net.service.model.bean.compileBeans;
 
+import java.util.List;
+
 /**
  * Auto-generated: 2017-05-02 11:3:55
  *
@@ -13,18 +15,20 @@ public class Lists {
 
     private String name;
     private java.util.List<Field> field;
+
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
-         this.name = name;
-     }
-     public String getName() {
-         return name;
-     }
+        this.name = name;
+    }
 
-    public void setField(java.util.List<Field> field) {
-         this.field = field;
-     }
-     public java.util.List<Field> getField() {
-         return field;
-     }
+    public List<Field> getField() {
+        return field;
+    }
 
+    public void setField(List<Field> field) {
+        this.field = field;
+    }
 }

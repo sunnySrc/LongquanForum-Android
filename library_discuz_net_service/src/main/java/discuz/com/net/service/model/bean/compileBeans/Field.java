@@ -4,8 +4,6 @@
 package discuz.com.net.service.model.bean.compileBeans;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-import java.util.List;
-
 /**
  * Auto-generated: 2017-05-02 11:3:55
  *
@@ -22,27 +20,26 @@ public class Field {
     private String type;
     private int size;
     @JsonProperty("nowSet")
-    private java.util.List<Graduated> nowSet;
-    //private Lists<String> nowSet;
-    private java.util.List<Choices> choices;
+    private Object nowSet;
+    //private java.util.List<Choices> choices;
 
 
 
-    public List<Graduated> getNowSet() {
+    public Object getNowSet() {
         return nowSet;
     }
 
-    public void setNowSet(List<Graduated> nowSet) {
+    public void setNowSet(Object nowSet) {
         this.nowSet = nowSet;
     }
 
-    public List<Choices> getChoices() {
-        return choices;
-    }
-
-    public void setChoices(List<Choices> choices) {
-        this.choices = choices;
-    }
+//    public List<Choices> getChoices() {
+//        return choices;
+//    }
+//
+//    public void setChoices(List<Choices> choices) {
+//        this.choices = choices;
+//    }
 
 
     public void setName(String name) {
