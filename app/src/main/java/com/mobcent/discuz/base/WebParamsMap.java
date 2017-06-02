@@ -15,9 +15,9 @@ public class WebParamsMap {
     public static HashMap<String,String> baseMap(){
         HashMap<String,String> map = new HashMap<>();
         map.put(WebParamsKey.packageName, WebParamsValue.packageName);
-        map.put(WebParamsKey.accessToken, WebParamsValue.accessToken);
         map.put(WebParamsKey.appName, WebParamsValue.appName);
-        map.put(WebParamsKey.accessSecret,  WebParamsValue.accessSecret);
+        map.put(WebParamsKey.accessToken, LoginUtils.getInstance().getAccessToken());
+        map.put(WebParamsKey.accessSecret, LoginUtils.getInstance().getAccessSecret());
         map.put(WebParamsKey.sdkVersion, WebParamsValue.sdkVersion);
         map.put(WebParamsKey.forumKey,WebParamsValue.forumKey);
         map.put(WebParamsKey.imei, WebParamsValue.imei);

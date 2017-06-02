@@ -36,7 +36,7 @@ public class MyPublicReportActivity extends BasePopActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_public_report);
+        getAppActionBar().setTitle(R.string.mc_forum_my_publish);
         xRecycler= (XRecyclerView) findViewById(R.id.xr_my_public);
         nothingReport= (RelativeLayout) findViewById(R.id.activity_my_public_nothingReport);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -91,4 +91,8 @@ public class MyPublicReportActivity extends BasePopActivity {
         startActivity(intent_publish);
     }
 
+    @Override
+    public int initLayout() {
+        return R.layout.activity_my_public_report;
+    }
 }

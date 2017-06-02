@@ -40,8 +40,7 @@ public class MyFriendsSearchActivity extends BasePopActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_friends_search);
-
+        getAppActionBar().setTitle(R.string.mc_forum_search_user);
         //adapter=new Myfriends_adapter(MyFriendsSearchActivity.this,list);
         adapter=new Myfriends_adapter();
         xRecycler= (XRecyclerView) findViewById(R.id.xr_test_myfrieds_search);
@@ -183,5 +182,10 @@ public class MyFriendsSearchActivity extends BasePopActivity {
     protected void onDestroy() {
         super.onDestroy();
         datas.clear();
+    }
+
+    @Override
+    public int initLayout() {
+        return R.layout.activity_my_friends_search;
     }
 }

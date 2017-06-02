@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.appbyme.dev.R;
@@ -32,6 +33,7 @@ public class CollectionActivity extends BasePopActivity {
     int num2 = 0;
     private final Object lock = new Object();
     private ViewGroup viewGroup;
+    private RelativeLayout collection_relative;
     private String errCode;
     private int totalNum;
     private String uid;
@@ -43,7 +45,7 @@ public class CollectionActivity extends BasePopActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collection);
+        getAppActionBar().setTitle(R.string.mc_forum_my_favorites);
         if (!LoginUtils.getInstance().isLogin()){
             Intent intent=new Intent(this,LoginActivity.class);
             startActivity(intent);
@@ -56,6 +58,7 @@ public class CollectionActivity extends BasePopActivity {
             finish();
         }
         xRecycler= (XRecyclerView) findViewById(R.id.xr_test);
+        collection_relative= (RelativeLayout) findViewById(R.id.collection_relative);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
@@ -111,29 +114,37 @@ public class CollectionActivity extends BasePopActivity {
 
             @Override
             public void onSuccess(ColoectionBean coloectionBean) {
-                final List<CollectionList> list=coloectionBean.getList();
-                adapter=new CollectionRecycle_adapter(CollectionActivity.this,list);
+                if (coloectionBean.getList().size()>0){
+                    collection_relative.setVisibility(View.GONE);
+                    xRecycler.setVisibility(View.VISIBLE);
+                    final List<CollectionList> list=coloectionBean.getList();
+                    adapter=new CollectionRecycle_adapter(CollectionActivity.this,list);
 
-                //设置点击事件
-                adapter.setOnItemClickLitener(new CollectionRecycle_adapter.OnItemClickLitener() {
-                    @Override
-                    public void onitemclick(View view, int pos) {
-                        int userid=list.get(pos-1).getUser_id();
-                        int topid=list.get(pos-1).getTopic_id();
-                        int boardid=list.get(pos-1).getBoard_id();
+                    //设置点击事件
+                    adapter.setOnItemClickLitener(new CollectionRecycle_adapter.OnItemClickLitener() {
+                        @Override
+                        public void onitemclick(View view, int pos) {
+                            int userid=list.get(pos-1).getUser_id();
+                            int topid=list.get(pos-1).getTopic_id();
+                            int boardid=list.get(pos-1).getBoard_id();
 
-                        UIJumper.jumpTopic(CollectionActivity.this,topid);
-                    }
+                            UIJumper.jumpTopic(CollectionActivity.this,topid);
+                        }
 
-                    @Override
-                    public void onitemlongclick(View view, int pos) {
+                        @Override
+                        public void onitemlongclick(View view, int pos) {
 
-                    }
-                });
+                        }
+                    });
 
-                xRecycler.setAdapter(adapter);
+                    xRecycler.setAdapter(adapter);
 
-                xRecycler.refreshComplete();
+                    xRecycler.refreshComplete();
+
+                }else {
+                    collection_relative.setVisibility(View.VISIBLE);
+                    xRecycler.setVisibility(View.GONE);
+                }
 
             }
 
@@ -147,5 +158,16 @@ public class CollectionActivity extends BasePopActivity {
     @Override
     protected Fragment initContentFragment() {
         return null;
+    }
+
+    @Override
+    public int initLayout() {
+        return R.layout.activity_collection;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        onRefresh();
     }
 }
