@@ -2,64 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F6F6F6"
+    android:background="@drawable/dz_my_msg_click_bg"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
+    <!--另一个背景选择器
+    android:background="@drawable/selector_item_click_gray"-->
 
-    <include layout="@layout/include_app_action_bar" />
+    <include
+        android:id="@+id/my_msg_fixed"
+        layout="@layout/my_include_msg_function" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/dz_my_msg_click_bg"
-        android:clickable="true"
-        android:orientation="vertical">
-
-        <include
-            android:id="@+id/my_msg_about_me"
-            layout="@layout/my_include_msg_function" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="#ffd9d9d9" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/dz_my_msg_click_bg"
-        android:clickable="true"
-        android:orientation="vertical">
-
-        <include
-            android:id="@+id/my_msg_comment"
-            layout="@layout/my_include_msg_function" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="#ffd9d9d9" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/dz_my_msg_click_bg"
-        android:clickable="true"
-        android:orientation="vertical">
-
-        <include
-            android:id="@+id/my_msg_sytem"
-            layout="@layout/my_include_msg_function" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="#ffd9d9d9" />
-
-    </LinearLayout>
+    <include
+        android:id="@+id/my_msg_friend"
+        layout="@layout/my_include_msg_function2" />
 
 
 </LinearLayout>

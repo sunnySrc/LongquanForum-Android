@@ -49,6 +49,10 @@ public class UrlFactory {
      * App显示配置
      */
     public static final String INIT_UI = "app/initui";
+    /**
+     * 我的消息
+     */
+    public static final String MESSAGE_NOTIFYLISTEX = "message/notifylistex";
 
 
 }

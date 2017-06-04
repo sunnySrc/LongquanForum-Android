@@ -119,6 +119,11 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        String uid = LoginUtils.getInstance().getUserId();
+        if (uid == null) {
+            startLoginActivity();
+            return;
+        }
         int id = v.getId();
         switch (id) {
             case R.id.draft:

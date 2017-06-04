@@ -3,12 +3,10 @@ package com.mobcent.discuz.module.user.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.View;
 import android.widget.Toast;
 
 import com.appbyme.dev.R;
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jcodecraeer.xrecyclerview.other.ProgressStyle;
 import com.mobcent.discuz.activity.BasePopActivity;
@@ -16,38 +14,28 @@ import com.mobcent.discuz.api.RequestParams;
 import com.mobcent.discuz.api.UrlFactory;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
-import com.mobcent.discuz.module.user.adapter.MessageRecycleAdapter;
+import com.mobcent.discuz.module.user.adapter.CommentRecycleAdapter;
 
 import java.util.ArrayList;
 
 import discuz.com.net.service.model.BaseResult;
-import discuz.com.net.service.model.me.MyMessage;
+import discuz.com.net.service.model.me.CommentAboutMe;
 
 import static android.widget.Toast.makeText;
 
-
 /**
- * Created by sun on 2017/5/20.
- * 我的->我的消息
+ * Created by sun on 2017/5/26.
+ * 评论我的界面
  */
-public class MyMessageActivity extends BasePopActivity {
+public class MyCommentActivity extends BasePopActivity {
 
     private XRecyclerView xRecycler;
-    private MessageRecycleAdapter adapter;
 
     @Override
     public void onCreate(Bundle paramBundle) {
         super.onCreate(paramBundle);
-
-        getAppActionBar().setTitle(R.string.mc_forum_my_message);
-        getAppActionBar().setRightIcon(R.drawable.dz_board_icon_follow, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //右上角两个小人图标，进入找朋友界面
-                //// TODO: 2017/5/25
-                Toast.makeText(MyMessageActivity.this, "我的好友，周边，推荐", Toast.LENGTH_LONG).show();
-            }
-        });
+        getAppActionBar().setTitle(R.string.mc_forum_comment);
+        onRefresh1();
 
         xRecycler = (XRecyclerView) findViewById(R.id.xr_test);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -55,9 +43,6 @@ public class MyMessageActivity extends BasePopActivity {
         xRecycler.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotatePulse);
         xRecycler.setRefreshProgressStyle(ProgressStyle.BallScaleRippleMultiple);
         xRecycler.setLoadingListener(new LoadingMore());
-        adapter = new MessageRecycleAdapter();
-        xRecycler.setAdapter(adapter);
-        onRefresh1();
     }
 
     @Override
@@ -65,44 +50,52 @@ public class MyMessageActivity extends BasePopActivity {
         return R.layout.activity_collection;
     }
 
-    @Override
-    protected Fragment initContentFragment() {
-        return null;
-    }
-
-
     private void onRefresh1() {
+        Bundle extras = getIntent().getExtras();
         RequestParams params = new RequestParams();
-        params.add("json", "{\"pageSize\":50,\"page\":1}");
+        for (String key : extras.keySet()) {
+            params.add(key, String.valueOf(extras.get(key)));
+        }
 
         params.setUseCache(true);
         DiscuzRequest request = new DiscuzRequest(UrlFactory.MESSAGE_NOTIFYLISTEX, params,
                 new HttpResponseHandler() {
                     @Override
                     public void onSuccess(String result) {
-
-                        try {
-                            MessageResult resultbean = new Gson().fromJson(result, MessageResult.class);
-                            ArrayList<MyMessage> list = resultbean.getBody().list;
-                            if (list.size() > 0) {
-                                //表示有好友消息
-                                adapter.setData(list);
-                                xRecycler.refreshComplete();
-                            }
-                        } catch (JsonSyntaxException e) {
-                            e.printStackTrace();
-                            Toast.makeText(MyMessageActivity.this, getString(R.string.mc_forum_json_error), Toast.LENGTH_LONG).show();
-
-                        }
+                        CommentResult commentResult = new Gson().fromJson(result, CommentResult.class);
+                        ArrayList<CommentAboutMe> list = commentResult.getBody().data;
+                        if (list.size() > 0) {
+                            CommentRecycleAdapter adapter = new CommentRecycleAdapter(MyCommentActivity.this, list);
+                            xRecycler.setAdapter(adapter);
+                            xRecycler.refreshComplete();
+                        } else
+                            Toast.makeText(MyCommentActivity.this, "没有人消息你" + result, Toast.LENGTH_LONG).show();
 
                     }
 
 
                     @Override
                     public void onFail(String result) {
+                        Toast.makeText(MyCommentActivity.this, getString(R.string.mc_forum_connection_fail) + result, Toast.LENGTH_LONG).show();
+
                     }
                 });
         request.begin();
+    }
+
+
+    @Override
+    protected Fragment initContentFragment() {
+        return null;
+    }
+
+    class CommentResult extends BaseResult<CommentResult.Body> {
+
+
+        class Body {
+            ArrayList<CommentAboutMe> data;
+
+        }
     }
 
     private class LoadingMore implements XRecyclerView.LoadingListener {
@@ -116,21 +109,11 @@ public class MyMessageActivity extends BasePopActivity {
             xRecycler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    makeText(MyMessageActivity.this, R.string.mc_forum_loadmore, Toast.LENGTH_SHORT).show();
+                    makeText(MyCommentActivity.this, R.string.mc_forum_loadmore, Toast.LENGTH_SHORT).show();
                     xRecycler.loadMoreComplete();
                 }
             }, 1000);
 
         }
     }
-
-    class MessageResult extends BaseResult<MessageResult.Body> {
-
-
-        class Body {
-            ArrayList<MyMessage> list;
-
-        }
-    }
-
 }
