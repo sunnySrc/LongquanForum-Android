@@ -15,26 +15,28 @@ import com.mobcent.discuz.api.UrlFactory;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 import com.mobcent.discuz.module.user.adapter.CommentRecycleAdapter;
+import com.mobcent.discuz.module.user.adapter.SystemRecycleAdapter;
 
 import java.util.ArrayList;
 
 import discuz.com.net.service.model.BaseResult;
 import discuz.com.net.service.model.me.CommentAboutMe;
+import discuz.com.net.service.model.me.SystemAboutMe;
 
 import static android.widget.Toast.makeText;
 
 /**
  * Created by sun on 2017/5/26.
- * 评论我的界面
+ * 系统消息界面
  */
-public class MyCommentActivity extends BasePopActivity {
+public class MySystemActivity extends BasePopActivity {
 
     private XRecyclerView xRecycler;
 
     @Override
     public void onCreate(Bundle paramBundle) {
         super.onCreate(paramBundle);
-        getAppActionBar().setTitle(R.string.mc_forum_comment);
+        getAppActionBar().setTitle(R.string.mc_forum_sys_msg);
         onRefresh1();
 
         xRecycler = (XRecyclerView) findViewById(R.id.xr_test);
@@ -62,21 +64,21 @@ public class MyCommentActivity extends BasePopActivity {
                 new HttpResponseHandler() {
                     @Override
                     public void onSuccess(String result) {
-                        CommentResult commentResult = new Gson().fromJson(result, CommentResult.class);
-                        ArrayList<CommentAboutMe> list = commentResult.getBody().data;
+                        CommonResult commoResult = new Gson().fromJson(result, CommonResult.class);
+                        ArrayList<SystemAboutMe> list = commoResult.getBody().data;
                         if (list.size() > 0) {
-                            CommentRecycleAdapter adapter = new CommentRecycleAdapter(list);
+                            SystemRecycleAdapter adapter = new SystemRecycleAdapter(list);
                             xRecycler.setAdapter(adapter);
                             xRecycler.refreshComplete();
                         } else
-                            Toast.makeText(MyCommentActivity.this, "没有人消息你" + result, Toast.LENGTH_LONG).show();
+                            Toast.makeText(MySystemActivity.this, "没有人消息你" + result, Toast.LENGTH_LONG).show();
 
                     }
 
 
                     @Override
                     public void onFail(String result) {
-                        Toast.makeText(MyCommentActivity.this, getString(R.string.mc_forum_connection_fail) + result, Toast.LENGTH_LONG).show();
+                        Toast.makeText(MySystemActivity.this, getString(R.string.mc_forum_connection_fail) + result, Toast.LENGTH_LONG).show();
 
                     }
                 });
@@ -89,11 +91,11 @@ public class MyCommentActivity extends BasePopActivity {
         return null;
     }
 
-    class CommentResult extends BaseResult<CommentResult.Body> {
+    class CommonResult extends BaseResult<CommonResult.Body> {
 
 
         class Body {
-            ArrayList<CommentAboutMe> data;
+            ArrayList<SystemAboutMe> data;
 
         }
     }
@@ -109,7 +111,7 @@ public class MyCommentActivity extends BasePopActivity {
             xRecycler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    makeText(MyCommentActivity.this, R.string.mc_forum_loadmore, Toast.LENGTH_SHORT).show();
+                    makeText(MySystemActivity.this, R.string.mc_forum_loadmore, Toast.LENGTH_SHORT).show();
                     xRecycler.loadMoreComplete();
                 }
             }, 1000);

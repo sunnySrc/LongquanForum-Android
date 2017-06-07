@@ -92,7 +92,7 @@ public class MyMessageActivity extends BasePopActivity {
                         } catch (JsonSyntaxException e) {
                             e.printStackTrace();
                             Toast.makeText(MyMessageActivity.this, getString(R.string.mc_forum_json_error), Toast.LENGTH_LONG).show();
-
+                            xRecycler.refreshComplete();
                         }
 
                     }

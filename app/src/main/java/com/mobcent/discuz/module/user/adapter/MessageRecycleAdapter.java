@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.appbyme.dev.R;
 import com.mobcent.discuz.module.user.activity.MyCommentActivity;
+import com.mobcent.discuz.module.user.activity.MySystemActivity;
 
 import java.util.ArrayList;
 
@@ -148,6 +149,8 @@ public class MessageRecycleAdapter extends RecyclerView.Adapter<MessageRecycleAd
                 case 2:
                     bundle.putString("type", "system");
                     //跳转"系统消息"
+                    mContext.startActivity(new Intent(mContext, MySystemActivity.class).putExtras(bundle));
+
                     break;
                 default:
                     //根据好友消息跳转

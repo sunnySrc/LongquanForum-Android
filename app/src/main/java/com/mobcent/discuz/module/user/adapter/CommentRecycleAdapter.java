@@ -27,7 +27,7 @@ import discuz.com.net.service.model.me.CommentAboutMe;
 public class CommentRecycleAdapter extends RecyclerView.Adapter<CommentRecycleAdapter.ViewHolder> {
     ArrayList<CommentAboutMe> comment_list;
 
-    public CommentRecycleAdapter(Context mContext, ArrayList<CommentAboutMe> list) {
+    public CommentRecycleAdapter( ArrayList<CommentAboutMe> list) {
         comment_list = list;
     }
 

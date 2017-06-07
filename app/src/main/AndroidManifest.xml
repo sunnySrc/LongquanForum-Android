@@ -475,6 +475,9 @@
         <activity
             android:name="com.mobcent.discuz.module.user.activity.MyCommentActivity"
             android:theme="@style/no_title_activity" />
+        <activity
+            android:name="com.mobcent.discuz.module.user.activity.MySystemActivity"
+            android:theme="@style/no_title_activity" />
     </application>
 
 </manifest>
