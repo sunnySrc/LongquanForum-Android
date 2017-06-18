@@ -9,12 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appbyme.dev.R;
 import com.bumptech.glide.Glide;
 import com.mobcent.common.TimeUtil;
+import com.mobcent.discuz.activity.PublishTopicActivity;
 import com.mobcent.discuz.base.EmoticonHelper;
+import com.mobcent.discuz.base.UIJumper;
+import com.mobcent.discuz.bean.Component;
+import com.mobcent.discuz.bean.Reply;
 
 import java.util.ArrayList;
 
@@ -27,7 +30,7 @@ import discuz.com.net.service.model.me.CommentAboutMe;
 public class CommentRecycleAdapter extends RecyclerView.Adapter<CommentRecycleAdapter.ViewHolder> {
     ArrayList<CommentAboutMe> comment_list;
 
-    public CommentRecycleAdapter( ArrayList<CommentAboutMe> list) {
+    public CommentRecycleAdapter(ArrayList<CommentAboutMe> list) {
         comment_list = list;
     }
 
@@ -54,6 +57,7 @@ public class CommentRecycleAdapter extends RecyclerView.Adapter<CommentRecycleAd
         private final TextView topic_content_text;
         private final TextView reply_content_text;
         private final Context mContext;
+        CommentAboutMe data;
 
         public ViewHolder(View view) {
             super(view);
@@ -64,9 +68,11 @@ public class CommentRecycleAdapter extends RecyclerView.Adapter<CommentRecycleAd
             reply_content_text = (TextView) view.findViewById(R.id.reply_content_text);
             topic_content_text = (TextView) view.findViewById(R.id.topic_content_text);
             view.findViewById(R.id.reply_btn).setOnClickListener(this);
+            view.findViewById(R.id.comment_at_item_layout).setOnClickListener(this);
         }
 
         public void setData(CommentAboutMe data) {
+            this.data = data;
             Glide.with(mContext).load(data.icon).into(user_icon_img);
             user_name_text.setText(data.user_name);
             time_text.setText(TimeUtil.friendTime(Long.parseLong(data.replied_date)));
@@ -96,7 +102,18 @@ public class CommentRecycleAdapter extends RecyclerView.Adapter<CommentRecycleAd
         public void onClick(View v) {
             if (v.getId() == R.id.reply_btn) {
                 // TODO: 2017/5/29  点击回复跳转
-                Toast.makeText(mContext, "点击回复跳转", Toast.LENGTH_LONG).show();
+//                最后一个参数如果是>1表示显示下面的子评论，
+                int isShowchildcomment = TextUtils.isEmpty(data.topic_content) ? 0 : 1;
+                Reply.JsonBean json = new Reply.JsonBean();
+                json.setFid(data.board_id);
+                json.setTid((int) data.topic_id);
+                json.setIsQuote(isShowchildcomment);
+                json.replyId = data.reply_remind_id;
+                PublishTopicActivity.start(mContext, Reply.build(json));
+
+            } else if (v.getId() == R.id.comment_at_item_layout) {
+                //跳转到帖子详情页
+                UIJumper.jump(mContext, Component.TYPE_POST_LIST, data.topic_id, null);
 
             }
         }

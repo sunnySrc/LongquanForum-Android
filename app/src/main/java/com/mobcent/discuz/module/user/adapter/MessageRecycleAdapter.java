@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appbyme.dev.R;
+import com.bumptech.glide.Glide;
+import com.mobcent.common.TimeUtil;
 import com.mobcent.discuz.module.user.activity.MyCommentActivity;
 import com.mobcent.discuz.module.user.activity.MySystemActivity;
 
@@ -73,20 +75,27 @@ public class MessageRecycleAdapter extends RecyclerView.Adapter<MessageRecycleAd
         private final TextView my_msg_tv_type;
         private final TextView my_msg_time;
         private final TextView my_msg_tv_content;
+        private MyMessage data;
 
+        private Context mContext;
 
         public FriendMsgHolder(View view) {
+            mContext = view.getContext();
             my_msg_iv_type = (ImageView) view.findViewById(R.id.my_msg_iv_type);
             my_msg_tv_type = (TextView) view.findViewById(R.id.my_msg_tv_type);
             my_msg_time = (TextView) view.findViewById(R.id.my_msg_time);
             my_msg_tv_content = (TextView) view.findViewById(R.id.my_msg_tv_content);
 
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                }
-            });
+        }
+
+        public void setData(MyMessage data) {
+            this.data = data;
+            my_msg_tv_type.setText(data.toUserName);
+            Glide.with(mContext).load(data.toUserAvatar).into(my_msg_iv_type);
+            my_msg_tv_content.setText(data.lastSummary);
+            my_msg_time.setText(TimeUtil.friendTime(Long.parseLong(data.lastDateline)));
+
         }
     }
 
@@ -103,7 +112,7 @@ public class MessageRecycleAdapter extends RecyclerView.Adapter<MessageRecycleAd
         public ViewHolder(View view) {
             super(view);
             mContext = view.getContext();
-            friendMsgHolder = new FriendMsgHolder(view.findViewById(R.id.my_msg_friend));
+
             msg_friend_view = view.findViewById(R.id.my_msg_friend);
 
             msg_fixed_view = view.findViewById(R.id.my_msg_fixed);
@@ -126,12 +135,17 @@ public class MessageRecycleAdapter extends RecyclerView.Adapter<MessageRecycleAd
         public void setData(MyMessage data) {
             msg_fixed_view.setVisibility(View.GONE);
             msg_friend_view.setVisibility(View.VISIBLE);
-
+            friendMsgHolder = new FriendMsgHolder(msg_friend_view);
+            friendMsgHolder.setData(data);
         }
 
         @Override
         public void onClick(View v) {
             //// TODO: 2017/6/3
+            if (position > 3) {
+                //表示好友消息
+                return;
+            }
             Bundle bundle = new Bundle();
             bundle.putString("pageSize", "20");
             bundle.putString("page", "1");

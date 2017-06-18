@@ -3,23 +3,18 @@ package com.mobcent.discuz.module.user.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appbyme.dev.R;
 import com.bumptech.glide.Glide;
-import com.mobcent.common.TimeUtil;
-import com.mobcent.discuz.base.EmoticonHelper;
+import com.mobcent.discuz.base.UIJumper;
 
 import java.util.ArrayList;
 
-import discuz.com.net.service.model.me.CommentAboutMe;
 import discuz.com.net.service.model.me.SystemAboutMe;
 
 /**
@@ -56,6 +51,7 @@ public class SystemRecycleAdapter extends RecyclerView.Adapter<SystemRecycleAdap
         private final TextView my_msg_placeholder1;
         private final TextView my_msg_time;
         private final Context mContext;
+        SystemAboutMe data;
 
         public ViewHolder(View view) {
             super(view);
@@ -68,6 +64,7 @@ public class SystemRecycleAdapter extends RecyclerView.Adapter<SystemRecycleAdap
         }
 
         public void setData(SystemAboutMe data) {
+            this.data = data;
             Glide.with(mContext).load(data.icon).into(my_msg_iv_type);
             my_msg_tv_type.setText(data.user_name);
             my_msg_tv_content.setText(data.note);
@@ -89,9 +86,7 @@ public class SystemRecycleAdapter extends RecyclerView.Adapter<SystemRecycleAdap
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.my_msg_time) {
-                // TODO: 2017/5/29  点击回复跳转
-                Toast.makeText(mContext, "点击跳转", Toast.LENGTH_LONG).show();
-
+                UIJumper.jumpWebView(mContext, data.actions.get(0).redirect, "");
             }
         }
     }

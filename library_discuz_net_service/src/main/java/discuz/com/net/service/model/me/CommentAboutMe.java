@@ -9,4 +9,7 @@ public class CommentAboutMe {
     public String user_name;
     public String topic_content;
     public String reply_content;
+    public long topic_id;
+    public int board_id;
+    public int reply_remind_id;
 }

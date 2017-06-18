@@ -18,6 +18,8 @@ import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 import com.mobcent.discuz.module.user.adapter.MessageRecycleAdapter;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import discuz.com.net.service.model.BaseResult;
@@ -73,10 +75,16 @@ public class MyMessageActivity extends BasePopActivity {
 
     private void onRefresh1() {
         RequestParams params = new RequestParams();
-        params.add("json", "{\"pageSize\":50,\"page\":1}");
+        String str = "{\"pageSize\":50,\"page\":1}";
+
+        try {
+            params.add("json", URLEncoder.encode(str, "utf-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
         params.setUseCache(true);
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.MESSAGE_NOTIFYLISTEX, params,
+        DiscuzRequest request = new DiscuzRequest(UrlFactory.MESSAGE_PMSESSIONLIST, params,
                 new HttpResponseHandler() {
                     @Override
                     public void onSuccess(String result) {
@@ -84,7 +92,7 @@ public class MyMessageActivity extends BasePopActivity {
                         try {
                             MessageResult resultbean = new Gson().fromJson(result, MessageResult.class);
                             ArrayList<MyMessage> list = resultbean.getBody().list;
-                            if (list.size() > 0) {
+                            if (list != null && list.size() > 0) {
                                 //表示有好友消息
                                 adapter.setData(list);
                                 xRecycler.refreshComplete();

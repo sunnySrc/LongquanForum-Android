@@ -53,6 +53,7 @@ public class UrlFactory {
      * 我的消息
      */
     public static final String MESSAGE_NOTIFYLISTEX = "message/notifylistex";
+    public static final String MESSAGE_PMSESSIONLIST = "message/pmsessionlist";
 
 
 }
