@@ -154,6 +154,7 @@ public class MessageRecycleAdapter extends RecyclerView.Adapter<MessageRecycleAd
                 case 0:
                     //跳转"提到我的"
                     bundle.putString("type", "at");
+                    mContext.startActivity(new Intent(mContext, MyCommentActivity.class).putExtras(bundle));
                     break;
                 case 1://
                     //跳转"评论"

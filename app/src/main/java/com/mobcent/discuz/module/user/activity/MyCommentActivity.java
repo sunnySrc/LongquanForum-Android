@@ -25,7 +25,7 @@ import static android.widget.Toast.makeText;
 
 /**
  * Created by sun on 2017/5/26.
- * 评论我的界面
+ * 评论我的界面,提到我的界面
  */
 public class MyCommentActivity extends BasePopActivity {
 
@@ -34,7 +34,17 @@ public class MyCommentActivity extends BasePopActivity {
     @Override
     public void onCreate(Bundle paramBundle) {
         super.onCreate(paramBundle);
-        getAppActionBar().setTitle(R.string.mc_forum_comment);
+        String titile = getString(R.string.mc_forum_comment);
+        Bundle extras = getIntent().getExtras();
+        for (String key : extras.keySet()) {
+            String str = String.valueOf(extras.get(key));
+            if (str.equals("at")) {
+                titile = getString(R.string.mc_forum_at_me);
+                break;
+            }
+        }
+
+        getAppActionBar().setTitle(titile);
         onRefresh1();
 
         xRecycler = (XRecyclerView) findViewById(R.id.xr_test);
