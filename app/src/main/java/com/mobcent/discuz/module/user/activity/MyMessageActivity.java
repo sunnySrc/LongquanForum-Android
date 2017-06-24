@@ -14,6 +14,7 @@ import com.jcodecraeer.xrecyclerview.other.ProgressStyle;
 import com.mobcent.discuz.activity.BasePopActivity;
 import com.mobcent.discuz.api.RequestParams;
 import com.mobcent.discuz.api.UrlFactory;
+import com.mobcent.discuz.base.WebParamsMap;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 import com.mobcent.discuz.module.user.adapter.MessageRecycleAdapter;
@@ -21,9 +22,11 @@ import com.mobcent.discuz.module.user.adapter.MessageRecycleAdapter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import discuz.com.net.service.model.BaseResult;
-import discuz.com.net.service.model.me.MyMessage;
+import discuz.com.net.service.DiscuzRetrofit;
+import discuz.com.net.service.model.me.MessageResult;
+import discuz.com.retrofit.library.HTTPSubscriber;
 
 import static android.widget.Toast.makeText;
 
@@ -74,43 +77,32 @@ public class MyMessageActivity extends BasePopActivity {
 
 
     private void onRefresh1() {
-        RequestParams params = new RequestParams();
         String str = "{\"pageSize\":50,\"page\":1}";
-
+        HashMap<String, String> my_message_map = WebParamsMap.map();
         try {
-            params.add("json", URLEncoder.encode(str, "utf-8"));
+            my_message_map.put("json", URLEncoder.encode(str, "utf-8"));
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
         }
-
-        params.setUseCache(true);
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.MESSAGE_PMSESSIONLIST, params,
-                new HttpResponseHandler() {
+        DiscuzRetrofit.getUserInfoService(this).requestMessage(my_message_map)
+                .subscribe(new HTTPSubscriber<MessageResult>() {
                     @Override
-                    public void onSuccess(String result) {
-
-                        try {
-                            MessageResult resultbean = new Gson().fromJson(result, MessageResult.class);
-                            ArrayList<MyMessage> list = resultbean.getBody().list;
-                            if (list != null && list.size() > 0) {
-                                //表示有好友消息
-                                adapter.setData(list);
-                                xRecycler.refreshComplete();
-                            }
-                        } catch (JsonSyntaxException e) {
-                            e.printStackTrace();
-                            Toast.makeText(MyMessageActivity.this, R.string.mc_forum_json_error, Toast.LENGTH_LONG).show();
-                            xRecycler.refreshComplete();
+                    public void onSuccess(MessageResult userResult) {
+                        ArrayList<MessageResult.Body.MyMessage> list = userResult.getBody().list;
+                        if (list != null && list.size() > 0) {
+                            //表示有好友消息
+                            adapter.setData(list);
                         }
+                        xRecycler.refreshComplete();
 
                     }
 
-
                     @Override
-                    public void onFail(String result) {
+                    public void onFail(int httpCode, int errorUserCode, String message) {
+                        showToast(message);
                     }
                 });
-        request.begin();
+
+
     }
 
     private class LoadingMore implements XRecyclerView.LoadingListener {
@@ -132,13 +124,5 @@ public class MyMessageActivity extends BasePopActivity {
         }
     }
 
-    class MessageResult extends BaseResult<MessageResult.Body> {
-
-
-        class Body {
-            ArrayList<MyMessage> list;
-
-        }
-    }
 
 }

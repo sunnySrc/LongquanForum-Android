@@ -21,16 +21,16 @@ import com.mobcent.discuz.bean.Reply;
 
 import java.util.ArrayList;
 
-import discuz.com.net.service.model.me.CommentAboutMe;
+import discuz.com.net.service.model.me.CommentResult;
 
 /**
  * Created by sun on 2017/5/29.
  * 我的消息，评论item布局
  */
 public class CommentRecycleAdapter extends RecyclerView.Adapter<CommentRecycleAdapter.ViewHolder> {
-    ArrayList<CommentAboutMe> comment_list;
+    ArrayList<CommentResult.Body.CommentAboutMe> comment_list;
 
-    public CommentRecycleAdapter(ArrayList<CommentAboutMe> list) {
+    public CommentRecycleAdapter(ArrayList<CommentResult.Body.CommentAboutMe> list) {
         comment_list = list;
     }
 
@@ -57,7 +57,7 @@ public class CommentRecycleAdapter extends RecyclerView.Adapter<CommentRecycleAd
         private final TextView topic_content_text;
         private final TextView reply_content_text;
         private final Context mContext;
-        CommentAboutMe data;
+        CommentResult.Body.CommentAboutMe data;
 
         public ViewHolder(View view) {
             super(view);
@@ -71,7 +71,7 @@ public class CommentRecycleAdapter extends RecyclerView.Adapter<CommentRecycleAd
             view.findViewById(R.id.comment_at_item_layout).setOnClickListener(this);
         }
 
-        public void setData(CommentAboutMe data) {
+        public void setData(CommentResult.Body.CommentAboutMe data) {
             this.data = data;
             Glide.with(mContext).load(data.icon).into(user_icon_img);
             user_name_text.setText(data.user_name);

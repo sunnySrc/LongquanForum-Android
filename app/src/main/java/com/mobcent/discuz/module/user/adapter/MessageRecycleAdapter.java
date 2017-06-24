@@ -22,14 +22,14 @@ import java.util.ArrayList;
 
 import discuz.com.net.service.config.WebParamsKey;
 import discuz.com.net.service.config.WebParamsValue;
-import discuz.com.net.service.model.me.MyMessage;
+import discuz.com.net.service.model.me.MessageResult;
 
 /**
  * Created by sun on 2017/5/29.
  * 我的消息，评论item布局
  */
 public class MessageRecycleAdapter extends RecyclerView.Adapter<MessageRecycleAdapter.ViewHolder> {
-    private ArrayList<MyMessage> comment_list = new ArrayList<>();
+    private ArrayList<MessageResult.Body.MyMessage> comment_list = new ArrayList<>();
 
     public MessageRecycleAdapter() {
     }
@@ -64,7 +64,7 @@ public class MessageRecycleAdapter extends RecyclerView.Adapter<MessageRecycleAd
         return comment_list.size() + 3;
     }
 
-    public void setData(ArrayList<MyMessage> data) {
+    public void setData(ArrayList<MessageResult.Body.MyMessage> data) {
         this.comment_list = data;
         notifyDataSetChanged();
     }
@@ -75,7 +75,7 @@ public class MessageRecycleAdapter extends RecyclerView.Adapter<MessageRecycleAd
         private final TextView my_msg_tv_type;
         private final TextView my_msg_time;
         private final TextView my_msg_tv_content;
-        private MyMessage data;
+        private MessageResult.Body.MyMessage data;
 
         private Context mContext;
 
@@ -89,7 +89,7 @@ public class MessageRecycleAdapter extends RecyclerView.Adapter<MessageRecycleAd
 
         }
 
-        public void setData(MyMessage data) {
+        public void setData(MessageResult.Body.MyMessage data) {
             this.data = data;
             my_msg_tv_type.setText(data.toUserName);
             Glide.with(mContext).load(data.toUserAvatar).into(my_msg_iv_type);
@@ -132,7 +132,7 @@ public class MessageRecycleAdapter extends RecyclerView.Adapter<MessageRecycleAd
 
         }
 
-        public void setData(MyMessage data) {
+        public void setData(MessageResult.Body.MyMessage data) {
             msg_fixed_view.setVisibility(View.GONE);
             msg_friend_view.setVisibility(View.VISIBLE);
             friendMsgHolder = new FriendMsgHolder(msg_friend_view);

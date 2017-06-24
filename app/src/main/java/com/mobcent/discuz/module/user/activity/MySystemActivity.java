@@ -12,16 +12,20 @@ import com.jcodecraeer.xrecyclerview.other.ProgressStyle;
 import com.mobcent.discuz.activity.BasePopActivity;
 import com.mobcent.discuz.api.RequestParams;
 import com.mobcent.discuz.api.UrlFactory;
+import com.mobcent.discuz.base.WebParamsMap;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 import com.mobcent.discuz.module.user.adapter.CommentRecycleAdapter;
 import com.mobcent.discuz.module.user.adapter.SystemRecycleAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import discuz.com.net.service.DiscuzRetrofit;
 import discuz.com.net.service.model.BaseResult;
-import discuz.com.net.service.model.me.CommentAboutMe;
-import discuz.com.net.service.model.me.SystemAboutMe;
+import discuz.com.net.service.model.me.CommentResult;
+import discuz.com.net.service.model.me.SystemResult;
+import discuz.com.retrofit.library.HTTPSubscriber;
 
 import static android.widget.Toast.makeText;
 
@@ -33,6 +37,7 @@ public class MySystemActivity extends BasePopActivity {
 
     private XRecyclerView xRecycler;
     private SystemRecycleAdapter adapter;
+    ArrayList<SystemResult.Body.SystemAboutMe> list = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle paramBundle) {
@@ -46,6 +51,9 @@ public class MySystemActivity extends BasePopActivity {
         xRecycler.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotatePulse);
         xRecycler.setRefreshProgressStyle(ProgressStyle.BallScaleRippleMultiple);
         xRecycler.setLoadingListener(new LoadingMore());
+
+        adapter = new SystemRecycleAdapter(list);
+        xRecycler.setAdapter(adapter);
     }
 
     @Override
@@ -55,35 +63,31 @@ public class MySystemActivity extends BasePopActivity {
 
     private void onRefresh1() {
         Bundle extras = getIntent().getExtras();
-        RequestParams params = new RequestParams();
+        HashMap<String, String> my_comment_map = WebParamsMap.map();
         for (String key : extras.keySet()) {
-            params.add(key, String.valueOf(extras.get(key)));
+            my_comment_map.put(key, String.valueOf(extras.get(key)));
         }
-
-        params.setUseCache(true);
-        DiscuzRequest request = new DiscuzRequest(UrlFactory.MESSAGE_NOTIFYLISTEX, params,
-                new HttpResponseHandler() {
+        DiscuzRetrofit.getUserInfoService(this).requestSystem(my_comment_map)
+                .subscribe(new HTTPSubscriber<SystemResult>() {
                     @Override
-                    public void onSuccess(String result) {
-                        CommonResult commoResult = new Gson().fromJson(result, CommonResult.class);
-                        ArrayList<SystemAboutMe> list = commoResult.getBody().data;
-                        if (list.size() > 0) {
-                            adapter = new SystemRecycleAdapter(list);
-                            xRecycler.setAdapter(adapter);
+                    public void onSuccess(SystemResult commentResult) {
+                        if (commentResult.getBody().data.size() > 0) {
+                            list.clear();
+                            list.addAll(commentResult.getBody().data);
+                            adapter.notifyDataSetChanged();
                             xRecycler.refreshComplete();
                         } else
-                            Toast.makeText(MySystemActivity.this, "没有人消息你" + result, Toast.LENGTH_LONG).show();
+                            showToast("没有人消息你");
 
                     }
-
 
                     @Override
-                    public void onFail(String result) {
-                        Toast.makeText(MySystemActivity.this, getString(R.string.mc_forum_connection_fail) + result, Toast.LENGTH_LONG).show();
-
+                    public void onFail(int httpCode, int errorUserCode, String message) {
+                        showToast(message);
                     }
                 });
-        request.begin();
+
+
     }
 
 
@@ -92,14 +96,6 @@ public class MySystemActivity extends BasePopActivity {
         return null;
     }
 
-    class CommonResult extends BaseResult<CommonResult.Body> {
-
-
-        class Body {
-            ArrayList<SystemAboutMe> data;
-
-        }
-    }
 
     private class LoadingMore implements XRecyclerView.LoadingListener {
         @Override

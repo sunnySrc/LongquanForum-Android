@@ -15,16 +15,16 @@ import com.mobcent.discuz.base.UIJumper;
 
 import java.util.ArrayList;
 
-import discuz.com.net.service.model.me.SystemAboutMe;
+import discuz.com.net.service.model.me.SystemResult;
 
 /**
  * Created by sun on 2017/5/29.
  * 我的系统消息，item布局
  */
 public class SystemRecycleAdapter extends RecyclerView.Adapter<SystemRecycleAdapter.ViewHolder> {
-    ArrayList<SystemAboutMe> comment_list;
+    ArrayList<SystemResult.Body.SystemAboutMe> comment_list;
 
-    public SystemRecycleAdapter(ArrayList<SystemAboutMe> list) {
+    public SystemRecycleAdapter(ArrayList<SystemResult.Body.SystemAboutMe> list) {
         comment_list = list;
     }
 
@@ -51,7 +51,7 @@ public class SystemRecycleAdapter extends RecyclerView.Adapter<SystemRecycleAdap
         private final TextView my_msg_placeholder1;
         private final TextView my_msg_time;
         private final Context mContext;
-        SystemAboutMe data;
+        SystemResult.Body.SystemAboutMe data;
 
         public ViewHolder(View view) {
             super(view);
@@ -63,7 +63,7 @@ public class SystemRecycleAdapter extends RecyclerView.Adapter<SystemRecycleAdap
             my_msg_placeholder1 = (TextView) view.findViewById(R.id.my_msg_placeholder1);
         }
 
-        public void setData(SystemAboutMe data) {
+        public void setData(SystemResult.Body.SystemAboutMe data) {
             this.data = data;
             Glide.with(mContext).load(data.icon).into(my_msg_iv_type);
             my_msg_tv_type.setText(data.user_name);
