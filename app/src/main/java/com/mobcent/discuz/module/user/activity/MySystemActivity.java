@@ -32,6 +32,7 @@ import static android.widget.Toast.makeText;
 public class MySystemActivity extends BasePopActivity {
 
     private XRecyclerView xRecycler;
+    private SystemRecycleAdapter adapter;
 
     @Override
     public void onCreate(Bundle paramBundle) {
@@ -67,7 +68,7 @@ public class MySystemActivity extends BasePopActivity {
                         CommonResult commoResult = new Gson().fromJson(result, CommonResult.class);
                         ArrayList<SystemAboutMe> list = commoResult.getBody().data;
                         if (list.size() > 0) {
-                            SystemRecycleAdapter adapter = new SystemRecycleAdapter(list);
+                            adapter = new SystemRecycleAdapter(list);
                             xRecycler.setAdapter(adapter);
                             xRecycler.refreshComplete();
                         } else

@@ -44,13 +44,13 @@ public class MessageRecycleAdapter extends RecyclerView.Adapter<MessageRecycleAd
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.setPosition(position);
         switch (position) {
-            case 0:
+            case 0://列表的前三个位置空出来，第一个位置表示，"提到我的"
                 holder.setonClick(R.drawable.dz_msg_icon_at, R.string.mc_forum_at_me);
                 break;
-            case 1://
+            case 1://列表的前三个位置空出来，第二个位置表示，"评论"
                 holder.setonClick(R.drawable.dz_msg_icon_reply, R.string.mc_forum_comment);
                 break;
-            case 2:
+            case 2://列表的前三个位置空出来，第三个位置表示，"系统消息"
                 holder.setonClick(R.drawable.dz_msg_icon_friend, R.string.mc_forum_sys_msg);
                 break;
             default:

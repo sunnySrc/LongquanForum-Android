@@ -30,6 +30,7 @@ import static android.widget.Toast.makeText;
 public class MyCommentActivity extends BasePopActivity {
 
     private XRecyclerView xRecycler;
+    private CommentRecycleAdapter adapter;
 
     @Override
     public void onCreate(Bundle paramBundle) {
@@ -75,7 +76,7 @@ public class MyCommentActivity extends BasePopActivity {
                         CommentResult commentResult = new Gson().fromJson(result, CommentResult.class);
                         ArrayList<CommentAboutMe> list = commentResult.getBody().data;
                         if (list.size() > 0) {
-                            CommentRecycleAdapter adapter = new CommentRecycleAdapter(list);
+                            adapter = new CommentRecycleAdapter(list);
                             xRecycler.setAdapter(adapter);
                             xRecycler.refreshComplete();
                         } else
