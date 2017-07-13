@@ -145,7 +145,7 @@ public class Reply implements Serializable{
         private int isAnonymous;
         private int isOnlyAuthor;
         private int isShowPostion;
-        private int replyId;
+        public int replyId;
         private int isQuote;
 
         public int getFid() {

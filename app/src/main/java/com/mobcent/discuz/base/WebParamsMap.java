@@ -1,5 +1,6 @@
 package com.mobcent.discuz.base;
 
+import com.mobcent.common.AppHashUtil;
 import com.mobcent.discuz.activity.LoginUtils;
 
 import java.util.HashMap;
@@ -34,7 +35,7 @@ public class WebParamsMap {
         map.put(WebParamsKey.appName, WebParamsValue.appNames);
         map.put(WebParamsKey.sdkType, WebParamsValue.sdkTypes);
         map.put(WebParamsKey.packageName, WebParamsValue.packageNames);
-
+        map.put(WebParamsKey.apphash, AppHashUtil.appHash());
         map.put(WebParamsKey.forumKey, WebParamsValue.forumKeys);
         map.put(WebParamsKey.accessSecret,  LoginUtils.getInstance().getAccessSecret());
         map.put(WebParamsKey.accessToken, LoginUtils.getInstance().getAccessToken());

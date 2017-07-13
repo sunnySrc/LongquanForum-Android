@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dz_my_msg_click_bg"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+    <!--另一个背景选择器
+    android:background="@drawable/selector_item_click_gray"-->
+
+    <include
+        android:id="@+id/my_msg_fixed"
+        layout="@layout/my_include_msg_function" />
+
+    <include
+        android:id="@+id/my_msg_friend"
+        layout="@layout/my_include_msg_function2" />
+
+
+</LinearLayout>

@@ -1,20 +1,18 @@
 package com.mobcent.discuz.api;
 
-import android.util.Log;
-import com.mobcent.common.JsonConverter;
 import android.text.TextUtils;
+import android.util.Log;
+
+import com.mobcent.common.JsonConverter;
 import com.mobcent.discuz.base.constant.DiscuzRequest;
 import com.mobcent.discuz.bean.Reply;
 import com.mobcent.discuz.fragments.HttpResponseHandler;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-import static android.R.attr.id;
-import static com.appbyme.dev.R.id.page;
-import static com.appbyme.dev.R.id.reply;
-import static com.litesuits.android.async.AsyncExecutor.handler;
+import discuz.com.net.service.config.WebParamsKey;
+import discuz.com.net.service.config.WebParamsValue;
 
 /**
  * 龙泉论坛Api
@@ -24,15 +22,17 @@ import static com.litesuits.android.async.AsyncExecutor.handler;
 public class LqForumApi {
 
     public static final int PAGE_SIZE_TOPIC_REPLY = 10; // 帖子详情的回帖页
+
     /**
      * 首页
+     *
      * @param handler
      */
     public static DiscuzRequest home(HttpResponseHandler handler) {
         return moduleConfig(handler, 6);
     }
 
-    public static DiscuzRequest moduleConfig(HttpResponseHandler handler , long id) {
+    public static DiscuzRequest moduleConfig(HttpResponseHandler handler, long id) {
         RequestParams params = new RequestParams();
         params.add("moduleId", id);
         params.setUseCache(true);
@@ -43,12 +43,11 @@ public class LqForumApi {
 
     /**
      * 首页 法语开示
-     *
      */
-    public static DiscuzRequest moreTopics(long newsModelId, int page,  HttpResponseHandler handler) {
+    public static DiscuzRequest moreTopics(long newsModelId, int page, HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
         params.add("moduleId", newsModelId);
-        params.add("page",page);
+        params.add("page", page);
         params.setUseCache(true);
         DiscuzRequest request = new DiscuzRequest(UrlFactory.NEWS_LIST, params, handler);
         request.begin();
@@ -59,10 +58,10 @@ public class LqForumApi {
      * 帖子详情 & 帖子评论
      * page > 1 只有评论列表，不包含topic 内容
      */
-    public static DiscuzRequest topicDetail( long topicId, int page, HttpResponseHandler handler) {
+    public static DiscuzRequest topicDetail(long topicId, int page, HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
-        params.add("topicId",topicId);
-        params.add("page",page);
+        params.add("topicId", topicId);
+        params.add("page", page);
         params.add("pageSize", PAGE_SIZE_TOPIC_REPLY);
         params.setUseCache(true);
         DiscuzRequest request = new DiscuzRequest(UrlFactory.DETAIL_FORUM, params, handler);
@@ -72,12 +71,13 @@ public class LqForumApi {
 
     /**
      * 关注TA
+     *
      * @param userId
      * @param handler
      */
     public static DiscuzRequest followUser(boolean follow, long userId, HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
-        params.add("uid",userId);
+        params.add("uid", userId);
         params.add("type", follow ? "follow" : "unfollow");
         DiscuzRequest request = new DiscuzRequest(UrlFactory.USER_ADMIN, params.getJsonStr(), handler);
         request.begin();
@@ -87,10 +87,15 @@ public class LqForumApi {
     public static DiscuzRequest reply(Reply reply, HttpResponseHandler handler) {
         String json = JsonConverter.toString(reply);
         RequestParams params = new RequestParams();
-        params.add("act",  "reply");
+        params.add("act", "reply");
+        params.add("special", "0");
+        params.add(WebParamsKey.forumType, WebParamsValue.forumType);
+        params.add(WebParamsKey.platType, WebParamsValue.platType);
+
         try {
             String encode = URLEncoder.encode(json, "utf-8");
-            params.add("json", URLEncoder.encode(encode,"utf-8"));
+//            params.add("json", URLEncoder.encode(encode,"utf-8"));
+            params.add("json", encode);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -102,6 +107,7 @@ public class LqForumApi {
 
     /**
      * 举报帖子
+     *
      * @param id
      * @param type
      * @param text
@@ -110,10 +116,10 @@ public class LqForumApi {
      */
     public static DiscuzRequest report(long id, String type, String text, HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
-        params.add("idType",  "post");
-        params.add("id",id);
+        params.add("idType", "post");
+        params.add("id", id);
         try {
-            String encode = URLEncoder.encode("["+type +"]", "utf-8");
+            String encode = URLEncoder.encode("[" + type + "]", "utf-8");
             params.add("message", encode + text);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -142,6 +148,7 @@ public class LqForumApi {
         request.begin();
         return request;
     }
+
     public static DiscuzRequest topicFavor(int id, boolean follow, HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
         params.add("id", id);
@@ -151,6 +158,7 @@ public class LqForumApi {
         request.begin();
         return request;
     }
+
     public static DiscuzRequest userFavor(int id, boolean follow, HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
         params.add("id", id);
@@ -200,8 +208,8 @@ public class LqForumApi {
         RequestParams params = new RequestParams();
         params.setUseCache(true);
         params.add("socket_timeout", 3000);
-        params.add("connection_timeout",1000);
-        params.add("getSetting","%7b%22body%22%3a%7b%22postInfo%22%3a%7b%22forumIds%22%3a%220%22%7d%7d%7d");
+        params.add("connection_timeout", 1000);
+        params.add("getSetting", "%7b%22body%22%3a%7b%22postInfo%22%3a%7b%22forumIds%22%3a%220%22%7d%7d%7d");
         DiscuzRequest request = new DiscuzRequest(UrlFactory.SETTING, params, handler);
         request.begin();
         return request;
@@ -209,14 +217,15 @@ public class LqForumApi {
 
     /**
      * app界面显示结构配置
+     *
      * @param handler
      * @return
      */
     public static DiscuzRequest initUI(HttpResponseHandler handler) {
         RequestParams params = new RequestParams();
         params.setUseCache(true);
-        params.add("connection_timeout",5000);
-        params.add("forumType","7");
+        params.add("connection_timeout", 5000);
+        params.add("forumType", "7");
         DiscuzRequest request = new DiscuzRequest(UrlFactory.INIT_UI, params, handler);
         request.begin();
         return request;
